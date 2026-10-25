@@ -43,3 +43,5 @@ py -3.12 setup_environment.py --with-llm
 初始备份分支为 `codex/project-backup`。后续系统开发位于 `codex/system-stability`，变更与验证记录见 `docs/系统功能与稳定性更新_20261025.md` 和 `docs/报告管理与交互优化_20261025.md`。原始训练数据仍按交接包的来源清单获取。
 
 后续缺陷修复见 `docs/缺陷排查与修复_20261025.md`，对应复现与回归资料保存在 `results/bugs_20261025/` 和 `output/playwright/`。
+
+文档任务升级见 `docs/文档任务升级_20261025.md`，支持进度、取消、后台继续和刷新恢复；本机模型检查见 `results/jobs_20261025/`。

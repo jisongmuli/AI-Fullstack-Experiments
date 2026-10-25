@@ -9,6 +9,7 @@ from starlette.responses import JSONResponse
 
 PROCESSING_PATHS = frozenset({
     "/api/image/detect", "/api/text/detect", "/api/document/detect",
+    "/api/document/jobs",
     "/api/text/edit", "/api/text/edit/llm-preview",
     "/api/agent/run", "/api/agent/upload",
 })
@@ -58,7 +59,36 @@ class ProcessingLimit:
                 headers={"Retry-After": "2", "Cache-Control": "no-store"},
             )(scope, receive, send)
             return
+        lease = ProcessingLease(self.state)
+        scope["aigc.processing_lease"] = lease
         try:
             await self.app(scope, receive, send)
         finally:
-            self.state.release()
+            lease.release_if_attached()
+
+
+class ProcessingLease:
+    """An accepted background task keeps its slot until its worker finishes."""
+    def __init__(self, state: ProcessingState):
+        self.state = state
+        self._lock = threading.Lock()
+        self._released = False
+        self._detached = False
+
+    def detach(self) -> None:
+        with self._lock:
+            self._detached = True
+
+    def release(self) -> None:
+        with self._lock:
+            if self._released:
+                return
+            self._released = True
+        self.state.release()
+
+    def release_if_attached(self) -> None:
+        with self._lock:
+            if self._detached or self._released:
+                return
+            self._released = True
+        self.state.release()

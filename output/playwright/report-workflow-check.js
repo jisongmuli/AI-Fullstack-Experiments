@@ -8,10 +8,12 @@ async (page) => {
   await page.setViewportSize({width:1280, height:900});
   await page.getByRole('button', {name:'文档检测', exact:true}).click();
   await page.locator('#document-file').setInputFiles({name:filename, mimeType:'text/plain', buffer:Buffer.from(text)});
-  const created = page.waitForResponse(response => response.url().endsWith('/api/document/detect') && response.request().method() === 'POST');
+  const created = page.waitForResponse(response => response.url().endsWith('/api/document/jobs') && response.request().method() === 'POST');
   await page.getByRole('button', {name:'检测文档并标注', exact:true}).click();
-  const report = await (await created).json();
+  const acceptedJob = await (await created).json();
   await page.locator('#document-annotated-text').waitFor();
+  const completedJob = await (await page.request.get(`http://127.0.0.1:8002/api/document/jobs/${acceptedJob.job_id}`)).json();
+  const report = await (await page.request.get(`http://127.0.0.1:8002/api/document/reports/${completedJob.report_id}`)).json();
   check('Real document detection preserves the complete original', await page.locator('#document-annotated-text').innerText() === text);
   await page.getByRole('button', {name:`打开报告：${filename}`, exact:true}).waitFor();
   check('New reports appear in the current service list', true);

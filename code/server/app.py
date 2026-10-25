@@ -22,7 +22,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import quote
 
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
@@ -41,6 +41,7 @@ from documents import (DocumentError, MAX_DOCUMENT_BYTES, MAX_DOCUMENT_CHARS,
 from document_reports import build_report
 from report_store import ReportStore
 from runtime import ProcessingLimit, ProcessingState
+from document_jobs import DocumentJobs, JobError
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -346,12 +347,14 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
                *, max_active_requests: int = 2) -> FastAPI:
     report_store = ReportStore()
     processing = ProcessingState(max_active_requests)
+    document_jobs = DocumentJobs(workers=max_active_requests, delete_report=report_store.delete)
 
     @asynccontextmanager
     async def lifespan(application: FastAPI):
         try:
             yield
         finally:
+            await run_in_threadpool(document_jobs.close)
             report_store.close()
 
     api = FastAPI(
@@ -383,6 +386,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
     api.state.llm_service = llm
     api.state.report_store = report_store
     api.state.processing = processing
+    api.state.document_jobs = document_jobs
 
     def get_bundle() -> Any:
         try:
@@ -546,6 +550,60 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
     def document_report_list() -> Response:
         return JSONResponse({"reports": report_store.list_reports()},
                             headers={"Cache-Control": "no-store"})
+
+    @api.post("/api/document/jobs")
+    async def start_document_job(request: Request, file: UploadFile | None = File(None),
+                                 text: str = Form("")) -> Response:
+        if file is not None and text.strip():
+            raise HTTPException(status_code=400, detail="请选择上传文件或粘贴文本中的一种方式。")
+        if file is None and not text.strip():
+            raise HTTPException(status_code=400, detail="请上传文档或粘贴文本。")
+        if len(text.replace("\r\n", "\n").replace("\r", "\n")) > MAX_DOCUMENT_CHARS:
+            raise HTTPException(status_code=413, detail="原文超过 100,000 字符，请按章节拆分后检测。")
+        data = await file.read(MAX_DOCUMENT_BYTES + 1) if file else None
+        if data is not None and len(data) > MAX_DOCUMENT_BYTES:
+            raise HTTPException(status_code=413, detail="文件超过 20 MB，请减少内容或拆分后上传。")
+        source_filename = (file.filename or "文档") if file else "粘贴的长文"
+        filename = source_filename.replace("\\", "/").rsplit("/", 1)[-1][:240]
+
+        def process(progress, check_cancel):
+            try:
+                progress("extracting")
+                source = extract_document(data, source_filename) if data is not None else extract_pasted_text(text)
+                check_cancel()
+                result = analyze_document(source, detect_text,
+                    progress=lambda done, total: progress("analyzing", done, total), check_cancel=check_cancel)
+                progress("saving")
+                report = report_store.put(result)
+                return report["report_id"]
+            except DocumentError as exc:
+                raise JobError(str(exc), exc.status_code) from exc
+            except HTTPException as exc:
+                raise JobError(str(exc.detail), exc.status_code) from exc
+
+        try:
+            job = document_jobs.submit(filename, process, request.scope["aigc.processing_lease"])
+        except JobError as exc:
+            raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
+        return JSONResponse(job, status_code=202, headers={"Cache-Control": "no-store"})
+
+    @api.get("/api/document/jobs")
+    async def list_document_jobs() -> Response:
+        return JSONResponse({"jobs": document_jobs.list_jobs()}, headers={"Cache-Control": "no-store"})
+
+    @api.get("/api/document/jobs/{job_id}")
+    async def get_document_job(job_id: str) -> Response:
+        job = document_jobs.get(job_id)
+        if job is None:
+            raise HTTPException(status_code=404, detail="任务记录已过期或服务已重启，请查看可用报告或重新检测。")
+        return JSONResponse(job, headers={"Cache-Control": "no-store"})
+
+    @api.post("/api/document/jobs/{job_id}/cancel")
+    async def cancel_document_job(job_id: str) -> Response:
+        job = document_jobs.cancel(job_id)
+        if job is None:
+            raise HTTPException(status_code=404, detail="任务记录已过期或服务已重启。")
+        return JSONResponse(job, headers={"Cache-Control": "no-store"})
 
     @api.get("/api/document/reports/{report_id}")
     def document_report(report_id: str) -> Response:

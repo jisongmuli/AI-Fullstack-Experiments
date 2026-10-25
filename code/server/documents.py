@@ -50,7 +50,10 @@ def _safe_filename(filename: str) -> str:
         return "document.txt"
     name = filename.replace("\\", "/").rsplit("/", 1)[-1]
     name = "".join(char for char in name if unicodedata.category(char)[0] != "C")
-    return name[:180] or "document.txt"
+    if len(name) > 180:
+        suffix = Path(name).suffix
+        name = name[:180 - len(suffix)] + suffix if len(suffix) <= 12 else name[:180]
+    return name or "document.txt"
 
 
 def _validate_text(text: str) -> None:
@@ -481,17 +484,27 @@ def _abstain_segment(text: str, start: int, end: int, reason: str, applicability
             "applicability": applicability}
 
 
-def _detect_ranges(text: str, detect_text: Callable[[str], dict]) -> tuple[list[dict], list[str]]:
+def _detect_ranges(text: str, detect_text: Callable[[str], dict], progress=None,
+                   check_cancel=None) -> tuple[list[dict], list[str]]:
     segments, versions = [], []
-    for start, end in segment_ranges(text):
+    ranges = segment_ranges(text)
+    if progress:
+        progress(0, len(ranges))
+    for index, (start, end) in enumerate(ranges, 1):
+        if check_cancel:
+            check_cancel()
         excerpt = text[start:end]
         context = noncontent_reason(excerpt)
         if context:
             segments.append(_abstain_segment(text, start, end, context[1], context[0]))
+            if progress:
+                progress(index, len(ranges))
             continue
         if len(excerpt) > 10_000:
             raise RuntimeError("Document segmentation exceeded the detector input limit.")
         prediction = detect_text(excerpt)
+        if check_cancel:
+            check_cancel()
         if not isinstance(prediction, dict):
             raise RuntimeError("Detector returned a non-object result.")
         if prediction.get("model_version"):
@@ -510,10 +523,13 @@ def _detect_ranges(text: str, detect_text: Callable[[str], dict]) -> tuple[list[
                              "risk_score": score, "decision": prediction.get("decision", "uncertain"),
                              "highlighted": score is not None and score >= HIGHLIGHT_THRESHOLD,
                              "evidence": evidence, "applicability": prediction.get("applicability", "unverified_platform")})
+        if progress:
+            progress(index, len(ranges))
     return _validate_segments(segments, text), list(dict.fromkeys(versions))
 
 
-def analyze_document(source: dict, detect_text: Callable[[str], dict]) -> dict:
+def analyze_document(source: dict, detect_text: Callable[[str], dict], *, progress=None,
+                     check_cancel=None) -> dict:
     """Preserve all extracted text and clearly separate coverage from model risk."""
     text = source.get("text")
     _validate_text(text)
@@ -528,16 +544,24 @@ def analyze_document(source: dict, detect_text: Callable[[str], dict]) -> dict:
                 or not 0 <= section["start"] <= section["end"] <= len(text)):
             raise RuntimeError("Invalid extracted document section offsets.")
     if len(text) <= 10_000:
+        if check_cancel:
+            check_cancel()
+        if progress:
+            progress(0, 1)
         detection = detect_text(text)
+        if check_cancel:
+            check_cancel()
         if not isinstance(detection, dict):
             raise RuntimeError("Detector returned a non-object result.")
         detection = dict(detection)
         if "segments" in detection:
             segments = _validate_segments(detection["segments"], text)
+            if progress:
+                progress(1, 1)
         else:
-            segments, _ = _detect_ranges(text, detect_text)
+            segments, _ = _detect_ranges(text, detect_text, progress, check_cancel)
     else:
-        segments, versions = _detect_ranges(text, detect_text)
+        segments, versions = _detect_ranges(text, detect_text, progress, check_cancel)
         detection = {"risk_score": None, "decision": "uncertain", "out_of_scope": True,
                      "applicability": "long_document_segments", "modality": "text",
                      "model_version": " / ".join(versions) or "local-text-model",

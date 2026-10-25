@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "An older active task stays visible ahead of finished jobs",
+      "passed": true
+    },
+    {
+      "name": "The task panel keeps a bounded list of eight rows",
+      "passed": true
+    }
+  ]
+}

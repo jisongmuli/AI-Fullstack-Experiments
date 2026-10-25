@@ -16,6 +16,10 @@ The trained inference module and artifacts from experiments 2-3 must be present 
 | `GET /api/models` | none | Artifact availability, manifest, SHA-256 fingerprints and applicability scope |
 | `POST /api/image/detect` | multipart `file` | AI risk score, decision, evidence, applicability |
 | `POST /api/text/detect` | JSON `{"text":"..."}` | AI risk score, decision, evidence, applicability |
+| `POST /api/document/jobs` | multipart `file` or form `text` | 202 with a document task ID |
+| `GET /api/document/jobs` | none | Bounded task metadata, without source text |
+| `GET /api/document/jobs/{job_id}` | task ID | Stage, progress, report ID or error |
+| `POST /api/document/jobs/{job_id}/cancel` | task ID | Cooperative cancellation status |
 | `POST /api/text/edit` | JSON `{"text":"..."}` | Conservative edits, suggestions and meaning checks |
 | `POST /api/text/edit/llm-preview` | JSON `{"text":"..."}` | Opt-in LoRA draft or explicit rejection, never automatic replacement |
 | `POST /api/agent/run` | JSON `{"text":"...","image_base64":"...","edit":true,"llm_preview":false}` | Separate tool findings, optional LLM preview, call log and cautious conclusion |
@@ -30,4 +34,4 @@ Run the integration tests from the project root:
 python -m unittest discover -s code/server/tests -v
 ```
 
-The current suite has 19 tests. It injects predictable stand-in model outputs to verify API behavior and Agent orchestration; it does not replace the experiment 2-3 detector evaluation or the experiment-5 held-out edit assessment. Requests are processed locally and capped before parsing; this API does not write user content or tool logs to disk. The server binds to localhost and accepts only loopback Host headers. It is a course prototype. Public deployment needs target-domain validation, authentication, abuse controls, privacy review, load testing and monitoring.
+The suite covers API behavior, Agent orchestration, report retention, document tasks, shared capacity and cancellation with predictable stand-in outputs. Run `scripts/document_jobs_smoke.py` for generated-input checks using actual local models. Tasks retain their processing slot after the 202 response until the worker finishes. Cancellation is checked between extraction and model calls; completed tasks reference the existing report endpoints. See `docs/文档任务升级_20261025.md` for the workflow and verification records. The server binds to localhost and accepts only loopback Host headers.

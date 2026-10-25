@@ -72,7 +72,9 @@
       result: byId('document-result'), saveHistory: byId('document-save-history'),
       history: byId('document-history'), clearHistory: byId('document-clear-history'),
       reports: byId('document-server-reports'), refreshReports: byId('document-refresh-reports'),
-      reportsStatus: byId('document-reports-status'), reportsCount: byId('document-reports-count')
+      reportsStatus: byId('document-reports-status'), reportsCount: byId('document-reports-count'),
+      jobs: byId('document-jobs'), jobsStatus: byId('document-jobs-status'),
+      refreshJobs: byId('document-refresh-jobs'), background: byId('document-background')
     };
     let mode = 'file';
     let selectedFile = null;
@@ -86,10 +88,126 @@
     let listVersion = 0;
     let listLoading = false;
     let listTimer = null;
+    let jobList = [], jobsVersion = 0, jobsTimer = null;
+    let activeJobId = null, cancelRequested = false, backgrounded = false;
 
     function status(message = '', isError = false) {
       ui.status.classList.toggle('error', isError);
       ui.status.textContent = message;
+    }
+
+    const terminalJob = job => ['completed', 'failed', 'cancelled'].includes(job.status);
+    const jobText = job => ({pending: '等待开始', extracting: '正在提取文字', analyzing: '正在分析',
+      saving: '正在生成报告', completed: '检测完成', failed: '处理失败', cancelled: '已取消'}[job.stage] || '正在处理');
+    function jobLabel(job) {
+      return job.status === 'cancel_requested' ? '正在取消，请稍候…' : `${jobText(job)}${job.stage === 'analyzing' && job.total ? ` · ${job.completed} / ${job.total}` : ''}`;
+    }
+    function rememberJob(job) {
+      jobList = [job, ...jobList.filter(item => item.job_id !== job.job_id)];
+      renderJobs();
+    }
+    function renderJobs() {
+      ui.jobs.replaceChildren();
+      if (!jobList.length) ui.jobs.append(make('p', 'muted', '暂无文档任务。检测后可在这里查看进度或恢复任务。'));
+      const active = jobList.filter(job => !terminalJob(job));
+      const visible = [...active, ...jobList.filter(terminalJob).slice(0, Math.max(0, 8 - active.length))];
+      visible.forEach(job => {
+        const row = make('div', 'document-job-row');
+        row.append(make('strong', '', job.filename), make('span', '', jobLabel(job)));
+        if (job.status === 'failed') row.append(make('span', 'document-job-error', job.error?.message || '请重新检测。'));
+        if (!terminalJob(job)) {
+          const bar = make('progress'); bar.max = 100; bar.value = job.progress;
+          bar.setAttribute('aria-label', `${job.filename}的处理进度`); row.append(bar);
+        }
+        const actions = make('div', 'document-job-actions');
+        if (!terminalJob(job) || (job.status === 'completed' && job.report_id)) {
+          const open = make('button', 'document-link-button', terminalJob(job) ? '查看报告' : '查看进度');
+          open.type = 'button'; open.disabled = busy;
+          open.setAttribute('aria-label', `${terminalJob(job) ? '查看任务报告' : '恢复任务'}：${job.filename}`);
+          open.onclick = () => terminalJob(job) ? restoreReport(job.report_id) : resumeJob(job);
+          actions.append(open);
+        }
+        if (!terminalJob(job)) {
+          const cancel = make('button', 'document-link-button', '取消任务');
+          cancel.type = 'button'; cancel.disabled = busy || job.status === 'cancel_requested';
+          cancel.dataset.cancelling = String(job.status === 'cancel_requested');
+          cancel.setAttribute('aria-label', `取消任务：${job.filename}`);
+          cancel.onclick = () => requestCancel(job.job_id); actions.append(cancel);
+        }
+        row.append(actions); ui.jobs.append(row);
+      });
+    }
+    async function refreshJobs() {
+      const version = ++jobsVersion;
+      clearTimeout(jobsTimer);
+      ui.refreshJobs.disabled = true;
+      try {
+        const response = await fetch('/api/document/jobs', {cache: 'no-store', signal: AbortSignal.timeout(5000)});
+        if (!response.ok) throw Error('任务列表读取失败，请刷新重试。');
+        const body = await response.json();
+        if (!Array.isArray(body.jobs)) throw Error('任务列表格式异常，请刷新重试。');
+        if (version !== jobsVersion) return;
+        jobList = body.jobs.filter(job => job && typeof job.job_id === 'string' && typeof job.filename === 'string').slice(0, 20);
+        ui.jobsStatus.textContent = ''; renderJobs();
+      } catch (error) {
+        if (version === jobsVersion) ui.jobsStatus.textContent = '任务列表暂时不可用，可点击刷新重试。';
+      } finally {
+        if (version === jobsVersion) {
+          ui.refreshJobs.disabled = false;
+          if (!document.hidden && byId('view-document').classList.contains('active')) jobsTimer = setTimeout(refreshJobs, jobList.some(job => !terminalJob(job)) ? 1500 : 15000);
+        }
+      }
+    }
+    async function requestCancel(jobId) {
+      const known = jobList.find(job => job.job_id === jobId);
+      if (known && !terminalJob(known)) rememberJob({...known, status: 'cancel_requested'});
+      if (jobId === activeJobId) { cancelRequested = true; updateControls(); }
+      try {
+        const response = await fetch(`/api/document/jobs/${encodeURIComponent(jobId)}/cancel`, {method: 'POST', signal: AbortSignal.timeout(5000)});
+        if (!response.ok) throw Error('任务取消失败，请刷新任务后重试。');
+        const job = await response.json(); rememberJob(job);
+        if (jobId === activeJobId) {
+          cancelRequested = job.status === 'cancel_requested';
+          status(job.status === 'completed' ? '任务已完成，可查看报告。' : jobLabel(job)); updateControls();
+        }
+        refreshJobs();
+      } catch (error) {
+        if (jobId === activeJobId) { cancelRequested = false; updateControls(); }
+        status(error instanceof TypeError ? '取消请求未连接到服务，请重试。' : error.message, true);
+        refreshJobs();
+      }
+    }
+    function pause(milliseconds, signal) {
+      return new Promise((resolve, reject) => {
+        if (signal.aborted) { reject(new DOMException('Aborted', 'AbortError')); return; }
+        const abort = () => { clearTimeout(timer); signal.removeEventListener('abort', abort); reject(new DOMException('Aborted', 'AbortError')); };
+        const timer = setTimeout(() => { signal.removeEventListener('abort', abort); resolve(); }, milliseconds);
+        signal.addEventListener('abort', abort, {once: true});
+      });
+    }
+    function showJobProgress(job) {
+      const bar = byId('document-task-progress'), label = byId('document-task-stage');
+      if (bar) { bar.value = job.progress; bar.setAttribute('aria-valuetext', jobLabel(job)); }
+      if (label) label.textContent = jobLabel(job);
+    }
+    async function followJob(job, signal) {
+      activeJobId = job.job_id;
+      updateControls();
+      while (true) {
+        if (signal.aborted) throw new DOMException('Aborted', 'AbortError');
+        cancelRequested = job.status === 'cancel_requested'; updateControls();
+        rememberJob(job); showJobProgress(job);
+        if (job.status === 'completed') {
+          const response = await fetch(`/api/document/reports/${encodeURIComponent(job.report_id)}`, {signal});
+          return responseJson(response);
+        }
+        if (job.status === 'failed') throw Error(job.error?.message || '文档处理失败，请重新检测。');
+        if (job.status === 'cancelled') { const error = Error('任务已取消。'); error.name = 'JobCancelled'; throw error; }
+        await pause(750, signal);
+        const response = await fetch(`/api/document/jobs/${encodeURIComponent(job.job_id)}`, {signal: AbortSignal.any([signal, AbortSignal.timeout(5000)]), cache: 'no-store'});
+        if (!response.ok) throw Error('任务记录暂时无法读取，可从文档任务列表恢复。');
+        job = await response.json();
+      }
     }
 
     function readHistory() {
@@ -258,6 +376,10 @@
       ui.text.disabled = busy;
       ui.clearFile.disabled = busy;
       ui.cancel.hidden = !busy || !controller;
+      ui.cancel.disabled = cancelRequested;
+      ui.cancel.textContent = activeJobId ? '取消任务' : '取消等待';
+      ui.background.hidden = !busy || !activeJobId || busyAction !== 'detect';
+      ui.background.disabled = cancelRequested;
       ui.dropzone.classList.toggle('busy', busy);
       ui.detect.querySelector('span').textContent = busy ? ({restore: '正在读取报告…', delete: '正在删除报告…', export: '正在导出报告…'}[busyAction] || '正在提取和分段分析…') : '检测文档并标注';
       ui.history.querySelectorAll('button').forEach((button) => { button.disabled = busy; });
@@ -266,6 +388,7 @@
       ui.clearHistory.disabled = busy || history.length === 0;
       ui.refreshReports.disabled = busy || listLoading;
       ui.saveHistory.disabled = busy;
+      ui.jobs.querySelectorAll('button').forEach(button => { button.disabled = busy || button.dataset.cancelling === 'true'; });
     }
 
     function chooseMode(next) {
@@ -326,8 +449,11 @@
     function loadingResult() {
       const box = make('div', 'empty-result');
       const progress = make('div', 'busy-state');
-      progress.append(make('span', 'spinner'), make('span', '', '正在提取文字并逐段分析'));
-      box.append(progress, make('p', '', '文档越长，所需时间越多。结果不会默默截断原文。'));
+      const label = make('span', '', '正在提交文档任务…'); label.id = 'document-task-stage';
+      progress.append(make('span', 'spinner'), label);
+      const bar = make('progress', 'document-task-progress'); bar.id = 'document-task-progress'; bar.max = 100; bar.value = 0;
+      bar.setAttribute('aria-label', '当前文档处理进度');
+      box.append(progress, bar, make('p', '', '可在后台继续处理，刷新后从文档任务恢复。'));
       ui.result.replaceChildren(box);
       ui.result.setAttribute('aria-busy', 'true');
     }
@@ -337,22 +463,36 @@
       const characters = codepointCount(ui.text.value);
       if ((mode === 'file' && !selectedFile) || (mode === 'text' && !ui.text.value.trim())) return;
       if (mode === 'text' && characters > MAX_CHARACTERS) { status('原文超过 100,000 字符，请按章节拆分后检测。', true); return; }
+      const form = mode === 'file' ? new FormData() : new URLSearchParams();
+      if (mode === 'file') form.append('file', selectedFile);
+      else form.append('text', ui.text.value);
+      return runDocumentJob(form);
+    }
+
+    async function resumeJob(job) {
+      if (busy) return;
+      return runDocumentJob(null, job);
+    }
+
+    async function runDocumentJob(form, existingJob = null) {
       const version = ++requestVersion;
       controller = new AbortController();
       busy = true;
       busyAction = 'detect';
-      status('正在自动分析。段落结果会保留原文位置。');
+      activeJobId = null; cancelRequested = false; backgrounded = false;
+      status(existingJob ? '正在恢复任务进度…' : '正在提交文档任务…');
       loadingResult();
       updateControls();
-      // Browsers normalize string fields in multipart bodies to CRLF. Encode
-      // pasted text as a form URL body so displayed character offsets and the
-      // 100,000-codepoint input boundary retain the user's LF line endings.
-      const form = mode === 'file' ? new FormData() : new URLSearchParams();
-      if (mode === 'file') form.append('file', selectedFile);
-      else form.append('text', ui.text.value);
       try {
-        const response = await fetch('/api/document/detect', {method: 'POST', body: form, signal: controller.signal});
-        const report = await responseJson(response);
+        let job = existingJob;
+        if (!job) {
+          const response = await fetch('/api/document/jobs', {method: 'POST', body: form, signal: controller.signal});
+          const body = await response.json();
+          if (!response.ok) throw Error(typeof body.detail === 'string' ? body.detail : '文档任务未提交，请重试。');
+          if (typeof body.job_id !== 'string') throw Error('未取得文档任务编号，请刷新任务列表。');
+          job = body;
+        }
+        const report = await followJob(job, controller.signal);
         if (version !== requestVersion) return;
         currentReport = report;
         renderReport(report);
@@ -361,12 +501,14 @@
         refreshReports();
       } catch (error) {
         if (version !== requestVersion) return;
-        if (error.name === 'AbortError') status('已取消等待，可重新选择文档。');
+        if (error.name === 'JobCancelled') status('任务已取消，可重新选择文档。');
+        else if (error.name === 'AbortError') status(backgrounded ? '任务已转入后台，可从文档任务查看进度和结果。' : '已取消等待，可从文档任务查看处理状态。');
+        else if (error.name === 'TimeoutError') status('进度查询超时，可从文档任务恢复。', true);
         else status(error instanceof TypeError ? '无法连接检测服务，请检查本地服务是否启动。' : error.message, true);
         if (currentReport) renderReport(currentReport);
         else {
           const empty = make('div', 'empty-result');
-          empty.append(make('strong', '', '本次检测未完成'), make('p', '', '请根据左侧提示重新提交，失败请求不会产生检测百分比。'));
+          empty.append(make('strong', '', backgrounded ? '任务已转入后台' : error.name === 'JobCancelled' ? '任务已取消' : '本次检测未完成'), make('p', '', backgrounded ? '完成后可从当前可用报告查看结果。' : '可从文档任务查看状态，或重新提交文档。'));
           ui.result.replaceChildren(empty);
         }
       } finally {
@@ -374,8 +516,10 @@
           busy = false;
           busyAction = '';
           controller = null;
+          activeJobId = null; cancelRequested = false; backgrounded = false;
           ui.result.removeAttribute('aria-busy');
           updateControls();
+          refreshJobs(); refreshReports();
         }
       }
     }
@@ -616,7 +760,9 @@
     });
     ui.text.addEventListener('input', updateControls);
     ui.detect.addEventListener('click', detectDocument);
-    ui.cancel.addEventListener('click', () => { if (controller) controller.abort(); });
+    ui.cancel.addEventListener('click', () => { if (activeJobId) requestCancel(activeJobId); else if (controller) controller.abort(); });
+    ui.background.addEventListener('click', () => { if (activeJobId && controller) { backgrounded = true; controller.abort(); } });
+    ui.refreshJobs.addEventListener('click', refreshJobs);
     ui.saveHistory.addEventListener('change', () => { if (ui.saveHistory.checked && currentReport) saveHistory(currentReport); });
     ui.clearHistory.addEventListener('click', () => {
       if (busy) return;
@@ -640,14 +786,16 @@
     ui.refreshReports.addEventListener('click', () => { if (!busy) refreshReports(); });
     const scheduleRefresh = () => {
       clearTimeout(listTimer);
+      clearTimeout(jobsTimer);
       if (!document.hidden && byId('view-document').classList.contains('active')) {
+        refreshJobs();
         if (!busy) refreshReports();
         listTimer = setTimeout(scheduleRefresh, 30000);
       }
     };
     window.addEventListener('aigc:view-changed', scheduleRefresh);
     document.addEventListener('visibilitychange', scheduleRefresh);
-    renderHistory(); updateControls(); refreshReports();
+    renderHistory(); updateControls(); refreshReports(); refreshJobs();
     if (byId('view-document').classList.contains('active')) listTimer = setTimeout(scheduleRefresh, 30000);
   });
 })();
