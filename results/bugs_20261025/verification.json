@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "bugs_fixed": 9,
+  "server_tests": {
+    "run": 90,
+    "passed": 89,
+    "skipped": 1,
+    "skip_reason": "Official C2PA fixtures were not downloaded"
+  },
+  "browser_checks": {
+    "bug-regression-check.json": 22,
+    "browser-check.json": 14,
+    "report-workflow-check.json": 19
+  },
+  "browser_checks_total": 55,
+  "real_model_smoke": "passed",
+  "baseline_commit": "00ce043849f4e9bc77911abefba87a4cc127f52f"
+}

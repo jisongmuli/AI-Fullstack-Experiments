@@ -1,0 +1,7 @@
+{
+  "styles_baseline_commit": "00ce043849f4e9bc77911abefba87a4cc127f52f",
+  "observation": "After clearing an image, the hidden attribute was still overridden by the flex layout rule.",
+  "hidden_attribute": true,
+  "computed_display": "flex",
+  "detect_button_disabled": true
+}

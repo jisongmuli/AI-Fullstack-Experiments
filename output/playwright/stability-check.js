@@ -1,4 +1,6 @@
 async (page) => {
+  await page.unrouteAll({behavior: "wait"});
+  await page.reload();
   const checks = [];
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
@@ -27,7 +29,7 @@ async (page) => {
     await analyze.dispatchEvent("click");
     check("Duplicate text submissions are suppressed", calls === 1);
   } finally {release();}
-  await page.getByText("输入已更新", {exact: true}).waitFor();
+  await page.locator("#text-result").getByText("输入已更新", {exact: true}).waitFor();
   check("Old text results are discarded and submission recovers", await analyze.isEnabled());
   await page.screenshot({path: "output/playwright/stale-text-prevented.png", fullPage: true});
   await page.unroute("**/api/text/detect");
@@ -58,7 +60,7 @@ async (page) => {
     await llm.dispatchEvent("click");
     check("Rule and LLM editing cannot race", calls === 1);
   } finally {release();}
-  await page.getByText("输入已更新", {exact: true}).waitFor();
+  await page.locator("#edit-result").getByText("输入已更新", {exact: true}).waitFor();
   check("Editor validates current input when the old request finishes", await rule.isDisabled() && await llm.isDisabled());
   await page.unroute("**/api/text/edit");
   await edit.fill(original);

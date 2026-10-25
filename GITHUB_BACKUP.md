@@ -41,3 +41,5 @@ py -3.12 setup_environment.py --with-llm
 最终实验三报告为 `reports/实验3/实验3报告_算法优化实验.docx`。`work` 内保留正文源稿、测量记录、图表及构建脚本。反复生成的页面 PNG 和中间 PDF 可由渲染流程重新生成，因此未上传重复副本。
 
 初始备份分支为 `codex/project-backup`。后续系统开发位于 `codex/system-stability`，变更与验证记录见 `docs/系统功能与稳定性更新_20261025.md` 和 `docs/报告管理与交互优化_20261025.md`。原始训练数据仍按交接包的来源清单获取。
+
+后续缺陷修复见 `docs/缺陷排查与修复_20261025.md`，对应复现与回归资料保存在 `results/bugs_20261025/` 和 `output/playwright/`。

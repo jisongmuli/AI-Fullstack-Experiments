@@ -1,4 +1,4 @@
-const state={view:"image",image:null,imageBusy:false,textBusy:false,editBusy:false,healthBusy:false,healthTimer:null,agentImage:null,agentDocument:null,agentBusy:false,mode:"clarity",models:null};
+const state={view:"image",image:null,imageBusy:false,imageSelectionVersion:0,textBusy:false,textResultSource:null,editBusy:false,editResultSource:null,healthBusy:false,healthTimer:null,agentImage:null,agentDocument:null,agentBusy:false,mode:"clarity",models:null};
 document.addEventListener("DOMContentLoaded",()=>{document.getElementById("run-llm-edit").onclick=runLLMEdit});
 const $=id=>document.getElementById(id);
 const icon=()=>window.lucide?.createIcons();
@@ -86,9 +86,17 @@ function segmentResultHtml(data){
   }).join("")}</div>`;
 }
 function validateImage(file){if(!file)return"请选择图片";if(!["image/png","image/jpeg"].includes(file.type))return"仅支持 JPG 或 PNG";if(file.size>25*1048576)return"文件不能超过 25 MB";return null}
-function setImage(file){const error=validateImage(file);if(error){clearImage();showError($("image-result"),error);return}state.image=file;$("agent-use-image").disabled=false;const preview=$("image-preview"),caption=$("preview-caption"),dropzone=$("image-dropzone");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.dataset.objectUrl=URL.createObjectURL(file);preview.onload=()=>{const side=Math.min(preview.naturalWidth,preview.naturalHeight),small=preview.naturalWidth===32&&preview.naturalHeight===32;dropzone.classList.toggle("pixel-preview",small);const scope=small?" · 放大预览（CIFAKE 教学模型）":side<200?" · 不评分":side<512?" · 仅探索性候选分数":"";caption.textContent=`原图 ${preview.naturalWidth} × ${preview.naturalHeight} 像素${scope}`;caption.hidden=false};preview.src=preview.dataset.objectUrl;preview.hidden=false;dropzone.classList.add("has-image");$("file-meta").hidden=false;$("file-name").textContent=file.name;$("file-size").textContent=bytes(file.size);$("detect-image").disabled=state.imageBusy;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>图片已就绪</strong><p>点击分析图片查看模型输出。</p></div>`;updateAgentInput();icon()}
-function clearImage(){state.image=null;$("agent-use-image").checked=false;$("agent-use-image").disabled=true;const preview=$("image-preview");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.removeAttribute("src");preview.hidden=true;$("preview-caption").hidden=true;$("image-input").value="";$("image-dropzone").classList.remove("has-image","pixel-preview");$("file-meta").hidden=true;$("detect-image").disabled=true;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>等待图片</strong><p>选择图片后查看模型输出、适用范围与判断状态。</p></div>`;updateAgentInput();icon()}
-async function useSample(kind){try{const response=await fetch(`/static/assets/sample-${kind}.png`);const blob=await response.blob();setImage(new File([blob],`cifake-${kind}-sample.png`,{type:"image/png"}))}catch(error){showError($("image-result"),error)}}
+function setImage(file){++state.imageSelectionVersion;const error=validateImage(file);if(error){clearImage();showError($("image-result"),error);return}state.image=file;$("agent-use-image").disabled=false;const preview=$("image-preview"),caption=$("preview-caption"),dropzone=$("image-dropzone");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.dataset.objectUrl=URL.createObjectURL(file);preview.onload=()=>{const side=Math.min(preview.naturalWidth,preview.naturalHeight),small=preview.naturalWidth===32&&preview.naturalHeight===32;dropzone.classList.toggle("pixel-preview",small);const scope=small?" · 放大预览（CIFAKE 教学模型）":side<200?" · 不评分":side<512?" · 仅探索性候选分数":"";caption.textContent=`原图 ${preview.naturalWidth} × ${preview.naturalHeight} 像素${scope}`;caption.hidden=false};preview.src=preview.dataset.objectUrl;preview.hidden=false;dropzone.classList.add("has-image");$("file-meta").hidden=false;$("file-name").textContent=file.name;$("file-size").textContent=bytes(file.size);$("detect-image").disabled=state.imageBusy;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>图片已就绪</strong><p>点击分析图片查看模型输出。</p></div>`;updateAgentInput();icon()}
+function clearImage(){++state.imageSelectionVersion;state.image=null;$("agent-use-image").checked=false;$("agent-use-image").disabled=true;const preview=$("image-preview");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.removeAttribute("src");preview.hidden=true;$("preview-caption").hidden=true;$("image-input").value="";$("image-dropzone").classList.remove("has-image","pixel-preview");$("file-meta").hidden=true;$("detect-image").disabled=true;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>等待图片</strong><p>选择图片后查看模型输出、适用范围与判断状态。</p></div>`;updateAgentInput();icon()}
+async function useSample(kind){
+  const version=++state.imageSelectionVersion;
+  try{
+    const response=await fetch(`/static/assets/sample-${kind}.png`);
+    if(!response.ok)throw Error(`示例图片加载失败（${response.status}），请重新选择图片。`);
+    const blob=await response.blob();
+    if(version===state.imageSelectionVersion)setImage(new File([blob],`cifake-${kind}-sample.png`,{type:"image/png"}));
+  }catch(error){if(version===state.imageSelectionVersion){clearImage();showError($("image-result"),error)}}
+}
 async function detectImage(){
   if(state.imageBusy||!state.image)return;
   const button=$("detect-image"),target=$("image-result"),file=state.image;
@@ -98,26 +106,27 @@ async function detectImage(){
   finally{state.imageBusy=false;button.disabled=!state.image}
 }
 function inputUpdated(target){target.innerHTML='<div class="empty-result"><i data-lucide="file-pen-line"></i><strong>输入已更新</strong><p>请重新提交，查看当前文本的结果。</p></div>';icon()}
-function updateText(){const value=$("text-input").value,length=Array.from(value).length;$("text-count").textContent=`${length} / 10,000 字符`;const valid=Boolean(value.trim())&&length<=10000;$("detect-text").disabled=state.textBusy||!valid;$("text-hint").textContent=length>10000?"长于 10,000 字符，请使用文档检测":state.textBusy?"分析中；修改文本后请重新分析":valid?"可开始分析；短段落可能无法评分":"请输入文本"}
+function updateText(){const value=$("text-input").value,length=Array.from(value).length;if(state.textResultSource!==null&&state.textResultSource!==value){state.textResultSource=null;inputUpdated($("text-result"))}$("text-count").textContent=`${length} / 10,000 字符`;const valid=Boolean(value.trim())&&length<=10000;$("detect-text").disabled=state.textBusy||!valid;$("text-hint").textContent=length>10000?"长于 10,000 字符，请使用文档检测":state.textBusy?"分析中；修改文本后请重新分析":valid?"可开始分析；短段落可能无法评分":"请输入文本"}
 async function detectText(){
   const button=$("detect-text"),target=$("text-result"),text=$("text-input").value;
   if(state.textBusy||!text.trim()||Array.from(text).length>10000)return;
-  state.textBusy=true;setBusy(button,target,"正在分析文本…");updateText();
-  try{const result=await jsonPost("/api/text/detect",{text});if($("text-input").value!==text)return;renderDetection(target,result,"text");if(window.AIGCDocument)target.append(window.AIGCDocument.renderInline(text,result.segments,{showUnscored:true}));target.insertAdjacentHTML("beforeend",segmentResultHtml(result))}
+  state.textBusy=true;state.textResultSource=null;setBusy(button,target,"正在分析文本…");updateText();
+  try{const result=await jsonPost("/api/text/detect",{text});if($("text-input").value!==text)return;renderDetection(target,result,"text");if(window.AIGCDocument)target.append(window.AIGCDocument.renderInline(text,result.segments,{showUnscored:true}));target.insertAdjacentHTML("beforeend",segmentResultHtml(result));state.textResultSource=text}
   catch(error){if($("text-input").value===text)showError(target,error)}
   finally{state.textBusy=false;if($("text-input").value!==text)inputUpdated(target);updateText()}
 }
-function updateEdit(){const length=Array.from($("edit-input").value).length,valid=Array.from($("edit-input").value.trim()).length>=20&&length<=10000;$("edit-count").textContent=`${length} / 10,000 字符`;$("run-edit").disabled=state.editBusy||!valid;$("run-llm-edit").disabled=state.editBusy||!valid}
-function renderEdit(target,data){const edited=data.edited_text??data.revised_text??data.text??"";const suggestions=evidenceList(data.suggestions||data.changes);const checks=Object.entries(data.meaning_check?.checks||{}).map(([name,passed])=>`${name}: ${passed?"通过":"需核对"}`);const applied=data.applied_edits||[];target.innerHTML=`<div class="result-header"><div><small>编辑建议</small><h3>改写预览</h3></div><span class="decision">请作者确认</span></div><div class="edit-output" id="edit-output">${escapeHtml(edited||"未生成改写文本")}</div><div class="result-actions"><button class="secondary-button" id="copy-edit" type="button">复制建议</button><button class="secondary-button" id="use-edit" type="button">放入原文框</button></div><div class="detail-section"><h4>修改与建议</h4><p>自动修改 ${applied.length} 处；人工建议 ${suggestions.length} 条。</p>${suggestions.length?`<ul>${suggestions.map(s=>`<li>${escapeHtml(s)}</li>`).join("")}</ul>`:"<p>未发现预设规则覆盖的问题，请仍逐句核对。</p>"}</div><div class="detail-section"><h4>原意保留检查</h4>${checks.length?`<ul>${checks.map(s=>`<li>${escapeHtml(s)}</li>`).join("")}</ul>`:"<p>数字、姓名、引文和事实仍需作者核对。</p>"}<p>${escapeHtml(data.meaning_check?.limitation||"表面检查不证明语义等价。")}</p></div><div class="result-foot">编辑结果不用于规避检测；确认后再使用。</div>`;$("copy-edit").onclick=()=>navigator.clipboard.writeText(edited);$("use-edit").onclick=()=>{$("edit-input").value=edited;updateEdit()}}
+function updateEdit(){if(state.editResultSource!==null&&state.editResultSource!==$("edit-input").value){state.editResultSource=null;inputUpdated($("edit-result"))}const length=Array.from($("edit-input").value).length,valid=Array.from($("edit-input").value.trim()).length>=20&&length<=10000;$("edit-count").textContent=`${length} / 10,000 字符`;$("run-edit").disabled=state.editBusy||!valid;$("run-llm-edit").disabled=state.editBusy||!valid}
+function renderEdit(target,data){const edited=data.edited_text??data.revised_text??data.text??"";const suggestions=evidenceList(data.suggestions||data.changes);const checks=Object.entries(data.meaning_check?.checks||{}).map(([name,passed])=>`${name}: ${passed?"通过":"需核对"}`);const applied=data.applied_edits||[];target.innerHTML=`<div class="result-header"><div><small>编辑建议</small><h3>改写预览</h3></div><span class="decision">请作者确认</span></div><div class="edit-output" id="edit-output">${escapeHtml(edited||"未生成改写文本")}</div><div class="result-actions"><button class="secondary-button" id="copy-edit" type="button">复制建议</button><button class="secondary-button" id="use-edit" type="button">放入原文框</button></div><div class="detail-section"><h4>修改与建议</h4><p>自动修改 ${applied.length} 处；人工建议 ${suggestions.length} 条。</p>${suggestions.length?`<ul>${suggestions.map(s=>`<li>${escapeHtml(s)}</li>`).join("")}</ul>`:"<p>未发现预设规则覆盖的问题，请仍逐句核对。</p>"}</div><div class="detail-section"><h4>原意保留检查</h4>${checks.length?`<ul>${checks.map(s=>`<li>${escapeHtml(s)}</li>`).join("")}</ul>`:"<p>数字、姓名、引文和事实仍需作者核对。</p>"}<p>${escapeHtml(data.meaning_check?.limitation||"表面检查不证明语义等价。")}</p></div><div class="result-foot">编辑结果不用于规避检测；确认后再使用。</div>`;const copy=$("copy-edit");copy.onclick=async()=>{try{await navigator.clipboard.writeText(edited);copy.textContent="已复制";copy.title="";setTimeout(()=>{if(copy.isConnected)copy.textContent="复制建议"},2000)}catch{copy.textContent="复制失败，请手动复制";copy.title="请在上方建议文本中选择并复制。"}};$("use-edit").onclick=()=>{$("edit-input").value=edited;updateEdit()}}
 async function runEdit(){return runEditing(false)}
 async function runLLMEdit(){return runEditing(true)}
 async function runEditing(llm){
   const text=$("edit-input").value,target=$("edit-result");
   if(state.editBusy||Array.from(text.trim()).length<20||Array.from(text).length>10000)return;
-  state.editBusy=true;updateEdit();setBusy($(llm?"run-llm-edit":"run-edit"),target,llm?"正在生成大模型预览…":"正在生成建议…");
+  state.editBusy=true;state.editResultSource=null;updateEdit();setBusy($(llm?"run-llm-edit":"run-edit"),target,llm?"正在生成大模型预览…":"正在生成建议…");
   try{
     const result=await jsonPost(llm?"/api/text/edit/llm-preview":"/api/text/edit",{text});
     if($("edit-input").value!==text)return;
+    state.editResultSource=text;
     if(!llm){renderEdit(target,result);return}
     const accepted=result.status==="review_candidate";
     target.innerHTML=`<div class="result-header"><div><small>大模型编辑预览</small><h3>${accepted?"待作者核对":"未提供可用改写"}</h3></div><span class="decision">${accepted?"人工确认":"已拦截"}</span></div>${accepted?`<div class="edit-output">${escapeHtml(result.candidate)}</div>`:""}<div class="detail-section"><h4>检查结果</h4><p>${escapeHtml(previewReason(result))}</p><p>请逐句核对原意和事实，确认后使用。</p></div>`;
@@ -173,7 +182,7 @@ function clearAgentImage(){state.agentImage=null;$("agent-image-input").value=""
 function updateAgentInput(){const length=Array.from($("agent-input").value).length;const file=state.agentImage||($("agent-use-image").checked?state.image:null);const conflict=Boolean(state.agentDocument&&$("agent-input").value.trim());$("agent-text-count").textContent=conflict?"文档和粘贴文本请分别提交":`${length} / 10,000 字符${length>10000?" · 长文请上传为文档":""}`;$("agent-text-count").classList.toggle("over-limit",length>10000||conflict);$("agent-form").querySelector("button").disabled=state.agentBusy||length>10000||conflict||(!$("agent-input").value.trim()&&!file&&!state.agentDocument)}
 function setAgentDocument(file){
   if(!file)return;
-  if(!/\.(docx|pdf|txt|md)$/i.test(file.name)||file.size>20*1048576){addMessage("assistant","文档支持 DOCX、PDF、TXT、MD，最大 20 MB。");return}
+  if(!/\.(docx|pdf|txt|md)$/i.test(file.name)||file.size===0||file.size>20*1048576){clearAgentDocument();addMessage("assistant",file.size===0?"文档为空，请重新选择。":"文档支持 DOCX、PDF、TXT、MD，最大 20 MB。");return}
   state.agentDocument=file;
   $("agent-document-name").textContent=`${file.name} · ${bytes(file.size)}`;
   $("agent-document-name").hidden=false;$("agent-clear-document").hidden=false;updateAgentInput();
@@ -185,7 +194,7 @@ async function importAgentText(file){
     if(!/\.(txt|md)$/i.test(file.name))throw Error("仅支持 TXT 或 Markdown 文本文件。");
     if(file.size>100000)throw Error("文本文件超过 100 KB，请选择较短的文件。");
     const content=new TextDecoder("utf-8",{fatal:true}).decode(await file.arrayBuffer());
-    if(content.length>10000)throw Error("文本超过 10,000 字符，请缩短后重试。");
+    if(Array.from(content).length>10000)throw Error("文本超过 10,000 字符，请缩短后重试。");
     $("agent-input").value=content;
     $("agent-input").focus();
     updateAgentInput();
@@ -193,10 +202,11 @@ async function importAgentText(file){
   finally{$("agent-text-file").value=""}
 }
 async function sendAgent(message){
+  const points=Array.from(message);
   const file=state.agentImage||($("agent-use-image").checked?state.image:null);
   const documentFile=state.agentDocument;
-  if((!message.trim()&&!file&&!documentFile)||Array.from(message).length>10000||state.agentBusy||(documentFile&&message.trim()))return;
-  const preview=message.length>160?`${message.slice(0,160)}…`:message;
+  if((!message.trim()&&!file&&!documentFile)||points.length>10000||state.agentBusy||(documentFile&&message.trim()))return;
+  const preview=points.length>160?`${points.slice(0,160).join("")}…`:message;
   const userMessage=addMessage("user",`${file?`[${file.name}] `:""}${documentFile?`[${documentFile.name}] `:""}${preview||"开始检测附件"}`);
   if(file){const url=URL.createObjectURL(file);const image=document.createElement("img");image.className="agent-preview";image.alt=`已上传图片：${file.name}`;image.onload=()=>URL.revokeObjectURL(url);image.onerror=()=>URL.revokeObjectURL(url);image.src=url;userMessage.querySelector(".bubble").append(image)}
   const pending=addMessage("assistant","正在调用工具…");
