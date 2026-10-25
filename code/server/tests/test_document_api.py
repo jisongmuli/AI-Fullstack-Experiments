@@ -110,6 +110,36 @@ class DocumentApiTests(unittest.TestCase):
         data = HIGH.encode("utf-8") if content is None else content
         return self.client.post("/api/document/detect", files={"file": (filename, data, mime)})
 
+    def test_report_list_survives_browser_clients_and_includes_agent_reports(self):
+        report = self.detect(filename="first.txt").json()
+        agent = self.client.post("/api/agent/upload", files={
+            "document": ("agent.txt", LOW.encode("utf-8"), "text/plain")}).json()
+        agent_id = agent["findings"]["document"]["report_id"]
+        browser = TestClient(self.app, base_url="http://localhost")
+        listing = browser.get("/api/document/reports")
+        self.assertEqual(listing.status_code, 200)
+        self.assertEqual(listing.headers["cache-control"], "no-store")
+        self.assertEqual([item["report_id"] for item in listing.json()["reports"]],
+                         [agent_id, report["report_id"]])
+        for item in listing.json()["reports"]:
+            self.assertNotIn("extracted_text", item)
+            self.assertNotIn("detection", item)
+        self.assertEqual(browser.get(f"/api/document/reports/{agent_id}").status_code, 200)
+        self.assertEqual(browser.delete(f"/api/document/reports/{agent_id}").status_code, 200)
+        self.assertEqual([item["report_id"] for item in browser.get("/api/document/reports").json()["reports"]],
+                         [report["report_id"]])
+        self.app.state.report_store.close()
+
+    def test_report_list_starts_empty_and_prunes_expired_reports(self):
+        self.assertEqual(self.client.get("/api/document/reports").json(), {"reports": []})
+        now = [1000.0]
+        self.app.state.report_store.clock = lambda: now[0]
+        self.detect()
+        self.assertEqual(len(self.client.get("/api/document/reports").json()["reports"]), 1)
+        now[0] += self.app.state.report_store.ttl_seconds
+        self.assertEqual(self.client.get("/api/document/reports").json(), {"reports": []})
+        self.app.state.report_store.close()
+
     def test_word_upload_returns_sha_sections_and_exact_original(self):
         content = docx_bytes(HIGH, LOW)
         response = self.detect(filename="实验.docx", content=content,

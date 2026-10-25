@@ -542,6 +542,11 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
         report = await run_in_threadpool(detect_document, source)
         return JSONResponse(report, headers={"Cache-Control": "no-store"})
 
+    @api.get("/api/document/reports")
+    def document_report_list() -> Response:
+        return JSONResponse({"reports": report_store.list_reports()},
+                            headers={"Cache-Control": "no-store"})
+
     @api.get("/api/document/reports/{report_id}")
     def document_report(report_id: str) -> Response:
         return JSONResponse(retrieve_report(report_id), headers={"Cache-Control": "no-store"})

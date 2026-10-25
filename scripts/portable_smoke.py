@@ -53,6 +53,10 @@ with httpx.Client(base_url=a.url,timeout=180) as client:
         else:assert response.json()['report_id']==ids[0]
     agent=check('Agent document plus image','POST','/api/agent/upload',files={'document':('fixture.docx',docbytes.getvalue(),'application/vnd.openxmlformats-officedocument.wordprocessingml.document'),'file':('sample.png',(root/'web/assets/sample-real.png').read_bytes(),'image/png')}).json()
     assert {'document','image'}.issubset(agent['findings'])
+    ids.append(agent['findings']['document']['report_id'])
+    available=check('available report list','GET','/api/document/reports').json()['reports']
+    assert set(ids).issubset({item['report_id'] for item in available})
+    assert all('extracted_text' not in item and 'detection' not in item for item in available)
     preview=check('local LoRA editing preview','POST','/api/text/edit/llm-preview',json={'text':'She go to school yesterday and learn a new lesson.'}).json()
     assert preview['status'] in {'rejected','review_candidate'}
     record['checks'][-1]['screened_status']=preview['status']

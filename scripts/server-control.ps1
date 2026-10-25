@@ -173,10 +173,18 @@ function Stop-ProjectServer {
         Write-Host 'The recorded process has already exited. No process was stopped.'
         return 1
     }
-    $createdUtc = $record.CreationDate.ToUniversalTime().ToString('o')
+    # PowerShell 7 may deserialize ISO JSON dates as DateTime, while Windows
+    # PowerShell keeps strings. Compare UTC ticks so both retain PID protection.
+    try {
+        $createdUtc = [DateTimeOffset]$record.CreationDate.ToUniversalTime()
+        $savedCreatedUtc = [DateTimeOffset]$state.process_created_utc
+    } catch {
+        Write-Host 'The recorded creation time is invalid. No process was stopped.'
+        return 1
+    }
     $sameExecutable = [string]::Equals($record.ExecutablePath, [string]$state.executable, [System.StringComparison]::OrdinalIgnoreCase)
     $ownerIds = @(Get-ListenerIds)
-    if ($createdUtc -ne $state.process_created_utc -or -not $sameExecutable -or -not (Test-CommandLine $record.CommandLine $true) -or $ownerIds -notcontains $serviceId) {
+    if ($createdUtc.UtcDateTime.Ticks -ne $savedCreatedUtc.UtcDateTime.Ticks -or -not $sameExecutable -or -not (Test-CommandLine $record.CommandLine $true) -or $ownerIds -notcontains $serviceId) {
         Write-Host 'PID, creation time, executable, command line or port ownership changed.'
         Write-Host 'No process was stopped.'
         return 1

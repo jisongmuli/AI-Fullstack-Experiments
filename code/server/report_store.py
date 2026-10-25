@@ -81,6 +81,19 @@ class ReportStore:
                     "bytes": sum(item[1] for item in self._items.values()),
                     "max_bytes": self.max_bytes, "ttl_seconds": self.ttl_seconds}
 
+    def list_reports(self) -> list[dict]:
+        """Newest-first metadata; source text and detector details stay private."""
+        with self._lock:
+            self._prune(self.clock())
+            entries = []
+            for _, _, report in reversed(self._items.values()):
+                entry = {key: report[key] for key in (
+                    "report_id", "filename", "format", "created_at", "expires_at") if key in report}
+                summary = report.get("document_summary", {})
+                entry["highlighted_total_percent"] = summary.get("highlighted_total_percent")
+                entries.append(copy.deepcopy(entry))
+            return entries
+
     def delete(self, report_id: str) -> bool:
         with self._lock:
             self._prune(self.clock())

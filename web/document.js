@@ -70,15 +70,22 @@
       text: byId('document-text'), count: byId('document-character-count'),
       detect: byId('document-detect'), cancel: byId('document-cancel'), status: byId('document-status'),
       result: byId('document-result'), saveHistory: byId('document-save-history'),
-      history: byId('document-history'), clearHistory: byId('document-clear-history')
+      history: byId('document-history'), clearHistory: byId('document-clear-history'),
+      reports: byId('document-server-reports'), refreshReports: byId('document-refresh-reports'),
+      reportsStatus: byId('document-reports-status'), reportsCount: byId('document-reports-count')
     };
     let mode = 'file';
     let selectedFile = null;
     let busy = false;
+    let busyAction = '';
     let currentReport = null;
     let controller = null;
     let requestVersion = 0;
     let history = readHistory();
+    let serverReports = [];
+    let listVersion = 0;
+    let listLoading = false;
+    let listTimer = null;
 
     function status(message = '', isError = false) {
       ui.status.classList.toggle('error', isError);
@@ -139,7 +146,104 @@
         });
         ui.history.append(button);
       });
-      ui.clearHistory.disabled = history.length === 0;
+      ui.clearHistory.disabled = busy || history.length === 0;
+    }
+
+    function renderServerReports() {
+      ui.reports.replaceChildren();
+      ui.reportsCount.textContent = `(${serverReports.length})`;
+      if (!serverReports.length) ui.reports.append(make('p', 'muted', '当前没有可恢复的报告。完成一次文档检测后，报告会出现在这里。'));
+      serverReports.forEach((entry) => {
+        const row = make('div', 'document-report-row');
+        const open = make('button', 'document-history-item');
+        open.type = 'button'; open.disabled = busy;
+        open.append(make('strong', '', entry.filename || '粘贴的长文'));
+        open.append(make('span', '', `${dateText(entry.created_at)} · 特征覆盖率 ${percentText(entry.highlighted_total_percent)}`));
+        open.append(make('span', '', `有效至 ${dateText(entry.expires_at)}`));
+        open.setAttribute('aria-label', `打开报告：${entry.filename || '粘贴的长文'}`);
+        open.addEventListener('click', () => restoreReport(entry.report_id));
+        const remove = make('button', 'document-report-delete', '删除');
+        remove.type = 'button'; remove.disabled = busy;
+        remove.setAttribute('aria-label', `删除报告：${entry.filename || '粘贴的长文'}`);
+        remove.addEventListener('click', () => removeReport(entry.report_id));
+        row.append(open, remove); ui.reports.append(row);
+      });
+    }
+
+    async function refreshReports() {
+      const version = ++listVersion;
+      listLoading = true; ui.refreshReports.disabled = true;
+      try {
+        const response = await fetch('/api/document/reports', {cache: 'no-store', signal: AbortSignal.timeout(5000)});
+        if (!response.ok) throw new Error('报告列表更新失败，请稍后刷新。');
+        const body = await response.json();
+        if (!Array.isArray(body.reports)) throw new Error('报告列表格式异常，请刷新重试。');
+        if (version !== listVersion) return;
+        serverReports = body.reports.filter(entry => entry && typeof entry.report_id === 'string' && entry.report_id.length <= 128).slice(0, 20);
+        ui.reportsStatus.textContent = ''; ui.reportsStatus.classList.remove('error');
+        renderServerReports();
+      } catch (error) {
+        if (version !== listVersion) return;
+        ui.reportsStatus.classList.add('error');
+        ui.reportsStatus.textContent = error.name === 'TimeoutError' ? '报告列表读取超时，可点击刷新重试。' : error instanceof TypeError ? '报告列表暂未连接到服务，可点击刷新重试。' : error.message;
+      } finally {
+        if (version === listVersion) { listLoading = false; ui.refreshReports.disabled = busy; }
+      }
+    }
+
+    function emptyResult(title, message) {
+      const empty = make('div', 'empty-result');
+      empty.append(make('strong', '', title), make('p', '', message));
+      ui.result.replaceChildren(empty);
+    }
+
+    async function removeReport(reportId) {
+      if (busy) return;
+      busy = true; busyAction = 'delete'; ++requestVersion;
+      status('正在删除报告…'); updateControls();
+      try {
+        const response = await fetch(`/api/document/reports/${encodeURIComponent(reportId)}`, {method: 'DELETE', signal: AbortSignal.timeout(10000)});
+        if (!response.ok && response.status !== 404 && response.status !== 410) throw new Error(`无法删除报告（${response.status}），请重试。`);
+        if (currentReport?.report_id === reportId) {
+          currentReport = null;
+          emptyResult('报告已删除', '可打开其他报告，或检测新的文档。');
+        }
+        history = history.filter(entry => entry.report_id !== reportId);
+        try { localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); } catch (_) { /* The server report has still been deleted. */ }
+        renderHistory();
+        serverReports = serverReports.filter(entry => entry.report_id !== reportId); renderServerReports();
+        status('已删除所选报告及其提取原文。');
+        await refreshReports();
+      } catch (error) {
+        status(error.name === 'TimeoutError' ? '删除请求超时，请刷新报告列表核对后重试。' : error instanceof TypeError ? '无法连接检测服务，请启动服务后重试删除。' : error.message, true);
+      } finally { busy = false; busyAction = ''; updateControls(); }
+    }
+
+    async function downloadReport(report, format) {
+      if (busy) return;
+      busy = true; busyAction = 'export'; ++requestVersion;
+      status('正在准备下载报告…'); updateControls();
+      try {
+        const response = await fetch(`/api/document/reports/${encodeURIComponent(report.report_id)}/${format}`, {signal: AbortSignal.timeout(30000)});
+        if (response.status === 404 || response.status === 410) throw new Error('报告已过期或已删除，请重新检测后下载。');
+        if (!response.ok) {
+          const error = await response.json().catch(() => ({}));
+          throw new Error(typeof error.detail === 'string' ? error.detail : `报告下载失败（${response.status}），请重试。`);
+        }
+        const blob = await response.blob();
+        const disposition = response.headers.get('Content-Disposition') || '';
+        const encodedName = disposition.match(/filename\*=UTF-8''([^;]+)/i);
+        let filename = `文档检测报告.${format}`;
+        if (encodedName) { try { filename = decodeURIComponent(encodedName[1]); } catch (_) { /* Use the fallback filename. */ } }
+        const url = URL.createObjectURL(blob), anchor = make('a');
+        anchor.href = url; anchor.download = filename; anchor.hidden = true;
+        document.body.append(anchor); anchor.click(); anchor.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        status('报告已准备好，浏览器将开始下载。');
+      } catch (error) {
+        status(error.name === 'TimeoutError' ? '报告下载超时，请稍后重试。' : error instanceof TypeError ? '无法连接检测服务，请启动服务后重试下载。' : error.message, true);
+        await refreshReports();
+      } finally { busy = false; busyAction = ''; updateControls(); }
     }
 
     function updateControls() {
@@ -153,10 +257,15 @@
       ui.file.disabled = busy;
       ui.text.disabled = busy;
       ui.clearFile.disabled = busy;
-      ui.cancel.hidden = !busy;
+      ui.cancel.hidden = !busy || !controller;
       ui.dropzone.classList.toggle('busy', busy);
-      ui.detect.querySelector('span').textContent = busy ? '正在提取和分段分析…' : '检测文档并标注';
+      ui.detect.querySelector('span').textContent = busy ? ({restore: '正在读取报告…', delete: '正在删除报告…', export: '正在导出报告…'}[busyAction] || '正在提取和分段分析…') : '检测文档并标注';
       ui.history.querySelectorAll('button').forEach((button) => { button.disabled = busy; });
+      ui.reports.querySelectorAll('button').forEach((button) => { button.disabled = busy; });
+      ui.result.querySelectorAll('.document-exports button').forEach((button) => { button.disabled = busy; });
+      ui.clearHistory.disabled = busy || history.length === 0;
+      ui.refreshReports.disabled = busy || listLoading;
+      ui.saveHistory.disabled = busy;
     }
 
     function chooseMode(next) {
@@ -231,6 +340,7 @@
       const version = ++requestVersion;
       controller = new AbortController();
       busy = true;
+      busyAction = 'detect';
       status('正在自动分析。段落结果会保留原文位置。');
       loadingResult();
       updateControls();
@@ -248,6 +358,7 @@
         renderReport(report);
         status('检测完成。可查看下划线段落并下载带标注的报告。');
         saveHistory(report);
+        refreshReports();
       } catch (error) {
         if (version !== requestVersion) return;
         if (error.name === 'AbortError') status('已取消等待，可重新选择文档。');
@@ -261,6 +372,7 @@
       } finally {
         if (version === requestVersion) {
           busy = false;
+          busyAction = '';
           controller = null;
           ui.result.removeAttribute('aria-busy');
           updateControls();
@@ -272,12 +384,16 @@
       if (busy) return;
       const version = ++requestVersion;
       busy = true;
+      busyAction = 'restore';
       controller = new AbortController();
       status('正在读取已有报告…');
       updateControls();
       try {
         const response = await fetch(`/api/document/reports/${encodeURIComponent(reportId)}`, {signal: controller.signal});
-        if (response.status === 404 || response.status === 410) throw new Error('报告已过期或服务已重启。浏览器未保存原文，请重新上传文档。');
+        if (response.status === 404 || response.status === 410) {
+          refreshReports();
+          throw new Error('报告已过期或服务已重启，请重新上传文档。');
+        }
         const report = await responseJson(response);
         if (version !== requestVersion) return;
         currentReport = report;
@@ -287,7 +403,7 @@
         if (version !== requestVersion) return;
         status(error.name === 'AbortError' ? '已取消读取报告。' : error instanceof TypeError ? '无法连接检测服务，请启动本地服务后重试。' : error.message, error.name !== 'AbortError');
       } finally {
-        if (version === requestVersion) { busy = false; controller = null; updateControls(); }
+        if (version === requestVersion) { busy = false; busyAction = ''; controller = null; updateControls(); }
       }
     }
 
@@ -359,10 +475,10 @@
       fragment.append(distribution);
       const exports = make('div', 'document-exports');
       [['docx', '带下划线的 Word'], ['html', '标注 HTML / 打印 PDF'], ['json', '完整结果 JSON']].forEach(([format, label]) => {
-        const anchor = make('a', 'document-export-link', label);
-        anchor.href = `/api/document/reports/${encodeURIComponent(report.report_id)}/${format}`;
-        anchor.setAttribute('download', '');
-        exports.append(anchor);
+        const button = make('button', 'document-export-link', label);
+        button.type = 'button';
+        button.addEventListener('click', () => downloadReport(report, format));
+        exports.append(button);
       });
       const agentSummary = make('button', 'document-export-link', '交给 Agent 汇总');
       agentSummary.type = 'button';
@@ -371,24 +487,7 @@
       const deleteReport = make('button', 'document-export-link', '删除本次报告');
       deleteReport.type = 'button';
       deleteReport.title = '从本地服务删除本次报告和提取原文，并移除对应浏览器摘要记录';
-      deleteReport.addEventListener('click', async () => {
-        deleteReport.disabled = true;
-        try {
-          const response = await fetch(`/api/document/reports/${encodeURIComponent(report.report_id)}`, {method: 'DELETE'});
-          if (!response.ok && response.status !== 404 && response.status !== 410) throw new Error(`无法删除报告（${response.status}），请重试。`);
-          if (currentReport && currentReport.report_id === report.report_id) currentReport = null;
-          history = history.filter((entry) => entry.report_id !== report.report_id);
-          try { localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); } catch (_) { /* No source text is stored. */ }
-          renderHistory();
-          const empty = make('div', 'empty-result');
-          empty.append(make('strong', '', '本次报告已删除'), make('p', '', '可重新上传或检测新的文档。'));
-          ui.result.replaceChildren(empty);
-          status('已从本地服务删除本次报告和提取原文。');
-        } catch (error) {
-          status(error instanceof TypeError ? '无法连接检测服务，请启动服务后重试删除。' : error.message, true);
-          deleteReport.disabled = false;
-        }
-      });
+      deleteReport.addEventListener('click', () => removeReport(report.report_id));
       exports.append(deleteReport);
       fragment.append(exports, make('p', 'document-expiry', `报告${report.expires_at ? `有效至 ${dateText(report.expires_at)}` : '约 30 分钟内有效'}；服务重启后需重新检测。下载文件基于提取后的文字，不是对原文档排版的原样复制。`));
 
@@ -520,6 +619,7 @@
     ui.cancel.addEventListener('click', () => { if (controller) controller.abort(); });
     ui.saveHistory.addEventListener('change', () => { if (ui.saveHistory.checked && currentReport) saveHistory(currentReport); });
     ui.clearHistory.addEventListener('click', () => {
+      if (busy) return;
       try { localStorage.removeItem(HISTORY_KEY); history = []; renderHistory(); status('本浏览器的检测记录已清空。'); }
       catch (_) { status('浏览器未允许清除存储，可在浏览器设置中移除此站点的数据。', true); }
     });
@@ -534,8 +634,20 @@
       renderReport(report);
       status('已打开文档检测报告。');
       saveHistory(report);
+      refreshReports();
       return true;
     }});
-    renderHistory(); updateControls();
+    ui.refreshReports.addEventListener('click', () => { if (!busy) refreshReports(); });
+    const scheduleRefresh = () => {
+      clearTimeout(listTimer);
+      if (!document.hidden && byId('view-document').classList.contains('active')) {
+        if (!busy) refreshReports();
+        listTimer = setTimeout(scheduleRefresh, 30000);
+      }
+    };
+    window.addEventListener('aigc:view-changed', scheduleRefresh);
+    document.addEventListener('visibilitychange', scheduleRefresh);
+    renderHistory(); updateControls(); refreshReports();
+    if (byId('view-document').classList.contains('active')) listTimer = setTimeout(scheduleRefresh, 30000);
   });
 })();

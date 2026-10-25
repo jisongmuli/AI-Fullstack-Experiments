@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="/static/styles.css">
   <link rel="stylesheet" href="/static/agent.css">
   <link rel="stylesheet" href="/static/preview.css">
-  <link rel="stylesheet" href="/static/document.css?v=document20261011">
+  <link rel="stylesheet" href="/static/document.css?v=reports20261025">
   <script src="/static/assets/lucide.min.js" defer></script>
-  <script src="/static/app.js?v=stability20261025" defer></script>
-  <script src="/static/document.js?v=document20261011" defer></script>
+  <script src="/static/app.js?v=reports20261025" defer></script>
+  <script src="/static/document.js?v=reports20261025" defer></script>
 </head>
 <body>
   <div class="shell">
@@ -75,8 +75,11 @@
               <button class="primary-button" id="document-detect" type="button" disabled><i data-lucide="scan-text"></i><span>检测文档并标注</span></button><button class="secondary-button document-cancel" id="document-cancel" type="button" hidden>取消等待</button>
               <p class="input-note"><i data-lucide="info"></i>自动输出 AI 特征覆盖率和模型分数；这些指标不能证明真实的 AI 撰写比例。</p>
               <div id="document-status" class="document-status" role="status" aria-live="polite"></div>
-              <div class="document-history-controls"><label><input type="checkbox" id="document-save-history">在本浏览器保留检测记录</label><p>仅保留文件名、时间和结果摘要，不保存原文。最多 20 条；报告约 30 分钟后失效。</p></div>
-              <div class="document-history-heading"><h3>最近检测</h3><button type="button" class="document-link-button" id="document-clear-history">清空记录</button></div><div id="document-history" class="document-history"><p class="muted">尚无本地记录。</p></div>
+              <div class="document-history-heading"><h3>当前可用报告 <span id="document-reports-count"></span></h3><button type="button" class="document-link-button" id="document-refresh-reports">刷新列表</button></div>
+              <p class="document-helper">包含文档检测与 Agent 生成的报告，刷新页面后可继续查看。报告在本地服务内存中保留最多 30 分钟。</p>
+              <div id="document-reports-status" class="document-status" role="status"></div><div id="document-server-reports" class="document-history"><p class="muted">正在读取报告列表…</p></div>
+              <details class="document-history-settings"><summary>浏览器摘要记录</summary><div class="document-history-controls"><label><input type="checkbox" id="document-save-history">在本浏览器保留检测记录</label><p>保存文件名、时间和结果摘要，最多 20 条。原文保存在服务内存中，报告过期后可重新上传。</p></div>
+              <div class="document-history-heading"><h3>已保存摘要</h3><button type="button" class="document-link-button" id="document-clear-history">清空记录</button></div><div id="document-history" class="document-history"><p class="muted">尚无本地记录。</p></div></details>
             </div>
             <div class="result-panel document-result-panel" id="document-result" aria-live="polite"><div class="empty-result"><i data-lucide="file-search"></i><strong>等待文档</strong><p>结果将保留提取后的原文，并为高风险段落添加下划线。</p></div></div>
           </div>
