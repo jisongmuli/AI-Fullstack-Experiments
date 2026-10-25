@@ -73,6 +73,14 @@ class ReportStore:
             record = self._items.get(report_id)
             return copy.deepcopy(record[2]) if record else None
 
+    def stats(self) -> dict:
+        """Return aggregate capacity without document text, names or report IDs."""
+        with self._lock:
+            self._prune(self.clock())
+            return {"count": len(self._items), "limit": self.max_items,
+                    "bytes": sum(item[1] for item in self._items.values()),
+                    "max_bytes": self.max_bytes, "ttl_seconds": self.ttl_seconds}
+
     def delete(self, report_id: str) -> bool:
         with self._lock:
             self._prune(self.clock())

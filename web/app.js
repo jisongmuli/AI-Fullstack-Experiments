@@ -1,4 +1,4 @@
-const state={view:"image",image:null,agentImage:null,agentDocument:null,agentBusy:false,mode:"clarity",models:null};
+const state={view:"image",image:null,imageBusy:false,textBusy:false,editBusy:false,healthBusy:false,healthTimer:null,agentImage:null,agentDocument:null,agentBusy:false,mode:"clarity",models:null};
 document.addEventListener("DOMContentLoaded",()=>{document.getElementById("run-llm-edit").onclick=runLLMEdit});
 const $=id=>document.getElementById(id);
 const icon=()=>window.lucide?.createIcons();
@@ -86,16 +86,44 @@ function segmentResultHtml(data){
   }).join("")}</div>`;
 }
 function validateImage(file){if(!file)return"请选择图片";if(!["image/png","image/jpeg"].includes(file.type))return"仅支持 JPG 或 PNG";if(file.size>25*1048576)return"文件不能超过 25 MB";return null}
-function setImage(file){const error=validateImage(file);if(error){clearImage();showError($("image-result"),error);return}state.image=file;$("agent-use-image").disabled=false;const preview=$("image-preview"),caption=$("preview-caption"),dropzone=$("image-dropzone");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.dataset.objectUrl=URL.createObjectURL(file);preview.onload=()=>{const side=Math.min(preview.naturalWidth,preview.naturalHeight),small=preview.naturalWidth===32&&preview.naturalHeight===32;dropzone.classList.toggle("pixel-preview",small);const scope=small?" · 放大预览（CIFAKE 教学模型）":side<200?" · 不评分":side<512?" · 仅探索性候选分数":"";caption.textContent=`原图 ${preview.naturalWidth} × ${preview.naturalHeight} 像素${scope}`;caption.hidden=false};preview.src=preview.dataset.objectUrl;preview.hidden=false;dropzone.classList.add("has-image");$("file-meta").hidden=false;$("file-name").textContent=file.name;$("file-size").textContent=bytes(file.size);$("detect-image").disabled=false;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>图片已就绪</strong><p>点击分析图片查看模型输出。</p></div>`;updateAgentInput();icon()}
+function setImage(file){const error=validateImage(file);if(error){clearImage();showError($("image-result"),error);return}state.image=file;$("agent-use-image").disabled=false;const preview=$("image-preview"),caption=$("preview-caption"),dropzone=$("image-dropzone");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.dataset.objectUrl=URL.createObjectURL(file);preview.onload=()=>{const side=Math.min(preview.naturalWidth,preview.naturalHeight),small=preview.naturalWidth===32&&preview.naturalHeight===32;dropzone.classList.toggle("pixel-preview",small);const scope=small?" · 放大预览（CIFAKE 教学模型）":side<200?" · 不评分":side<512?" · 仅探索性候选分数":"";caption.textContent=`原图 ${preview.naturalWidth} × ${preview.naturalHeight} 像素${scope}`;caption.hidden=false};preview.src=preview.dataset.objectUrl;preview.hidden=false;dropzone.classList.add("has-image");$("file-meta").hidden=false;$("file-name").textContent=file.name;$("file-size").textContent=bytes(file.size);$("detect-image").disabled=state.imageBusy;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>图片已就绪</strong><p>点击分析图片查看模型输出。</p></div>`;updateAgentInput();icon()}
 function clearImage(){state.image=null;$("agent-use-image").checked=false;$("agent-use-image").disabled=true;const preview=$("image-preview");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.removeAttribute("src");preview.hidden=true;$("preview-caption").hidden=true;$("image-input").value="";$("image-dropzone").classList.remove("has-image","pixel-preview");$("file-meta").hidden=true;$("detect-image").disabled=true;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>等待图片</strong><p>选择图片后查看模型输出、适用范围与判断状态。</p></div>`;updateAgentInput();icon()}
 async function useSample(kind){try{const response=await fetch(`/static/assets/sample-${kind}.png`);const blob=await response.blob();setImage(new File([blob],`cifake-${kind}-sample.png`,{type:"image/png"}))}catch(error){showError($("image-result"),error)}}
-async function detectImage(){const button=$("detect-image"),target=$("image-result"),file=state.image;setBusy(button,target,"正在分析图片…");try{const body=new FormData();body.append("file",file);const result=await api("/api/image/detect",{method:"POST",body});if(state.image===file)renderDetection(target,result,"image",file)}catch(error){if(state.image===file)showError(target,error)}finally{button.disabled=!state.image}}
-function updateText(){const value=$("text-input").value,length=Array.from(value).length;$("text-count").textContent=`${length} / 10,000 字符`;const valid=Boolean(value.trim())&&length<=10000;$("detect-text").disabled=!valid;$("text-hint").textContent=length>10000?"长于 10,000 字符，请使用文档检测":valid?"可开始分析；短段落可能无法评分":"请输入文本"}
-async function detectText(){const button=$("detect-text"),target=$("text-result"),text=$("text-input").value;setBusy(button,target,"正在分析文本…");try{const result=await jsonPost("/api/text/detect",{text});renderDetection(target,result,"text");if(window.AIGCDocument)target.append(window.AIGCDocument.renderInline(text,result.segments,{showUnscored:true}));target.insertAdjacentHTML("beforeend",segmentResultHtml(result))}catch(error){showError(target,error)}finally{updateText()}}
-function updateEdit(){const length=$("edit-input").value.trim().length;$("edit-count").textContent=`${length} 字符`;$("run-edit").disabled=length<20;$("run-llm-edit").disabled=length<20}
+async function detectImage(){
+  if(state.imageBusy||!state.image)return;
+  const button=$("detect-image"),target=$("image-result"),file=state.image;
+  state.imageBusy=true;setBusy(button,target,"正在分析图片…");
+  try{const body=new FormData();body.append("file",file);const result=await api("/api/image/detect",{method:"POST",body});if(state.image===file)renderDetection(target,result,"image",file)}
+  catch(error){if(state.image===file)showError(target,error)}
+  finally{state.imageBusy=false;button.disabled=!state.image}
+}
+function inputUpdated(target){target.innerHTML='<div class="empty-result"><i data-lucide="file-pen-line"></i><strong>输入已更新</strong><p>请重新提交，查看当前文本的结果。</p></div>';icon()}
+function updateText(){const value=$("text-input").value,length=Array.from(value).length;$("text-count").textContent=`${length} / 10,000 字符`;const valid=Boolean(value.trim())&&length<=10000;$("detect-text").disabled=state.textBusy||!valid;$("text-hint").textContent=length>10000?"长于 10,000 字符，请使用文档检测":state.textBusy?"分析中；修改文本后请重新分析":valid?"可开始分析；短段落可能无法评分":"请输入文本"}
+async function detectText(){
+  const button=$("detect-text"),target=$("text-result"),text=$("text-input").value;
+  if(state.textBusy||!text.trim()||Array.from(text).length>10000)return;
+  state.textBusy=true;setBusy(button,target,"正在分析文本…");updateText();
+  try{const result=await jsonPost("/api/text/detect",{text});if($("text-input").value!==text)return;renderDetection(target,result,"text");if(window.AIGCDocument)target.append(window.AIGCDocument.renderInline(text,result.segments,{showUnscored:true}));target.insertAdjacentHTML("beforeend",segmentResultHtml(result))}
+  catch(error){if($("text-input").value===text)showError(target,error)}
+  finally{state.textBusy=false;if($("text-input").value!==text)inputUpdated(target);updateText()}
+}
+function updateEdit(){const length=Array.from($("edit-input").value).length,valid=Array.from($("edit-input").value.trim()).length>=20&&length<=10000;$("edit-count").textContent=`${length} / 10,000 字符`;$("run-edit").disabled=state.editBusy||!valid;$("run-llm-edit").disabled=state.editBusy||!valid}
 function renderEdit(target,data){const edited=data.edited_text??data.revised_text??data.text??"";const suggestions=evidenceList(data.suggestions||data.changes);const checks=Object.entries(data.meaning_check?.checks||{}).map(([name,passed])=>`${name}: ${passed?"通过":"需核对"}`);const applied=data.applied_edits||[];target.innerHTML=`<div class="result-header"><div><small>编辑建议</small><h3>改写预览</h3></div><span class="decision">请作者确认</span></div><div class="edit-output" id="edit-output">${escapeHtml(edited||"未生成改写文本")}</div><div class="result-actions"><button class="secondary-button" id="copy-edit" type="button">复制建议</button><button class="secondary-button" id="use-edit" type="button">放入原文框</button></div><div class="detail-section"><h4>修改与建议</h4><p>自动修改 ${applied.length} 处；人工建议 ${suggestions.length} 条。</p>${suggestions.length?`<ul>${suggestions.map(s=>`<li>${escapeHtml(s)}</li>`).join("")}</ul>`:"<p>未发现预设规则覆盖的问题，请仍逐句核对。</p>"}</div><div class="detail-section"><h4>原意保留检查</h4>${checks.length?`<ul>${checks.map(s=>`<li>${escapeHtml(s)}</li>`).join("")}</ul>`:"<p>数字、姓名、引文和事实仍需作者核对。</p>"}<p>${escapeHtml(data.meaning_check?.limitation||"表面检查不证明语义等价。")}</p></div><div class="result-foot">编辑结果不用于规避检测；确认后再使用。</div>`;$("copy-edit").onclick=()=>navigator.clipboard.writeText(edited);$("use-edit").onclick=()=>{$("edit-input").value=edited;updateEdit()}}
-async function runEdit(){const button=$("run-edit"),target=$("edit-result"),text=$("edit-input").value;setBusy(button,target,"正在生成建议…");try{renderEdit(target,await jsonPost("/api/text/edit",{text}))}catch(error){showError(target,error)}finally{button.disabled=text.trim().length<20}}
-async function runLLMEdit(){const button=$("run-llm-edit"),target=$("edit-result"),value=$("edit-input").value;setBusy(button,target,"正在生成大模型预览…");try{const result=await jsonPost("/api/text/edit/llm-preview",{text:value});const accepted=result.status==="review_candidate";target.innerHTML=`<div class="result-header"><div><small>大模型编辑预览</small><h3>${accepted?"待作者核对":"未提供可用改写"}</h3></div><span class="decision">${accepted?"人工确认":"已拦截"}</span></div>${accepted?`<div class="edit-output">${escapeHtml(result.candidate)}</div>`:""}<div class="detail-section"><h4>检查结果</h4><p>${escapeHtml(previewReason(result))}</p><p>模型建议不能证明原意保留，也不会自动替换原文。</p></div>`}catch(error){showError(target,error)}finally{button.disabled=value.trim().length<20}}
+async function runEdit(){return runEditing(false)}
+async function runLLMEdit(){return runEditing(true)}
+async function runEditing(llm){
+  const text=$("edit-input").value,target=$("edit-result");
+  if(state.editBusy||Array.from(text.trim()).length<20||Array.from(text).length>10000)return;
+  state.editBusy=true;updateEdit();setBusy($(llm?"run-llm-edit":"run-edit"),target,llm?"正在生成大模型预览…":"正在生成建议…");
+  try{
+    const result=await jsonPost(llm?"/api/text/edit/llm-preview":"/api/text/edit",{text});
+    if($("edit-input").value!==text)return;
+    if(!llm){renderEdit(target,result);return}
+    const accepted=result.status==="review_candidate";
+    target.innerHTML=`<div class="result-header"><div><small>大模型编辑预览</small><h3>${accepted?"待作者核对":"未提供可用改写"}</h3></div><span class="decision">${accepted?"人工确认":"已拦截"}</span></div>${accepted?`<div class="edit-output">${escapeHtml(result.candidate)}</div>`:""}<div class="detail-section"><h4>检查结果</h4><p>${escapeHtml(previewReason(result))}</p><p>请逐句核对原意和事实，确认后使用。</p></div>`;
+  }catch(error){if($("edit-input").value===text)showError(target,error)}
+  finally{state.editBusy=false;if($("edit-input").value!==text)inputUpdated(target);updateEdit()}
+}
 function addMessage(role,content){const intro=document.querySelector(".chat-intro");if(intro)intro.remove();const el=document.createElement("div");el.className=`message ${role}`;el.innerHTML=`<span class="speaker">${role==="user"?"你":"Agent"}</span><div class="bubble">${escapeHtml(content)}</div>`;$("chat-messages").append(el);$("chat-messages").scrollTop=$("chat-messages").scrollHeight;return el}
 function renderTrace(data){const calls=data.tool_calls||[];const names={image_detection:"图像检测",text_detection:"文本检测",clarity_edit:"可信编辑",llm_edit_preview:"大模型编辑预览"};$("tool-trace").innerHTML=calls.length?calls.map(call=>`<div class="trace-item"><strong>${escapeHtml(names[call.tool]||call.tool||"工具")}</strong><span>${call.status==="ok"?"完成":"不可用"} · ${escapeHtml(call.duration_ms??"—")} ms</span></div>`).join(""):`<p class="muted">此轮没有工具调用记录。</p>`}
 function fileToBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(",")[1]);reader.onerror=()=>reject(Error("无法读取图片"));reader.readAsDataURL(file)})}
@@ -190,7 +218,18 @@ async function sendAgent(message){
   finally{state.agentBusy=false;updateAgentInput()}
 }
 async function showModelInfo(){const dialog=$("model-dialog");dialog.showModal();try{const data=await api("/api/models");state.models=data;const scope=data.scope||{};const versions=data.manifest||{};$("model-details").innerHTML=`<p>${data.available?"模型已加载":"模型暂不可用"}${data.reason?`：${escapeHtml(data.reason)}`:""}</p><h3>图像检测</h3><p>${escapeHtml(scope.image||"适用范围未提供")}</p><h3>文本检测</h3><p>${escapeHtml(scope.text||"适用范围未提供")}</p><h3>可信编辑</h3><p>${escapeHtml(scope.editing||"适用范围未提供")}</p><h3>模型清单</h3><p>${escapeHtml(JSON.stringify(versions))}</p><p>所有检测结果都需要人工复核。</p>`}catch(error){$("model-details").innerHTML=`<p class="muted">模型信息暂不可用：${escapeHtml(error.message)}</p>`}}
-async function checkHealth(){try{await api("/health");$("service-dot").className="status-dot ready";$("service-label").textContent="服务已连接"}catch{$("service-dot").className="status-dot error";$("service-label").textContent="服务未连接"}}
+async function checkHealth(){
+  if(state.healthBusy)return;
+  clearTimeout(state.healthTimer);state.healthBusy=true;
+  try{
+    const data=await api("/api/runtime",{signal:AbortSignal.timeout(4000)}),tasks=data.processing;
+    $("service-dot").className="status-dot ready";
+    $("service-label").textContent=tasks.active?`处理中 ${tasks.active} / ${tasks.limit}`:"服务就绪";
+    $("service-label").title=`已完成 ${tasks.completed} 项请求 · 暂存报告 ${data.reports.count} / ${data.reports.limit} 份`;
+  }catch{$("service-dot").className="status-dot error";$("service-label").textContent="服务未连接";$("service-label").title="请检查本地服务是否已启动"}
+  finally{state.healthBusy=false;if(!document.hidden)state.healthTimer=setTimeout(checkHealth,3000)}
+}
+document.addEventListener("visibilitychange",()=>{clearTimeout(state.healthTimer);if(!document.hidden)checkHealth()});
 document.addEventListener("DOMContentLoaded",()=>{icon();document.querySelectorAll(".nav-item").forEach(el=>el.onclick=()=>setView(el.dataset.view));$("image-input").onchange=event=>setImage(event.target.files[0]);$("clear-image").onclick=clearImage;const drop=$("image-dropzone");["dragenter","dragover"].forEach(name=>drop.addEventListener(name,event=>{event.preventDefault();drop.classList.add("dragging")}));["dragleave","drop"].forEach(name=>drop.addEventListener(name,event=>{event.preventDefault();drop.classList.remove("dragging")}));drop.addEventListener("drop",event=>setImage(event.dataTransfer.files[0]));document.querySelectorAll(".sample-button").forEach(el=>el.onclick=()=>useSample(el.dataset.sample));$("detect-image").onclick=detectImage;$("text-input").oninput=updateText;$("detect-text").onclick=detectText;$("edit-input").oninput=updateEdit;$("run-edit").onclick=runEdit;$("agent-input").oninput=updateAgentInput;$("agent-use-image").onchange=()=>{if($("agent-use-image").checked)clearAgentImage();updateAgentInput()};$("agent-form").onsubmit=event=>{event.preventDefault();sendAgent($("agent-input").value)};$("model-info-button").onclick=showModelInfo;$("close-dialog").onclick=()=>$("model-dialog").close();$("dialog-done").onclick=()=>$("model-dialog").close();updateAgentInput();checkHealth()});
 document.addEventListener("DOMContentLoaded",()=>{
   $("agent-image-input").onchange=event=>{if(event.target.files[0])setAgentImage(event.target.files[0])};

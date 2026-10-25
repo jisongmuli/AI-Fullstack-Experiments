@@ -58,5 +58,7 @@ with httpx.Client(base_url=a.url,timeout=180) as client:
     record['checks'][-1]['screened_status']=preview['status']
     for rid in ids:check('delete temporary report','DELETE',f'/api/document/reports/{rid}')
 record['status']='passed'
-if a.output:a.output.write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf-8')
+if a.output:
+    a.output.parent.mkdir(parents=True,exist_ok=True)
+    a.output.write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps(record,ensure_ascii=False,indent=2))

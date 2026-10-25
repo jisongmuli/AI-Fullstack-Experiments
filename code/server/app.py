@@ -17,6 +17,7 @@ import math
 import sys
 import threading
 import time
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
@@ -39,6 +40,7 @@ from documents import (DocumentError, MAX_DOCUMENT_BYTES, MAX_DOCUMENT_CHARS,
                        analyze_document, extract_document, extract_pasted_text)
 from document_reports import build_report
 from report_store import ReportStore
+from runtime import ProcessingLimit, ProcessingState
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -100,6 +102,7 @@ class RequestSizeLimit:
                 break
 
         body = b"".join(chunks)
+        chunks.clear()
         first = True
 
         async def replay_receive() -> dict:
@@ -339,13 +342,26 @@ def _decode_base64_image(encoded: str) -> bytes:
     return data
 
 
-def create_app(model_service: Any | None = None, llm_service: Any | None = None) -> FastAPI:
+def create_app(model_service: Any | None = None, llm_service: Any | None = None,
+               *, max_active_requests: int = 2) -> FastAPI:
+    report_store = ReportStore()
+    processing = ProcessingState(max_active_requests)
+
+    @asynccontextmanager
+    async def lifespan(application: FastAPI):
+        try:
+            yield
+        finally:
+            report_store.close()
+
     api = FastAPI(
         title="AIGC Content Screening and Trustworthy Editing",
         version="0.1.0",
         description="Local course prototype. Results are screening signals, not authorship determinations.",
+        lifespan=lifespan,
     )
     api.add_middleware(RequestSizeLimit)
+    api.add_middleware(ProcessingLimit, state=processing)
     api.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost"])
     api.add_middleware(
         CORSMiddleware,
@@ -365,8 +381,8 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
     llm = llm_service or LLMPreviewService(ROOT)
     api.state.model_service = service
     api.state.llm_service = llm
-    report_store = ReportStore()
     api.state.report_store = report_store
+    api.state.processing = processing
 
     def get_bundle() -> Any:
         try:
@@ -459,8 +475,14 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
         return report
 
     @api.get("/health")
-    def health() -> dict:
+    async def health() -> dict:
         return {"status": "ok", "service": "aigc-local-api"}
+
+    @api.get("/api/runtime")
+    async def runtime() -> Response:
+        return JSONResponse({"status": "ok", "processing": processing.snapshot(),
+                             "reports": report_store.stats()},
+                            headers={"Cache-Control": "no-store"})
 
     @api.get("/api/models")
     def models() -> dict:
@@ -500,7 +522,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
         if not file.content_type or not file.content_type.startswith("image/"):
             raise HTTPException(status_code=415, detail="Upload an image file.")
         data = await file.read(MAX_IMAGE_BYTES + 1)
-        return detect_image(data)
+        return await run_in_threadpool(detect_image, data)
 
     @api.post("/api/text/detect")
     def text_detect(body: TextRequest) -> dict:
@@ -599,7 +621,8 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
             if file.content_type not in {"image/jpeg", "image/png"}:
                 raise HTTPException(status_code=415, detail="Upload a JPG or PNG image.")
             image_data = await file.read(MAX_IMAGE_BYTES + 1)
-            _decode_image(image_data)
+            await run_in_threadpool(_decode_image, image_data)
+        source = await read_document(document) if document is not None else None
         result = await run_in_threadpool(run_agent,
             text=text or None,
             image_bytes=image_data,
@@ -610,8 +633,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
             request_llm_preview=llm_preview,
             suggest_llm=llm.suggest if llm_preview else None,
         )
-        if document is not None:
-            source = await read_document(document)
+        if source is not None:
             started = time.perf_counter()
             report = await run_in_threadpool(detect_document, source)
             result["findings"]["document"] = report
