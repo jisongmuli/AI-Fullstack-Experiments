@@ -1,0 +1,24 @@
+{
+  "python": "3.12",
+  "packages": {
+    "fastapi": "0.136.3",
+    "uvicorn": "0.51.0",
+    "python-multipart": "0.0.32",
+    "Pillow": "12.2.0",
+    "httpx": "0.28.1",
+    "numpy": "2.5.1",
+    "joblib": "1.5.3",
+    "scikit-learn": "1.9.1",
+    "torch": "2.14.0+cu132",
+    "torchvision": "0.29.0+cu132",
+    "transformers": "5.5.4",
+    "safetensors": "0.8.0",
+    "c2pa-python": "0.38.0",
+    "pypdf": "6.7.5",
+    "python-docx": "1.2.0",
+    "PyMuPDF": "1.28.2",
+    "peft": "0.21.0",
+    "sentencepiece": "0.2.1"
+  },
+  "note": "Source environment reference only; CPU and CUDA wheels differ. No new-machine installation result is implied."
+}

@@ -1,0 +1,91 @@
+{
+  "purpose": "real model workflow QA; score-selected examples, not accuracy",
+  "selection": [
+    {
+      "row": 22,
+      "dataset_label": "0",
+      "source": "hc3_human",
+      "score": 5e-05
+    },
+    {
+      "row": 0,
+      "dataset_label": "1",
+      "source": "hc3_chatgpt",
+      "score": 0.999999
+    }
+  ],
+  "formats": {
+    "txt": {
+      "latency_ms": 15.1,
+      "characters": 841,
+      "report_id": "Lb5hME2WsnrnzRstQFNulA2AOHUGM7qN",
+      "summary": {
+        "total_characters": 841,
+        "visible_characters": 815,
+        "scored_character_percent": 70.06,
+        "highlighted_character_percent": 47.64,
+        "highlighted_total_percent": 33.37,
+        "mean_segment_score": 0.476383,
+        "high_risk_segments": 1,
+        "unscored_segments": 5,
+        "scored_segments": 2,
+        "total_segments": 7,
+        "mixed_signals": true,
+        "metric_note": "AI 特征占比按整段标注：所在段落模型风险分数达到 0.99 的非空白字符占比；不是 AI 实际撰写比例，也不是逐字来源定位。模型均分不是整篇来源概率。"
+      },
+      "warnings": []
+    },
+    "docx": {
+      "latency_ms": 40.1,
+      "characters": 841,
+      "report_id": "QLOgJcHHEGjUOhfrwoIuaVzgLFvBhPIB",
+      "summary": {
+        "total_characters": 841,
+        "visible_characters": 815,
+        "scored_character_percent": 70.06,
+        "highlighted_character_percent": 47.64,
+        "highlighted_total_percent": 33.37,
+        "mean_segment_score": 0.476383,
+        "high_risk_segments": 1,
+        "unscored_segments": 5,
+        "scored_segments": 2,
+        "total_segments": 7,
+        "mixed_signals": true,
+        "metric_note": "AI 特征占比按整段标注：所在段落模型风险分数达到 0.99 的非空白字符占比；不是 AI 实际撰写比例，也不是逐字来源定位。模型均分不是整篇来源概率。"
+      },
+      "warnings": [
+        "检测基于提取后的正文；原 Word 排版、图片和页码不保留。"
+      ]
+    },
+    "pdf": {
+      "latency_ms": 186.8,
+      "characters": 801,
+      "report_id": "NhPQd9jqdKnpe9UzxEzUvJnkMY5gOrj5",
+      "summary": {
+        "total_characters": 801,
+        "visible_characters": 780,
+        "scored_character_percent": 73.21,
+        "highlighted_character_percent": 47.64,
+        "highlighted_total_percent": 34.87,
+        "mean_segment_score": 0.476377,
+        "high_risk_segments": 1,
+        "unscored_segments": 4,
+        "scored_segments": 2,
+        "total_segments": 6,
+        "mixed_signals": true,
+        "metric_note": "AI 特征占比按整段标注：所在段落模型风险分数达到 0.99 的非空白字符占比；不是 AI 实际撰写比例，也不是逐字来源定位。模型均分不是整篇来源概率。"
+      },
+      "warnings": [
+        "PDF 按文本位置恢复段落，并合并段内自动换行；分栏、表格、公式及段落边界可能有偏差，请核对提取原文。",
+        "图片不参与文档文本检测；未执行 OCR。"
+      ]
+    }
+  },
+  "long_document": {
+    "characters": 99736,
+    "latency_ms": 626.6,
+    "total_segments": 364,
+    "whole_score": null,
+    "text_preserved": true
+  }
+}

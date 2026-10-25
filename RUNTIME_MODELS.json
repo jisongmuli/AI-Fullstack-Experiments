@@ -1,0 +1,36 @@
+{
+  "downloads": [
+    {
+      "path": "models/highres_image/model.safetensors",
+      "repo": "Ateeqq/ai-vs-human-image-detector",
+      "revision": "60e82406916921b823616bee33397baab38af3f0",
+      "bytes": 371567992,
+      "sha256": "ab0b8cad7462a047ff4e2888cb4f11b1abe568d73ce07a2649a3f1541f73675f"
+    },
+    {
+      "path": "models/highres_nyuad/model.safetensors",
+      "repo": "NYUAD-ComNets/NYUAD_AI-generated_images_detector",
+      "revision": "b0a2e665f6e40164436cae6c0c95e7e4386f7684",
+      "bytes": 343227052,
+      "sha256": "b0eb0ba578897f59d009b4eaa7a308eb5ca56a6c27e7d51a32d4eafcbe4a223a"
+    },
+    {
+      "path": "models/llm/base/model.safetensors",
+      "repo": "HuggingFaceTB/SmolLM2-135M-Instruct",
+      "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+      "bytes": 269060552,
+      "sha256": "5af571cbf074e6d21a03528d2330792e532ca608f24ac70a143f6b369968ab8c"
+    }
+  ],
+  "bundled_local_models": [
+    "image_detector.ts",
+    "image_detector.pt",
+    "model_config.json",
+    "text_detector.joblib",
+    "text_detector_full.joblib",
+    "text_detector_zh.joblib",
+    "text_zh_config.json"
+  ],
+  "local_adapter": "models/llm/adapter",
+  "notes": "Only active runtime weights shipped; SwinV2 and alternate SigLIP2 research candidates omitted."
+}

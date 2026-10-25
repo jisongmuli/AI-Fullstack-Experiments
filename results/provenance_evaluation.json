@@ -1,0 +1,69 @@
+{
+  "source": "https://github.com/c2pa-org/public-testfiles/blob/main/legacy/1.4/image/README.md",
+  "license": "CC BY-SA 4.0; attribution to C2PA public-testfiles / Adobe test files",
+  "sdk": "c2pa-python==0.38.0",
+  "scope": "C2PA credential status, not AI image detection accuracy",
+  "correct": 5,
+  "total": 5,
+  "rows": [
+    {
+      "sample": "adobe-20220124-A.jpg",
+      "bytes": 61720,
+      "sha256": "f999fd78bfe8a83c96e468a078830ba94485bc1bc6fd086fb94a43bd29dd0f23",
+      "expected_status": "credential_absent",
+      "observed_status": "credential_absent",
+      "correct": true,
+      "validation_state": null,
+      "failure_codes": [],
+      "median_read_ms": 0.6
+    },
+    {
+      "sample": "adobe-20220124-C.jpg",
+      "bytes": 140297,
+      "sha256": "75a8da33f6eaf1e16bf3b42cd78913b22b2e6a671fda217a508b1ba4230ce864",
+      "expected_status": "valid_but_untrusted",
+      "observed_status": "valid_but_untrusted",
+      "correct": true,
+      "validation_state": "valid",
+      "failure_codes": [
+        "signingCredential.untrusted"
+      ],
+      "median_read_ms": 3.33
+    },
+    {
+      "sample": "adobe-20220124-E-dat-CA.jpg",
+      "bytes": 178709,
+      "sha256": "dae9d121060cec4b6f27ee8acda85ad461cf75f2261d90b463319b787342d7f9",
+      "expected_status": "invalid",
+      "observed_status": "invalid",
+      "correct": true,
+      "validation_state": "invalid",
+      "failure_codes": [
+        "signingCredential.untrusted",
+        "assertion.dataHash.mismatch"
+      ],
+      "median_read_ms": 4.62
+    },
+    {
+      "sample": "adobe-20220124-E-sig-CA.jpg",
+      "bytes": 178709,
+      "sha256": "0d4c2774f1b7e94b9613bb952b0a76b6a178d22ac6d206d257d2af1376cbbff2",
+      "expected_status": "invalid",
+      "observed_status": "invalid",
+      "correct": true,
+      "validation_state": "invalid",
+      "failure_codes": [
+        "signingCredential.untrusted",
+        "claimSignature.mismatch"
+      ],
+      "median_read_ms": 4.84
+    },
+    {
+      "sample": "C_reencoded_with_Pillow",
+      "bytes": 64500,
+      "expected_status": "credential_absent",
+      "observed_status": "credential_absent",
+      "correct": true
+    }
+  ]
+}

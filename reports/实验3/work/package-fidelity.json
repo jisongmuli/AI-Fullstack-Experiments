@@ -1,0 +1,32 @@
+{
+  "restored_preserve_only_parts": [
+    "word/header1.xml",
+    "word/webSettings.xml",
+    "word/footnotes.xml",
+    "word/endnotes.xml"
+  ],
+  "removed_parts": [],
+  "unchanged_parts": [
+    "_rels/.rels",
+    "word/footnotes.xml",
+    "word/endnotes.xml",
+    "word/header1.xml",
+    "word/theme/theme1.xml",
+    "customXml/item1.xml",
+    "customXml/itemProps1.xml",
+    "word/numbering.xml",
+    "word/webSettings.xml",
+    "docProps/custom.xml",
+    "customXml/_rels/item1.xml.rels"
+  ],
+  "intentional_changes": [
+    "[Content_Types].xml",
+    "word/document.xml",
+    "word/_rels/document.xml.rels",
+    "word/settings.xml",
+    "word/styles.xml",
+    "word/fontTable.xml",
+    "docProps/core.xml",
+    "docProps/app.xml"
+  ]
+}

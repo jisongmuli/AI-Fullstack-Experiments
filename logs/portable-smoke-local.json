@@ -1,0 +1,95 @@
+{
+  "purpose": "portable package workflow smoke test, not detection accuracy",
+  "accuracy_evaluated": false,
+  "checks": [
+    {
+      "name": "health",
+      "http_status": 200,
+      "latency_ms": 39.2
+    },
+    {
+      "name": "homepage",
+      "http_status": 200,
+      "latency_ms": 201.8
+    },
+    {
+      "name": "Chinese text",
+      "http_status": 200,
+      "latency_ms": 3044.3
+    },
+    {
+      "name": "English text",
+      "http_status": 200,
+      "latency_ms": 26.0
+    },
+    {
+      "name": "CIFAKE image",
+      "http_status": 200,
+      "latency_ms": 68.9
+    },
+    {
+      "name": "ordinary image dual models",
+      "http_status": 200,
+      "latency_ms": 5252.0,
+      "scores_are_not_ground_truth": true
+    },
+    {
+      "name": "fixture.docx detection",
+      "http_status": 200,
+      "latency_ms": 16.7
+    },
+    {
+      "name": "fixture.pdf detection",
+      "http_status": 200,
+      "latency_ms": 296.3
+    },
+    {
+      "name": "fixture.txt detection",
+      "http_status": 200,
+      "latency_ms": 10.8
+    },
+    {
+      "name": "docx export",
+      "http_status": 200,
+      "latency_ms": 81.2
+    },
+    {
+      "name": "html export",
+      "http_status": 200,
+      "latency_ms": 3.3
+    },
+    {
+      "name": "json export",
+      "http_status": 200,
+      "latency_ms": 3.6
+    },
+    {
+      "name": "Agent document plus image",
+      "http_status": 200,
+      "latency_ms": 20.2
+    },
+    {
+      "name": "local LoRA editing preview",
+      "http_status": 200,
+      "latency_ms": 768.3,
+      "screened_status": "rejected"
+    },
+    {
+      "name": "delete temporary report",
+      "http_status": 200,
+      "latency_ms": 3.9
+    },
+    {
+      "name": "delete temporary report",
+      "http_status": 200,
+      "latency_ms": 3.0
+    },
+    {
+      "name": "delete temporary report",
+      "http_status": 200,
+      "latency_ms": 3.3
+    }
+  ],
+  "python": "3.12.2",
+  "status": "passed"
+}

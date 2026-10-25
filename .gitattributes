@@ -1,0 +1,9 @@
+# Preserve the handoff file fingerprints, including original line endings.
+* -text
+
+# Runtime weights and the original full handoff archive.
+*.safetensors filter=lfs diff=lfs merge=lfs -text
+*.joblib filter=lfs diff=lfs merge=lfs -text
+*.pt filter=lfs diff=lfs merge=lfs -text
+models/*.ts filter=lfs diff=lfs merge=lfs -text
+source-attachments/*.zip filter=lfs diff=lfs merge=lfs -text

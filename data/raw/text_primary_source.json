@@ -1,0 +1,18 @@
+{
+  "name": "text_primary",
+  "reference": "hasanyiitakbulut/ai-and-human-text-dataset",
+  "dataset_page": "https://www.kaggle.com/datasets/hasanyiitakbulut/ai-and-human-text-dataset",
+  "metadata_url": "https://www.kaggle.com/api/v1/datasets/view/hasanyiitakbulut/ai-and-human-text-dataset",
+  "download_url": "https://www.kaggle.com/api/v1/datasets/download/hasanyiitakbulut/ai-and-human-text-dataset",
+  "retrieved_at_utc": "2026-09-27T08:30:35.772920+00:00",
+  "license_field": "Attribution 4.0 International (CC BY 4.0)",
+  "description": "**Context**\n\nThis dataset is designed to train and evaluate machine learning/deep learning models capable of distinguishing between human-written and AI-generated texts. As Large Language Models (LLMs) like ChatGPT, Gemini, and Claude become more integrated into daily and academic writing, the need for robust AI-detection mechanisms has grown exponentially.\n\n**Content**\n\nThe dataset contains a total of 6,069 text samples, structurally balanced to prevent severe class imbalance:\nGenerated via various modern LLMs (including Gemini Studio) representing academic, informational, and general domains.\nHuman-Written Texts : 3,000 e samples. Collected from verified human sources (e.g., PLOS, diverse web scrapes) ensuring a wide range of human semantic and structural variations.\n\n**Columns:**\n\n*text*: The text content (string).\n\n*label*: Binary classification target (1 = AI Generated, 0 = Human Written).\n\n*source*: The origin or generation method of the text.\n\n**Inspiration**\nThis dataset was compiled to establish a baseline for identifying the contextual, structural, and semantic boundaries between human cognition and artificial generation. It is ideal for NLP projects utilizing TF-IDF, LSTMs, or Transformer-based architectures (BERT, RoBERTa).",
+  "archive_name": "text_primary.zip",
+  "archive_bytes": 2488505,
+  "archive_sha256": "289b840038476229b059e6a2dbe052d56cda9f60d21c433f5e8a222674a8dc0a",
+  "zip_member_count": 1,
+  "zip_members_first_20": [
+    "data_for_preprocessing.csv"
+  ],
+  "download_requires_credentials": false
+}

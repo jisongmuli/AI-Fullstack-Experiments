@@ -1,0 +1,34 @@
+.dropzone.has-image {
+  gap: 10px;
+}
+
+.dropzone.has-image img {
+  width: min(100%, 236px);
+  height: 236px;
+  object-fit: contain;
+}
+
+.dropzone.has-image.pixel-preview img {
+  image-rendering: pixelated;
+}
+
+.dropzone.has-image .preview-caption:not([hidden]) {
+  display: block;
+  color: #60746a;
+  font-size: 11px;
+}
+
+.llm-preview-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  height: 38px;
+  margin-top: 8px;
+}
+
+.llm-preview-button svg {
+  width: 15px;
+  height: 15px;
+}

@@ -1,0 +1,119 @@
+{
+  "model_config": {
+    "source": "https://hf-mirror.com/Ateeqq/ai-vs-human-image-detector",
+    "revision": "60e82406916921b823616bee33397baab38af3f0",
+    "license_on_host": "Apache-2.0",
+    "path": "${PROJECT_ROOT}\\models\\highres_image\\config.json",
+    "bytes": 1152,
+    "sha256": "4ae0303aff5c84eaeabc3721ccc931a8b2968ed8e1d1a1285159242bf2a36da0",
+    "reused": false
+  },
+  "model_processor": {
+    "source": "https://hf-mirror.com/Ateeqq/ai-vs-human-image-detector",
+    "revision": "60e82406916921b823616bee33397baab38af3f0",
+    "license_on_host": "Apache-2.0",
+    "path": "${PROJECT_ROOT}\\models\\highres_image\\preprocessor_config.json",
+    "bytes": 418,
+    "sha256": "0540e59bcd8f44c3d097169b846c4745186805fce5a876036f3f8c6d9edfcc32",
+    "reused": false
+  },
+  "model_weights": {
+    "source": "https://hf-mirror.com/Ateeqq/ai-vs-human-image-detector",
+    "revision": "60e82406916921b823616bee33397baab38af3f0",
+    "license_on_host": "Apache-2.0",
+    "path": "${PROJECT_ROOT}\\models\\highres_image\\model.safetensors",
+    "bytes": 371567992,
+    "sha256": "ab0b8cad7462a047ff4e2888cb4f11b1abe568d73ce07a2649a3f1541f73675f",
+    "reused": false
+  },
+  "shoes_eval": {
+    "source": "https://www.kaggle.com/api/v1/datasets/download/sunnykakar/shoes-dataset-real-and-ai-generated-images",
+    "revision": null,
+    "license_on_host": "MIT",
+    "path": "${PROJECT_ROOT}\\data\\raw\\shoes_real_ai.zip",
+    "bytes": 39036414,
+    "sha256": "06cb9eb833027a67d4b70bc05a2180f18d823c5be780f473bfb12df806ac1236",
+    "reused": false
+  },
+  "art_eval": {
+    "source": "https://www.kaggle.com/api/v1/datasets/download/doctorstrange420/real-and-fake-ai-generated-art-images-dataset",
+    "revision": null,
+    "license_on_host": "MIT",
+    "path": "${PROJECT_ROOT}\\data\\raw\\art_real_ai.zip",
+    "bytes": 283918573,
+    "sha256": "4bc77670346c373ab7d017f77a8099af0c94e3ad2100a967c68fe09bd6287840",
+    "reused": false
+  },
+  "mixed512_eval": {
+    "source": "https://www.kaggle.com/api/v1/datasets/download/shanmuk4622/real-and-fake-ai-generated-512px-dataset",
+    "revision": null,
+    "license_on_host": "CC0",
+    "path": "${PROJECT_ROOT}\\data\\raw\\mixed512_real_ai.zip",
+    "bytes": 813264695,
+    "sha256": "7166425ae14a83eb0a7a5b7e6c6e086dc629345d2b7d3fad6c0efaef3860f0b1",
+    "reused": false
+  },
+  "siglip2_config": {
+    "source": "https://hf-mirror.com/prithivMLmods/AI-vs-Deepfake-vs-Real-Siglip2",
+    "revision": "4b0c6081b9c9d890cf0251d7a5e736adc10f2d49",
+    "license_on_host": "Apache-2.0",
+    "path": "${PROJECT_ROOT}\\models\\highres_siglip2\\config.json",
+    "bytes": 645,
+    "sha256": "616a2192df29da2196b0b067f13d343251c6b4f45cf2279db544bfcb7cc35631",
+    "reused": false
+  },
+  "siglip2_processor": {
+    "source": "https://hf-mirror.com/prithivMLmods/AI-vs-Deepfake-vs-Real-Siglip2",
+    "revision": "4b0c6081b9c9d890cf0251d7a5e736adc10f2d49",
+    "license_on_host": "Apache-2.0",
+    "path": "${PROJECT_ROOT}\\models\\highres_siglip2\\preprocessor_config.json",
+    "bytes": 394,
+    "sha256": "9b36b57ebaf20f09bf4c22100ccc21877ea6bfe5aead0c00c59f8af8ccefacfc",
+    "reused": false
+  },
+  "siglip2_weights": {
+    "source": "https://hf-mirror.com/prithivMLmods/AI-vs-Deepfake-vs-Real-Siglip2",
+    "revision": "4b0c6081b9c9d890cf0251d7a5e736adc10f2d49",
+    "license_on_host": "Apache-2.0",
+    "path": "${PROJECT_ROOT}\\models\\highres_siglip2\\model.safetensors",
+    "bytes": 371571068,
+    "sha256": "b89f793630497d2d583924febd935d11a8bcae05270c4172d07c194ddb037079",
+    "reused": false
+  },
+  "nyuad_config": {
+    "source": "https://hf-mirror.com/NYUAD-ComNets/NYUAD_AI-generated_images_detector",
+    "revision": "b0a2e665f6e40164436cae6c0c95e7e4386f7684",
+    "license_on_host": "Apache-2.0",
+    "path": "${PROJECT_ROOT}\\models\\highres_nyuad\\config.json",
+    "bytes": 755,
+    "sha256": "0a6b8fc9f9770c8d20b00d8dd71adc691f0cb6af44a7482f7945b780c33af6e9",
+    "reused": false
+  },
+  "nyuad_processor": {
+    "source": "https://hf-mirror.com/NYUAD-ComNets/NYUAD_AI-generated_images_detector",
+    "revision": "b0a2e665f6e40164436cae6c0c95e7e4386f7684",
+    "license_on_host": "Apache-2.0",
+    "path": "${PROJECT_ROOT}\\models\\highres_nyuad\\preprocessor_config.json",
+    "bytes": 580,
+    "sha256": "5e6895a8a80efa00a98656b6c24d202d7582614ceea87aa122f861120dc833c0",
+    "reused": false
+  },
+  "nyuad_weights": {
+    "source": "https://hf-mirror.com/NYUAD-ComNets/NYUAD_AI-generated_images_detector",
+    "revision": "b0a2e665f6e40164436cae6c0c95e7e4386f7684",
+    "license_on_host": "Apache-2.0",
+    "path": "${PROJECT_ROOT}\\models\\highres_nyuad\\model.safetensors",
+    "bytes": 343227052,
+    "sha256": "b0eb0ba578897f59d009b4eaa7a308eb5ca56a6c27e7d51a32d4eafcbe4a223a",
+    "reused": false
+  },
+  "rhythmghai_eval": {
+    "source": "https://www.kaggle.com/api/v1/datasets/download/rhythmghai/ai-vs-real-images-dataset",
+    "revision": null,
+    "license_on_host": "CC BY-NC-SA 4.0",
+    "path": "${PROJECT_ROOT}\\data\\raw\\rhythmghai_real_ai_512.zip",
+    "bytes": 248868789,
+    "sha256": "02a1b0c36ee7c5423e36ed3eaf5706acba68ffc94ae6b3ba1982fc60cc4664af",
+    "reused": true
+  }
+}

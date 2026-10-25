@@ -1,0 +1,195 @@
+{
+  "purpose": "portable package workflow smoke test, not detection accuracy",
+  "accuracy_evaluated": false,
+  "checks": [
+    {
+      "name": "health",
+      "http_status": 200,
+      "latency_ms": 20.8
+    },
+    {
+      "name": "homepage",
+      "http_status": 200,
+      "latency_ms": 81.2
+    },
+    {
+      "name": "Chinese text",
+      "http_status": 200,
+      "latency_ms": 7874.0
+    },
+    {
+      "name": "English text",
+      "http_status": 200,
+      "latency_ms": 11.0
+    },
+    {
+      "name": "CIFAKE image",
+      "http_status": 200,
+      "latency_ms": 68.8
+    },
+    {
+      "name": "ordinary image dual models",
+      "http_status": 200,
+      "latency_ms": 6379.0,
+      "scores_are_not_ground_truth": true
+    },
+    {
+      "name": "fixture.docx detection",
+      "http_status": 200,
+      "latency_ms": 29.4
+    },
+    {
+      "name": "fixture.pdf detection",
+      "http_status": 200,
+      "latency_ms": 392.3
+    },
+    {
+      "name": "fixture.txt detection",
+      "http_status": 200,
+      "latency_ms": 14.0
+    },
+    {
+      "name": "docx export",
+      "http_status": 200,
+      "latency_ms": 91.7
+    },
+    {
+      "name": "html export",
+      "http_status": 200,
+      "latency_ms": 1.6
+    },
+    {
+      "name": "json export",
+      "http_status": 200,
+      "latency_ms": 1.3
+    },
+    {
+      "name": "Agent document plus image",
+      "http_status": 200,
+      "latency_ms": 30.5
+    },
+    {
+      "name": "local LoRA editing preview",
+      "http_status": 200,
+      "latency_ms": 1561.5,
+      "screened_status": "rejected"
+    },
+    {
+      "name": "delete temporary report",
+      "http_status": 200,
+      "latency_ms": 2.8
+    },
+    {
+      "name": "delete temporary report",
+      "http_status": 200,
+      "latency_ms": 1.8
+    },
+    {
+      "name": "delete temporary report",
+      "http_status": 200,
+      "latency_ms": 1.8
+    }
+  ],
+  "python": "3.12.10",
+  "status": "passed",
+  "tested_at": "2026-10-11",
+  "platform": "Windows x64",
+  "isolated_environment": true,
+  "system_site_packages": false,
+  "torch": "2.14.0+cpu",
+  "torchvision": "0.29.0+cpu",
+  "pip_check": "passed",
+  "service_tests": {
+    "run": 71,
+    "passed": 70,
+    "skipped": 1,
+    "failures": 0,
+    "skip_reason": "Official C2PA test image is not bundled."
+  },
+  "known_warnings": [
+    "Chinese joblib estimators were trained with scikit-learn 1.9.0, loaded with 1.9.1; loading and predictions passed this smoke test.",
+    "Starlette test client emits a deprecation warning for httpx.",
+    "TorchScript loading emits a future deprecation warning."
+  ],
+  "not_tested": [
+    "Other physical computers",
+    "Linux or macOS",
+    "CPU/CUDA compatibility on receiving hardware",
+    "Independent platform detection accuracy or formal production acceptance"
+  ],
+  "llm_preview_note": "The fixture was rejected by the existing quality guard. This confirms execution and rejection handling, not editing quality.",
+  "browser_verification": {
+    "created_at": "2026-10-11T09:03:45.212Z",
+    "base_url": "http://127.0.0.1:8003",
+    "environment": "Independent Windows Python 3.12 CPU virtual environment supplied by parent",
+    "classifier_accuracy_test": false,
+    "checks": {
+      "desktop_document_navigation": true,
+      "document_upload": {
+        "http_status": 200,
+        "format": "txt",
+        "characters": 222,
+        "segments": 3,
+        "original_preserved": true,
+        "script_literal_safe": true,
+        "summary": {
+          "total_characters": 222,
+          "visible_characters": 212,
+          "scored_character_percent": 64.15,
+          "highlighted_character_percent": 0,
+          "highlighted_total_percent": 0,
+          "mean_segment_score": 0.287019,
+          "high_risk_segments": 0,
+          "unscored_segments": 2,
+          "scored_segments": 1,
+          "total_segments": 3,
+          "mixed_signals": false,
+          "metric_note": "AI 特征占比按整段标注：所在段落模型风险分数达到 0.99 的非空白字符占比；不是 AI 实际撰写比例，也不是逐字来源定位。模型均分不是整篇来源概率。"
+        }
+      },
+      "agent_document_summary": true,
+      "agent_restore_document": true,
+      "agent_document_upload": {
+        "http_status": 200,
+        "characters": 222
+      },
+      "mobile_document_navigation": {
+        "viewport": 390,
+        "document_width": 390,
+        "body_width": 390,
+        "no_horizontal_overflow": true
+      },
+      "mobile_document_result": {
+        "viewport": 390,
+        "document_width": 390,
+        "body_width": 390,
+        "original_preserved": true,
+        "no_horizontal_overflow": true
+      },
+      "mobile_agent_navigation": true
+    },
+    "exports": [
+      {
+        "format": "docx",
+        "suggested_filename": "文档检测报告_handoff_browser_fixture.docx",
+        "bytes": 39484,
+        "valid": true
+      },
+      {
+        "format": "html",
+        "suggested_filename": "文档检测报告_handoff_browser_fixture.html",
+        "bytes": 4543,
+        "valid": true
+      },
+      {
+        "format": "json",
+        "suggested_filename": "文档检测报告_handoff_browser_fixture.json",
+        "bytes": 5166,
+        "valid": true
+      }
+    ],
+    "pageerrors": [],
+    "requestfailures": [],
+    "passed": true
+  }
+}

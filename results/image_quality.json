@@ -1,0 +1,33 @@
+{
+  "source_records": 120000,
+  "source_split_counts": {
+    "test_FAKE": 10000,
+    "test_REAL": 10000,
+    "train_FAKE": 50000,
+    "train_REAL": 50000
+  },
+  "decode_failures": 0,
+  "exact_duplicate_pixels": 1336,
+  "cross_source_split_duplicates": 378,
+  "within_test_duplicate_pixels": 38,
+  "exact_duplicate_files": 1336,
+  "non_32x32_images": 0,
+  "source_formats": {
+    "JPEG": 120000
+  },
+  "usable_records": 118664,
+  "processed_records": 5600,
+  "processed_split_counts": {
+    "test_0": 400,
+    "test_1": 400,
+    "train_0": 2000,
+    "train_1": 2000,
+    "validation_0": 400,
+    "validation_1": 400
+  },
+  "processed_image_size": "32x32 RGB PNG",
+  "processed_missing_cells": 0,
+  "sampled_pixel_hash_overlap": 0,
+  "source_archive_sha256": "1839206c1462371f5c885eda1660b448ea7abf52ee81fcc71e5e4651a4a11389",
+  "elapsed_seconds": 18.39
+}

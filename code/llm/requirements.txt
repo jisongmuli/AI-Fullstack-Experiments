@@ -1,0 +1,6 @@
+requests>=2.31,<3
+torch>=2.4,<3
+transformers==5.5.4
+peft==0.21.0
+safetensors>=0.4
+sentencepiece>=0.2

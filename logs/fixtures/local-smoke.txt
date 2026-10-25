@@ -1,0 +1,3 @@
+在一次公开数据整理过程中，小组先查看文件的格式和来源，再检查样本是否存在缺失与重复。处理完成后，每个文件都保存稳定的样本编号，并将处理参数记录在清单中。这样既方便其他同学复现步骤，也能够在发现问题时回到原始记录。
+
+The team checked the source files before preparing the data. Each record received a stable identifier. Missing values and duplicate records were counted separately, and only the training split was used to fit numeric transformations.

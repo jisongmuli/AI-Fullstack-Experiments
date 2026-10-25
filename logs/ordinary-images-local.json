@@ -1,0 +1,14 @@
+[
+  {
+    "fixture": "gradient-512.jpg",
+    "status": 200,
+    "model_scores_count": 2,
+    "decision": "uncertain"
+  },
+  {
+    "fixture": "gradient-512.png",
+    "status": 200,
+    "model_scores_count": 2,
+    "decision": "uncertain"
+  }
+]

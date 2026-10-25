@@ -1,0 +1,225 @@
+{
+  "method": "fixed arithmetic mean of Ateeqq SigLIP and NYUAD ViT raw softmax scores",
+  "status": "exploratory_public_sets_not_platform_acceptance",
+  "datasets": {
+    "shoes": {
+      "n": 800,
+      "per_class": {
+        "0": 400,
+        "1": 400
+      },
+      "accuracy_at_0_5": 0.6775,
+      "roc_auc": 0.88963125,
+      "abstaining_audit": {
+        "file": "${PROJECT_ROOT}\\results\\highres\\crosscheck_shoes_predictions.csv",
+        "sha256": "228147975c46f28b702a6f020cf388ac5f38ad0ff7f38f72d4a47b020f8ff920",
+        "sample_count": 800,
+        "class_counts": {
+          "human": 400,
+          "ai": 400
+        },
+        "confusion_with_abstention": {
+          "human": {
+            "human": 139,
+            "ai": 8,
+            "uncertain": 253
+          },
+          "ai": {
+            "human": 23,
+            "ai": 205,
+            "uncertain": 172
+          }
+        },
+        "coverage": {
+          "count": 375,
+          "denominator": 800,
+          "value": 0.46875,
+          "wilson_95_lower": 0.43440188370673843,
+          "wilson_95_upper": 0.5033967960561164
+        },
+        "false_positive_rate_all_human": {
+          "count": 8,
+          "denominator": 400,
+          "value": 0.02,
+          "wilson_95_lower": 0.010168386791664645,
+          "wilson_95_upper": 0.03896341576926
+        },
+        "false_negative_rate_all_ai": {
+          "count": 23,
+          "denominator": 400,
+          "value": 0.0575,
+          "wilson_95_lower": 0.038617542757733075,
+          "wilson_95_upper": 0.08480083772811935
+        },
+        "false_positive_rate_covered_human": {
+          "count": 8,
+          "denominator": 147,
+          "value": 0.05442176870748299,
+          "wilson_95_lower": 0.027831258408052437,
+          "wilson_95_upper": 0.10370723887126486
+        },
+        "false_negative_rate_covered_ai": {
+          "count": 23,
+          "denominator": 228,
+          "value": 0.10087719298245613,
+          "wilson_95_lower": 0.06816369139839884,
+          "wilson_95_upper": 0.1468170936355732
+        },
+        "positive_predictive_value": {
+          "count": 205,
+          "denominator": 213,
+          "value": 0.9624413145539906,
+          "wilson_95_lower": 0.927650124227291,
+          "wilson_95_upper": 0.9808477297873281
+        }
+      },
+      "csv_sha256": "228147975c46f28b702a6f020cf388ac5f38ad0ff7f38f72d4a47b020f8ff920"
+    },
+    "art": {
+      "n": 800,
+      "per_class": {
+        "0": 400,
+        "1": 400
+      },
+      "accuracy_at_0_5": 0.55375,
+      "roc_auc": 0.540375,
+      "abstaining_audit": {
+        "file": "${PROJECT_ROOT}\\results\\highres\\crosscheck_art_predictions.csv",
+        "sha256": "0e2d0d7a8c88fd7f94cd7c48797105667ac47d5c3e1ffa3be9fbe73bcc6782e7",
+        "sample_count": 800,
+        "class_counts": {
+          "human": 400,
+          "ai": 400
+        },
+        "confusion_with_abstention": {
+          "human": {
+            "human": 97,
+            "ai": 54,
+            "uncertain": 249
+          },
+          "ai": {
+            "human": 57,
+            "ai": 56,
+            "uncertain": 287
+          }
+        },
+        "coverage": {
+          "count": 264,
+          "denominator": 800,
+          "value": 0.33,
+          "wilson_95_lower": 0.29829672754760284,
+          "wilson_95_upper": 0.36332809036232716
+        },
+        "false_positive_rate_all_human": {
+          "count": 54,
+          "denominator": 400,
+          "value": 0.135,
+          "wilson_95_lower": 0.10496299061600528,
+          "wilson_95_upper": 0.1719809842480312
+        },
+        "false_negative_rate_all_ai": {
+          "count": 57,
+          "denominator": 400,
+          "value": 0.1425,
+          "wilson_95_lower": 0.1116383145426319,
+          "wilson_95_upper": 0.18016297590639008
+        },
+        "false_positive_rate_covered_human": {
+          "count": 54,
+          "denominator": 151,
+          "value": 0.3576158940397351,
+          "wilson_95_lower": 0.28557207961635744,
+          "wilson_95_upper": 0.4367245176419141
+        },
+        "false_negative_rate_covered_ai": {
+          "count": 57,
+          "denominator": 113,
+          "value": 0.504424778761062,
+          "wilson_95_lower": 0.41362192318678664,
+          "wilson_95_upper": 0.5949366827232492
+        },
+        "positive_predictive_value": {
+          "count": 56,
+          "denominator": 110,
+          "value": 0.509090909090909,
+          "wilson_95_lower": 0.4169512043871188,
+          "wilson_95_upper": 0.600617087698369
+        }
+      },
+      "csv_sha256": "0e2d0d7a8c88fd7f94cd7c48797105667ac47d5c3e1ffa3be9fbe73bcc6782e7"
+    },
+    "rhythmghai512": {
+      "n": 400,
+      "per_class": {
+        "0": 200,
+        "1": 200
+      },
+      "accuracy_at_0_5": 0.815,
+      "roc_auc": 0.9169625,
+      "abstaining_audit": {
+        "file": "${PROJECT_ROOT}\\results\\highres\\crosscheck_rhythmghai512_predictions.csv",
+        "sha256": "66b07793434652124a5023b213ae329f4f1c0ec265aac8868f4aa076cd7bbe5a",
+        "sample_count": 400,
+        "class_counts": {
+          "human": 200,
+          "ai": 200
+        },
+        "confusion_with_abstention": {
+          "human": {
+            "human": 85,
+            "ai": 16,
+            "uncertain": 99
+          },
+          "ai": {
+            "human": 8,
+            "ai": 144,
+            "uncertain": 48
+          }
+        },
+        "coverage": {
+          "count": 253,
+          "denominator": 400,
+          "value": 0.6325,
+          "wilson_95_lower": 0.5842006805216781,
+          "wilson_95_upper": 0.6782785614797332
+        },
+        "false_positive_rate_all_human": {
+          "count": 16,
+          "denominator": 200,
+          "value": 0.08,
+          "wilson_95_lower": 0.049840585889759974,
+          "wilson_95_upper": 0.12598948826714396
+        },
+        "false_negative_rate_all_ai": {
+          "count": 8,
+          "denominator": 200,
+          "value": 0.04,
+          "wilson_95_lower": 0.020405632066152306,
+          "wilson_95_upper": 0.07693206820093293
+        },
+        "false_positive_rate_covered_human": {
+          "count": 16,
+          "denominator": 101,
+          "value": 0.15841584158415842,
+          "wilson_95_lower": 0.09992756899137685,
+          "wilson_95_upper": 0.2419358429055546
+        },
+        "false_negative_rate_covered_ai": {
+          "count": 8,
+          "denominator": 152,
+          "value": 0.05263157894736842,
+          "wilson_95_lower": 0.026907491896279292,
+          "wilson_95_upper": 0.10041073889314774
+        },
+        "positive_predictive_value": {
+          "count": 144,
+          "denominator": 160,
+          "value": 0.9,
+          "wilson_95_lower": 0.8437374796961266,
+          "wilson_95_upper": 0.9375055641666694
+        }
+      },
+      "csv_sha256": "66b07793434652124a5023b213ae329f4f1c0ec265aac8868f4aa076cd7bbe5a"
+    }
+  }
+}

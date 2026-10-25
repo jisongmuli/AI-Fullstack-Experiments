@@ -1,0 +1,76 @@
+{
+  "datasets": [
+    {
+      "name": "Hello-SimpleAI/HC3-Chinese",
+      "revision": "09a687b8dc164b89e7df95abf15df3b216bc31c2",
+      "url": "https://huggingface.co/datasets/Hello-SimpleAI/HC3-Chinese",
+      "license_declared": "CC BY-SA 4.0, underlying sources may have stricter terms",
+      "file": "hc3_chinese_all.jsonl",
+      "sha256": "425e7071bbd5dd88efd85d51e28a5adec9c72e04d96c52d194bdfb95fef00b0d"
+    },
+    {
+      "name": "AnxForever/chinese-ai-detection-dataset",
+      "revision": "558d97ab9453a1390841105b3742dea327ff349c",
+      "url": "https://huggingface.co/datasets/AnxForever/chinese-ai-detection-dataset",
+      "license_declared": "MIT; derived-source licensing needs independent review",
+      "files": {
+        "anx_train.csv": "ca4dac6a0bbfd2a812071538f49ea7cf87419cd825359b969099b342474ecb39",
+        "anx_val.csv": "e764717904d81b058d6dec3afc84c114bbcc74af91f2936c3134911610f9ff85",
+        "anx_test.csv": "db0c5fb2d259cb3ce012a82cbb6b8c8f9c7e989ad2d62797f7c5f51233c97f82"
+      }
+    }
+  ],
+  "filter": "Pure human/AI only; Anx HC3 copies and mixed labels excluded; 80-4000 Chinese characters; U+FFFD excluded",
+  "splitting": "HC3 by question hash; Anx original splits with global exact normalized-text deduplication",
+  "risk": "Anx human longform is mainly THUCNews, while AI longform uses parallel models; genre/source confounding remains. Question-level and exact-match leakage removed, but prompt-near-duplicates are not proven absent.",
+  "audit": {
+    "raw_candidate_rows": 49619,
+    "contradictory_hashes_quarantined": 0,
+    "duplicate_or_conflicting_rows_removed": 443,
+    "unique_hashes_by_split": {
+      "train": 38217,
+      "validation": 5490,
+      "test": 5469
+    },
+    "split_hash_overlap": 0
+  },
+  "length_balance": {
+    "80-159": {
+      "human_before": 4324,
+      "ai_before": 5362,
+      "each_selected": 4324
+    },
+    "160-319": {
+      "human_before": 6562,
+      "ai_before": 4940,
+      "each_selected": 4940
+    },
+    "320-639": {
+      "human_before": 3353,
+      "ai_before": 2296,
+      "each_selected": 2296
+    },
+    "640-1279": {
+      "human_before": 3250,
+      "ai_before": 1899,
+      "each_selected": 1899
+    },
+    "1280-2559": {
+      "human_before": 1411,
+      "ai_before": 3849,
+      "each_selected": 1411
+    },
+    "2560-4000": {
+      "human_before": 141,
+      "ai_before": 830,
+      "each_selected": 141
+    }
+  },
+  "training_counts": {
+    "HC3-Chinese|0": 9922,
+    "AnxForever-chinese-ai-detection-dataset|0": 5089,
+    "HC3-Chinese|1": 10612,
+    "AnxForever-chinese-ai-detection-dataset|1": 4399
+  },
+  "artifact_sha256": "49cce5724a6a865668174f83f8641d928c03d9968f7a838e682ab3d92d0adc26"
+}

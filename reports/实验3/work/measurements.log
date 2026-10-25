@@ -1,0 +1,175 @@
+E:\AIGC_latest_20261011\.venv\Lib\site-packages\torch\jit\_serialization.py:176: FutureWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.
+  warnings.warn(
+Fingerprints and parity verified.
+Image benchmarks complete.
+{
+  "summary": [
+    {
+      "family": "image",
+      "batch": 1,
+      "method": "eager",
+      "n": 600,
+      "p50_ms": 0.4444,
+      "p95_ms": 0.6126499999999999,
+      "mean_ms": 0.464809,
+      "throughput_samples_s": 2151.4213365059627
+    },
+    {
+      "family": "image",
+      "batch": 1,
+      "method": "torchscript",
+      "n": 600,
+      "p50_ms": 0.36055,
+      "p95_ms": 0.51705,
+      "mean_ms": 0.3820763333333333,
+      "throughput_samples_s": 2617.278048278311
+    },
+    {
+      "family": "image",
+      "batch": 32,
+      "method": "eager",
+      "n": 240,
+      "p50_ms": 4.5732,
+      "p95_ms": 6.19341,
+      "mean_ms": 4.766778333333334,
+      "throughput_samples_s": 6713.1294476667845
+    },
+    {
+      "family": "image",
+      "batch": 32,
+      "method": "torchscript",
+      "n": 240,
+      "p50_ms": 4.20725,
+      "p95_ms": 6.087094999999999,
+      "mean_ms": 4.589001249999999,
+      "throughput_samples_s": 6973.194875464461
+    },
+    {
+      "family": "image_pipeline",
+      "batch": 1,
+      "method": "eager",
+      "n": 200,
+      "p50_ms": 0.57375,
+      "p95_ms": 0.8325699999999997,
+      "mean_ms": 0.610919,
+      "throughput_samples_s": 1636.878211350441
+    },
+    {
+      "family": "image_pipeline",
+      "batch": 1,
+      "method": "torchscript",
+      "n": 200,
+      "p50_ms": 0.48560000000000003,
+      "p95_ms": 0.69995,
+      "mean_ms": 0.522085,
+      "throughput_samples_s": 1915.3969181263587
+    },
+    {
+      "family": "text",
+      "batch": 1,
+      "method": "full",
+      "n": 600,
+      "p50_ms": 0.2663,
+      "p95_ms": 0.3954649999999999,
+      "mean_ms": 0.28293916666666663,
+      "throughput_samples_s": 3534.328639548549
+    },
+    {
+      "family": "text",
+      "batch": 1,
+      "method": "compact",
+      "n": 600,
+      "p50_ms": 0.26645,
+      "p95_ms": 0.43461999999999995,
+      "mean_ms": 0.29738933333333334,
+      "throughput_samples_s": 3362.5953856224387
+    },
+    {
+      "family": "text",
+      "batch": 32,
+      "method": "full",
+      "n": 240,
+      "p50_ms": 3.2737,
+      "p95_ms": 3.662974999999998,
+      "mean_ms": 3.3802137500000002,
+      "throughput_samples_s": 9466.856940629863
+    },
+    {
+      "family": "text",
+      "batch": 32,
+      "method": "compact",
+      "n": 240,
+      "p50_ms": 3.2089999999999996,
+      "p95_ms": 3.4549999999999996,
+      "mean_ms": 3.2797366666666665,
+      "throughput_samples_s": 9756.880887794854
+    }
+  ],
+  "text_models": {
+    "full": {
+      "features": 30000,
+      "classifier_parameters": 30001,
+      "idf_values": 30000,
+      "numeric_bytes": 480008,
+      "csr_nnz": 418,
+      "csr_shape": [
+        1,
+        30000
+      ],
+      "csr_bytes": 5024,
+      "dtype": "float64",
+      "analyzer": "char_wb",
+      "ngram_range": [
+        3,
+        5
+      ],
+      "min_df": 2
+    },
+    "compact": {
+      "features": 10000,
+      "classifier_parameters": 10001,
+      "idf_values": 10000,
+      "numeric_bytes": 160008,
+      "csr_nnz": 369,
+      "csr_shape": [
+        1,
+        10000
+      ],
+      "csr_bytes": 4436,
+      "dtype": "float64",
+      "analyzer": "char_wb",
+      "ngram_range": [
+        3,
+        5
+      ],
+      "min_df": 2
+    }
+  },
+  "image_export_parity": {
+    "inputs": 130,
+    "random_inputs": 128,
+    "bundled_sample_images": 2,
+    "max_abs_logit_difference": 0.0,
+    "argmax_mismatches": 0
+  },
+  "memory": [
+    {
+      "name": "text_detector_full.joblib",
+      "baseline_rss": 121090048,
+      "after_load_rss": 133652480,
+      "load_delta_rss": 12562432,
+      "peak_working_set": 139952128,
+      "iterations": 1000,
+      "rss_variation_pct": 0.0
+    },
+    {
+      "name": "text_detector.joblib",
+      "baseline_rss": 121237504,
+      "after_load_rss": 126283776,
+      "load_delta_rss": 5046272,
+      "peak_working_set": 128028672,
+      "iterations": 1000,
+      "rss_variation_pct": 0.0
+    }
+  ]
+}

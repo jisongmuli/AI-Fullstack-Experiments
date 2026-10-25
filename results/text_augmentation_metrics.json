@@ -1,0 +1,125 @@
+{
+  "purpose": "fixed experiment-one augmentation probe, not authorship proof",
+  "seed": 42,
+  "augmentation": "one curated English synonym replacement in 25% of original training texts; validation/test untouched",
+  "augmented_samples": 599,
+  "mean_sentence_bleu_vs_original": 0.9405096105372334,
+  "results": {
+    "original": {
+      "train_count": 4855,
+      "vocabulary_size": 20000,
+      "scores": {
+        "validation": {
+          "n": 607,
+          "accuracy": 0.9357495881383855,
+          "macro_f1": 0.9355705245968565,
+          "human_false_positive_rate": 0.10666666666666667,
+          "confusion_matrix_rows_human_ai": [
+            [
+              268,
+              32
+            ],
+            [
+              7,
+              300
+            ]
+          ]
+        },
+        "test": {
+          "n": 607,
+          "accuracy": 0.9588138385502472,
+          "macro_f1": 0.9587919175132313,
+          "human_false_positive_rate": 0.05333333333333334,
+          "confusion_matrix_rows_human_ai": [
+            [
+              284,
+              16
+            ],
+            [
+              9,
+              298
+            ]
+          ]
+        },
+        "external_test": {
+          "n": 2420,
+          "accuracy": 0.5520661157024793,
+          "macro_f1": 0.5418136444266523,
+          "human_false_positive_rate": 0.3825454545454545,
+          "confusion_matrix_rows_human_ai": [
+            [
+              849,
+              526
+            ],
+            [
+              558,
+              487
+            ]
+          ]
+        }
+      },
+      "elapsed_seconds": 0.46
+    },
+    "augmented": {
+      "train_count": 5454,
+      "vocabulary_size": 20000,
+      "scores": {
+        "validation": {
+          "n": 607,
+          "accuracy": 0.942339373970346,
+          "macro_f1": 0.9422635304988246,
+          "human_false_positive_rate": 0.08333333333333333,
+          "confusion_matrix_rows_human_ai": [
+            [
+              275,
+              25
+            ],
+            [
+              10,
+              297
+            ]
+          ]
+        },
+        "test": {
+          "n": 607,
+          "accuracy": 0.9621087314662273,
+          "macro_f1": 0.9620984446815384,
+          "human_false_positive_rate": 0.043333333333333335,
+          "confusion_matrix_rows_human_ai": [
+            [
+              287,
+              13
+            ],
+            [
+              10,
+              297
+            ]
+          ]
+        },
+        "external_test": {
+          "n": 2420,
+          "accuracy": 0.6012396694214877,
+          "macro_f1": 0.5609604687700632,
+          "human_false_positive_rate": 0.20436363636363636,
+          "confusion_matrix_rows_human_ai": [
+            [
+              1094,
+              281
+            ],
+            [
+              684,
+              361
+            ]
+          ]
+        }
+      },
+      "elapsed_seconds": 0.46
+    }
+  },
+  "sklearn_version": "1.9.1",
+  "limitations": [
+    "Primary CSV has no per-record source column despite its web description.",
+    "External corpus provenance is incomplete and may differ strongly by topic.",
+    "Simple synonym swaps can alter style and meaning; this is a controlled teaching comparison."
+  ]
+}

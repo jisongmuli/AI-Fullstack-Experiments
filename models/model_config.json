@@ -1,0 +1,19 @@
+{
+  "labels": {
+    "0": "human_or_real",
+    "1": "ai_generated"
+  },
+  "abstain_probability": 0.8,
+  "image_calibration": {
+    "coefficient": 0.9941019937394685,
+    "intercept": 0.3750113772405217,
+    "method": "sigmoid logistic calibration on validation; validation calibration scores are optimistic"
+  },
+  "text_calibration": {
+    "coefficient": 3.6245816873944574,
+    "intercept": -0.5163159506440548,
+    "method": "sigmoid logistic calibration on validation; validation calibration scores are optimistic"
+  },
+  "image_input": "32x32 RGB",
+  "text_input": "English excerpt; 25-1000 characters and >=5 words"
+}

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f6">
+  <link rel="icon" href="data:,">
+  <title>内容可信工作台</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/agent.css">
+  <link rel="stylesheet" href="/static/preview.css">
+  <link rel="stylesheet" href="/static/document.css?v=document20261011">
+  <script src="/static/assets/lucide.min.js" defer></script>
+  <script src="/static/app.js?v=document20261011nav2" defer></script>
+  <script src="/static/document.js?v=document20261011" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="主导航">
+      <div class="brand"><span class="brand-mark">C</span><span><strong>内容可信</strong><small>多模态工作台</small></span></div>
+      <nav class="nav" aria-label="功能">
+        <button class="nav-item active" data-view="image" type="button"><i data-lucide="image"></i><span>图像检测</span></button>
+        <button class="nav-item" data-view="text" type="button"><i data-lucide="file-text"></i><span>文本检测</span></button>
+        <button class="nav-item" data-view="document" type="button"><i data-lucide="files"></i><span>文档检测</span></button>
+        <button class="nav-item" data-view="edit" type="button"><i data-lucide="pencil-line"></i><span>可信编辑</span></button>
+        <button class="nav-item" data-view="agent" type="button"><i data-lucide="workflow"></i><span>Agent 助手</span></button>
+      </nav>
+      <div class="sidebar-bottom"><span class="status-dot" id="service-dot"></span><span id="service-label">连接中</span></div>
+    </aside>
+
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="topbar-title"><span class="eyebrow">AIGC CONTENT REVIEW</span><h1 id="page-title">图像检测</h1></div>
+        <div class="topbar-actions"><span class="scope-pill">实验性辅助判断</span><button class="icon-button" id="model-info-button" type="button" title="模型与适用范围" aria-label="模型与适用范围"><i data-lucide="info"></i></button></div>
+      </header>
+
+      <main id="main-content">
+        <section class="view active" id="view-image" aria-labelledby="image-heading">
+          <div class="section-intro"><div><h2 id="image-heading">检查一张图片</h2><p>查看候选模型分数、内容凭证与图上局部敏感度；分数不是 AI 率。</p></div><span class="dataset-chip">含 4K · 最大 25 MB</span></div>
+          <div class="workspace-grid">
+            <div class="work-panel">
+              <label class="dropzone" id="image-dropzone" for="image-input">
+                <input id="image-input" type="file" accept="image/jpeg,image/png" hidden>
+                <span class="drop-icon"><i data-lucide="image-up"></i></span>
+                <strong id="drop-title">点击选择或拖入图片</strong>
+                <span id="drop-subtitle">JPG / PNG，最大 25 MB</span>
+                <img id="image-preview" alt="待检测图片预览" hidden>
+                <span class="preview-caption" id="preview-caption" hidden></span>
+              </label>
+              <div class="file-meta" id="file-meta" hidden><i data-lucide="file-image"></i><span id="file-name"></span><span id="file-size"></span><button class="icon-button small" id="clear-image" type="button" title="移除图片" aria-label="移除图片"><i data-lucide="x"></i></button></div>
+              <div class="sample-group"><span>试用公开样本</span><button class="sample-button" data-sample="real" type="button"><img src="/static/assets/sample-real.png" alt="真实类样本缩略图"><span>真实类样本</span></button><button class="sample-button" data-sample="fake" type="button"><img src="/static/assets/sample-fake.png" alt="生成类样本缩略图"><span>生成类样本</span></button></div>
+              <button class="primary-button" id="detect-image" type="button" disabled><i data-lucide="scan-search"></i><span>分析图片</span></button>
+              <p class="input-note"><i data-lucide="triangle-alert"></i>普通图片短边 200–511 像素仅给探索性候选分数；不足 200 像素不评分。32×32 CIFAKE 教学样本单独分析。当前模型尚未达到平台审核要求。</p>
+            </div>
+            <div class="result-panel" id="image-result" aria-live="polite"><div class="empty-result"><i data-lucide="scan-line"></i><strong>等待图片</strong><p>选择图片后查看模型输出、适用范围与判断状态。</p></div></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-text" aria-labelledby="text-heading">
+          <div class="section-intro"><div><h2 id="text-heading">检查中文或英文文本</h2><p>按语言选择不同模型，结果受文本来源和体裁影响。</p></div><span class="dataset-chip">中文 / 英文 · 分别评估</span></div>
+          <div class="workspace-grid">
+            <div class="work-panel"><label class="field-label" for="text-input">待检测文本</label><textarea id="text-input" spellcheck="true" placeholder="粘贴或输入需要核查的中文或英文文本…"></textarea><div class="field-footer"><span id="text-hint">请输入文本</span><span id="text-count">0 / 10,000 字符</span></div><button class="primary-button" id="detect-text" type="button" disabled><i data-lucide="scan-text"></i><span>分析文本</span></button><p class="input-note"><i data-lucide="shield-alert"></i>检测分数与高亮覆盖率都不是 AI 写作比例，不能证明作者身份。</p></div>
+            <div class="result-panel" id="text-result" aria-live="polite"><div class="empty-result"><i data-lucide="file-search"></i><strong>等待文本</strong><p>提交文本后查看模型判断与适用范围。</p></div></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-document" aria-labelledby="document-heading">
+          <div class="section-intro"><div><h2 id="document-heading">检查整份文档</h2><p>自动提取文字、分段评分，在原文中标出高风险段落，并导出带下划线的报告。</p></div><span class="dataset-chip">Word / PDF / TXT / MD</span></div>
+          <div class="document-workspace">
+            <div class="work-panel document-input-panel">
+              <div class="document-input-modes" role="group" aria-label="文档输入方式"><button type="button" class="selected" id="document-mode-file" aria-pressed="true">上传文档</button><button type="button" id="document-mode-text" aria-pressed="false">粘贴长文</button></div>
+              <div id="document-file-pane"><label class="document-dropzone" id="document-dropzone" for="document-file"><i data-lucide="file-up"></i><strong>选择或拖入一份文档</strong><span>DOCX、PDF、TXT、MD · 最大 20 MB</span></label><input id="document-file" type="file" accept=".docx,.pdf,.txt,.md,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,text/plain,text/markdown" class="sr-only"><div class="document-file-meta" id="document-file-meta" hidden><span id="document-file-name"></span><span id="document-file-size"></span><button type="button" class="icon-button small" id="document-clear-file" aria-label="移除文档" title="移除文档"><i data-lucide="x"></i></button></div><p class="document-helper">PDF 最多 200 页，需含可提取文字；扫描件暂不支持 OCR。旧版 .doc 请先另存为 .docx。提取文字不保留原文档的复杂排版。</p></div>
+              <div id="document-text-pane" hidden><label class="field-label" for="document-text">待检测长文</label><textarea id="document-text" rows="10" placeholder="粘贴中文、英文或混合长文，保留段落和换行…"></textarea><div class="field-footer"><span>按段落检测，不会默默截断原文</span><span id="document-character-count">0 / 100,000 字符</span></div></div>
+              <div class="document-limit-note">最长 100,000 字符；中文与英文段落使用不同模型。短段、引用及代码可能无法评分。</div>
+              <button class="primary-button" id="document-detect" type="button" disabled><i data-lucide="scan-text"></i><span>检测文档并标注</span></button><button class="secondary-button document-cancel" id="document-cancel" type="button" hidden>取消等待</button>
+              <p class="input-note"><i data-lucide="info"></i>自动输出 AI 特征覆盖率和模型分数；这些指标不能证明真实的 AI 撰写比例。</p>
+              <div id="document-status" class="document-status" role="status" aria-live="polite"></div>
+              <div class="document-history-controls"><label><input type="checkbox" id="document-save-history">在本浏览器保留检测记录</label><p>仅保留文件名、时间和结果摘要，不保存原文。最多 20 条；报告约 30 分钟后失效。</p></div>
+              <div class="document-history-heading"><h3>最近检测</h3><button type="button" class="document-link-button" id="document-clear-history">清空记录</button></div><div id="document-history" class="document-history"><p class="muted">尚无本地记录。</p></div>
+            </div>
+            <div class="result-panel document-result-panel" id="document-result" aria-live="polite"><div class="empty-result"><i data-lucide="file-search"></i><strong>等待文档</strong><p>结果将保留提取后的原文，并为高风险段落添加下划线。</p></div></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-edit" aria-labelledby="edit-heading">
+          <div class="section-intro"><div><h2 id="edit-heading">可信编辑</h2><p>聚焦重复、空泛和结构问题，修改建议由作者逐项确认。</p></div><span class="dataset-chip">保留原意</span></div>
+          <div class="workspace-grid">
+            <div class="work-panel"><label class="field-label" for="edit-input">原文</label><textarea id="edit-input" spellcheck="true" placeholder="粘贴你有权编辑的英文文本…"></textarea><div class="field-footer"><span>数字、姓名与引用请人工核对</span><span id="edit-count">0 字符</span></div><button class="primary-button" id="run-edit" type="button" disabled><i data-lucide="wand-sparkles"></i><span>生成编辑建议</span></button><button class="secondary-button llm-preview-button" id="run-llm-edit" type="button" disabled><i data-lucide="sparkles"></i><span>大模型改写预览</span></button><p class="input-note"><i data-lucide="notebook-pen"></i>大模型仅提供实验性建议；未通过检查的内容不会作为可用改写展示。</p></div>
+            <div class="result-panel" id="edit-result" aria-live="polite"><div class="empty-result"><i data-lucide="text-cursor-input"></i><strong>等待原文</strong><p>建议及保留原意检查将显示在这里。</p></div></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-agent" aria-labelledby="agent-heading">
+          <div class="section-intro"><div><h2 id="agent-heading">Agent 工具工作流</h2><p>上传图片并输入文本，分别查看模型候选分数、图像敏感度区域、疑似文本段落与调用记录。</p></div><span class="dataset-chip">图文分别评估</span></div>
+          <div class="agent-layout"><div class="chat-panel"><div class="chat-messages" id="chat-messages" aria-live="polite"><div class="chat-intro"><i data-lucide="workflow"></i><strong>提交待审内容</strong><p>可以只提交图片、只提交文本，或同时提交两者。</p></div></div><div class="quick-prompts"><label class="agent-checkbox"><input id="agent-use-image" type="checkbox" disabled>附上图像页已选图片</label><label class="agent-checkbox"><input id="agent-use-edit" type="checkbox">运行可信编辑检查</label><label class="agent-checkbox"><input id="agent-use-llm" type="checkbox">调用大模型编辑预览</label></div><div class="agent-attachments"><label class="agent-attach-button" for="agent-image-input" title="上传待检测图片"><i data-lucide="image-plus"></i><span>图片</span></label><input id="agent-image-input" type="file" accept="image/jpeg,image/png" hidden><label class="agent-attach-button" for="agent-text-file" title="导入 UTF-8 文本文件"><i data-lucide="file-up"></i><span>文本文件</span></label><input id="agent-text-file" type="file" accept=".txt,.md,text/plain,text/markdown" hidden><label class="agent-attach-button" for="agent-document-input" title="上传 Word、PDF 或文本长文"><i data-lucide="files"></i><span>文档</span></label><input id="agent-document-input" type="file" accept=".docx,.pdf,.txt,.md" hidden><span id="agent-document-name" class="agent-attachment-name" hidden></span><button id="agent-clear-document" class="icon-button small" type="button" title="移除 Agent 文档" aria-label="移除 Agent 文档" hidden><i data-lucide="x"></i></button><span id="agent-image-name" class="agent-attachment-name" hidden></span><button id="agent-clear-image" class="icon-button small" type="button" title="移除 Agent 图片" aria-label="移除 Agent 图片" hidden><i data-lucide="x"></i></button></div><form id="agent-form"><div class="agent-input-wrap"><label class="sr-only" for="agent-input">待分析文本</label><textarea id="agent-input" rows="4" placeholder="粘贴中文或英文文本，保留段落换行…"></textarea><span id="agent-text-count" class="agent-text-count">0 / 10,000 字符</span></div><button class="primary-button send-button" type="submit" title="运行工作流" aria-label="运行工作流" disabled><i data-lucide="arrow-up"></i></button></form></div><aside class="trace-panel"><h3>最近一次工具调用</h3><div id="tool-trace"><p class="muted">调用后显示工具、状态与耗时。</p></div></aside></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="model-dialog"><div class="dialog-header"><div><span class="eyebrow">MODEL CARD</span><h2>模型与适用范围</h2></div><button class="icon-button" id="close-dialog" type="button" title="关闭" aria-label="关闭"><i data-lucide="x"></i></button></div><div id="model-details"><p class="muted">正在读取模型信息…</p></div><div class="dialog-footer"><button class="secondary-button" id="dialog-done" type="button">关闭</button></div></dialog>
+</body>
+</html>

@@ -1,0 +1,30 @@
+# Recreate the project environment locally.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.idea/
+.vscode/
+
+# Credentials and editor temporary files.
+.env
+.env.*
+!.env.example
+~$*
+*.tmp
+
+# Machine-specific running-process records and server output.
+logs/server-*.json
+logs/server-*.log
+
+# Repeated report rendering outputs; source figures and QA records are retained.
+reports/**/work/render-*/
+reports/**/work/template-page-*.png
+
+Thumbs.db
+Desktop.ini
+.DS_Store

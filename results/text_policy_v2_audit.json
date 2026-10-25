@@ -1,0 +1,65 @@
+{
+  "scope": "Retrospective checks on previously reserved corpus test records; policy and model were already developed with access to these sources.",
+  "policy": "A segment is highlighted only when it is scored and risk_score >= 0.99. Explicit prompts, Markdown quotes and fenced code are unscored. A document score is withheld for conflicting segments or <80% scored non-whitespace characters.",
+  "english_external_labels": {
+    "ai_labeled_total": 1045,
+    "known_writing_prompts_mislabeled_ai": 961,
+    "known_prompts_abstained": 961,
+    "human_labeled_abstained_as_instruction": 0,
+    "accuracy_status": "invalid benchmark for generated prose detection; do not report detection accuracy"
+  },
+  "chinese_audit": {
+    "overall": {
+      "human": 1000,
+      "ai": 1000,
+      "human_any_highlight": 1,
+      "ai_any_highlight": 883,
+      "document_abstentions": 26,
+      "segments": 2794,
+      "unscored_segments": 17,
+      "human_highlight_rate": 0.001,
+      "human_highlight_rate_wilson_95": [
+        0.00018,
+        0.00564
+      ],
+      "ai_highlight_rate": 0.883
+    },
+    "AnxForever-chinese-ai-detection-dataset": {
+      "human": 500,
+      "ai": 500,
+      "human_any_highlight": 0,
+      "ai_any_highlight": 471,
+      "document_abstentions": 25,
+      "segments": 1791,
+      "unscored_segments": 16,
+      "human_highlight_rate": 0.0,
+      "human_highlight_rate_wilson_95": [
+        0,
+        0.00762
+      ],
+      "ai_highlight_rate": 0.942
+    },
+    "HC3-Chinese": {
+      "human": 500,
+      "ai": 500,
+      "human_any_highlight": 1,
+      "ai_any_highlight": 412,
+      "document_abstentions": 1,
+      "segments": 1003,
+      "unscored_segments": 1,
+      "human_highlight_rate": 0.002,
+      "human_highlight_rate_wilson_95": [
+        0.00035,
+        0.01124
+      ],
+      "ai_highlight_rate": 0.824
+    }
+  },
+  "limitations": [
+    "Same public sources were already used for model and threshold design, so this is not independent confirmation.",
+    "Human and AI source/genre are confounded, especially THUCNews versus generated long-form in AnxForever.",
+    "Whole-record labels cannot validate paragraph-level highlighting, and mixed-authorship ground truth is absent.",
+    "No blind, consented target-platform data are available; platform false-positive and false-negative rates remain unknown.",
+    "Highlit character coverage is not a proportion of text written by AI."
+  ]
+}

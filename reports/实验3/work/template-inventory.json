@@ -1,0 +1,97 @@
+[
+  {
+    "path": "[Content_Types].xml",
+    "bytes": 2094,
+    "sha256": "3f6b3ec6f5cc276824abfa990acf4474bb4e7675df97fb9a77a568f9125ae966"
+  },
+  {
+    "path": "_rels/.rels",
+    "bytes": 737,
+    "sha256": "c30fe099dbcfed4ecc4ae544ccf82f432c8d3bb665e2a301df283738b196d803"
+  },
+  {
+    "path": "word/document.xml",
+    "bytes": 37193,
+    "sha256": "6012c017f3f2ff891a63651ae6a7e59e7d819e6e9cfd2cc004f5f59b96d8fabf"
+  },
+  {
+    "path": "word/_rels/document.xml.rels",
+    "bytes": 1485,
+    "sha256": "de5dac19444f491d0ece5899a9ea7dcfd2de0c4e685f4f76b9c18ff3721a26d7"
+  },
+  {
+    "path": "word/footnotes.xml",
+    "bytes": 2783,
+    "sha256": "cdc25973c0918555399eb9a32b9c55c730e9f363df3833fcd19088d2c7fd3cbf"
+  },
+  {
+    "path": "word/endnotes.xml",
+    "bytes": 2777,
+    "sha256": "7ded2a25ff9b83188bd7a8aaeaffa28ffffb393222d757371126244ba8b4ac92"
+  },
+  {
+    "path": "word/header1.xml",
+    "bytes": 2604,
+    "sha256": "4738e3f1d8caa27f1edf8f3fedfba6844929767e39b8c9c5c4fe729d7d604698"
+  },
+  {
+    "path": "word/theme/theme1.xml",
+    "bytes": 8398,
+    "sha256": "7017cbe8b7512b56e04e6b3e3579aa862a35b6f9f31e0bf48328f6e5c074ebbd"
+  },
+  {
+    "path": "word/settings.xml",
+    "bytes": 6342,
+    "sha256": "def6a358efe8a8ee2752c77021b4c5064e64b665ced3805ae02b3934e7ba9308"
+  },
+  {
+    "path": "customXml/item1.xml",
+    "bytes": 289,
+    "sha256": "b30b8fd758aa47aada70ee7d8d8287349d6a21eb03c79bcb2e8930a1789022cc"
+  },
+  {
+    "path": "customXml/itemProps1.xml",
+    "bytes": 341,
+    "sha256": "64e2e2deaae8748c1a8b0d2b0f3de6cdbdfc6d32aa978e0314210e73c5cadc87"
+  },
+  {
+    "path": "word/numbering.xml",
+    "bytes": 14335,
+    "sha256": "8df7a0b9258b0be822d51eae346da26a45dde980c174c7c4fc49dfe70e3ea331"
+  },
+  {
+    "path": "word/styles.xml",
+    "bytes": 26403,
+    "sha256": "65f6a6c9c99e5422bd8c1ff89b636a4cfbe43de6bf53d71da11d2f97ffa56672"
+  },
+  {
+    "path": "word/webSettings.xml",
+    "bytes": 2564,
+    "sha256": "4631cb08dfd7240dca0ff5f0c473910d6e16cb8eab47109d1357d87691ed6ebb"
+  },
+  {
+    "path": "word/fontTable.xml",
+    "bytes": 3068,
+    "sha256": "770bbc1a7c07068f02231c3a9ab291170baf4219c249ac2c52ce47fc4bc1d30b"
+  },
+  {
+    "path": "docProps/core.xml",
+    "bytes": 731,
+    "sha256": "c45593e30d0d550ad8d9e21a493df96552b13feeea30989942ff0be52ebdfcd7"
+  },
+  {
+    "path": "docProps/app.xml",
+    "bytes": 851,
+    "sha256": "8c22e525d404656b44ce6f07e5e0349117bc3c284382629830012fa83722cbf0"
+  },
+  {
+    "path": "docProps/custom.xml",
+    "bytes": 382,
+    "sha256": "43cb865d423161909399efd658f6562b9cd221750aedda4008a789d0bd50480e"
+  },
+  {
+    "path": "customXml/_rels/item1.xml.rels",
+    "bytes": 296,
+    "sha256": "80482f86e196171d66001e0e74d1900408a3aaf2463e54005d251b5f2db9a0b0"
+  }
+]

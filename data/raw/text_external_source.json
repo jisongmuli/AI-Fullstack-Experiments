@@ -1,0 +1,18 @@
+{
+  "name": "text_external",
+  "reference": "navjotkaushal/human-vs-ai-generated-essays",
+  "dataset_page": "https://www.kaggle.com/datasets/navjotkaushal/human-vs-ai-generated-essays",
+  "metadata_url": "https://www.kaggle.com/api/v1/datasets/view/navjotkaushal/human-vs-ai-generated-essays",
+  "download_url": "https://www.kaggle.com/api/v1/datasets/download/navjotkaushal/human-vs-ai-generated-essays",
+  "retrieved_at_utc": "2026-09-27T08:30:44.192470+00:00",
+  "license_field": "CC0: Public Domain",
+  "description": "This dataset contains essays authored by both humans and AI text generation models, labeled for binary classification.\nIt is intended for Natural Language Processing (NLP) tasks such as:\n\nAI-generated text detection\n\nAuthorship verification\n\nWriting style analysis\n\nResearch on AI vs human linguistic patterns\n\nThe dataset is suitable for building and evaluating machine learning models that distinguish between AI-written and human-written text.\n\n\nData Sources\n\nHuman essays: Sourced from publicly available essay repositories, academic writings, and manually written samples.\n\nAI essays: Generated using advanced AI text generation tools, including large language models (e.g., GPT-based systems), with prompts similar to those given to humans.\n\n\nDataset Structure\n\nFile format: CSV\nColumns:\n\n1. essay_id — Unique ID for each essay\n2. text    —  Essay text content\n3. label  —  Binary classification target\n                    0 → Human-written essay\n                    1 → AI-generated essay\n\n\nDataset Size:\n\nTotal essays: N (balanced between human and AI samples)\nAverage essay length: 300–800 words\n\n\nPotential Use Cases:\n-  AI content detection tools\n- Research on differences in writing style and word usage\n- Educational integrity & plagiarism prevention\n- Building explainable AI models for authorship analysis",
+  "archive_name": "text_external.zip",
+  "archive_bytes": 1467491,
+  "archive_sha256": "8bc149ad135bfbb08b1efb16e86741e6d5630d824370c4f1f5bd8f2ec6159802",
+  "zip_member_count": 1,
+  "zip_members_first_20": [
+    "balanced_ai_human_prompts.csv"
+  ],
+  "download_requires_credentials": false
+}

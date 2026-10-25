@@ -1,0 +1,52 @@
+{
+  "policy": "A document is flagged for review if any evaluated segment has a model score >= 0.99.",
+  "input": "Previously reserved Chinese test samples, reused only for retrospective audit; no retraining or claimed independent confirmation after policy selection.",
+  "english_benchmark_status": "invalid_for_AI_output_detection",
+  "english_invalid_label_evidence": {
+    "ai_labeled_total": 1045,
+    "ai_labeled_instruction_starts": 961,
+    "scoring_status": "excluded_from_accuracy_reporting",
+    "example": "Draft a technical report analyzing internet of things in the context of technological advancement.",
+    "reason": "Most AI-labeled records are writing prompts, not generated essays. Human-labeled records are often isolated essay fragments. English diagnostic rates must not be reported as detector accuracy."
+  },
+  "limitations": "English benchmark labels are invalid for this task. Chinese examples have whole-sample labels only and sources are confounded. Mixed-authorship segment labels and real platform traffic are unavailable. This audit cannot estimate real platform error rates or the proportion written by AI.",
+  "sample_seed": 42,
+  "audits": {
+    "chinese_test_sample": {
+      "human": 1000,
+      "ai": 1000,
+      "false_positive": 1,
+      "true_positive": 883,
+      "scored": 1998,
+      "segments": 2795,
+      "highlighted_segments": 1320,
+      "false_positive_rate": 0.001,
+      "true_positive_rate": 0.883,
+      "sample_scored_rate": 0.999
+    },
+    "chinese_AnxForever-chinese-ai-detection-dataset": {
+      "human": 500,
+      "ai": 500,
+      "false_positive": 0,
+      "true_positive": 471,
+      "scored": 999,
+      "segments": 1792,
+      "highlighted_segments": 907,
+      "false_positive_rate": 0.0,
+      "true_positive_rate": 0.942,
+      "sample_scored_rate": 0.999
+    },
+    "chinese_HC3-Chinese": {
+      "human": 500,
+      "ai": 500,
+      "false_positive": 1,
+      "true_positive": 412,
+      "scored": 999,
+      "segments": 1003,
+      "highlighted_segments": 413,
+      "false_positive_rate": 0.002,
+      "true_positive_rate": 0.824,
+      "sample_scored_rate": 0.999
+    }
+  }
+}

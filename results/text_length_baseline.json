@@ -1,0 +1,102 @@
+{
+  "purpose": "single-feature length shortcut diagnostic; not a deployable detector",
+  "feature": "log1p(character count)",
+  "seed": 42,
+  "same_primary_sample_ids_and_splits_before_after": true,
+  "results": {
+    "source": {
+      "validation": {
+        "n": 607,
+        "accuracy": 0.9917627677100495,
+        "macro_f1": 0.991759547114484,
+        "confusion_matrix_rows_human_ai": [
+          [
+            295,
+            5
+          ],
+          [
+            0,
+            307
+          ]
+        ]
+      },
+      "test": {
+        "n": 607,
+        "accuracy": 0.9983525535420099,
+        "macro_f1": 0.9983522673290173,
+        "confusion_matrix_rows_human_ai": [
+          [
+            299,
+            1
+          ],
+          [
+            0,
+            307
+          ]
+        ]
+      },
+      "external_test": {
+        "n": 2420,
+        "accuracy": 0.9735537190082645,
+        "macro_f1": 0.9728336178366382,
+        "confusion_matrix_rows_human_ai": [
+          [
+            1375,
+            0
+          ],
+          [
+            64,
+            981
+          ]
+        ]
+      }
+    },
+    "length_matched": {
+      "validation": {
+        "n": 607,
+        "accuracy": 0.5255354200988468,
+        "macro_f1": 0.46578657865786577,
+        "confusion_matrix_rows_human_ai": [
+          [
+            58,
+            242
+          ],
+          [
+            46,
+            261
+          ]
+        ]
+      },
+      "test": {
+        "n": 607,
+        "accuracy": 0.5074135090609555,
+        "macro_f1": 0.450076204500762,
+        "confusion_matrix_rows_human_ai": [
+          [
+            56,
+            244
+          ],
+          [
+            55,
+            252
+          ]
+        ]
+      },
+      "external_test": {
+        "n": 2420,
+        "accuracy": 0.5669421487603306,
+        "macro_f1": 0.42448733588939236,
+        "confusion_matrix_rows_human_ai": [
+          [
+            1288,
+            87
+          ],
+          [
+            961,
+            84
+          ]
+        ]
+      }
+    }
+  }
+}

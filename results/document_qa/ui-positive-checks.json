@@ -1,0 +1,27 @@
+{
+  "realModelWorkflow": true,
+  "accuracyEvaluation": false,
+  "checks": [
+    {
+      "format": "docx",
+      "underlinedSegments": 1,
+      "textPreserved": true,
+      "sourceScriptExecuted": false,
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      }
+    },
+    {
+      "format": "pdf",
+      "underlinedSegments": 1,
+      "textPreserved": true,
+      "sourceScriptExecuted": false,
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390
+      }
+    }
+  ],
+  "errors": []
+}

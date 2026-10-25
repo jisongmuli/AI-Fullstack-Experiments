@@ -1,0 +1,20 @@
+{
+  "model_version": "zh-char-tfidf-lr-v1",
+  "language": "Simplified Chinese",
+  "scikit_learn_version": "1.9.0",
+  "training_corpora": [
+    "HC3-Chinese",
+    "AnxForever non-HC3 pure text"
+  ],
+  "character_range_evaluated": [
+    80,
+    4000
+  ],
+  "abstain_probability": 0.8,
+  "calibration": {
+    "coefficient": 2.921226706113992,
+    "intercept": 0.1846324919320777,
+    "method": "Platt sigmoid fit on validation only"
+  },
+  "limitations": "QA and news/generated longform only. Human fiction, newer generators, paraphrases and platform traffic lack independent blind evaluation. Score is not an authorship determination."
+}

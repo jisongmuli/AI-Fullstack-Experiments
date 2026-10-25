@@ -1,0 +1,82 @@
+{
+  "source_rows": 6069,
+  "actual_source_columns": [
+    "Unnamed: 0",
+    "Text",
+    "Author"
+  ],
+  "source_description_claimed_columns": [
+    "text",
+    "label",
+    "source"
+  ],
+  "per_record_source_available": false,
+  "source_class_counts": {
+    "AI": 3069,
+    "Human": 3000
+  },
+  "blank_text_before": 0,
+  "invalid_label_before": 0,
+  "exact_duplicate_text_before": 0,
+  "under_40_characters_before": 0,
+  "clean_rows": 6069,
+  "prepared_rows": 6069,
+  "prepared_duplicate_text_removed": 0,
+  "split_counts": {
+    "train": {
+      "rows": 4855,
+      "human": 2400,
+      "ai": 2455
+    },
+    "validation": {
+      "rows": 607,
+      "human": 300,
+      "ai": 307
+    },
+    "test": {
+      "rows": 607,
+      "human": 300,
+      "ai": 307
+    }
+  },
+  "source_median_length_chars_by_label": {
+    "0": 1871.0,
+    "1": 332.0
+  },
+  "prepared_median_length_chars_by_label": {
+    "0": 330.0,
+    "1": 332.0
+  },
+  "source_median_word_count_by_label": {
+    "0": 262.0,
+    "1": 47.0
+  },
+  "prepared_median_word_count_by_label": {
+    "0": 47.0,
+    "1": 47.0
+  },
+  "prepared_length_chars": {
+    "min": 23,
+    "median": 331.0,
+    "max": 587
+  },
+  "human_excerpts": 3000,
+  "external_source_rows": 2750,
+  "external_source_exact_duplicates": 330,
+  "external_source_median_length_chars_by_label": {
+    "0": 2983.0,
+    "1": 95.0
+  },
+  "external_prepared_median_length_chars_by_label": {
+    "0": 79.0,
+    "1": 95.0
+  },
+  "external_clean_rows": 2420,
+  "external_overlap_removed": 0,
+  "external_class_counts": {
+    "human": 1375,
+    "ai": 1045
+  },
+  "external_per_record_source_available": false,
+  "elapsed_seconds": 1.18
+}

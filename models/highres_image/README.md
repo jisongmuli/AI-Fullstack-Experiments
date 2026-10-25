@@ -1,0 +1,14 @@
+# Ateeqq 图像候选模型：本项目来源说明
+
+本文件由交接包整理者编写，**不是上游原始 README**。本机直接下载原卡遇到连接重置或 SSL EOF，没有伪造原始文件。
+
+- 上游：Ateeqq/ai-vs-human-image-detector。
+- 固定版本：60e82406916921b823616bee33397baab38af3f0。
+- [官方固定版本模型卡](https://huggingface.co/Ateeqq/ai-vs-human-image-detector/blob/60e82406916921b823616bee33397baab38af3f0/README.md)。
+- [原始 README 下载](https://huggingface.co/Ateeqq/ai-vs-human-image-detector/resolve/60e82406916921b823616bee33397baab38af3f0/README.md)。
+- 官方模型卡声明 Apache-2.0，随包标准全文见 [../../licenses/Apache-2.0.txt](../../licenses/Apache-2.0.txt)。这是依据模型卡声明提供的标准文本，不伪装成作者单独发布的许可证。
+
+
+来源核查方法及下载限制见 [../../MODEL_SOURCES.md](../../MODEL_SOURCES.md)，权重大小与 SHA-256 见 [../../RUNTIME_MODELS.json](../../RUNTIME_MODELS.json)。
+
+本系统的分类分数与编辑结果均不保证真实内容来源或事实正确性，上游自报指标不等于本系统实测准确率。

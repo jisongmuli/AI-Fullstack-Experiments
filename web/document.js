@@ -1,0 +1,541 @@
+/* Document analysis uses the server's existing paragraph detectors. No source
+ * text is persisted in localStorage. All ranges refer to Unicode codepoints. */
+(() => {
+  'use strict';
+
+  const MAX_BYTES = 20 * 1024 * 1024;
+  const MAX_CHARACTERS = 100000;
+  const HISTORY_KEY = 'aigc.document.history.v1';
+  const HISTORY_LIMIT = 20;
+  const acceptedExtensions = new Set(['docx', 'pdf', 'txt', 'md']);
+  const byId = (id) => document.getElementById(id);
+  const finite = (value) => typeof value === 'number' && Number.isFinite(value);
+  const boundedPercent = (value) => finite(value) ? Math.max(0, Math.min(100, value)) : null;
+  const percentText = (value) => boundedPercent(value) === null ? '—' : `${boundedPercent(value).toFixed(1)}%`;
+  const icons = () => { if (window.lucide && typeof window.lucide.createIcons === 'function') window.lucide.createIcons(); };
+  const make = (tag, className, text) => {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = String(text);
+    return element;
+  };
+  const codepointCount = (text) => Array.from(text).length;
+  const dateText = (value) => {
+    const date = new Date(value);
+    return Number.isFinite(date.getTime()) ? date.toLocaleString('zh-CN', {hour12: false}) : '时间未提供';
+  };
+  const evidenceText = (value) => {
+    if (typeof value === 'string') return value;
+    if (value && typeof value === 'object' && typeof value.message === 'string') return value.message;
+    return '';
+  };
+
+  // Shared with the existing text and Agent pages. Return DOM rather than an
+  // interpolated HTML string so document text can never become executable markup.
+  function renderInline(text, suppliedSegments, options = {}) {
+    const original = typeof text === 'string' ? text : '';
+    const points = Array.from(original);
+    const wrapper = make('div', 'document-inline-preview');
+    const heading = make('div', 'document-inline-heading', '原文下划线标注');
+    const reader = make('div', `document-reader${options.showUnscored ? ' show-unscored' : ''}`);
+    reader.setAttribute('aria-label', '原文与疑似 AI 特征段落下划线');
+    const segments = (Array.isArray(suppliedSegments) ? suppliedSegments : [])
+      .filter((item) => item && Number.isInteger(item.start) && Number.isInteger(item.end) && item.start >= 0 && item.end > item.start && item.end <= points.length)
+      .sort((a, b) => a.start - b.start);
+    let cursor = 0;
+    segments.forEach((segment) => {
+      if (segment.start < cursor) return;
+      if (segment.start > cursor) reader.append(document.createTextNode(points.slice(cursor, segment.start).join('')));
+      const span = make('span', `document-span${segment.highlighted === true ? ' document-risk-span' : ''}${!finite(segment.risk_score) ? ' document-unscored-span' : ''}`, points.slice(segment.start, segment.end).join(''));
+      const evidence = Array.isArray(segment.evidence) ? segment.evidence.map(evidenceText).filter(Boolean).slice(0, 4) : [];
+      const label = finite(segment.risk_score) ? `模型分数 ${percentText(segment.risk_score * 100)}${segment.highlighted === true ? '；高风险段落' : '；未达到高风险阈值'}` : '未评分段落';
+      span.title = `${label}${evidence.length ? `\n${evidence.join('\n')}` : ''}`;
+      span.setAttribute('aria-label', label);
+      if (segment.highlighted === true || !finite(segment.risk_score)) span.tabIndex = 0;
+      reader.append(span); cursor = segment.end;
+    });
+    if (cursor < points.length) reader.append(document.createTextNode(points.slice(cursor).join('')));
+    wrapper.append(heading, reader, make('p', 'document-metric-note', '下划线表示整个段落的模型信号，不能确认每个词的真实来源。'));
+    return wrapper;
+  }
+  window.AIGCDocument = Object.freeze({renderInline});
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!byId('view-document')) return;
+    const ui = {
+      modeFile: byId('document-mode-file'), modeText: byId('document-mode-text'),
+      filePane: byId('document-file-pane'), textPane: byId('document-text-pane'),
+      file: byId('document-file'), dropzone: byId('document-dropzone'), fileMeta: byId('document-file-meta'),
+      name: byId('document-file-name'), size: byId('document-file-size'), clearFile: byId('document-clear-file'),
+      text: byId('document-text'), count: byId('document-character-count'),
+      detect: byId('document-detect'), cancel: byId('document-cancel'), status: byId('document-status'),
+      result: byId('document-result'), saveHistory: byId('document-save-history'),
+      history: byId('document-history'), clearHistory: byId('document-clear-history')
+    };
+    let mode = 'file';
+    let selectedFile = null;
+    let busy = false;
+    let currentReport = null;
+    let controller = null;
+    let requestVersion = 0;
+    let history = readHistory();
+
+    function status(message = '', isError = false) {
+      ui.status.classList.toggle('error', isError);
+      ui.status.textContent = message;
+    }
+
+    function readHistory() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+        if (!Array.isArray(parsed)) return [];
+        return parsed.filter((item) => item && typeof item.report_id === 'string' && item.report_id.length < 160 &&
+          typeof item.filename === 'string' && item.filename.length < 1024 && typeof item.created_at === 'string')
+          .slice(0, HISTORY_LIMIT).map((item) => ({
+            report_id: item.report_id, filename: item.filename, created_at: item.created_at,
+            format: typeof item.format === 'string' ? item.format.slice(0, 20) : '',
+            highlighted_total_percent: boundedPercent(item.highlighted_total_percent),
+            expires_at: typeof item.expires_at === 'string' ? item.expires_at : ''
+          }));
+      } catch (_) { return []; }
+    }
+
+    function saveHistory(report) {
+      if (!ui.saveHistory.checked) return;
+      const item = {
+        report_id: report.report_id,
+        filename: report.filename || '粘贴的长文',
+        format: report.format || 'text',
+        created_at: report.created_at || new Date().toISOString(),
+        highlighted_total_percent: boundedPercent(report.document_summary?.highlighted_total_percent),
+        expires_at: typeof report.expires_at === 'string' ? report.expires_at : ''
+      };
+      const next = [item, ...history.filter((entry) => entry.report_id !== item.report_id)].slice(0, HISTORY_LIMIT);
+      try {
+        localStorage.setItem(HISTORY_KEY, JSON.stringify(next));
+        history = next;
+        renderHistory();
+      } catch (_) {
+        ui.saveHistory.checked = false;
+        status('浏览器未允许保存记录，本次结果仍可查看和下载。', true);
+      }
+    }
+
+    function renderHistory() {
+      ui.history.replaceChildren();
+      if (!history.length) {
+        ui.history.append(make('p', 'muted', '尚无本地记录。勾选后才会保存结果摘要。'));
+      }
+      history.forEach((entry) => {
+        const expired = entry.expires_at && new Date(entry.expires_at).getTime() <= Date.now();
+        const button = make('button', `document-history-item${expired ? ' expired' : ''}`);
+        button.type = 'button';
+        button.append(make('strong', '', entry.filename));
+        button.append(make('span', '', `${dateText(entry.created_at)} · 特征覆盖率 ${percentText(entry.highlighted_total_percent)}${expired ? ' · 报告已过期' : ''}`));
+        button.title = expired ? '原文未在本浏览器保存，请重新上传文档' : '读取仍在有效期内的报告';
+        button.addEventListener('click', () => {
+          if (expired) { status('此报告已过期，浏览器只保留摘要。请重新上传原文。', true); return; }
+          restoreReport(entry.report_id);
+        });
+        ui.history.append(button);
+      });
+      ui.clearHistory.disabled = history.length === 0;
+    }
+
+    function updateControls() {
+      const characters = codepointCount(ui.text.value);
+      ui.count.textContent = `${characters.toLocaleString('zh-CN')} / 100,000 字符`;
+      ui.count.style.color = characters > MAX_CHARACTERS ? '#a64c40' : '';
+      const usable = mode === 'file' ? selectedFile !== null : ui.text.value.trim().length > 0 && characters <= MAX_CHARACTERS;
+      ui.detect.disabled = busy || !usable;
+      ui.modeFile.disabled = busy;
+      ui.modeText.disabled = busy;
+      ui.file.disabled = busy;
+      ui.text.disabled = busy;
+      ui.clearFile.disabled = busy;
+      ui.cancel.hidden = !busy;
+      ui.dropzone.classList.toggle('busy', busy);
+      ui.detect.querySelector('span').textContent = busy ? '正在提取和分段分析…' : '检测文档并标注';
+      ui.history.querySelectorAll('button').forEach((button) => { button.disabled = busy; });
+    }
+
+    function chooseMode(next) {
+      if (busy) return;
+      mode = next;
+      ui.modeFile.classList.toggle('selected', next === 'file');
+      ui.modeText.classList.toggle('selected', next === 'text');
+      ui.modeFile.setAttribute('aria-pressed', String(next === 'file'));
+      ui.modeText.setAttribute('aria-pressed', String(next === 'text'));
+      ui.filePane.hidden = next !== 'file';
+      ui.textPane.hidden = next !== 'text';
+      status();
+      updateControls();
+    }
+
+    function chooseFile(file) {
+      if (busy || !file) return;
+      const extension = file.name.split('.').pop().toLowerCase();
+      const rejectFile = (message) => {
+        selectedFile = null;
+        ui.file.value = '';
+        ui.fileMeta.hidden = true;
+        ui.name.textContent = '';
+        ui.size.textContent = '';
+        status(message, true);
+        updateControls();
+      };
+      if (!acceptedExtensions.has(extension)) {
+        rejectFile(extension === 'doc' ? '旧版 .doc 暂不支持，请在 Word 中另存为 .docx 后上传。' : '请上传 DOCX、PDF、TXT 或 MD 文件。');
+        return;
+      }
+      if (file.size === 0 || file.size > MAX_BYTES) {
+        rejectFile(file.size === 0 ? '文件为空，请重新选择。' : '文件超过 20 MB，请减少文档内容或拆分后上传。');
+        return;
+      }
+      selectedFile = file;
+      ui.fileMeta.hidden = false;
+      ui.name.textContent = file.name;
+      ui.size.textContent = file.size < 1024 * 1024 ? `${(file.size / 1024).toFixed(1)} KB` : `${(file.size / (1024 * 1024)).toFixed(1)} MB`;
+      chooseMode('file');
+      status();
+      updateControls();
+    }
+
+    async function responseJson(response) {
+      let body;
+      try { body = await response.json(); }
+      catch (_) { throw new Error(response.ok ? '服务器未返回可读取的检测结果。' : `请求失败（${response.status}），请稍后重试。`); }
+      if (!response.ok) {
+        const detail = body.detail;
+        const message = typeof detail === 'string' ? detail : typeof body.error === 'string' ? body.error : `请求失败（${response.status}）。`;
+        throw new Error(message);
+      }
+      if (!body || typeof body.extracted_text !== 'string' || typeof body.report_id !== 'string') throw new Error('检测结果缺少原文或报告编号，请重新检测。');
+      return body;
+    }
+
+    function loadingResult() {
+      const box = make('div', 'empty-result');
+      const progress = make('div', 'busy-state');
+      progress.append(make('span', 'spinner'), make('span', '', '正在提取文字并逐段分析'));
+      box.append(progress, make('p', '', '文档越长，所需时间越多。结果不会默默截断原文。'));
+      ui.result.replaceChildren(box);
+      ui.result.setAttribute('aria-busy', 'true');
+    }
+
+    async function detectDocument() {
+      if (busy) return;
+      const characters = codepointCount(ui.text.value);
+      if ((mode === 'file' && !selectedFile) || (mode === 'text' && !ui.text.value.trim())) return;
+      if (mode === 'text' && characters > MAX_CHARACTERS) { status('原文超过 100,000 字符，请按章节拆分后检测。', true); return; }
+      const version = ++requestVersion;
+      controller = new AbortController();
+      busy = true;
+      status('正在自动分析。段落结果会保留原文位置。');
+      loadingResult();
+      updateControls();
+      // Browsers normalize string fields in multipart bodies to CRLF. Encode
+      // pasted text as a form URL body so displayed character offsets and the
+      // 100,000-codepoint input boundary retain the user's LF line endings.
+      const form = mode === 'file' ? new FormData() : new URLSearchParams();
+      if (mode === 'file') form.append('file', selectedFile);
+      else form.append('text', ui.text.value);
+      try {
+        const response = await fetch('/api/document/detect', {method: 'POST', body: form, signal: controller.signal});
+        const report = await responseJson(response);
+        if (version !== requestVersion) return;
+        currentReport = report;
+        renderReport(report);
+        status('检测完成。可查看下划线段落并下载带标注的报告。');
+        saveHistory(report);
+      } catch (error) {
+        if (version !== requestVersion) return;
+        if (error.name === 'AbortError') status('已取消等待，可重新选择文档。');
+        else status(error instanceof TypeError ? '无法连接检测服务，请检查本地服务是否启动。' : error.message, true);
+        if (currentReport) renderReport(currentReport);
+        else {
+          const empty = make('div', 'empty-result');
+          empty.append(make('strong', '', '本次检测未完成'), make('p', '', '请根据左侧提示重新提交，失败请求不会产生检测百分比。'));
+          ui.result.replaceChildren(empty);
+        }
+      } finally {
+        if (version === requestVersion) {
+          busy = false;
+          controller = null;
+          ui.result.removeAttribute('aria-busy');
+          updateControls();
+        }
+      }
+    }
+
+    async function restoreReport(reportId) {
+      if (busy) return;
+      const version = ++requestVersion;
+      busy = true;
+      controller = new AbortController();
+      status('正在读取已有报告…');
+      updateControls();
+      try {
+        const response = await fetch(`/api/document/reports/${encodeURIComponent(reportId)}`, {signal: controller.signal});
+        if (response.status === 404 || response.status === 410) throw new Error('报告已过期或服务已重启。浏览器未保存原文，请重新上传文档。');
+        const report = await responseJson(response);
+        if (version !== requestVersion) return;
+        currentReport = report;
+        renderReport(report);
+        status('已恢复仍在有效期内的报告。');
+      } catch (error) {
+        if (version !== requestVersion) return;
+        status(error.name === 'AbortError' ? '已取消读取报告。' : error instanceof TypeError ? '无法连接检测服务，请启动本地服务后重试。' : error.message, error.name !== 'AbortError');
+      } finally {
+        if (version === requestVersion) { busy = false; controller = null; updateControls(); }
+      }
+    }
+
+    function metric(label, value, explanation) {
+      const card = make('div', 'document-metric');
+      card.append(make('strong', '', label), make('div', 'value', value), make('p', '', explanation));
+      return card;
+    }
+
+    function renderReport(report) {
+      const summary = report.document_summary || {};
+      const detection = report.detection || {};
+      const text = report.extracted_text;
+      const points = Array.from(text);
+      const normalizedSegments = (Array.isArray(detection.segments) ? detection.segments : [])
+        .filter((segment) => segment && Number.isInteger(segment.start) && Number.isInteger(segment.end) && segment.start >= 0 && segment.end > segment.start && segment.end <= points.length)
+        .sort((a, b) => a.start - b.start);
+      const segments = [];
+      let previousEnd = 0;
+      for (const segment of normalizedSegments) {
+        if (segment.start < previousEnd) continue;
+        segments.push(segment);
+        previousEnd = segment.end;
+      }
+      const flagged = segments.filter((segment) => segment.highlighted === true);
+      const scoredCount = segments.filter((segment) => finite(segment.risk_score)).length;
+      const fragment = document.createDocumentFragment();
+      const header = make('div', 'document-result-header');
+      const heading = make('div');
+      heading.append(make('small', '', '文档检测结果'), make('h3', '', report.filename || '粘贴的长文'));
+      header.append(heading, make('span', 'document-complete-label', '自动分析完成'));
+      fragment.append(header);
+      const metrics = make('div', 'document-metrics');
+      metrics.append(metric('AI 特征覆盖率', scoredCount > 0 ? percentText(summary.highlighted_total_percent) : '—', '高风险段字符 / 文档非空白字符'));
+      metrics.append(metric('可评分内容覆盖率', percentText(summary.scored_character_percent), '已评分非空白字符 / 全文'));
+      metrics.append(metric('可评分段落模型均分', finite(summary.mean_segment_score) ? percentText(summary.mean_segment_score * 100) : '—', '按字符加权；不是 AI 写作比例'));
+      fragment.append(metrics);
+      fragment.append(make('p', 'document-metric-note', 'AI 特征覆盖率只统计被模型标为高风险的段落，不等于真实的 AI 撰写比例。未评分内容不被视为人类创作。'));
+      if (summary.mixed_signals === true) fragment.append(make('div', 'document-warning', '不同段落的模型信号存在明显分歧。这里分别展示覆盖率与段落均分，不将均分解释为整篇文档的 AI 创作概率。'));
+      if (scoredCount === 0) fragment.append(make('div', 'document-warning', '未发现符合当前模型范围的可评分段落，因此不给出 AI 特征覆盖率。请查看原文中的未评分说明。'));
+      const warnings = Array.isArray(report.warnings) ? report.warnings.filter((item) => typeof item === 'string') : [];
+      if (warnings.length) {
+        const box = make('div', 'document-warning');
+        const list = make('ul');
+        warnings.forEach((message) => list.append(make('li', '', message)));
+        box.append(list); fragment.append(box);
+      }
+      const distribution = make('div', 'document-score-distribution');
+      distribution.append(make('h4', '', '段落分数分布'));
+      const bins = [
+        {label: '0–20%', test: (score) => score < .2, color: 'low'},
+        {label: '20–80%', test: (score) => score >= .2 && score < .8, color: 'middle'},
+        {label: '80–99%', test: (score) => score >= .8 && score < .99, color: 'upper'},
+        {label: '99–100%', test: (score) => score >= .99, color: 'high'}
+      ];
+      const binGrid = make('div', 'document-score-bin-grid');
+      bins.forEach((bin) => {
+        const count = segments.filter((segment) => finite(segment.risk_score) && bin.test(segment.risk_score)).length;
+        const box = make('div', `document-score-bin ${bin.color}`);
+        box.append(make('span', '', bin.label), make('strong', '', `${count} 段`));
+        const track = make('div', 'document-score-bin-track');
+        const fill = make('div', 'document-score-bin-fill');
+        fill.style.width = `${scoredCount ? count / scoredCount * 100 : 0}%`;
+        track.setAttribute('role', 'meter'); track.setAttribute('aria-label', `分数 ${bin.label} 的段落数量`);
+        track.setAttribute('aria-valuemin', '0'); track.setAttribute('aria-valuemax', String(Math.max(scoredCount, 1))); track.setAttribute('aria-valuenow', String(count));
+        track.append(fill); box.append(track); binGrid.append(box);
+      });
+      distribution.append(binGrid, make('p', '', '按已评分段落数量统计；区间与柱长是模型输出的分布，不是作者身份或 AI 写作比例。'));
+      fragment.append(distribution);
+      const exports = make('div', 'document-exports');
+      [['docx', '带下划线的 Word'], ['html', '标注 HTML / 打印 PDF'], ['json', '完整结果 JSON']].forEach(([format, label]) => {
+        const anchor = make('a', 'document-export-link', label);
+        anchor.href = `/api/document/reports/${encodeURIComponent(report.report_id)}/${format}`;
+        anchor.setAttribute('download', '');
+        exports.append(anchor);
+      });
+      const agentSummary = make('button', 'document-export-link', '交给 Agent 汇总');
+      agentSummary.type = 'button';
+      agentSummary.addEventListener('click', () => window.dispatchEvent(new CustomEvent('aigc:document-result', {detail: report})));
+      exports.append(agentSummary);
+      const deleteReport = make('button', 'document-export-link', '删除本次报告');
+      deleteReport.type = 'button';
+      deleteReport.title = '从本地服务删除本次报告和提取原文，并移除对应浏览器摘要记录';
+      deleteReport.addEventListener('click', async () => {
+        deleteReport.disabled = true;
+        try {
+          const response = await fetch(`/api/document/reports/${encodeURIComponent(report.report_id)}`, {method: 'DELETE'});
+          if (!response.ok && response.status !== 404 && response.status !== 410) throw new Error(`无法删除报告（${response.status}），请重试。`);
+          if (currentReport && currentReport.report_id === report.report_id) currentReport = null;
+          history = history.filter((entry) => entry.report_id !== report.report_id);
+          try { localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); } catch (_) { /* No source text is stored. */ }
+          renderHistory();
+          const empty = make('div', 'empty-result');
+          empty.append(make('strong', '', '本次报告已删除'), make('p', '', '可重新上传或检测新的文档。'));
+          ui.result.replaceChildren(empty);
+          status('已从本地服务删除本次报告和提取原文。');
+        } catch (error) {
+          status(error instanceof TypeError ? '无法连接检测服务，请启动服务后重试删除。' : error.message, true);
+          deleteReport.disabled = false;
+        }
+      });
+      exports.append(deleteReport);
+      fragment.append(exports, make('p', 'document-expiry', `报告${report.expires_at ? `有效至 ${dateText(report.expires_at)}` : '约 30 分钟内有效'}；服务重启后需重新检测。下载文件基于提取后的文字，不是对原文档排版的原样复制。`));
+
+      const readerHeading = make('div', 'document-reader-heading');
+      readerHeading.append(make('h4', '', '原文与段落标注'));
+      const copy = make('button', 'document-link-button', '复制提取原文');
+      copy.type = 'button';
+      copy.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(text); copy.textContent = '已复制'; setTimeout(() => { copy.textContent = '复制提取原文'; }, 2000); }
+        catch (_) { status('浏览器不允许直接复制，请在原文区域选择文字后复制。', true); }
+      });
+      readerHeading.append(copy); fragment.append(readerHeading);
+      const controls = make('div', 'document-reader-controls');
+      const annotationLabel = make('label');
+      const annotationToggle = make('input'); annotationToggle.type = 'checkbox'; annotationToggle.checked = true;
+      annotationLabel.append(annotationToggle, document.createTextNode('显示高风险下划线'));
+      const unscoredLabel = make('label'); const unscoredToggle = make('input'); unscoredToggle.type = 'checkbox';
+      unscoredLabel.append(unscoredToggle, document.createTextNode('显示未评分段落'));
+      controls.append(annotationLabel, unscoredLabel); fragment.append(controls);
+      const legend = make('div', 'document-reader-legend');
+      legend.append(make('span', 'risk-key', '实线：高风险段落'), make('span', 'unscored-key', '虚线：未评分（可选）'), make('span', '', '选中段落查看依据'));
+      fragment.append(legend);
+      const reader = make('div', 'document-reader'); reader.id = 'document-annotated-text';
+      reader.setAttribute('aria-label', '文档提取原文，高风险段落以实线下划线标记');
+      reader.setAttribute('tabindex', '0');
+      const detail = make('div', 'document-segment-detail', '点击或用键盘选中段落，可查看模型分数、来源位置与评分依据。');
+      detail.setAttribute('aria-live', 'polite');
+      const sectionLabel = (segment) => {
+        const sections = Array.isArray(report.sections) ? report.sections : [];
+        const section = sections.find((entry) => entry && Number.isInteger(entry.start) && Number.isInteger(entry.end) && entry.start <= segment.start && entry.end > segment.start);
+        return section && typeof section.label === 'string' ? section.label : section && finite(section.page) ? `第 ${section.page} 页` : '';
+      };
+      const describe = (segment, index) => {
+        const location = sectionLabel(segment);
+        const score = finite(segment.risk_score) ? `模型分数 ${percentText(segment.risk_score * 100)}` : '当前段落未评分';
+        const flag = segment.highlighted === true ? '高风险下划线段落' : finite(segment.risk_score) ? '未达到高风险标注阈值' : '不属于当前模型可评分范围';
+        return `第 ${index + 1} 段${location ? ` · ${location}` : ''} · ${score} · ${flag}`;
+      };
+      let focused = null;
+      function showSegment(segment, index, span) {
+        if (focused) focused.classList.remove('is-focused');
+        focused = span; span.classList.add('is-focused');
+        detail.replaceChildren(make('strong', '', describe(segment, index)));
+        const evidence = Array.isArray(segment.evidence) ? segment.evidence.map(evidenceText).filter(Boolean) : [];
+        if (evidence.length) {
+          const list = make('ul'); evidence.slice(0, 8).forEach((entry) => list.append(make('li', '', entry))); detail.append(list);
+        } else detail.append(make('span', '', '该分数来自段落分类模型；下划线覆盖整段，不代表逐词确认来源。'));
+      }
+      let cursor = 0;
+      const spanNodes = [];
+      segments.forEach((segment, index) => {
+        if (segment.start > cursor) reader.append(document.createTextNode(points.slice(cursor, segment.start).join('')));
+        const span = make('span', `document-span${segment.highlighted === true ? ' document-risk-span' : ''}${!finite(segment.risk_score) ? ' document-unscored-span' : ''}`, points.slice(segment.start, segment.end).join(''));
+        span.id = `document-segment-${index}`;
+        span.tabIndex = 0;
+        span.title = describe(segment, index);
+        span.setAttribute('aria-label', describe(segment, index));
+        span.addEventListener('click', () => showSegment(segment, index, span));
+        span.addEventListener('focus', () => showSegment(segment, index, span));
+        span.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); showSegment(segment, index, span); }
+        });
+        reader.append(span); spanNodes.push(span); cursor = segment.end;
+      });
+      if (cursor < points.length) reader.append(document.createTextNode(points.slice(cursor).join('')));
+      annotationToggle.addEventListener('change', () => reader.classList.toggle('hide-annotations', !annotationToggle.checked));
+      unscoredToggle.addEventListener('change', () => reader.classList.toggle('show-unscored', unscoredToggle.checked));
+      fragment.append(reader, detail);
+      const listHeading = make('div', 'document-segment-list-header');
+      listHeading.append(make('h4', '', `高风险段落 ${flagged.length} 个`));
+      const navigation = make('div', 'document-navigation');
+      const previous = make('button', '', '上一段'); const next = make('button', '', '下一段');
+      previous.type = 'button'; next.type = 'button'; previous.disabled = !flagged.length; next.disabled = !flagged.length;
+      navigation.append(previous, next); listHeading.append(navigation); fragment.append(listHeading);
+      const list = make('div', 'document-segment-list');
+      let flaggedPosition = -1;
+      const flaggedIndexes = segments.map((segment, index) => segment.highlighted === true ? index : -1).filter((index) => index >= 0);
+      function focusFlag(position) {
+        if (!flaggedIndexes.length) return;
+        flaggedPosition = (position + flaggedIndexes.length) % flaggedIndexes.length;
+        const index = flaggedIndexes[flaggedPosition]; const span = spanNodes[index];
+        span.scrollIntoView({block: 'nearest', inline: 'nearest', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+        span.focus({preventScroll: true}); showSegment(segments[index], index, span);
+      }
+      previous.addEventListener('click', () => focusFlag(flaggedPosition <= 0 ? flaggedIndexes.length - 1 : flaggedPosition - 1));
+      next.addEventListener('click', () => focusFlag(flaggedPosition + 1));
+      if (!flagged.length) list.append(make('p', 'muted', scoredCount ? '没有段落达到高风险标注阈值；这不证明全文由人类创作。' : '当前文档没有可评分段落，无法定位疑似 AI 特征。'));
+      flaggedIndexes.forEach((index, position) => {
+        const segment = segments[index]; const button = make('button', 'document-segment-jump'); button.type = 'button';
+        const excerpt = points.slice(segment.start, Math.min(segment.end, segment.start + 70)).join('').replace(/\s+/g, ' ').trim();
+        button.append(make('span', '', `第 ${index + 1} 段${sectionLabel(segment) ? ` · ${sectionLabel(segment)}` : ''}：${excerpt}${segment.end - segment.start > 70 ? '…' : ''}`), make('strong', '', finite(segment.risk_score) ? percentText(segment.risk_score * 100) : '—'));
+        button.addEventListener('click', () => focusFlag(position)); list.append(button);
+      });
+      fragment.append(list);
+      const meta = make('div', 'document-source-meta');
+      meta.append(make('span', '', `全文 ${points.length.toLocaleString('zh-CN')} 字符 · ${scoredCount} 个段落已评分 · ${segments.length - scoredCount} 个段落未评分 · 高风险字符 / 可评分字符 ${percentText(summary.highlighted_character_percent)}`));
+      meta.append(make('span', '', `检测时间 ${dateText(report.created_at)} · ${report.format || 'text'} · 当前分数尚未经过真实平台上线验收`));
+      if (typeof report.source_sha256 === 'string') meta.append(make('span', 'document-source-hash', `来源 SHA-256：${report.source_sha256}`));
+      fragment.append(meta);
+      ui.result.replaceChildren(fragment);
+      ui.result.removeAttribute('aria-busy');
+      icons();
+    }
+
+    ui.modeFile.addEventListener('click', () => chooseMode('file'));
+    ui.modeText.addEventListener('click', () => chooseMode('text'));
+    ui.file.addEventListener('change', () => chooseFile(ui.file.files[0]));
+    ui.dropzone.tabIndex = 0;
+    ui.dropzone.setAttribute('role', 'button');
+    ui.dropzone.addEventListener('click', (event) => { if (busy) event.preventDefault(); });
+    ui.dropzone.addEventListener('keydown', (event) => {
+      if ((event.key === 'Enter' || event.key === ' ') && !busy) { event.preventDefault(); ui.file.click(); }
+    });
+    ui.dropzone.addEventListener('dragover', (event) => { event.preventDefault(); if (!busy) ui.dropzone.classList.add('dragging'); });
+    ui.dropzone.addEventListener('dragleave', () => ui.dropzone.classList.remove('dragging'));
+    ui.dropzone.addEventListener('drop', (event) => {
+      event.preventDefault(); ui.dropzone.classList.remove('dragging');
+      if (!busy && event.dataTransfer && event.dataTransfer.files.length) {
+        if (event.dataTransfer.files.length > 1) { status('一次检测一份文档，请只拖入一个文件。', true); return; }
+        chooseFile(event.dataTransfer.files[0]);
+      }
+    });
+    ui.clearFile.addEventListener('click', () => {
+      if (busy) return;
+      selectedFile = null; ui.file.value = ''; ui.fileMeta.hidden = true; ui.name.textContent = ''; ui.size.textContent = ''; status(); updateControls();
+    });
+    ui.text.addEventListener('input', updateControls);
+    ui.detect.addEventListener('click', detectDocument);
+    ui.cancel.addEventListener('click', () => { if (controller) controller.abort(); });
+    ui.saveHistory.addEventListener('change', () => { if (ui.saveHistory.checked && currentReport) saveHistory(currentReport); });
+    ui.clearHistory.addEventListener('click', () => {
+      try { localStorage.removeItem(HISTORY_KEY); history = []; renderHistory(); status('本浏览器的检测记录已清空。'); }
+      catch (_) { status('浏览器未允许清除存储，可在浏览器设置中移除此站点的数据。', true); }
+    });
+    window.addEventListener('aigc:open-document-report', (event) => {
+      const reportId = event.detail?.report_id;
+      if (typeof reportId === 'string' && reportId.length > 0 && reportId.length <= 128) restoreReport(reportId);
+    });
+    window.AIGCDocument = Object.freeze({renderInline, showReport: (report) => {
+      if (!report || typeof report.extracted_text !== 'string' || typeof report.report_id !== 'string' || report.report_id.length > 128) return false;
+      if (busy) { status('当前文档仍在分析，请稍后打开其他报告。'); return false; }
+      currentReport = report;
+      renderReport(report);
+      status('已打开文档检测报告。');
+      saveHistory(report);
+      return true;
+    }});
+    renderHistory(); updateControls();
+  });
+})();

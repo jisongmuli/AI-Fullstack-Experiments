@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-18",
+  "project_root": "E:\\AIGC_latest_20261011",
+  "python": "3.12.2",
+  "venv": "E:\\AIGC_latest_20261011\\.venv",
+  "base_python": "C:\\Users\\86158\\AppData\\Local\\Programs\\Python\\Python312",
+  "mode": "CPU",
+  "url": "http://127.0.0.1:8002/?v=handoff#document",
+  "initial_integrity": {
+    "checked": 151,
+    "missing": [],
+    "modified": []
+  },
+  "unit_tests": {
+    "ran": 71,
+    "passed": 70,
+    "skipped": 1
+  },
+  "http_smoke_checks": 17,
+  "http_smoke_status": "passed",
+  "ordinary_jpg_png_512": "passed",
+  "browser_checks": [
+    "DOCX upload and result",
+    "Word download",
+    "document handoff to Agent",
+    "JPG upload and dual-model result",
+    "no browser console errors observed"
+  ],
+  "service_control_checks": [
+    "start",
+    "check",
+    "managed stop",
+    "restart"
+  ],
+  "local_source_change": {
+    "path": "scripts/server-control.ps1",
+    "reason": "Windows venv launcher delegates to base-Python child; record only the verified listener child",
+    "original_sha256": "c3f9aa951b5478e2cb926cb3aaeddf0ee5afbdf9c48b0a1dc6d8fcf0a25e2225",
+    "local_sha256": "ee865337e2c28019b14b073775d70d834d177a08dcbb477424cfc788735e344f",
+    "original_backup": "E:\\AIGC_latest_20261011\\logs\\server-control.original.ps1"
+  },
+  "accuracy_evaluated": false,
+  "training_performed": false
+}
