@@ -33,6 +33,7 @@ class DetectorService:
         self.image_model = torch.jit.load(io.BytesIO((self.root / "models/image_detector.ts").read_bytes()), map_location="cpu")
         self.image_model.eval()
         self.text_model = joblib.load(self.root / "models/text_detector.joblib")
+        self._english_feature_names = self.text_model["vectorizer"].get_feature_names_out()
         zh_model_path = self.root / "models/text_detector_zh.joblib"
         zh_config_path = self.root / "models/text_zh_config.json"
         self.zh_text_model = joblib.load(zh_model_path) if zh_model_path.is_file() else None
@@ -112,75 +113,123 @@ class DetectorService:
         return self._result("image", probability, signals, out_of_scope)
 
     def predict_text(self, text: str) -> dict:
+        return self.predict_text_batch([text])[0]
+
+    @staticmethod
+    def _unscored_text(applicability: str, reason: str) -> dict:
+        return {
+            "modality": "text", "risk_score": None, "decision": "uncertain",
+            "out_of_scope": True, "applicability": applicability,
+            "scope_reason": reason, "signals": [reason],
+            "limitations": "请提供模型适用范围内的自然语言正文进行分析。",
+        }
+
+    @staticmethod
+    def _validate_text(text: str) -> None:
         if not isinstance(text, str):
             raise TypeError("Text input must be a string")
         if len(text) > 100_000:
             raise ValueError("Text exceeds the 100,000-character input limit")
-        context = noncontent_reason(text)
-        if context is not None:
-            applicability, reason = context
-            return {
-                "modality": "text", "risk_score": None, "decision": "uncertain",
-                "out_of_scope": True, "applicability": applicability,
-                "scope_reason": reason, "signals": [reason],
-                "limitations": "写作指令、引用材料和代码不能作为上传者的写作来源证据。",
-            }
-        chinese_characters = sum("\u4e00" <= char <= "\u9fff" for char in text)
-        if chinese_characters >= 40 and chinese_characters / max(sum(c.isalpha() for c in text), 1) >= 0.45:
-            return self.predict_text_chinese(text)
-        words = re.findall(r"[A-Za-z]+", text)
-        alpha = sum(character.isalpha() for character in text)
-        english_ratio = sum(len(word) for word in words) / max(alpha, 1)
-        out_of_scope = not (25 <= len(text) <= 587 and len(words) >= 5 and english_ratio >= 0.65)
+
+    def predict_text_batch(self, texts: list[str], *, batch_size: int = 32) -> list[dict]:
+        """Group sparse inference by language; reuse identical inputs only in this call."""
+        if not isinstance(texts, (list, tuple)):
+            raise TypeError("Text batch must be a list or tuple of strings")
+        if type(batch_size) is not int or not 1 <= batch_size <= 64:
+            raise ValueError("batch_size must be an integer between 1 and 64")
+        for text in texts:
+            self._validate_text(text)
+        predictions = {}
+        groups = {"english": [], "chinese": []}
+        for text in dict.fromkeys(texts):
+            context = noncontent_reason(text)
+            if context is not None:
+                predictions[text] = self._unscored_text(*context)
+                continue
+            han = sum("\u4e00" <= char <= "\u9fff" for char in text)
+            chinese = han >= 40 and han / max(sum(c.isalpha() for c in text), 1) >= .45
+            groups["chinese" if chinese else "english"].append(text)
+        for language, group in groups.items():
+            predict = self._predict_chinese_batch if language == "chinese" else self._predict_english_batch
+            for start in range(0, len(group), batch_size):
+                batch = group[start:start + batch_size]
+                predictions.update(zip(batch, predict(batch)))
+        # Each caller receives its own mutable evidence list, including duplicates.
+        return [{**predictions[text], "signals": list(predictions[text]["signals"])} for text in texts]
+
+    def _predict_english_batch(self, texts: list[str]) -> list[dict]:
         vectorizer = self.text_model["vectorizer"]
         classifier = self.text_model["classifier"]
-        features = vectorizer.transform([text])
-        raw_score = float(classifier.decision_function(features)[0])
+        features = vectorizer.transform(texts).tocsr()
+        raw_scores = classifier.decision_function(features)
         calibration = self.config["text_calibration"]
-        probability = _calibrate(raw_score, calibration["coefficient"], calibration["intercept"])
         contributions = features.multiply(classifier.coef_[0]).tocsr()
-        names = vectorizer.get_feature_names_out()
-        values = list(zip(contributions.indices, contributions.data))
-        supporting_ai = sorted((item for item in values if item[1] > 0), key=lambda item: item[1], reverse=True)[:2]
-        supporting_human = sorted((item for item in values if item[1] < 0), key=lambda item: item[1])[:2]
-        signals = [f"字符片段 '{names[index].strip()}' 对 AI 类打分贡献 {value:+.3f}（仅为模型相关性）"
-                   for index, value in supporting_ai + supporting_human]
-        if not signals:
-            signals = ["未匹配到训练词表中的有效特征。"]
-        if out_of_scope:
-            signals.append("文本长度或语言特征超出本次训练样本的适用范围。")
-        result = self._result("text", probability, signals, out_of_scope)
-        result["applicability"] = "english_no_valid_external_benchmark" if not out_of_scope else "outside_training_scope"
-        result["limitations"] = (
-            "英文模型仅在来源受限的学术摘要片段上训练；既有外测数据混入大量写作指令，"
-            "不能用其准确率推断真实平台表现。分数不是 AI 撰写比例或身份判定。"
-        )
-        return result
+        names = self._english_feature_names
+        results = []
+        for row, text in enumerate(texts):
+            if features.indptr[row] == features.indptr[row + 1]:
+                results.append(self._unscored_text("insufficient_model_features",
+                    "未匹配到模型词表中的有效特征，请补充完整的自然语言正文。"))
+                continue
+            words = re.findall(r"[A-Za-z]+", text)
+            alpha = sum(character.isalpha() for character in text)
+            english_ratio = sum(len(word) for word in words) / max(alpha, 1)
+            out_of_scope = not (25 <= len(text) <= 587 and len(words) >= 5 and english_ratio >= 0.65)
+            probability = _calibrate(float(raw_scores[row]), calibration["coefficient"], calibration["intercept"])
+            start, end = contributions.indptr[row:row + 2]
+            values = list(zip(contributions.indices[start:end], contributions.data[start:end]))
+            supporting_ai = sorted((item for item in values if item[1] > 0), key=lambda item: item[1], reverse=True)[:2]
+            supporting_human = sorted((item for item in values if item[1] < 0), key=lambda item: item[1])[:2]
+            signals = [f"字符片段 '{names[index].strip()}' 对 AI 类打分贡献 {value:+.3f}（仅为模型相关性）"
+                       for index, value in supporting_ai + supporting_human]
+            if not signals:
+                signals = ["未匹配到有非零权重的模型特征。"]
+            if out_of_scope:
+                signals.append("文本长度或语言特征超出本次训练样本的适用范围。")
+            result = self._result("text", probability, signals, out_of_scope)
+            result["applicability"] = "english_no_valid_external_benchmark" if not out_of_scope else "outside_training_scope"
+            result["limitations"] = (
+                "英文模型仅在来源受限的学术摘要片段上训练；既有外测数据混入大量写作指令，"
+                "不能用其准确率推断真实平台表现。分数不是 AI 撰写比例或身份判定。"
+            )
+            results.append(result)
+        return results
 
     def predict_text_chinese(self, text: str) -> dict:
+        self._validate_text(text)
+        return self._predict_chinese_batch([text])[0]
+
+    def _predict_chinese_batch(self, texts: list[str]) -> list[dict]:
         if self.zh_text_model is None or self.zh_config is None:
             raise FileNotFoundError("Chinese text model artifact is missing")
-        clean = unicodedata.normalize("NFKC", text)
-        clean = clean.replace("\r\n", " ").replace("\n", " ").replace("\t", " ")
-        clean = re.sub(r"[*#`_]+", " ", clean)
-        clean = re.sub(r"\s+", " ", clean).strip()
-        chinese_characters = sum("\u4e00" <= char <= "\u9fff" for char in clean)
-        in_scope = 80 <= len(clean) <= 4000 and chinese_characters >= 40
+        cleaned = []
+        for text in texts:
+            clean = unicodedata.normalize("NFKC", text)
+            clean = clean.replace("\r\n", " ").replace("\n", " ").replace("\t", " ")
+            clean = re.sub(r"[*#`_]+", " ", clean)
+            cleaned.append(re.sub(r"\s+", " ", clean).strip())
         model = self.zh_text_model
-        features = model["vectorizer"].transform([clean])
-        raw_score = float(model["classifier"].decision_function(features)[0])
+        features = model["vectorizer"].transform(cleaned).tocsr()
+        raw_scores = model["classifier"].decision_function(features)
         calibration = self.zh_config["calibration"]
-        probability = _calibrate(raw_score, calibration["coefficient"], calibration["intercept"])
-        signals = ["中文字符 2-4 元片段的统计分类；训练集主要为问答、新闻和生成长文。"]
-        if in_scope:
-            signals.append("该分数不是内容来源证明；小说、平台内容与新模型尚缺独立盲测。")
-        else:
-            signals.append("输入超出中文模型已评估的 80-4000 字范围。")
-        result = self._result("text", probability, signals, not in_scope)
-        result["model_version"] = self.zh_config["model_version"]
-        result["applicability"] = "unverified_platform"
-        result["limitations"] = "基于公开中文问答、新闻与生成文本的筛查分数；文学创作、真实平台内容和新模型尚无可靠外部验证，不能裁定作者身份。"
-        return result
+        results = []
+        for row, clean in enumerate(cleaned):
+            if features.indptr[row] == features.indptr[row + 1]:
+                result = self._unscored_text("insufficient_model_features",
+                    "未匹配到中文模型词表中的有效特征，请补充完整的自然语言正文。")
+            else:
+                chinese_characters = sum("\u4e00" <= char <= "\u9fff" for char in clean)
+                in_scope = 80 <= len(clean) <= 4000 and chinese_characters >= 40
+                probability = _calibrate(float(raw_scores[row]), calibration["coefficient"], calibration["intercept"])
+                signals = ["中文字符 2-4 元片段的统计分类；训练集主要为问答、新闻和生成长文。"]
+                signals.append("该分数不是内容来源证明；小说、平台内容与新模型尚缺独立盲测。" if in_scope else
+                               "输入超出中文模型已评估的 80-4000 字范围。")
+                result = self._result("text", probability, signals, not in_scope)
+                result["applicability"] = "unverified_platform"
+                result["limitations"] = "基于公开中文问答、新闻与生成文本的筛查分数；文学创作、真实平台内容和新模型尚无可靠外部验证，不能裁定作者身份。"
+            result["model_version"] = self.zh_config["model_version"]
+            results.append(result)
+        return results
 
     def predict_text_segments(self, text: str) -> dict:
         """Screen a document and separately annotate evaluated text ranges."""
@@ -195,9 +244,10 @@ class DetectorService:
         highlighted_characters = 0
         highlight_threshold = 0.99
         total_characters = sum(not char.isspace() for char in text)
-        for start, end in ranges:
+        excerpts = [text[start:end] for start, end in ranges]
+        predictions = self.predict_text_batch([*excerpts, text])
+        for (start, end), prediction in zip(ranges, predictions):
             excerpt = text[start:end]
-            prediction = self.predict_text(excerpt)
             valid = not prediction["out_of_scope"]
             score = prediction["risk_score"] if valid else None
             highlighted = valid and score >= highlight_threshold
@@ -219,7 +269,7 @@ class DetectorService:
                 "applicability": prediction.get("applicability", "limited_same_domain") if valid else prediction.get("applicability", "outside_training_scope"),
             })
 
-        document = self.predict_text(text)
+        document = predictions[-1]
         valid_scores = [segment["risk_score"] for segment in segments if segment["risk_score"] is not None]
         mixed_signals = any(score <= 0.2 for score in valid_scores) and any(score >= 0.8 for score in valid_scores)
         scored_coverage = scored_characters / max(total_characters, 1)

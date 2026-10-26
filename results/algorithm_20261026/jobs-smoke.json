@@ -1,0 +1,82 @@
+{
+  "status": "passed",
+  "actual_models": true,
+  "accuracy_evaluated": false,
+  "checks": [
+    {
+      "input": "fixture.txt",
+      "accepted_status": 202,
+      "final_status": "completed",
+      "observed_stages": [
+        "pending",
+        "completed"
+      ],
+      "final_progress": 100,
+      "elapsed_seconds": 0.109,
+      "original_characters": 146,
+      "exports": [
+        "docx",
+        "html",
+        "json"
+      ]
+    },
+    {
+      "input": "fixture.docx",
+      "accepted_status": 202,
+      "final_status": "completed",
+      "observed_stages": [
+        "pending",
+        "completed"
+      ],
+      "final_progress": 100,
+      "elapsed_seconds": 0.094,
+      "original_characters": 146,
+      "exports": [
+        "docx",
+        "html",
+        "json"
+      ]
+    },
+    {
+      "input": "fixture.pdf",
+      "accepted_status": 202,
+      "final_status": "completed",
+      "observed_stages": [
+        "pending",
+        "completed"
+      ],
+      "final_progress": 100,
+      "elapsed_seconds": 0.078,
+      "original_characters": 146,
+      "exports": [
+        "docx",
+        "html",
+        "json"
+      ]
+    },
+    {
+      "input": "long-pasted-text",
+      "accepted_status": 202,
+      "final_status": "completed",
+      "observed_stages": [
+        "pending",
+        "saving",
+        "completed"
+      ],
+      "final_progress": 100,
+      "elapsed_seconds": 0.172,
+      "original_characters": 13320,
+      "exports": [
+        "docx",
+        "html",
+        "json"
+      ]
+    }
+  ],
+  "processing_after": {
+    "active": 0,
+    "limit": 2,
+    "completed": 19,
+    "rejected": 0
+  }
+}

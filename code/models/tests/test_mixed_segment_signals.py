@@ -19,7 +19,7 @@ class TextSegmentTests(unittest.TestCase):
             return {"risk_score": score, "decision": "human" if score < 0.5 else "ai",
                     "out_of_scope": False, "signals": ["test pattern"]}
 
-        service.predict_text = fake_prediction
+        service.predict_text_batch = lambda texts: [fake_prediction(text) for text in texts]
         result = service.predict_text_segments("甲" * 100 + "\n\n" + "乙" * 100)
         self.assertIsNone(result["risk_score"])
         self.assertEqual(result["decision"], "uncertain")
