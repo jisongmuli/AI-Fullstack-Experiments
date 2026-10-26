@@ -1,0 +1,32 @@
+[
+  {
+    "id": "03a5a038360cce848176.jpg",
+    "path": "images/03a5a038360cce848176.jpg",
+    "label": 0,
+    "width": 800,
+    "height": 512,
+    "bytes": 132288,
+    "sha256": "d5bc816df4e54b2dbc523d7d34573013a23d2095d965d0f4451d619d39f2787d",
+    "zip_member": "shard_5/images/03a5a038360cce848176.jpg",
+    "zip_crc32": "7fc7ce30",
+    "split": "validation",
+    "web_path": "web/assets/sample-real-2026.jpg",
+    "source_revision": "b85af61d93cd4fd5e558b3ee69f6d93639fce83f",
+    "selection": "first sorted validation ID in class, before inspecting predictions"
+  },
+  {
+    "id": "00e6da8a9dae1532ca6a.jpg",
+    "path": "images/00e6da8a9dae1532ca6a.jpg",
+    "label": 1,
+    "width": 1024,
+    "height": 1024,
+    "bytes": 171721,
+    "sha256": "59e72bab9d15f8340d3773e45b7bf012f8aa941d299dd105c66a254d5d122c26",
+    "zip_member": "shard_5/images/00e6da8a9dae1532ca6a.jpg",
+    "zip_crc32": "c96df089",
+    "split": "validation",
+    "web_path": "web/assets/sample-fake-2026.jpg",
+    "source_revision": "b85af61d93cd4fd5e558b3ee69f6d93639fce83f",
+    "selection": "first sorted validation ID in class, before inspecting predictions"
+  }
+]

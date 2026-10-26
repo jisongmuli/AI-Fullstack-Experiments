@@ -1,0 +1,27 @@
+{
+  "method": "DEAR-r-ICML2026",
+  "variant": "dear_r",
+  "tile_size": 256,
+  "maximum_native_crops": 9,
+  "calibration": {
+    "coefficient": 2.824529232902119,
+    "intercept": 0.5453489856729128
+  },
+  "validation_samples": 64,
+  "source_revision": "b85af61d93cd4fd5e558b3ee69f6d93639fce83f",
+  "calibration_scope": "External labeled public NTIRE 2026 training-shard audit slice",
+  "low_resolution": {
+    "short_side_below": 512,
+    "variant": "dear_c",
+    "tile_size": 256,
+    "calibration": {
+      "coefficient": 1.9285320197679747,
+      "intercept": 1.3544555196928387
+    },
+    "validation_samples": 64,
+    "validation_auroc": {
+      "dear_r": 0.853515625,
+      "dear_c": 0.88671875
+    }
+  }
+}

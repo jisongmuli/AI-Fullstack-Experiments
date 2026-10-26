@@ -1,0 +1,333 @@
+# NLPCC 2026 Share Task 6: The Second Shared Task on LLM-Generated Text Detection
+
+[中文版本 (Chinese Version)](README_zh.md)
+
+> **Official Website:** [https://nlp2ct.github.io/NLPCC-2026-Task6-Detection/](https://nlp2ct.github.io/NLPCC-2026-Task6-Detection/)
+
+## Conference Information
+- **Location:** Macau, China
+- **Dates:** November 3-5, 2026
+- **Registration:** [Registration Form](https://alidocs.dingtalk.com/notable/share/form/v018K4nyeZ1wGK0YnLb_dv19yqvsgs3oebp3pcjys_bUfwzOn)
+- **Contact:** [nlp2ct.junchao@gmail.com](mailto:nlp2ct.junchao@gmail.com)
+
+---
+
+## Introduction
+The rapid development of large language models (LLMs) has given rise to a series of challenges, including the generation of disinformation, the spread of harmful content, and various forms of misuse. Against this backdrop, the efficient discrimination between LLM-generated text and human-written text has become an urgent and critical research issue in the field of natural language processing (NLP). While remarkable progress has been made, relevant research has largely focused on English, systematic and technical exploration for the Chinese remain scarce. This shared task aims to fill this gap, build more robust Chinese LLM-generated text detectors, and advance research and real-world applications in this field within the Chinese.
+
+Following the success of the 1st Shared Task on LLM-Generated Text Detection (NLPCC 2025), the 2nd Shared Task on LLM-Generated Text Detection in 2026 features significant upgrades: the task formulation has been expanded from binary to ternary classification. Specifically, in addition to distinguishing between human-written text and LLM-generated text, a new category for identifying LLM-refined text has been introduced, which better aligns with real-world application scenarios of LLMs. Participating teams are required to design and implement text detection algorithms based on the training data provided to achieve accurate classification and will undergo rigorous stress testing.
+
+---
+
+## Latest News
+
+- [ 2025.06.22 ] 📢 Final leaderboard released! See [Results](#results) section. Call for system papers is now open — see [Call for Papers](#call-for-papers) for details.
+- [ 2025.06.16 ] 🏆 Phase 2 (closed evaluation) is now open! The [test data](https://github.com/NLP2CT/NLPCC-2026-Task6-Detection/tree/main/data/testp2.json) is available. Submission deadline: **June 20, 2026, 23:59 (GMT+8)**.
+- [ 2025.06.05 ] 🚀 Phase 1 (open evaluation) is now open! The [test data](https://github.com/NLP2CT/NLPCC-2026-Task6-Detection/blob/main/data/testp1.json) and [Codabench evaluation platform](https://www.codabench.org/competitions/16946) are available.
+- [ 2025.05.08 ] 🔄 We have updated the dataset to unify the label "MGT" to "LGT" to match the documentation. No other changes were made. The original MGT in the training set is equivalent to LGT (label=2). We apologize for any inconvenience and confusion caused.
+- [ 2025.04.15 ] 💡 We have released the detailed task guidelines and training data ~
+- [ 2025.03.20 ] 🔥 Registration for NLPCC-2026 Task 6 is now open. Welcome to join us!
+
+## Dataset
+
+The training set for this task is primarily sampled and adapted from the CUDRT (TIST 2026) dataset (Chinese subset: Complete 25 ratio). The Phase 1 and Phase 2 test sets are derived from the Chinese split of the DetectRL-X benchmark (ACL 2026). The evaluation dataset is extended and constructed based on the DetectRL benchmark (NeurIPS 2024) framework, containing multiple generation models and domain data to ensure the authenticity and challenge of the evaluation scenarios.
+
+**Training Set**
+
+Contains data from 4 types of LLMs and 2 domains. Specifically, data sources include news and academic writing, and generation models include GPT-4, Qwen, ChatGLM, and Baichuan. The training set contains a total of 20,370 pairs of samples. Each pair contains four fields: "ID", "HWT", "LGT", and "HLT". "ID" identifies the sample number, while "HWT", "LGT", and "HLT" represent "Human-written text", "LLM-generated text", and "LLM-refined text" respectively.
+
+**Data Download**
+
+The training data can be found at the following Github folder link:
+
+- Github link: https://github.com/NLP2CT/NLPCC-2026-Task6-Detection/tree/main/data
+
+The fully labeled test data (Phase 1 & Phase 2) and official scoring scripts are now publicly available for result analysis, ablation experiments, and baseline reproduction.
+
+**Test Set (Phase 1)**
+
+The Phase 1 test data for open evaluation is now available:
+
+- Test data: https://github.com/NLP2CT/NLPCC-2026-Task6-Detection/blob/main/data/testp1.json
+
+**Test Set (Phase 2)**
+
+The Phase 2 (closed evaluation) test data is now available:
+
+- Test data: https://github.com/NLP2CT/NLPCC-2026-Task6-Detection/tree/main/data/testp2.json
+
+**Data Restrictions**
+
+- To support the development of detection systems, participants are allowed to perform data processing and augmentation based on the provided training data, but no external additional new datasets may be introduced.
+
+**Data Format**
+
+Data is stored in JSON object format.
+
+- Training data format:
+
+```json
+{
+  "ID": sample ID,
+  "HWT": "text written by a human",
+  "LGT": "text generated by a model",
+  "HLT": "text written by a human, then refined by a model",
+}
+```
+
+- Test set format:
+
+```json
+{
+  "id": test sample ID,
+  "text": "HWT, LGT, or HLT",
+  "label": "label (HWT: 0, LGT: 1, HLT: 2)",
+}
+```
+
+**Evaluation Metrics**
+
+The official evaluation metric for this task is the macro-averaged F1-Score.
+
+---
+
+## Submission and Evaluation
+
+The submission platform for this evaluation task is [Codabench](https://www.codabench.org/competitions/16946). Phase 2 (closed evaluation, final ranking) is now open. The submission deadline is **June 20, 2026, 23:59 (GMT+8)**. Each team may submit up to **100 times** (the final ranking will be based exclusively on the last submission, enforced by Force Last). Scores will not be available during the submission period; the final leaderboard will be publicly released by **June 22, 2026**.
+
+Each team must submit the following three items packaged together. Submissions missing any component will be considered invalid. To facilitate automated compliance checks, the three items must be named exactly as follows:
+
+1. **Test results file** — must be named `prediction.json`. A JSON file covering all test samples, keeping `id` unchanged. Each sample must include `id` and `label` (HWT → 0, LGT → 1, HLT → 2).
+
+2. **Code and data** — must be named `code_and_data.zip`. All source code for data augmentation, processing, model training, and inference, along with the complete training dataset (including augmented or processed samples). Include a `README.md` and an environment configuration file (e.g., `requirements.txt`).
+
+3. **Technical report** — must be named `technical_report.pdf`. A detailed description of your methodology. There is no language restriction; you may use either Chinese or English. All reports will be kept strictly confidential and deleted after NLPCC 2026 (not archived).
+
+**Account Policy**
+
+- Each team may use only **one account**, and the account name must match the **System Name (ID)** registered during sign-up. If your Codabench account name does not match your registered System Name (ID), simply name the outermost ZIP archive with your registered **System Name (ID)** and ensure you submit using the exact same email address you provided during registration. Our team will verify your submission by cross-referencing your registered email and the ZIP archive name.
+- For packaging and format details, refer to the Submission guidelines under **Get Started** on Codabench.
+
+**Important Notes**
+
+- If any violation of the competition rules is found, the participation results will be disqualified.
+- Submissions after the deadline will not be accepted.
+- The organizers reserve all rights, including but not limited to modifying the competition rules, data, etc., according to the actual situation during the competition. All modifications will be synchronized to all participating teams via email as soon as possible. Participating teams are also requested to stay tuned to our task official website [Latest News].
+- If you encounter any problems during the competition, please feel free to contact us via the following email: [nlp2ct.junchao@gmail.com](mailto:nlp2ct.junchao@gmail.com).
+
+---
+
+## Competition Rules
+
+The following rules are strictly enforced. Violations will result in disqualification.
+
+**No use of test set data for development** — Using Phase 1 or Phase 2 test set samples in any form to develop or optimize your detector is strictly prohibited. This includes, but is not limited to, pseudo-labeling and unsupervised methods applied to the test set. Only the officially provided training set may be used, extended exclusively through legitimate data augmentation methods based on the training set. Introducing new external data sources is not allowed.
+
+**Single-text prediction only** — Each prediction must take a single text as input and output its label. Batch inference across the entire dataset is not permitted; the approach must reflect real-world applicability.
+
+**No feature extraction on test set** — Rule-based methods may extract features from the training set only. Teams using such approaches must provide a statistical script demonstrating that the features are statistically observable in the training set. If rules cannot be verified on the training set, the submission will be disqualified.
+
+**No external data or web access** — Using retrieval-augmented generation (RAG), web search, or any form of external data source is prohibited. Calling built-in LLM APIs for text classification is permitted, provided no external information is introduced.
+
+**LLM API logging** — If your approach involves calling LLM APIs for detection, you must retain complete Q&A logs for potential audit.
+
+---
+
+## Tentative Schedule
+| Date | Task |
+| :--- | :--- |
+| March 20, 2026 | Shared task announcement and call for participation |
+| March 20, 2026 | Registration opens |
+| April 15, 2026 | Release of detailed task guidelines and training data |
+| May 25, 2026 | Registration deadline |
+| June 5, 2026 | Phase 1 test data release (open evaluation) |
+| June 15, 2026 | Phase 1 submission deadline (extended) |
+| June 16, 2026 | Phase 2 test data release (closed evaluation) |
+| June 20, 2026 | Phase 2 submission deadline |
+| June 22, 2026 | Final leaderboard released and call for system reports and conference papers |
+| July 17, 2026 | System paper submission deadline |
+
+---
+
+## Results
+
+This shared task received registrations from **41 teams**, making it the most highly subscribed shared task across all NLPCC 2026 shared tasks. **29 teams** completed registration on the Codabench platform, **23 teams** submitted valid results for Phase 1, and **13 teams** participated in Phase 2.
+
+The final ranking and macro-averaged F1 scores of the top 5 teams:
+
+| Rank | Team | Affiliation | Macro F1 |
+| :--- | :--- | :--- | :--- |
+| 1 | Evil-Detect | Institute of Information Engineering, CAS | 0.8888 |
+| 2 | Tele_StrarAGI | Star General AI Lab, China Telecom AI Company | 0.8393 |
+| 3 | Xiwangdoudui | Zhengzhou University | 0.7745 |
+| 4 | ZZUNLP_Zhao | Zhengzhou University | 0.7475 |
+| 5 | CEDAR | Beijing Institute of Technology | 0.7299 |
+
+Full rankings are available on [Codabench](https://www.codabench.org/competitions/16946/#/results-tab).
+
+---
+
+## Call for Papers
+
+Submissions for system and conference papers are now open. This task has a total quota of **7 invited paper slots** for publication in the NLPCC 2026 conference proceedings (Springer LNAI series).
+
+**Invited Submissions:** The top 5 teams are formally invited to submit system papers describing their methodologies.
+
+**Open Submissions:** **2 additional paper slots** are open to all eligible registered teams for original methodological or analytical papers.
+
+**Eligibility:** Only teams that submitted valid results in Phase 1 or Phase 2 qualify.
+
+**Paper Guidelines:**
+
+- **Language:** English only.
+- **Format:** LNCS format (LaTeX or Word templates).
+- **Page limit:** 12 pages including references and appendices.
+- **File format:** PDF.
+- **Submission portal:** [OpenReview](https://openreview.net/group?id=ccf.org/NLPCC/2026/Shared_Tasks).
+- **Deadline:** July 17, 2026, 03:59 PM UTC-0 (please confirm with the official NLPCC announcement).
+- **Official guidelines:** [http://tcci.ccf.org.cn/conference/2026/shared-tasks/](http://tcci.ccf.org.cn/conference/2026/shared-tasks/)
+
+**Important:** An invitation does not guarantee acceptance. The organizing committee reserves the right to replace invited papers with high-quality open submissions if quality standards are not met.
+
+---
+
+## Organizers
+This shared task is jointly organized by the Natural Language Processing & Portuguese-Chinese Machine Translation Laboratory (NLP2CT) at the University of Macau, Central China Normal University, and Alibaba Cloud.
+
+- **Junchao Wu** | University of Macau (Contact: [nlp2ct.junchao@gmail.com](mailto:nlp2ct.junchao@gmail.com) | [Homepage](https://junchaoiu.github.io/))
+- **Derek Fai Wong** | University of Macau ([Homepage](https://www.fst.um.edu.mo/personal/derek-wong/))
+- **Runzhe Zhan** | University of Macau ([Homepage](https://runzhe.me/))
+- **Zeyu Wu** | University of Macau
+- **Zhiwen Xie** | University of Macau / Central China Normal University
+- **Yichao Du** | Alibaba Cloud
+- **Longyue Wang** | Alibaba Cloud ([Homepage](https://www.longyuewang.com/))
+
+---
+**FAQ**
+
+Q: Where can I register for this shared task? Can team registration be updated?
+
+A: Fill out the following link to register: https://alidocs.dingtalk.com/notable/share/form/v018K4nyeZ1wGK0YnLb_dv19yqvsgs3oebp3pcjys_bUfwzOn. Before the registration deadline, you can fill out this link repeatedly to update team registration information.
+
+---
+
+Q: Is there any restriction on the number of model parameters or data augmentation methods? If an ensemble approach is used, are there any constraints on the total number of parameters?
+
+A: NLPCC 2026 Share Task 6 places no restrictions on the number of parameters for a single model, nor on the total number of parameters after ensemble. There are also no restrictions on data augmentation methods or models used. You may use open-source LLMs or closed-source APIs for text paraphrasing, rewriting, and other data-augmentation operations; these are fully allowed under the competition rules.
+
+---
+
+Q: The training set is sourced from news and academic writing, using four generation models. Will the subsequent test data also consist of these two sources and these four models, or will it be expanded? What is the generation method for test data? Will it contain formatting artifacts (e.g., "\n") or incomplete texts?
+
+A: As stated in the README under the Dataset section, the test set will be constructed using out-of-distribution data from another dataset (DetectRL benchmark, NeurIPS 2024). It will no longer be limited to the news and academic domains or the four generation models covered in the training set. The test data may introduce texts from unknown domains and unknown generation models, including different data generation schemes, to conduct multi-dimensional stress testing and comprehensively evaluate the detector's actual performance in real-world application scenarios. Test-set LGT text may not use the same front-25%-token continuation as the training set; even if continuation is used, the prefix tokens will be cleaned, resulting in higher overall quality. The test set undergoes strict preprocessing and will not retain redundant formatting symbols such as "\n". It will also avoid abrupt text truncation, though it will not force every text to end with a period, preserving natural forms such as byline signatures to test real-world robustness.
+
+---
+
+Q: Training data quality issues: some samples contain pure English text labeled as HLT; some end with "123" with preceding text identical to the human text; and the README mentions LGT while the dataset uses MGT. How should these be understood?
+
+A: The pure English samples labeled as HLT and the ~2,000 samples ending with "123" (with preceding text identical to the human text) are both native noise from the CUDRT dataset; no additional cleaning was performed. Teams are expected to design their own data-cleaning strategies. Regarding the label inconsistency: in the current training set, MGT is equivalent to LGT (label=2). We will update the dataset in a subsequent release to uniformly correct MGT to LGT, along with an official correction notice.
+
+---
+
+Q: Can we use pseudo-labeling on the test set data (i.e., running the test data through our model to obtain pseudo-labels and using them as expanded training data)?
+
+A: No, it is NOT allowed to use test set data for pseudo-labeling. You cannot add any test set samples with predicted pseudo-labels into your training data for model optimization. This practice is not applicable in real-world application scenarios, so we do not permit such operations in the competition. The official test set is strictly for final-submission evaluation only. Any form of using test set data for training, fine-tuning, pseudo-label construction, or data augmentation is considered a violation of the competition rules. You may only use the officially provided training set. Methods to expand the training set are limited to the announced legal data augmentation methods, and no new data sources may be explicitly introduced.
+
+---
+
+Q: For prediction, can we input the entire dataset at once to output labels, or must we input single texts individually?
+
+A: Prediction must be performed by inputting single texts and outputting labels individually. This requirement ensures that the model is truly usable in real-world application scenarios.
+
+---
+
+Q: Can we use uncleaned features (e.g., formatting artifacts) for rule-based classification?
+
+A: Rule-based classification using features extracted from the **training set** is allowed, but extracting features from the **test set** is prohibited. Teams that adopt such rule-based approaches must provide a statistical script to demonstrate that the features can be statistically observed in the training set. If the rules cannot be verified on the training set, the results will be disqualified — use this approach with caution.
+
+---
+
+Q: Can we use built-in LLM APIs with internet-connected search (e.g., RAG) for classification?
+
+A: Using built-in LLM APIs for text classification is permitted. However, using RAG (Retrieval-Augmented Generation) or any form of internet-connected querying is prohibited, as it violates the rule against introducing external data sources.
+
+---
+
+**References**
+
+The following are references related to this shared task. If your research uses relevant datasets, or if this task is helpful to you, please consider citing the following literature:
+
+```bibtex
+@article{wu2024detectrl,
+  title={Detectrl: Benchmarking llm-generated text detection in real-world scenarios},
+  author={Wu, Junchao and Zhan, Runzhe and Wong, Derek F and Yang, Shu and Yang, Xinyi and Yuan, Yulin and Chao, Lidia S},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  pages={100369--100401},
+  year={2024}
+}
+```
+
+```bibtex
+@inproceedings{wu-etal-2026-detectrl,
+    title = "{DetectRL-X}: Towards Reliable Multilingual and Real-World {LLM}-Generated Text Detection",
+    author = "Wu, Junchao and Liu, Yefeng and Zhu, Chenyu and Zhang, Hao and Wu, Zeyu and Shi, Tianqi and Du, Yichao and Wang, Longyue and Luo, Weihua and Su, Jinsong and Wong, Derek F.",
+    booktitle = "Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2026",
+    address = "San Diego, California, United States",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2026.acl-long.1773/",
+    doi = "10.18653/v1/2026.acl-long.1773",
+    pages = "38247--38294"
+}
+```
+
+```bibtex
+@inproceedings{wu2025overview,
+  title={Overview of the NLPCC 2025 Shared Task 1: LLM-Generated Text Detection},
+  author={Wu, Junchao and Zhan, Runzhe and Wang, Qianli and Yuan, Yulin and Chao, Lidia S and Wong, Derek F},
+  booktitle={CCF International Conference on Natural Language Processing and Chinese Computing},
+  pages={263--274},
+  year={2025},
+  organization={Springer}
+}
+```
+
+```bibtex
+@article{tao2026toward,
+  title={Toward Reliable Detection of LLM-Generated Texts: A Comprehensive Evaluation Framework with CUDRT},
+  author={Tao, Zhen and Chen, Yanfang and Xi, Dinghao and Li, Zhiyu and Xu, Wei},
+  journal={ACM Transactions on Intelligent Systems and Technology},
+  volume={17},
+  number={2},
+  pages={1--35},
+  year={2026}
+}
+```
+
+Other results of our work in the field of LLM-generated text detection for reference:
+
+- Wu, J., Yang, S., Zhan, R., Yuan, Y., Chao, L. S., & Wong, D. F. (2025). A Survey on LLM-Generated Text Detection: Necessity, Methods, and Future Directions. *Computational Linguistics*, 1-66.
+- Wu, J., Zhan, R., Wong, D. F., Yang, S., Liu, X., Chao, L. S., & Zhang, M. (2025, January). Who Wrote This? The Key to Zero-Shot LLM-Generated Text Detection Is GECScore. In *Proceedings of the 31st International Conference on Computational Linguistics* (pp. 10275-10292).
+- Chen, X., Wu, J., Yang, S., Zhan, R., Wu, Z., Luo, Z., Wang, D., Yang, M., Chao, L. S., & Wong, D. F. (2025). RepreGuard: Detecting LLM-Generated Text by Revealing Hidden Representation Patterns. *Transactions of the Association for Computational Linguistics*, *13*, 1812-1831.
+
+If you are a new researcher in this field, we hope the following papers can help you quickly get familiar with this field (continuously updating):
+
+- Bao, G., Zhao, Y., Teng, Z., Yang, L., & Zhang, Y. Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature. In The Twelfth International Conference on Learning Representations.
+- Hans, A., Schwarzschild, A., Cherepanova, V., Kazemi, H., Saha, A., Goldblum, M., ... & Goldstein, T. (2024, July). Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text. In International Conference on Machine Learning (pp. 17519-17537). PMLR.
+- Koike, R., Kaneko, M., & Okazaki, N. (2024, March). Outfox: Llm-generated essay detection through in-context learning with adversarially generated examples. In *Proceedings of the AAAI Conference on Artificial Intelligence* (Vol. 38, No. 19, pp. 21258-21266).
+- Zhu, B., Yuan, L., Cui, G., Chen, Y., Fu, C., He, B., ... & Gu, M. (2023, December). Beat llms at their own game: Zero-shot llm-generated text detection via querying chatgpt. In *Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing* (pp. 7470-7483).
+- Yu, X., Qi, Y., Chen, K., Chen, G., Yang, X., Zhu, P., ... & Yu, N. (2024). Dpic: Decoupling prompt and intrinsic characteristics for llm generated text detection. *Advances in Neural Information Processing Systems*, *37*, 16194-16212.
+- Hu, X., Chen, P. Y., & Ho, T. Y. (2023). Radar: Robust ai-text detection via adversarial learning. *Advances in neural information processing systems*, *36*, 15077-15095.
+- Yu, X., Chen, K., Yang, Q., Zhang, W., & Yu, N. (2024, November). Text fluoroscopy: Detecting LLM-generated text through intrinsic features. In *Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing* (pp. 15838-15846).
+- Wang, P., Li, L., Ren, K., Jiang, B., Zhang, D., & Qiu, X. SeqXGPT: Sentence-Level AI-Generated Text Detection. In The 2023 Conference on Empirical Methods in Natural Language Processing.
+- Ma, S., & Wang, Q. (2024, November). Zero-shot detection of LLM-generated text using token cohesiveness. In *Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing* (pp. 17538-17553).
+- Bao, G., Zhao, Y., He, J., & Zhang, Y. Glimpse: Enabling White-Box Methods to Use Proprietary Models for Zero-Shot LLM-Generated Text Detection. In *The Thirteenth International Conference on Learning Representations*.
+- Zhou, H., Zhu, J., Su, P., Ye, K., Yang, Y., Gavioli-Akilagun, S., & Shi, C. AdaDetectGPT: Adaptive Detection of LLM-Generated Text with Statistical Guarantees. In *The Thirty-ninth Annual Conference on Neural Information Processing Systems*.
+- Zhu, X., Ren, Y., Fang, F., Tan, Q., Wang, S., & Cao, Y. DNA-DetectLLM: Unveiling AI-Generated Text via a DNA-Inspired Mutation-Repair Paradigm. In *The Thirty-ninth Annual Conference on Neural Information Processing Systems*.
+...
+
+---
+
+Copyright © 2026 NLP2CT Lab. All Rights Reserved.
