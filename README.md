@@ -11,7 +11,7 @@
 
 ## 获取与运行
 
-从私有仓库 `codex/system-stability` 分支获取代码，执行 `git lfs pull` 恢复模型与实验大文件。使用 Python 3.12 和项目 `.venv`：
+从公开仓库 `codex/system-stability` 分支获取代码，执行 `git lfs pull` 恢复模型与实验大文件。使用 Python 3.12 和项目 `.venv`：
 
 ```powershell
 py -3.12 setup_environment.py --with-llm
