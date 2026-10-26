@@ -1,4 +1,4 @@
-const state={view:"image",image:null,imageBusy:false,imageSelectionVersion:0,textBusy:false,textResultSource:null,editBusy:false,editResultSource:null,healthBusy:false,healthTimer:null,mode:"clarity",models:null};
+const state={view:"image",image:null,imageReady:false,imageBusy:false,imageSelectionVersion:0,textBusy:false,textResultSource:null,editBusy:false,editResultSource:null,healthBusy:false,healthTimer:null,mode:"clarity",models:null,modelInfoVersion:0};
 document.addEventListener("DOMContentLoaded",()=>{document.getElementById("run-llm-edit").onclick=runLLMEdit});
 const $=id=>document.getElementById(id);
 const icon=()=>window.lucide?.createIcons();
@@ -87,8 +87,31 @@ function segmentResultHtml(data){
   }).join("")}</div>`;
 }
 function validateImage(file){if(!file)return"请选择图片";if(!["image/png","image/jpeg"].includes(file.type))return"仅支持 JPG 或 PNG";if(file.size>25*1048576)return"文件不能超过 25 MB";return null}
-function setImage(file){++state.imageSelectionVersion;const error=validateImage(file);if(error){clearImage();showError($("image-result"),error);return}state.image=file;const preview=$("image-preview"),caption=$("preview-caption"),dropzone=$("image-dropzone");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.dataset.objectUrl=URL.createObjectURL(file);preview.onload=()=>{const side=Math.min(preview.naturalWidth,preview.naturalHeight),small=preview.naturalWidth===32&&preview.naturalHeight===32;dropzone.classList.toggle("pixel-preview",small);const scope=side<200?" · 小尺寸图片":"";caption.textContent=`原图 ${preview.naturalWidth} × ${preview.naturalHeight} 像素${scope}`;caption.hidden=false};preview.src=preview.dataset.objectUrl;preview.hidden=false;dropzone.classList.add("has-image");$("file-meta").hidden=false;$("file-name").textContent=file.name;$("file-size").textContent=bytes(file.size);$("detect-image").disabled=state.imageBusy;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>图片已就绪</strong><p>点击分析图片查看模型输出。</p></div>`;icon()}
-function clearImage(){++state.imageSelectionVersion;state.image=null;const preview=$("image-preview");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.removeAttribute("src");preview.hidden=true;$("preview-caption").hidden=true;$("image-input").value="";$("image-dropzone").classList.remove("has-image","pixel-preview");$("file-meta").hidden=true;$("detect-image").disabled=true;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>等待图片</strong><p>选择图片后查看模型输出、适用范围与判断状态。</p></div>`;icon()}
+function setImage(file){
+  const selection=++state.imageSelectionVersion,error=validateImage(file);
+  if(error){clearImage();showError($("image-result"),error);return}
+  state.image=file;state.imageReady=false;
+  const preview=$("image-preview"),caption=$("preview-caption"),dropzone=$("image-dropzone");
+  if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);
+  preview.dataset.objectUrl=URL.createObjectURL(file);
+  preview.hidden=true;caption.hidden=true;dropzone.classList.remove("pixel-preview");
+  $("detect-image").disabled=true;
+  $("image-result").innerHTML='<div class="busy-state"><span class="spinner"></span>正在读取图片…</div>';
+  preview.onload=()=>{
+    if(selection!==state.imageSelectionVersion||state.image!==file)return;
+    const width=preview.naturalWidth,height=preview.naturalHeight;
+    if(!width||!height||width*height>25000000){clearImage();showError($("image-result"),Error("图片超过 2500 万像素，请缩小后重试。"));return}
+    state.imageReady=true;preview.hidden=false;
+    dropzone.classList.toggle("pixel-preview",width===32&&height===32);
+    caption.textContent=`原图 ${width} × ${height} 像素${Math.min(width,height)<200?" · 小尺寸图片":""}`;caption.hidden=false;
+    $("detect-image").disabled=state.imageBusy;
+    $("image-result").innerHTML='<div class="empty-result"><i data-lucide="scan-line"></i><strong>图片已就绪</strong><p>点击分析图片查看模型输出。</p></div>';icon();
+  };
+  preview.onerror=()=>{if(selection===state.imageSelectionVersion){clearImage();showError($("image-result"),Error("图片无法读取，请选择有效的 JPG 或 PNG 文件。"))}};
+  preview.src=preview.dataset.objectUrl;dropzone.classList.add("has-image");
+  $("file-meta").hidden=false;$("file-name").textContent=file.name;$("file-size").textContent=bytes(file.size);
+}
+function clearImage(){++state.imageSelectionVersion;state.image=null;state.imageReady=false;const preview=$("image-preview");preview.onload=null;preview.onerror=null;if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);delete preview.dataset.objectUrl;preview.removeAttribute("src");preview.hidden=true;$("preview-caption").hidden=true;$("image-input").value="";$("image-dropzone").classList.remove("has-image","pixel-preview");$("file-meta").hidden=true;$("detect-image").disabled=true;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>等待图片</strong><p>选择图片后查看模型输出、适用范围与判断状态。</p></div>`;icon()}
 async function useSample(kind){
   const version=++state.imageSelectionVersion;
   try{
@@ -99,12 +122,12 @@ async function useSample(kind){
   }catch(error){if(version===state.imageSelectionVersion){clearImage();showError($("image-result"),error)}}
 }
 async function detectImage(){
-  if(state.imageBusy||!state.image)return;
+  if(state.imageBusy||!state.image||!state.imageReady)return;
   const button=$("detect-image"),target=$("image-result"),file=state.image;
   state.imageBusy=true;setBusy(button,target,"正在分析图片…");
   try{const body=new FormData();body.append("file",file);const result=await api("/api/image/detect",{method:"POST",body});if(state.image===file)renderDetection(target,result,"image",file)}
   catch(error){if(state.image===file)showError(target,error)}
-  finally{state.imageBusy=false;button.disabled=!state.image}
+  finally{state.imageBusy=false;button.disabled=!state.image||!state.imageReady}
 }
 function inputUpdated(target){target.innerHTML='<div class="empty-result"><i data-lucide="file-pen-line"></i><strong>输入已更新</strong><p>请重新提交，查看当前文本的结果。</p></div>';icon()}
 function updateText(){const value=$("text-input").value,length=Array.from(value).length;if(state.textResultSource!==null&&state.textResultSource!==value){state.textResultSource=null;inputUpdated($("text-result"))}$("text-count").textContent=`${length} / 10,000 字符`;const valid=Boolean(value.trim())&&length<=10000;$("detect-text").disabled=state.textBusy||!valid;$("text-hint").textContent=length>10000?"长于 10,000 字符，请使用文档检测":state.textBusy?"分析中；修改文本后请重新分析":valid?"可开始分析；短段落可能无法评分":"请输入文本"}
@@ -135,13 +158,17 @@ async function runEditing(llm){
   finally{state.editBusy=false;if($("edit-input").value!==text)inputUpdated(target);updateEdit()}
 }
 async function showModelInfo(){
-  const dialog=$("model-dialog");dialog.showModal();
+  const dialog=$("model-dialog"),version=++state.modelInfoVersion;
+  if(!dialog.open)dialog.showModal();
+  $("model-details").innerHTML='<p class="muted">正在读取模型信息…</p>';
   try{
-    const data=await api("/api/models");state.models=data;
+    const data=await api("/api/models",{signal:AbortSignal.timeout(8000)});
+    if(version!==state.modelInfoVersion)return;
+    state.models=data;
     const scope=data.scope||{},results=Array.isArray(data.evaluation_summary)?data.evaluation_summary:[];
     const rates=results.map(row=>`<div class="evaluation-summary"><strong>${escapeHtml(row.name||"样本评测")}</strong><p>${escapeHtml(row.samples)} 条样本 · 准确率 ${pct(100*row.accuracy)} · 误报率 ${pct(100*row.false_positive_rate)} · 漏报率 ${pct(100*row.false_negative_rate)}</p></div>`).join("");
-    $("model-details").innerHTML=`<p>${data.available?"模型已就绪":"模型暂不可用"}${data.reason?`：${escapeHtml(data.reason)}`:""}</p><h3>图像检测</h3><p>${escapeHtml(scope.image||"")}</p><h3>文本检测</h3><p>${escapeHtml(scope.text||"")}</p>${rates?`<h3>近期标注样本实测</h3>${rates}<p>表内按 0.5 阈值统计；检测页保留 0.2–0.8 的复核区间。完整记录保存在项目评测目录。</p>`:""}<h3>可信编辑</h3><p>${escapeHtml(scope.editing||"")}</p><details><summary>模型版本与参数</summary><p class="model-manifest">${escapeHtml(JSON.stringify(data.manifest||{},null,2))}</p></details>`;
-  }catch(error){$("model-details").innerHTML=`<p class="muted">模型信息暂不可用：${escapeHtml(error.message)}</p>`}
+    $("model-details").innerHTML=`<p>${data.available?(data.loaded?"检测组件已初始化":"模型文件齐备，首次检测时按需加载"):"模型暂不可用"}${data.reason?`：${escapeHtml(data.reason)}`:""}</p><h3>图像检测</h3><p>${escapeHtml(scope.image||"")}</p><h3>文本检测</h3><p>${escapeHtml(scope.text||"")}</p>${rates?`<h3>近期标注样本实测</h3>${rates}<p>表内按 0.5 阈值统计；检测页保留 0.2–0.8 的复核区间。完整记录保存在项目评测目录。</p>`:""}<h3>可信编辑</h3><p>${escapeHtml(scope.editing||"")}</p><details><summary>模型版本与参数</summary><p class="model-manifest">${escapeHtml(JSON.stringify(data.manifest||{},null,2))}</p></details>`;
+  }catch(error){if(version===state.modelInfoVersion)$("model-details").innerHTML=`<p class="muted">模型信息暂不可用：${escapeHtml(error.message)}</p>`}
 }
 async function checkHealth(){
   if(state.healthBusy)return;

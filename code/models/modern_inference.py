@@ -13,6 +13,7 @@ from PIL import Image, ImageOps
 
 from research_detectors import DearDetector, TasteDetector, MpuDetector
 from text_segments import noncontent_reason
+from runtime_assets import text_policy
 
 
 def sigmoid(value):
@@ -28,19 +29,18 @@ def unscored(applicability, reason):
 class ModernTextAdapter:
     def __init__(self, root: Path, english_vocabulary, chinese_vocabulary):
         self.root = root
-        self.policy = json.loads((root / "models/taste/policy.json").read_text(encoding="utf-8"))
-        pipeline = root / "models/text_policy_2026.json"
-        self.pipeline = json.loads(pipeline.read_text(encoding="utf-8")) if pipeline.exists() else {}
-        phase1 = root / "models/text_calibration_phase1.json"
-        if phase1.exists():
-            self.pipeline.update(json.loads(phase1.read_text(encoding="utf-8")))
+        self.pipeline = text_policy(root)
+        needs_taste = any(self.pipeline.get(language + "_backend", "taste") == "taste"
+                          for language in ("chinese", "english"))
+        self.policy = json.loads((root / "models/taste/policy.json").read_text(encoding="utf-8")) if needs_taste else {}
         self.engine = None
         self._mpu_engines, self._load_lock = {}, threading.Lock()
         self.vocabularies = {"english": english_vocabulary, "chinese": chinese_vocabulary}
-        with np.load(root / "models/taste/chinese_head.npz", allow_pickle=False) as head:
-            self.coefficient, self.intercept = head["coefficient"], float(head["intercept"])
-        if self.coefficient.shape != (768,) or not np.isfinite(self.coefficient).all() or not math.isfinite(self.intercept):
-            raise ValueError("Invalid local Chinese classifier head")
+        if self.pipeline.get("chinese_backend", "taste") == "taste":
+            with np.load(root / "models/taste/chinese_head.npz", allow_pickle=False) as head:
+                self.coefficient, self.intercept = head["coefficient"], float(head["intercept"])
+            if self.coefficient.shape != (768,) or not np.isfinite(self.coefficient).all() or not math.isfinite(self.intercept):
+                raise ValueError("Invalid local Chinese classifier head")
 
     def _engine(self, language, backend):
         with self._load_lock:

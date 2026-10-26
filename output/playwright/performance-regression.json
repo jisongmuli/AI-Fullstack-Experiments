@@ -1,0 +1,71 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Detection stays disabled until image decoding completes",
+      "passed": true
+    },
+    {
+      "name": "A valid 4K preview preserves dimensions",
+      "passed": true
+    },
+    {
+      "name": "A decoded 4K image can be analyzed",
+      "passed": true
+    },
+    {
+      "name": "A damaged image has an actionable error",
+      "passed": true
+    },
+    {
+      "name": "A damaged image cannot be submitted",
+      "passed": true
+    },
+    {
+      "name": "Old dimensions and preview are cleared after a decode error",
+      "passed": true
+    },
+    {
+      "name": "Rejected image state and object URL are released",
+      "passed": true
+    },
+    {
+      "name": "The browser enforces the same pixel ceiling as the API",
+      "passed": true
+    },
+    {
+      "name": "A valid 1px image still works after a rejected image",
+      "passed": true
+    },
+    {
+      "name": "Recovered preview has no previous 4K dimensions",
+      "passed": true
+    },
+    {
+      "name": "Invalid inputs are rejected before any detection upload",
+      "passed": true
+    },
+    {
+      "name": "A delayed model response cannot replace a more recent dialog result",
+      "passed": true
+    },
+    {
+      "name": "Old model details are discarded",
+      "passed": true
+    },
+    {
+      "name": "All four measured sample cohorts remain available",
+      "passed": true
+    },
+    {
+      "name": "Updated model information fits the mobile viewport",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "scope": "Preview and metadata races; detection is tested separately with actual models."
+}

@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "AGENTS.md",
-      "bytes": 925,
-      "sha256": "08fced3c762577f8332c118f39c42eb896bb21f900b6fc64c714be0d0c5c8dfb"
+      "bytes": 1019,
+      "sha256": "2c1c1c33dfcf127878986dd6d17c723e4b1a1a511aaf486ee409b38e6fcb05d1"
     },
     {
       "path": "DATA_CARD.md",
@@ -13,8 +13,8 @@
     },
     {
       "path": "GITHUB_BACKUP.md",
-      "bytes": 3070,
-      "sha256": "55294e965595b3e38c14047c294e0411165edf6315a792005c8f39b1cf629fa9"
+      "bytes": 3250,
+      "sha256": "83c6096d5ac12b2f5d16b8092489a4a34ceb206389992dbf3347d3b741f16d39"
     },
     {
       "path": "MODEL_SOURCES.md",
@@ -28,8 +28,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 1830,
-      "sha256": "af3b03d719c61e0eb05ecc0f92c5c829afe6d0a2223348040eabd0201a27223c"
+      "bytes": 2082,
+      "sha256": "f73d2f984a5a6df5dde7f6f3c19633c028291b0d977988a5666c75cf140a54a4"
     },
     {
       "path": "README_SOURCE.md",
@@ -188,18 +188,23 @@
     },
     {
       "path": "code/models/inference.py",
-      "bytes": 19363,
-      "sha256": "81d480aed3609b989186fdfe2239f97c20bc0f3f348a41d8041ea3aeff172233"
+      "bytes": 18979,
+      "sha256": "7b628463dadd18db3a989af2797f036afc5228ddd07274e25f5cd9b1d75ee792"
     },
     {
       "path": "code/models/modern_inference.py",
-      "bytes": 10102,
-      "sha256": "1b57d63e516ebc392a10be34def2a8042d3ddc74d5698f725fe590daf86de02e"
+      "bytes": 10114,
+      "sha256": "5ef6c14878fd21824f563cfec10b6f4aab07a54e86395bae73038323b1e28f18"
     },
     {
       "path": "code/models/research_detectors.py",
       "bytes": 10409,
       "sha256": "748fbf28f9728108f3ad48c245638c9950bcb88afca760e9928406ef910c87eb"
+    },
+    {
+      "path": "code/models/runtime_assets.py",
+      "bytes": 3493,
+      "sha256": "f1985c484048be41ddd93a145db374487550a4a11508efd6bc7d7f271f6dbd18"
     },
     {
       "path": "code/models/test_chinese_text.py",
@@ -220,6 +225,11 @@
       "path": "code/models/tests/test_highres_inference.py",
       "bytes": 5007,
       "sha256": "fde9656e22cdd994a081300b4d2e5e35584f6880932249e991c60c46342e16f6"
+    },
+    {
+      "path": "code/models/tests/test_lazy_assets.py",
+      "bytes": 5945,
+      "sha256": "b50277eb067b3b233e361850e8c5065639063cd602ed891d9960ce8700646093"
     },
     {
       "path": "code/models/tests/test_lowres_inference.py",
@@ -273,8 +283,8 @@
     },
     {
       "path": "code/server/app.py",
-      "bytes": 32572,
-      "sha256": "5ae4dfb9bfc897a7bebfddc308aa7a2cec29e4e47a30c840e00e1468c8e6724e"
+      "bytes": 34294,
+      "sha256": "b2ebbce9448b5ae66e486fda7c8d0423f7dd11784f3e3339728cde747b0e6a37"
     },
     {
       "path": "code/server/document_jobs.py",
@@ -362,6 +372,11 @@
       "sha256": "3a1bf56f191a806fc880acc99ed8bfa4b3a0748c2a7460f323a00a9fb9a37791"
     },
     {
+      "path": "code/server/tests/test_model_information.py",
+      "bytes": 3912,
+      "sha256": "93f9a21cfdc945a0b392467251fadebdd85f41bd27a24090b58b1b2d0aa69c05"
+    },
+    {
       "path": "code/server/tests/test_pdf_paragraphs.py",
       "bytes": 2461,
       "sha256": "34d09e5faf1737efb56c3bafc5f1ddcf78a20b74e7117db45e3183f5863c1582"
@@ -435,6 +450,11 @@
       "path": "docs/任务状态与Agent下载加固_20261026.md",
       "bytes": 2089,
       "sha256": "df7c85a82c866667381f6d4903c053bb8e3e790994dde928f3880266c7330b2b"
+    },
+    {
+      "path": "docs/启动与预览优化_20261026.md",
+      "bytes": 3904,
+      "sha256": "9b56e5af4f523cd16f3917b671a49b31f80579250258b51c601eb0c39de3cbd4"
     },
     {
       "path": "docs/实验1报告正文.md",
@@ -927,6 +947,16 @@
       "sha256": "ede777e56ae7ff5e0c563d436cb2200f851f2b6760468d5a164b62045305636a"
     },
     {
+      "path": "scripts/profile_model_information.py",
+      "bytes": 1612,
+      "sha256": "e3d7c84e0b8db91440d69d9c59bc07978965c2fde20466574b5b910cf27ccf4a"
+    },
+    {
+      "path": "scripts/record_performance_verification.py",
+      "bytes": 2788,
+      "sha256": "a67f7940a50a5ad29c7d249fbf0fa647e1ecf7690ec5ce1ef6ce87c4c5c525ce"
+    },
+    {
       "path": "scripts/record_upgrade_verification.py",
       "bytes": 2883,
       "sha256": "6f91fa3056f3cb8ad3c0b3fa2decaf002abfa4b0beeedca214946d8b8621208a"
@@ -978,8 +1008,8 @@
     },
     {
       "path": "web/app.js",
-      "bytes": 25150,
-      "sha256": "66075f485b0df03008ada4bd1dee8d12afef2e97b886d7cfa687945df40d2583"
+      "bytes": 26376,
+      "sha256": "0710a51244f6a9a911bf8924c003f7cb081b4fba6c1746a2d95ac4ebed7a12cf"
     },
     {
       "path": "web/assets/lucide.min.js",
@@ -1023,8 +1053,8 @@
     },
     {
       "path": "web/index.html",
-      "bytes": 12865,
-      "sha256": "c366feed927088cd5a0f2c5a68ccd39e2588ec7f470fb9b39d3a2fa6b5bcceac"
+      "bytes": 12869,
+      "sha256": "ac1c1ee375a54c014b9629449a42a6ab31a1025d19e85afe542891528c0e5237"
     },
     {
       "path": "web/preview.css",

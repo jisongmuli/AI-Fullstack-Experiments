@@ -41,6 +41,9 @@ from document_jobs import DocumentJobs, JobError
 
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "code/models"))
+from runtime_assets import asset_problems  # Pure file inspection; no ML imports.
+
 MAX_IMAGE_BYTES = 25 * 1024 * 1024
 MAX_REQUEST_BYTES = 35 * 1024 * 1024
 MAX_TEXT_CHARS = 10_000
@@ -155,6 +158,20 @@ class ModelService:
             if self._fingerprints is None:
                 self._fingerprints = self._compute_fingerprints()
             return dict(self._fingerprints)
+
+    def inspect_assets(self) -> dict:
+        try:
+            problems = asset_problems(self.root)
+            if not (self.root / "code/models/inference.py").is_file():
+                problems.insert(0, "Trained inference module is not available yet.")
+            return {"available": not problems, "reason": "; ".join(problems) or None,
+                    "loaded": self._bundle is not None}
+        except (OSError, ValueError) as exc:
+            return {"available": False, "reason": str(exc), "loaded": self._bundle is not None}
+
+    def cached_fingerprints(self) -> dict[str, str]:
+        with self._fingerprint_lock:
+            return dict(self._fingerprints or {})
 
     def _compute_fingerprints(self) -> dict[str, str]:
         paths = {
@@ -382,6 +399,13 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
             return service.artifact_fingerprints().get(modality)
         return None
 
+    def fallback_fingerprint(raw: Any, modality: str) -> str | None:
+        # Explicit detector versions already identify modern results. Unscored
+        # inputs need no weight scan; legacy unnamed results keep their hash ID.
+        if isinstance(raw, dict) and (raw.get("out_of_scope") or raw.get("model_version") or raw.get("version")):
+            return None
+        return fingerprint(modality)
+
     def detect_text(text: str) -> dict:
         if not text.strip():
             raise HTTPException(status_code=400, detail="Text is empty.")
@@ -396,7 +420,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
             bundle = get_bundle()
             if hasattr(bundle, "predict_text_segments"):
                 raw = bundle.predict_text_segments(text)
-                return _normalize_prediction(raw, "text", fingerprint("chinese_text" if chinese else "text"))
+                return _normalize_prediction(raw, "text", fallback_fingerprint(raw, "chinese_text" if chinese else "text"))
             if chinese:
                 if len(text) < 80 or len(text) > 4000 or han < 40:
                     return _uncertain("中文检测当前只接受 80 至 4000 字符、至少 40 个汉字的文本。", modality="text")
@@ -408,7 +432,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
                 raw = bundle.predict_text_chinese(text)
             else:
                 raw = bundle.predict_text(text)
-            return _normalize_prediction(raw, "text", fingerprint("chinese_text" if chinese else "text"))
+            return _normalize_prediction(raw, "text", fallback_fingerprint(raw, "chinese_text" if chinese else "text"))
         except HTTPException:
             raise
         except Exception as exc:
@@ -424,7 +448,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
             supports_local_evidence = "include_local_evidence" in inspect.signature(predictor).parameters
             raw = predictor(image, include_local_evidence=True) if supports_local_evidence else predictor(image)
             result = _normalize_prediction(raw, "image",
-                                           fingerprint("image" if image.size == (32, 32) else "highres_image"))
+                                           fallback_fingerprint(raw, "image" if image.size == (32, 32) else "highres_image"))
             result["provenance"] = inspect_provenance(data, image.format)
             return result
         except HTTPException:
@@ -482,17 +506,24 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
                 manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
             except (OSError, json.JSONDecodeError):
                 manifest = None
-        try:
-            service.get_bundle()
-            available, reason = True, None
-        except Exception as exc:
-            available, reason = False, str(exc)
+        if hasattr(service, "inspect_assets"):
+            inspection = service.inspect_assets()
+            available, reason = inspection["available"], inspection["reason"]
+            loaded = inspection["loaded"]
+        else:
+            try:
+                service.get_bundle()
+                available, reason, loaded = True, None, True
+            except Exception as exc:
+                available, reason, loaded = False, str(exc), False
         return {
             "available": available,
+            "loaded": loaded,
             "reason": reason,
             "manifest": manifest,
             "evaluation_summary": manifest.get("evaluation_summary", []) if isinstance(manifest, dict) else [],
-            "artifact_fingerprints": service.artifact_fingerprints() if hasattr(service, "artifact_fingerprints") else {},
+            "artifact_fingerprints": service.cached_fingerprints() if hasattr(service, "cached_fingerprints") else {},
+            "fingerprints_verified": bool(service.cached_fingerprints()) if hasattr(service, "cached_fingerprints") else False,
             "scope": {
                 "image": "支持 4K 及以下任意正尺寸的静态 JPG/PNG，包括竖图、超宽图与小图。新版采用 ICML 2026 DEAR，保留原图，最多分析 9 个原生尺度图块，并提供内容凭证与局部敏感度。",
                 "local_evidence": "九宫格逐格模糊后比较模型分数变化；无明显变化时不着色。颜色表示模型对区域的敏感度。",

@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:8005",
+  "actual_models": true,
+  "checks": [
+    {
+      "name": "English",
+      "passed": true,
+      "risk_score": 0.6554,
+      "applicability": "research_2026_english"
+    },
+    {
+      "name": "Chinese",
+      "passed": true,
+      "risk_score": 0.0463,
+      "applicability": "research_2026_chinese"
+    },
+    {
+      "name": "Unseen Latin features",
+      "passed": true,
+      "risk_score": null,
+      "applicability": "insufficient_model_features"
+    },
+    {
+      "name": "Unseen Han features",
+      "passed": true,
+      "risk_score": null,
+      "applicability": "insufficient_model_features"
+    },
+    {
+      "name": "Long-document task and JSON export",
+      "passed": true,
+      "characters": 18198,
+      "segments": 200
+    }
+  ],
+  "accuracy_evaluated": false
+}

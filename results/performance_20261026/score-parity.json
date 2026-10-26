@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "image_inputs": 13,
+  "text_workflow_checks": 5,
+  "image_and_text_reported_scores_unchanged": true,
+  "scope": "Regression fixtures, not an additional accuracy benchmark"
+}

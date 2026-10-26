@@ -51,3 +51,5 @@ py -3.12 setup_environment.py --with-llm
 文本推理算法升级见 `docs/文本推理算法升级_20261026.md`，包括中英文分组批量推理、调用内复用及有效特征检查；对照与真实模型记录位于 `results/algorithm_20261026/`。
 
 当前版本已移除 Agent，采用验证集选定的 MPU v3 / DEAR 模型，并支持 4K 及以下任意正尺寸。新模型、2026 样本及测量记录见 `docs/20261026_模型升级与Agent移除.md` 和 `results/upgrade_20261026/`。
+
+后续按需加载、模型信息查询和图片预览优化见 `docs/启动与预览优化_20261026.md`，性能对照与验证资料保存在 `results/performance_20261026/`。

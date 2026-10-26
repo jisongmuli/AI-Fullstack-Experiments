@@ -1,0 +1,96 @@
+{
+  "status": "passed",
+  "actual_models": true,
+  "checks": [
+    {
+      "name": "Current service presents four workflows",
+      "passed": true
+    },
+    {
+      "name": "A full 4K image is accepted by the browser",
+      "passed": true
+    },
+    {
+      "name": "The server receives the original 4K dimensions",
+      "passed": true
+    },
+    {
+      "name": "The image response uses DEAR 2026",
+      "passed": true
+    },
+    {
+      "name": "A single selected image detector renders correctly",
+      "passed": true
+    },
+    {
+      "name": "Local sensitivity data remains available",
+      "passed": true
+    },
+    {
+      "name": "A 1px image receives a valid analysis response",
+      "passed": true
+    },
+    {
+      "name": "Minimal pixel information retains a review status",
+      "passed": true
+    },
+    {
+      "name": "Current language models return separate paragraph results",
+      "passed": true
+    },
+    {
+      "name": "Paragraph styles survive Agent removal",
+      "passed": true
+    },
+    {
+      "name": "A real Transformer document task completes through the interface",
+      "passed": true
+    },
+    {
+      "name": "The report preserves all original Unicode text",
+      "passed": true
+    },
+    {
+      "name": "Document exports have no Agent handoff action",
+      "passed": true
+    },
+    {
+      "name": "docx export works with the current models",
+      "passed": true
+    },
+    {
+      "name": "html export works with the current models",
+      "passed": true
+    },
+    {
+      "name": "json export works with the current models",
+      "passed": true
+    },
+    {
+      "name": "The modern document report fits a 390px viewport",
+      "passed": true
+    },
+    {
+      "name": "Model information displays all four measured cohorts",
+      "passed": true
+    },
+    {
+      "name": "The model dialog displays the actual Chinese heldout measurement",
+      "passed": true
+    },
+    {
+      "name": "Model measurements fit the mobile viewport",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors in the modern workflows",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "downloads": [
+    "文档检测报告_粘贴文本.docx",
+    "文档检测报告_粘贴文本.html",
+    "文档检测报告_粘贴文本.json"
+  ]
+}

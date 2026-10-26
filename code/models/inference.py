@@ -15,6 +15,7 @@ import torch
 from PIL import Image
 
 from text_segments import noncontent_reason, segment_ranges
+from runtime_assets import algorithm_policy, asset_problems
 
 
 def _calibrate(raw_score: float, coefficient: float, intercept: float) -> float:
@@ -26,48 +27,54 @@ class DetectorService:
     def __init__(self, root: str | Path):
         self.root = Path(root).resolve()
         self.config = json.loads((self.root / "models/model_config.json").read_text(encoding="utf-8"))
-        self.image_model = torch.jit.load(io.BytesIO((self.root / "models/image_detector.ts").read_bytes()), map_location="cpu")
-        self.image_model.eval()
-        self.text_model = joblib.load(self.root / "models/text_detector.joblib")
-        self._english_feature_names = self.text_model["vectorizer"].get_feature_names_out()
-        zh_model_path = self.root / "models/text_detector_zh.joblib"
+        self.image_model = self.text_model = self.zh_text_model = None
+        self._english_feature_names = None
+        self._image_lock = Lock()
+        self._text_lock = Lock()
         zh_config_path = self.root / "models/text_zh_config.json"
-        self.zh_text_model = joblib.load(zh_model_path) if zh_model_path.is_file() else None
         self.zh_config = json.loads(zh_config_path.read_text(encoding="utf-8")) if zh_config_path.is_file() else None
         self.highres_image_model = None
         self._highres_lock = Lock()
-        policy_path = self.root / "models/algorithm_policy.json"
-        self.algorithm_policy = json.loads(policy_path.read_text(encoding="utf-8")) if policy_path.is_file() else {}
+        self.algorithm_policy = algorithm_policy(self.root)
         self._modern_engines = {}
         self._modern_lock = Lock()
         if self.algorithm_policy:
-            required = []
-            if self.algorithm_policy.get("text_backend") == "taste":
-                required += ["taste/detector_ep3.pt", "taste/config.json", "taste/tokenizer.json",
-                             "taste/policy.json", "taste/chinese_head.npz"]
-            elif self.algorithm_policy.get("text_backend") == "transformer_2026":
-                required += ["text_policy_2026.json", "text_calibration_phase1.json",
-                             "taste/policy.json", "taste/chinese_head.npz",
-                             "mpu_zh_v3/pytorch_model.bin", "mpu_en_v3/pytorch_model.bin"]
-                if self.algorithm_policy.get("text_chinese") != "mpu":
-                    required += ["taste/detector_ep3.pt", "taste/config.json", "taste/tokenizer.json"]
-            if self.algorithm_policy.get("image_backend") == "dear":
-                required += ["dear_r/model.pth", "dear_c/model.pth", "dear_r/policy.json"]
-            for name in required:
-                path = self.root / "models" / name
-                if not path.is_file() or path.stat().st_size < 16:
-                    raise FileNotFoundError(f"Required 2026 detector asset is missing: {name}")
-                if path.suffix in {".pt", ".pth", ".bin"} and path.stat().st_size < 1024 * 1024:
-                    raise ValueError(f"Restore the full LFS checkpoint before starting: {name}")
+            problems = asset_problems(self.root, self.algorithm_policy)
+            if problems:
+                raise FileNotFoundError("; ".join(problems))
             torch.set_num_threads(int(self.algorithm_policy.get("cpu_threads", 4)))
+
+    def _load_text_models(self):
+        if self.text_model is not None:
+            return
+        with self._text_lock:
+            if self.text_model is None:
+                english = joblib.load(self.root / "models/text_detector.joblib")
+                zh_path = self.root / "models/text_detector_zh.joblib"
+                chinese = joblib.load(zh_path) if zh_path.is_file() else None
+                names = english["vectorizer"].get_feature_names_out()
+                self.zh_text_model, self._english_feature_names = chinese, names
+                self.text_model = english  # Publish only after the whole vocabulary pair is ready.
+
+    def _load_image_model(self):
+        if self.image_model is not None:
+            return
+        with self._image_lock:
+            if self.image_model is None:
+                model = torch.jit.load(str(self.root / "models/image_detector.ts"), map_location="cpu")
+                self.image_model = model.eval()
 
     def _modern(self, modality):
         if modality not in self._modern_engines:
             with self._modern_lock:
                 if modality not in self._modern_engines:
                     from modern_inference import ModernImageAdapter, ModernTextAdapter
-                    self._modern_engines[modality] = (ModernImageAdapter(self.root) if modality == "image" else
-                        ModernTextAdapter(self.root, self.text_model["vectorizer"], self.zh_text_model["vectorizer"]))
+                    if modality == "image":
+                        self._modern_engines[modality] = ModernImageAdapter(self.root)
+                    else:
+                        self._load_text_models()
+                        self._modern_engines[modality] = ModernTextAdapter(
+                            self.root, self.text_model["vectorizer"], self.zh_text_model["vectorizer"])
         return self._modern_engines[modality]
 
     def _result(self, modality: str, probability: float, signals: list[str], out_of_scope: bool) -> dict:
@@ -128,6 +135,7 @@ class DetectorService:
                 return result
             pixels = np.asarray(source.convert("RGB").resize((32, 32)), dtype=np.float32).copy() / 255.0
         tensor = torch.from_numpy(pixels).permute(2, 0, 1).unsqueeze(0)
+        self._load_image_model()
         with torch.inference_mode():
             logits = self.image_model(tensor)[0]
         raw_score = float(logits[1] - logits[0])
@@ -185,6 +193,7 @@ class DetectorService:
         return [{**predictions[text], "signals": list(predictions[text]["signals"])} for text in texts]
 
     def _predict_english_batch(self, texts: list[str]) -> list[dict]:
+        self._load_text_models()
         vectorizer = self.text_model["vectorizer"]
         classifier = self.text_model["classifier"]
         features = vectorizer.transform(texts).tocsr()
@@ -229,6 +238,7 @@ class DetectorService:
         return self._predict_chinese_batch([text])[0]
 
     def _predict_chinese_batch(self, texts: list[str]) -> list[dict]:
+        self._load_text_models()
         if self.zh_text_model is None or self.zh_config is None:
             raise FileNotFoundError("Chinese text model artifact is missing")
         cleaned = []

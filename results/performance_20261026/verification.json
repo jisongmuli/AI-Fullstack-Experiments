@@ -1,0 +1,109 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-26T09:52:39.575945+00:00",
+  "baseline_commit": "6ccf4a6",
+  "python": "3.12.2",
+  "device": "CPU",
+  "url": "http://127.0.0.1:8005/",
+  "unit_suites": [
+    {
+      "suite": "server-tests",
+      "run": 105,
+      "passed": 104,
+      "skipped": 1
+    },
+    {
+      "suite": "model-tests",
+      "run": 41,
+      "passed": 41,
+      "skipped": 0
+    },
+    {
+      "suite": "segments",
+      "run": 12,
+      "passed": 12,
+      "skipped": 0
+    },
+    {
+      "suite": "chinese",
+      "run": 3,
+      "passed": 3,
+      "skipped": 0
+    }
+  ],
+  "tests_run": 161,
+  "tests_passed": 160,
+  "tests_skipped": 1,
+  "skip_reason": "Optional official signed C2PA fixture is absent",
+  "workflow_checks": [
+    {
+      "record": "results/performance_20261026/resolutions.json",
+      "checks": 13,
+      "status": "passed"
+    },
+    {
+      "record": "results/performance_20261026/text-smoke.json",
+      "checks": 5,
+      "status": "passed"
+    },
+    {
+      "record": "output/playwright/performance-workflow.json",
+      "checks": 21,
+      "status": "passed"
+    },
+    {
+      "record": "output/playwright/performance-regression.json",
+      "checks": 16,
+      "status": "passed"
+    }
+  ],
+  "workflow_checks_passed": 55,
+  "profile_before": {
+    "operation": "first_model_information",
+    "seconds": 10.9799,
+    "rss_increase_mb": 318.27,
+    "bundle_loaded": true,
+    "http_status": 200,
+    "fingerprint_count": 11
+  },
+  "profile_after": {
+    "operation": "first_model_information",
+    "seconds": 0.0382,
+    "rss_increase_mb": 1.82,
+    "bundle_loaded": false,
+    "http_status": 200,
+    "fingerprint_count": 0
+  },
+  "profile_scope": "Single first model-information request in separate fresh Python processes; not inference latency or an averaged benchmark",
+  "score_regression": {
+    "status": "passed",
+    "image_inputs": 13,
+    "text_workflow_checks": 5,
+    "image_and_text_reported_scores_unchanged": true,
+    "scope": "Regression fixtures, not an additional accuracy benchmark"
+  },
+  "concurrency": {
+    "status": "passed",
+    "concurrent_real_image_tasks": 2,
+    "excess_request_status": 503,
+    "retry_after_seconds": 2,
+    "health_latency_ms": [
+      3.38,
+      4.13,
+      5.7,
+      7.16,
+      3.43,
+      4.08
+    ],
+    "max_health_latency_ms": 7.16,
+    "elapsed_seconds": 13.65,
+    "processing_after": {
+      "active": 0,
+      "limit": 2,
+      "completed": 24,
+      "rejected": 1
+    },
+    "accuracy_evaluated": false
+  },
+  "accuracy_record": "results/upgrade_20261026/final-evaluation.json"
+}
