@@ -57,11 +57,6 @@ def main():
                 assert source[segment["start"]:segment["end"]] == segment["text"]
             checks.append({"name": "Long-document task and JSON export", "passed": True,
                            "characters": len(source), "segments": len(report["detection"]["segments"])})
-            agent = client.post("/api/agent/run", json={"text": oov, "edit": False})
-            agent.raise_for_status()
-            findings = agent.json()["findings"]
-            assert findings["text"]["risk_score"] is None
-            checks.append({"name": "Agent preserves zero-feature abstention", "passed": True})
         finally:
             for job_id in jobs:
                 value = client.get(f"/api/document/jobs/{job_id}")

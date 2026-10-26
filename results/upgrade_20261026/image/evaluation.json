@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "policy": {
+    "method": "DEAR-r-ICML2026",
+    "variant": "dear_r",
+    "tile_size": 256,
+    "maximum_native_crops": 9,
+    "calibration": {
+      "coefficient": 2.824529232902119,
+      "intercept": 0.5453489856729128
+    },
+    "validation_samples": 64,
+    "source_revision": "b85af61d93cd4fd5e558b3ee69f6d93639fce83f",
+    "calibration_scope": "External labeled public NTIRE 2026 training-shard audit slice"
+  },
+  "heldout_results": {
+    "native": {
+      "legacy": {
+        "samples": 200,
+        "human": 100,
+        "ai": 100,
+        "accuracy": 0.735,
+        "balanced_accuracy": 0.735,
+        "auroc": 0.8338,
+        "false_positive_rate": 0.4,
+        "false_negative_rate": 0.13,
+        "tn": 60,
+        "fp": 40,
+        "fn": 13,
+        "tp": 87
+      },
+      "dear2026": {
+        "samples": 200,
+        "human": 100,
+        "ai": 100,
+        "accuracy": 0.925,
+        "balanced_accuracy": 0.925,
+        "auroc": 0.9805999999999999,
+        "false_positive_rate": 0.1,
+        "false_negative_rate": 0.05,
+        "tn": 90,
+        "fp": 10,
+        "fn": 5,
+        "tp": 95
+      }
+    },
+    "jpeg_q65": {
+      "samples": 40,
+      "human": 20,
+      "ai": 20,
+      "accuracy": 0.95,
+      "balanced_accuracy": 0.95,
+      "auroc": 0.9775,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.1,
+      "tn": 20,
+      "fp": 0,
+      "fn": 2,
+      "tp": 18
+    },
+    "resize_320x240": {
+      "samples": 40,
+      "human": 20,
+      "ai": 20,
+      "accuracy": 0.725,
+      "balanced_accuracy": 0.725,
+      "auroc": 0.9,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.55,
+      "tn": 20,
+      "fp": 0,
+      "fn": 11,
+      "tp": 9
+    }
+  },
+  "official_challenge_score": false,
+  "comparison_scope": "200 reserved external images; robustness subsets derived from 40 of those sources"
+}

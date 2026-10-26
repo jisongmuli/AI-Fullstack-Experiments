@@ -30,7 +30,7 @@
     return '';
   };
 
-  // Shared with the existing text and Agent pages. Return DOM rather than an
+  // Shared with the existing text page. Return DOM rather than an
   // interpolated HTML string so document text can never become executable markup.
   function renderInline(text, suppliedSegments, options = {}) {
     const original = typeof text === 'string' ? text : '';
@@ -644,10 +644,6 @@
         button.addEventListener('click', () => downloadReport(report, format));
         exports.append(button);
       });
-      const agentSummary = make('button', 'document-export-link', '交给 Agent 汇总');
-      agentSummary.type = 'button';
-      agentSummary.addEventListener('click', () => window.dispatchEvent(new CustomEvent('aigc:document-result', {detail: report})));
-      exports.append(agentSummary);
       const deleteReport = make('button', 'document-export-link', '删除本次报告');
       deleteReport.type = 'button';
       deleteReport.title = '从本地服务删除本次报告和提取原文，并移除对应浏览器摘要记录';

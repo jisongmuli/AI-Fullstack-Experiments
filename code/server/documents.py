@@ -487,6 +487,7 @@ def _abstain_segment(text: str, start: int, end: int, reason: str, applicability
 def _detect_ranges(text: str, detect_text: Callable[[str], dict], progress=None,
                    check_cancel=None) -> tuple[list[dict], list[str]]:
     segments, versions = [], []
+    predictions = {}
     ranges = segment_ranges(text)
     if progress:
         progress(0, len(ranges))
@@ -502,7 +503,9 @@ def _detect_ranges(text: str, detect_text: Callable[[str], dict], progress=None,
             continue
         if len(excerpt) > 10_000:
             raise RuntimeError("Document segmentation exceeded the detector input limit.")
-        prediction = detect_text(excerpt)
+        if excerpt not in predictions:
+            predictions[excerpt] = detect_text(excerpt)
+        prediction = predictions[excerpt]
         if check_cancel:
             check_cancel()
         if not isinstance(prediction, dict):

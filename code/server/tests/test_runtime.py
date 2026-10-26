@@ -107,7 +107,7 @@ class RuntimeConcurrencyTests(unittest.IsolatedAsyncioTestCase):
             sent.append(message)
 
         await ProcessingLimit(downstream, state)(
-            {"type": "http", "method": "POST", "path": "/api/agent/upload"}, receive, send)
+            {"type": "http", "method": "POST", "path": "/api/document/jobs"}, receive, send)
         self.assertFalse(received)
         self.assertEqual(sent[0]["status"], 503)
         self.assertEqual(state.snapshot()["active"], 1)
@@ -174,15 +174,6 @@ class RuntimeLifecycleTests(unittest.TestCase):
         finally:
             store.close()
 
-    def test_agent_validates_document_before_image_inference(self):
-        with TestClient(create_app(), base_url="http://localhost") as client, patch("app.run_agent") as agent:
-            response = client.post("/api/agent/upload", files={
-                "file": ("image.png", png_bytes(), "image/png"),
-                "document": ("broken.docx", b"broken archive", "application/octet-stream"),
-            })
-            self.assertEqual(response.status_code, 422)
-            agent.assert_not_called()
-            self.assertEqual(client.get("/api/runtime").json()["processing"]["active"], 0)
 
 
 if __name__ == "__main__":

@@ -1,13 +1,27 @@
-# AIGC最新版跨电脑运行包
+# 内容可信工作台
 
-这是2026年10月11日的运行代码和模型交接包，包含图像、文本、文档检测、可信编辑与Agent工具工作流。先读先读我_跨电脑运行与Codex交接.md。
+当前开发版：2026-10-26。系统包含图像检测、中英文文本检测、文档检测和可信编辑四个模块。
 
-Windows x64：Python3.12，双击安装环境.cmd，然后运行系统.cmd；浏览器打开 http://127.0.0.1:8002/?v=handoff#document 。默认CPU，CUDA另按交接说明配置。
+- 图片：ICML 2026 DEAR，按分辨率使用 DEAR-r / DEAR-c 与各自校准参数；支持 4K 及以下任意正尺寸的静态 JPG/PNG。
+- 文本：MPU 作者当前公开的中英文 v3 Short 权重；中文使用 NLPCC 2026 Phase 1 校准，长文本通过 512 token 滑窗覆盖。
+- 文档：DOCX、带文字层的 PDF、TXT、Markdown；进度、取消、后台继续、刷新恢复；Word / HTML / JSON 报告与记录管理。
+- 编辑：英文清晰度建议、数字等内容检查，以及可选的本地大模型编辑预览。
 
-完整包附运行模型，轻量包先执行 `py -3.12 download_runtime_weights.py`，网络受限可指定镜像。两者均需安装依赖。`verify_package.py`校验全部运行文件；模型来源和下载revision见RUNTIME_MODELS.json。
+本机新版入口为 **http://127.0.0.1:8005/**。变更、来源与样本实测见 [本轮升级记录](docs/20261026_模型升级与Agent移除.md)，原始记录位于 `results/upgrade_20261026/`。
 
-不要复制别人电脑的虚拟环境，使用本目录.venv。原始训练数据和历史实验文件夹不在此包，检测服务不依赖这些训练数据。
+## 获取与运行
 
-接收方Codex请先读AGENTS.md。目录code为最新源码，web为界面，models为实际运行模型；PACKAGE_VERIFICATION.json记录本机从独立目录实测的结果及未验证范围。README_SOURCE.md仅保留原项目历史背景。
+从私有仓库 `codex/system-stability` 分支获取代码，执行 `git lfs pull` 恢复模型与实验大文件。使用 Python 3.12 和项目 `.venv`：
 
-AI特征覆盖率不是实际AI撰写比例，图像热图不是区域生成真值。本系统未完成真实平台审核上线验收。
+```powershell
+py -3.12 setup_environment.py --with-llm
+.venv\Scripts\python.exe run.py
+```
+
+新环境默认地址为 `http://127.0.0.1:8002/`。端口被占用时，使用 `run.py --port 8005` 或其他空闲端口。服务默认仅监听本机，当前电脑使用 CPU 推理。
+
+`verify_package.py` 校验运行文件；新样本与模型指纹用 `scripts/verify_2026_assets.py` 核查。检测运行无需训练数据，数据与中间特征用于实验复现。
+
+模型来源与许可见 `MODEL_SOURCES.md`。原始 2026-10-11 运行包与交接说明保留在仓库中，`README_SOURCE.md` 保留更早的实验背景。报告高亮统计表示字符覆盖率，图片热图表示模型敏感度。
+
+接收项目的 Codex 先阅读 `AGENTS.md`。

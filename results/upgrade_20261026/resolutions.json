@@ -1,0 +1,165 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:8005",
+  "checks": [
+    {
+      "size": [
+        1,
+        1
+      ],
+      "mode": "RGB",
+      "passed": true,
+      "bytes": 69,
+      "seconds": 0.108,
+      "model_version": "dear_c-ICML2026-native-crops",
+      "risk_score": 0.0479
+    },
+    {
+      "size": [
+        1,
+        4096
+      ],
+      "mode": "L",
+      "passed": true,
+      "bytes": 119,
+      "seconds": 0.255,
+      "model_version": "dear_c-ICML2026-native-crops",
+      "risk_score": 0.7317
+    },
+    {
+      "size": [
+        4096,
+        1
+      ],
+      "mode": "RGBA",
+      "passed": true,
+      "bytes": 103,
+      "seconds": 0.241,
+      "model_version": "dear_c-ICML2026-native-crops",
+      "risk_score": 0.0068
+    },
+    {
+      "size": [
+        17,
+        29
+      ],
+      "mode": "RGB",
+      "passed": true,
+      "bytes": 99,
+      "seconds": 0.137,
+      "model_version": "dear_c-ICML2026-native-crops",
+      "risk_score": 0.8655
+    },
+    {
+      "size": [
+        32,
+        32
+      ],
+      "mode": "L",
+      "passed": true,
+      "bytes": 88,
+      "seconds": 0.152,
+      "model_version": "dear_c-ICML2026-native-crops",
+      "risk_score": 0.0577
+    },
+    {
+      "size": [
+        199,
+        199
+      ],
+      "mode": "RGB",
+      "passed": true,
+      "bytes": 587,
+      "seconds": 2.354,
+      "model_version": "dear_c-ICML2026-native-crops",
+      "risk_score": 0.5121
+    },
+    {
+      "size": [
+        289,
+        202
+      ],
+      "mode": "RGB",
+      "passed": true,
+      "bytes": 646,
+      "seconds": 3.043,
+      "model_version": "dear_c-ICML2026-native-crops",
+      "risk_score": 0.4963
+    },
+    {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "passed": true,
+      "bytes": 1881,
+      "seconds": 5.211,
+      "model_version": "dear_r-ICML2026-native-crops",
+      "risk_score": 0.2968
+    },
+    {
+      "size": [
+        1920,
+        1080
+      ],
+      "mode": "RGB",
+      "passed": true,
+      "bytes": 8594,
+      "seconds": 5.125,
+      "model_version": "dear_r-ICML2026-native-crops",
+      "risk_score": 0.2968
+    },
+    {
+      "size": [
+        3840,
+        2160
+      ],
+      "mode": "RGB",
+      "passed": true,
+      "bytes": 29373,
+      "seconds": 5.126,
+      "model_version": "dear_r-ICML2026-native-crops",
+      "risk_score": 0.2968
+    },
+    {
+      "size": [
+        2160,
+        3840
+      ],
+      "mode": "RGB",
+      "passed": true,
+      "bytes": 32301,
+      "seconds": 5.265,
+      "model_version": "dear_r-ICML2026-native-crops",
+      "risk_score": 0.2968
+    },
+    {
+      "size": [
+        4096,
+        2160
+      ],
+      "mode": "RGB",
+      "passed": true,
+      "bytes": 31005,
+      "seconds": 5.012,
+      "model_version": "dear_r-ICML2026-native-crops",
+      "risk_score": 0.2968
+    },
+    {
+      "size": [
+        4096,
+        4096
+      ],
+      "mode": "RGB",
+      "passed": true,
+      "bytes": 58637,
+      "seconds": 6.916,
+      "model_version": "dear_r-ICML2026-native-crops",
+      "risk_score": 0.2968
+    }
+  ],
+  "actual_models": true,
+  "fixture_scope": "Synthetic geometry/mode inputs; model accuracy is evaluated separately on labeled 2026 datasets",
+  "accuracy_evaluated": false
+}

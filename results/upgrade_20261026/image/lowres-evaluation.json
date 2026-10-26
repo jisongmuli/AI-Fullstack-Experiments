@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "validation_auroc": {
+    "dear_r": 0.853515625,
+    "dear_c": 0.88671875
+  },
+  "selected_variant": "dear_c",
+  "calibration": {
+    "coefficient": 1.9285320197679747,
+    "intercept": 1.3544555196928387
+  },
+  "fresh_holdout": {
+    "total_samples": 120,
+    "samples": 120,
+    "scored_coverage": 1.0,
+    "human": 60,
+    "ai": 60,
+    "precision": 0.8813559322033898,
+    "recall": 0.8666666666666667,
+    "f1": 0.8739495798319328,
+    "accuracy_wilson_95": [
+      0.8039705979199262,
+      0.9227650272660463
+    ],
+    "fpr_wilson_95": [
+      0.0576772064005603,
+      0.2217878802417086
+    ],
+    "fnr_wilson_95": [
+      0.06914109480586972,
+      0.24165159676499615
+    ],
+    "accuracy": 0.875,
+    "balanced_accuracy": 0.875,
+    "auroc": 0.9258333333333333,
+    "false_positive_rate": 0.11666666666666667,
+    "false_negative_rate": 0.13333333333333333,
+    "tn": 53,
+    "fp": 7,
+    "fn": 8,
+    "tp": 52
+  },
+  "native_size_threshold": 512,
+  "fresh_test_sources": 120,
+  "resize": [
+    320,
+    240
+  ],
+  "same_sources_global_calibration_baseline": {
+    "total_samples": 120,
+    "samples": 120,
+    "scored_coverage": 1.0,
+    "human": 60,
+    "ai": 60,
+    "precision": 1.0,
+    "recall": 0.5833333333333334,
+    "f1": 0.7368421052631579,
+    "accuracy_wilson_95": [
+      0.7105232156701865,
+      0.8547156039189031
+    ],
+    "fpr_wilson_95": [
+      0.0,
+      0.06017185214208986
+    ],
+    "fnr_wilson_95": [
+      0.30064278558341617,
+      0.5427191897735989
+    ],
+    "accuracy": 0.7916666666666666,
+    "balanced_accuracy": 0.7916666666666667,
+    "auroc": 0.8663888888888889,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.4166666666666667,
+    "tn": 60,
+    "fp": 0,
+    "fn": 25,
+    "tp": 35
+  }
+}

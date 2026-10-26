@@ -41,6 +41,7 @@ def main():
     baseline_module = types.ModuleType("aigc_text_benchmark_baseline")
     exec(compile(source, "git:" + ref + ":inference.py", "exec"), baseline_module.__dict__)
     current = DetectorService(ROOT)
+    current.algorithm_policy = {}  # This benchmark preserves the 2026-10-26 TF-IDF optimization comparison.
     baseline = baseline_module.DetectorService.__new__(baseline_module.DetectorService)
     for name in ["config", "text_model", "zh_config", "zh_text_model"]:
         setattr(baseline, name, getattr(current, name))

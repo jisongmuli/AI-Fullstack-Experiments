@@ -1,5 +1,23 @@
 # 运行模型来源与许可依据
 
+## 2026-10-26 开发版补充
+
+当前运行策略为 `models/algorithm_policy.json`，中文和英文使用 MPU 作者 v3 Short，图片按分辨率选择 DEAR-r / DEAR-c。原有模型保留为历史基线。
+
+| 模型目录 | 固定上游来源 | revision / 指纹依据 | 许可说明 |
+| --- | --- | --- | --- |
+| `models/mpu_zh_v3` | [yuchuantian/AIGC_detector_zhv3short](https://huggingface.co/yuchuantian/AIGC_detector_zhv3short) | `7bf6e1d6496353a88365f1dcdb3a6ace35f46b39`，权重 SHA-256 `f64faae413291a78be2cb36dd9889a916a6202a03b6f6f904d5579089b31f2a8` | 作者模型卡与 [MPU 代码](https://github.com/YuchuanTian/AIGC_text_detector) 声明 Apache-2.0 |
+| `models/mpu_en_v3` | [yuchuantian/AIGC_detector_env3short](https://huggingface.co/yuchuantian/AIGC_detector_env3short) | `32a89cd8ace09f3eccdf930bd0a3f80f77b55d27`，权重 SHA-256 `f2d08394f64b0481565ad77c1ead347b62f546cb360751ca82f93a026d32cd4f` | 同上 |
+| `models/dear_r` | [k-aisi-anti-deepfake/dear-checkpoints](https://huggingface.co/k-aisi-anti-deepfake/dear-checkpoints) | `5b57350b0ee75553109b3844f3c8a9341fc7e707`，权重 SHA-256 `430fde11debe1850ab24af43945b4d68f2bb3ee52a837d84cf525eb603ccde97` | CC BY-NC 4.0，附 CreativeML OpenRAIL-M 使用条件；原文保存于 `licenses/dear/` |
+| `models/dear_c` | 同上 | 同 revision，权重 SHA-256 `c8fa321d0cac86d36def6508f787f65bf22420d4648722956ad00375a347c7bc` | 同上 |
+| `models/taste` | [TASTE 作者实现与公开权重链接](https://github.com/Liyuuuu111/MGT-Eval/tree/master/src/detectors/finetuned/TASTE) | 官方链接权重包 SHA-256 `e9cd44fa5ab134ce0c2061438368036109729429fdaa534f8f54d2753d05a80e`；提取权重 SHA-256 `f79328c19ec0f1044dd24dd6eb9c5d5c96aa01b7036765251be9a426b9a46cbf` | 本次作为研究对照保留；公开包未附单独权重许可证，按上游说明记录来源 |
+
+MPU 主仓库截至本次核查列出的最新模型系列为 2025 年 6 月 v3；方法论文为 ICLR 2024。DEAR 论文为 ICML 2026，权重于 2026 年 7 月发布。中文生产校准参数来自 NLPCC 2026 Phase 1；小图模型选择和参数来自单独 NTIRE 验证切片。
+
+模型下载与数据获取脚本使用固定 revision、大小与 SHA-256。逐文件记录位于 `results/upgrade_20261026/asset-receipts.json`、`mpu-assets.json`、`phase1-assets.json`，数据许可与出处保留在原数据目录说明中。
+
+以下保留原始 2026-10-11 交接包的来源记录。
+
 核查日期：2026 年 10 月 11 日。本文件由交接包整理者编写，不是上游原始模型卡或作者签署的许可证明。
 
 ## 固定版本

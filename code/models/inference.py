@@ -23,10 +23,6 @@ def _calibrate(raw_score: float, coefficient: float, intercept: float) -> float:
 
 
 class DetectorService:
-    # Post-hoc resize stress tests found substantial changes already at 202px;
-    # 200px is a display guardrail, not a calibrated image-authenticity limit.
-    MIN_EXPERIMENTAL_IMAGE_SIDE = 200
-
     def __init__(self, root: str | Path):
         self.root = Path(root).resolve()
         self.config = json.loads((self.root / "models/model_config.json").read_text(encoding="utf-8"))
@@ -40,6 +36,39 @@ class DetectorService:
         self.zh_config = json.loads(zh_config_path.read_text(encoding="utf-8")) if zh_config_path.is_file() else None
         self.highres_image_model = None
         self._highres_lock = Lock()
+        policy_path = self.root / "models/algorithm_policy.json"
+        self.algorithm_policy = json.loads(policy_path.read_text(encoding="utf-8")) if policy_path.is_file() else {}
+        self._modern_engines = {}
+        self._modern_lock = Lock()
+        if self.algorithm_policy:
+            required = []
+            if self.algorithm_policy.get("text_backend") == "taste":
+                required += ["taste/detector_ep3.pt", "taste/config.json", "taste/tokenizer.json",
+                             "taste/policy.json", "taste/chinese_head.npz"]
+            elif self.algorithm_policy.get("text_backend") == "transformer_2026":
+                required += ["text_policy_2026.json", "text_calibration_phase1.json",
+                             "taste/policy.json", "taste/chinese_head.npz",
+                             "mpu_zh_v3/pytorch_model.bin", "mpu_en_v3/pytorch_model.bin"]
+                if self.algorithm_policy.get("text_chinese") != "mpu":
+                    required += ["taste/detector_ep3.pt", "taste/config.json", "taste/tokenizer.json"]
+            if self.algorithm_policy.get("image_backend") == "dear":
+                required += ["dear_r/model.pth", "dear_c/model.pth", "dear_r/policy.json"]
+            for name in required:
+                path = self.root / "models" / name
+                if not path.is_file() or path.stat().st_size < 16:
+                    raise FileNotFoundError(f"Required 2026 detector asset is missing: {name}")
+                if path.suffix in {".pt", ".pth", ".bin"} and path.stat().st_size < 1024 * 1024:
+                    raise ValueError(f"Restore the full LFS checkpoint before starting: {name}")
+            torch.set_num_threads(int(self.algorithm_policy.get("cpu_threads", 4)))
+
+    def _modern(self, modality):
+        if modality not in self._modern_engines:
+            with self._modern_lock:
+                if modality not in self._modern_engines:
+                    from modern_inference import ModernImageAdapter, ModernTextAdapter
+                    self._modern_engines[modality] = (ModernImageAdapter(self.root) if modality == "image" else
+                        ModernTextAdapter(self.root, self.text_model["vectorizer"], self.zh_text_model["vectorizer"]))
+        return self._modern_engines[modality]
 
     def _result(self, modality: str, probability: float, signals: list[str], out_of_scope: bool) -> dict:
         threshold = float(self.config["abstain_probability"])
@@ -69,13 +98,9 @@ class DetectorService:
             source = Image.open(image)
         with source:
             original_size = source.size
+            if getattr(self, "algorithm_policy", {}).get("image_backend") == "dear":
+                return self._modern("image").predict(source, include_local_evidence=include_local_evidence)
             if original_size != (32, 32):
-                if min(original_size) < self.MIN_EXPERIMENTAL_IMAGE_SIDE:
-                    return {
-                        "out_of_scope": True,
-                        "scope_reason": "图像短边小于 200 像素，缩放实验发现双模型候选分数明显不稳定；不提供分数。",
-                        "applicability": "insufficient_resolution",
-                    }
                 if self.highres_image_model is None:
                     with self._highres_lock:
                         if self.highres_image_model is None:
@@ -139,6 +164,8 @@ class DetectorService:
             raise ValueError("batch_size must be an integer between 1 and 64")
         for text in texts:
             self._validate_text(text)
+        if getattr(self, "algorithm_policy", {}).get("text_backend") in {"taste", "transformer_2026"}:
+            return self._modern("text").predict_many(texts)
         predictions = {}
         groups = {"english": [], "chinese": []}
         for text in dict.fromkeys(texts):
@@ -197,6 +224,8 @@ class DetectorService:
 
     def predict_text_chinese(self, text: str) -> dict:
         self._validate_text(text)
+        if getattr(self, "algorithm_policy", {}).get("text_backend") in {"taste", "transformer_2026"}:
+            return self.predict_text_batch([text])[0]
         return self._predict_chinese_batch([text])[0]
 
     def _predict_chinese_batch(self, texts: list[str]) -> list[dict]:

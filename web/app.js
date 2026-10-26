@@ -1,14 +1,15 @@
-const state={view:"image",image:null,imageBusy:false,imageSelectionVersion:0,textBusy:false,textResultSource:null,editBusy:false,editResultSource:null,healthBusy:false,healthTimer:null,agentImage:null,agentDocument:null,agentBusy:false,mode:"clarity",models:null};
+const state={view:"image",image:null,imageBusy:false,imageSelectionVersion:0,textBusy:false,textResultSource:null,editBusy:false,editResultSource:null,healthBusy:false,healthTimer:null,mode:"clarity",models:null};
 document.addEventListener("DOMContentLoaded",()=>{document.getElementById("run-llm-edit").onclick=runLLMEdit});
 const $=id=>document.getElementById(id);
 const icon=()=>window.lucide?.createIcons();
 const escapeHtml=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[c]);
 const fmtScore=value=>Math.round(Math.max(0,Math.min(1,Number(value)||0))*100);
+const pct=value=>`${Number(value).toFixed(1)}%`;
 const bytes=n=>n<1024?`${n} B`:n<1048576?`${(n/1024).toFixed(1)} KB`:`${(n/1048576).toFixed(1)} MB`;
 function previewReason(result){if(result.status==="outside_scope")return"当前只支持 20 至 320 字符的英文段落。";const reason=String(result.reason||"");const issues=[];if(reason.includes("distinct edit"))issues.push("未产生有效改写");if(reason.includes("commentary"))issues.push("输出包含解释文字");if(reason.includes("unexpectedly long"))issues.push("输出长度异常");if(reason.includes("meaning safeguard"))issues.push("原意表面检查未通过");if(reason.includes("identifier"))issues.push("字母数字标识发生变化");return issues.length?`${issues.join("；")}。请保留原文并人工核对。`:"候选改写仅供参考；使用前请逐句核对事实和原意。"}
 const api=async(path,options={})=>{const response=await fetch(path,options);let data;try{data=await response.json()}catch{data={detail:`HTTP ${response.status}`}}if(!response.ok)throw Error(typeof data.detail==="string"?data.detail:JSON.stringify(data.detail||data));return data};
 const jsonPost=(path,payload)=>api(path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
-function setView(view){if(!["image","text","document","edit","agent"].includes(view))return;history.replaceState(null,"",`#${view}`);state.view=view;document.querySelectorAll(".nav-item").forEach(el=>el.classList.toggle("active",el.dataset.view===view));document.querySelectorAll(".view").forEach(el=>el.classList.toggle("active",el.id===`view-${view}`));$("page-title").textContent={image:"图像检测",text:"文本检测",document:"文档检测",edit:"可信编辑",agent:"Agent 工具工作流"}[view]||"内容可信";window.dispatchEvent(new CustomEvent("aigc:view-changed",{detail:{view}}));}
+function setView(view){if(!["image","text","document","edit"].includes(view))return;history.replaceState(null,"",`#${view}`);state.view=view;document.querySelectorAll(".nav-item").forEach(el=>el.classList.toggle("active",el.dataset.view===view));document.querySelectorAll(".view").forEach(el=>el.classList.toggle("active",el.id===`view-${view}`));$("page-title").textContent={image:"图像检测",text:"文本检测",document:"文档检测",edit:"可信编辑"}[view]||"内容可信";window.dispatchEvent(new CustomEvent("aigc:view-changed",{detail:{view}}));}
 function setBusy(button,target,message){button.disabled=true;target.innerHTML=`<div class="busy-state"><span class="spinner"></span>${escapeHtml(message)}</div>`;}
 function showError(target,error){target.innerHTML=`<div class="error-state">${escapeHtml(error.message||error)}</div><div class="empty-result"><i data-lucide="circle-alert"></i><strong>暂未生成结果</strong><p>请检查输入后重试。</p></div>`;icon()}
 function decisionClass(decision){const value=String(decision||"").toLowerCase();if(value.includes("uncertain")||value.includes("abstain")||value.includes("无法"))return"";return value.includes("high")||value.includes("ai")||value.includes("生成")?"high":value.includes("low")||value.includes("human")||value.includes("真实")?"low":""}
@@ -61,7 +62,7 @@ function renderDetection(target,data,kind,file=null){
   const version=data.model_version||data.version||"未提供";
   const provisional=["experimental_cross_source","low_resolution_experimental","unverified_platform","english_no_valid_external_benchmark"].includes(data.applicability);
   const imageCandidate=kind==="image"&&hasScore&&String(decision).toLowerCase().includes("uncertain");
-  const badge=imageCandidate?"结论未校准":decisionLabel(decision);
+  const badge=imageCandidate?"需要复核":decisionLabel(decision);
   const caption=hasScore?(kind==="image"?data.applicability==="low_resolution_experimental"?"低分辨率探索性候选输出；不是 AI 率或来源概率":"候选模型分数；不是 AI 率或来源概率":provisional?"候选模型输出，未经目标平台校准":"模型风险分数，非作者身份概率"):"未给出可解释的模型分数";
   const modelScores=Array.isArray(data.model_scores)?data.model_scores.filter(item=>item&&Number.isFinite(item.score)):[];
   const breakdown=modelScores.length?`<div class="detail-section"><h4>候选模型分数</h4><div class="model-score-list">${modelScores.map(item=>`<div><span>${escapeHtml(item.model||"模型")}</span><strong>${fmtScore(item.score)}/100</strong></div>`).join("")}</div>${Number.isFinite(data.model_disagreement)?`<p>模型分歧：${fmtScore(data.model_disagreement)}/100。分数为统计输出，不能作为 AI 来源概率。</p>`:""}</div>`:"";
@@ -77,24 +78,24 @@ function segmentResultHtml(data){
   const scored=summary.scored_character_percent;
   const coverage=Number.isFinite(highlighted)?`<div class="segment-coverage"><strong>${highlighted.toFixed(1)}%</strong><span>已评分字符中处于高亮段落的比例</span></div>`:"";
   const evaluated=Number.isFinite(scored)?`<p class="finding-note">可评分字符覆盖：${scored.toFixed(1)}%。高亮覆盖率不是 AI 撰写比例，也不能证明作者身份。</p>`:`<p class="finding-note">段落分数不是 AI 撰写比例，也不能证明作者身份。</p>`;
-  return`<div class="agent-segments"><h4>段落标注</h4>${coverage}${evaluated}${segments.map((segment,index)=>{
+  return`<div class="text-segments"><h4>段落标注</h4>${coverage}${evaluated}${segments.map((segment,index)=>{
     const flagged=segment.highlighted===true;
     const score=Number.isFinite(segment.risk_score)?` · 模型分数 ${fmtScore(segment.risk_score)}/100`:" · 未给分";
     const label=flagged?"疑似生成特征":!Number.isFinite(segment.risk_score)?"未评分 / 需复核":segment.decision==="uncertain"?"分数不确定 / 需复核":"未高亮";
     const reason=Array.isArray(segment.evidence)?segment.evidence[0]:null;
-    return`<div class="agent-segment ${flagged?"flagged":""}"><strong>段落 ${index+1} · ${label}</strong><span class="segment-score">${score}</span><p>${escapeHtml(segment.text||"")}</p>${reason?`<small>${escapeHtml(reason)}</small>`:""}</div>`;
+    return`<div class="text-segment ${flagged?"flagged":""}"><strong>段落 ${index+1} · ${label}</strong><span class="segment-score">${score}</span><p>${escapeHtml(segment.text||"")}</p>${reason?`<small>${escapeHtml(reason)}</small>`:""}</div>`;
   }).join("")}</div>`;
 }
 function validateImage(file){if(!file)return"请选择图片";if(!["image/png","image/jpeg"].includes(file.type))return"仅支持 JPG 或 PNG";if(file.size>25*1048576)return"文件不能超过 25 MB";return null}
-function setImage(file){++state.imageSelectionVersion;const error=validateImage(file);if(error){clearImage();showError($("image-result"),error);return}state.image=file;$("agent-use-image").disabled=false;const preview=$("image-preview"),caption=$("preview-caption"),dropzone=$("image-dropzone");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.dataset.objectUrl=URL.createObjectURL(file);preview.onload=()=>{const side=Math.min(preview.naturalWidth,preview.naturalHeight),small=preview.naturalWidth===32&&preview.naturalHeight===32;dropzone.classList.toggle("pixel-preview",small);const scope=small?" · 放大预览（CIFAKE 教学模型）":side<200?" · 不评分":side<512?" · 仅探索性候选分数":"";caption.textContent=`原图 ${preview.naturalWidth} × ${preview.naturalHeight} 像素${scope}`;caption.hidden=false};preview.src=preview.dataset.objectUrl;preview.hidden=false;dropzone.classList.add("has-image");$("file-meta").hidden=false;$("file-name").textContent=file.name;$("file-size").textContent=bytes(file.size);$("detect-image").disabled=state.imageBusy;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>图片已就绪</strong><p>点击分析图片查看模型输出。</p></div>`;updateAgentInput();icon()}
-function clearImage(){++state.imageSelectionVersion;state.image=null;$("agent-use-image").checked=false;$("agent-use-image").disabled=true;const preview=$("image-preview");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.removeAttribute("src");preview.hidden=true;$("preview-caption").hidden=true;$("image-input").value="";$("image-dropzone").classList.remove("has-image","pixel-preview");$("file-meta").hidden=true;$("detect-image").disabled=true;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>等待图片</strong><p>选择图片后查看模型输出、适用范围与判断状态。</p></div>`;updateAgentInput();icon()}
+function setImage(file){++state.imageSelectionVersion;const error=validateImage(file);if(error){clearImage();showError($("image-result"),error);return}state.image=file;const preview=$("image-preview"),caption=$("preview-caption"),dropzone=$("image-dropzone");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.dataset.objectUrl=URL.createObjectURL(file);preview.onload=()=>{const side=Math.min(preview.naturalWidth,preview.naturalHeight),small=preview.naturalWidth===32&&preview.naturalHeight===32;dropzone.classList.toggle("pixel-preview",small);const scope=side<200?" · 小尺寸图片":"";caption.textContent=`原图 ${preview.naturalWidth} × ${preview.naturalHeight} 像素${scope}`;caption.hidden=false};preview.src=preview.dataset.objectUrl;preview.hidden=false;dropzone.classList.add("has-image");$("file-meta").hidden=false;$("file-name").textContent=file.name;$("file-size").textContent=bytes(file.size);$("detect-image").disabled=state.imageBusy;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>图片已就绪</strong><p>点击分析图片查看模型输出。</p></div>`;icon()}
+function clearImage(){++state.imageSelectionVersion;state.image=null;const preview=$("image-preview");if(preview.dataset.objectUrl)URL.revokeObjectURL(preview.dataset.objectUrl);preview.removeAttribute("src");preview.hidden=true;$("preview-caption").hidden=true;$("image-input").value="";$("image-dropzone").classList.remove("has-image","pixel-preview");$("file-meta").hidden=true;$("detect-image").disabled=true;$("image-result").innerHTML=`<div class="empty-result"><i data-lucide="scan-line"></i><strong>等待图片</strong><p>选择图片后查看模型输出、适用范围与判断状态。</p></div>`;icon()}
 async function useSample(kind){
   const version=++state.imageSelectionVersion;
   try{
-    const response=await fetch(`/static/assets/sample-${kind}.png`);
+    const response=await fetch(`/static/assets/sample-${kind}-2026.jpg`);
     if(!response.ok)throw Error(`示例图片加载失败（${response.status}），请重新选择图片。`);
     const blob=await response.blob();
-    if(version===state.imageSelectionVersion)setImage(new File([blob],`cifake-${kind}-sample.png`,{type:"image/png"}));
+    if(version===state.imageSelectionVersion)setImage(new File([blob],`ntire-2026-${kind}.jpg`,{type:"image/jpeg"}));
   }catch(error){if(version===state.imageSelectionVersion){clearImage();showError($("image-result"),error)}}
 }
 async function detectImage(){
@@ -133,100 +134,15 @@ async function runEditing(llm){
   }catch(error){if($("edit-input").value===text)showError(target,error)}
   finally{state.editBusy=false;if($("edit-input").value!==text)inputUpdated(target);updateEdit()}
 }
-function addMessage(role,content){const intro=document.querySelector(".chat-intro");if(intro)intro.remove();const el=document.createElement("div");el.className=`message ${role}`;el.innerHTML=`<span class="speaker">${role==="user"?"你":"Agent"}</span><div class="bubble">${escapeHtml(content)}</div>`;$("chat-messages").append(el);$("chat-messages").scrollTop=$("chat-messages").scrollHeight;return el}
-function renderTrace(data){const calls=data.tool_calls||[];const names={image_detection:"图像检测",text_detection:"文本检测",clarity_edit:"可信编辑",llm_edit_preview:"大模型编辑预览"};$("tool-trace").innerHTML=calls.length?calls.map(call=>`<div class="trace-item"><strong>${escapeHtml(names[call.tool]||call.tool||"工具")}</strong><span>${call.status==="ok"?"完成":"不可用"} · ${escapeHtml(call.duration_ms??"—")} ms</span></div>`).join(""):`<p class="muted">此轮没有工具调用记录。</p>`}
-function fileToBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(",")[1]);reader.onerror=()=>reject(Error("无法读取图片"));reader.readAsDataURL(file)})}
-function agentDocumentHtml(report){
-  const summary=report.document_summary||{},rate=summary.highlighted_total_percent;
-  const pct=value=>Number.isFinite(value)?`${value.toFixed(1)}%`:"未评分";
-  const id=typeof report.report_id==="string"?report.report_id:"";
-  const segments=Array.isArray(report.detection?.segments)?report.detection.segments:[];
-  const samples=segments.filter(item=>item.highlighted===true).slice(0,3);
-  return`<div class="agent-finding"><strong>文档检测 · ${escapeHtml(report.filename||"文档")}</strong><span class="finding-score">${pct(rate)}</span><span>AI 特征覆盖率：高风险段字符占全文非空白字符的比例</span><span class="finding-note">不是实际 AI 撰写比例。可评分覆盖 ${pct(summary.scored_character_percent)} · ${escapeHtml(summary.high_risk_segments??0)} 个高风险片段</span>${Number.isFinite(summary.mean_segment_score)?`<span>可评分片段模型均分 ${fmtScore(summary.mean_segment_score)}/100</span>`:""}${samples.map(item=>`<p class="document-agent-excerpt"><u>${escapeHtml(Array.from(item.text||"").slice(0,220).join(""))}${Array.from(item.text||"").length>220?"…":""}</u></p>`).join("")}${summary.mixed_signals?'<span class="finding-note">段落信号存在明显差异，未提供整篇来源分数。</span>':""}${id?`<div class="result-actions"><button type="button" class="secondary-button open-document-report" data-report-id="${escapeHtml(id)}">完整下划线标注</button><button type="button" class="secondary-button agent-report-download" data-report-id="${escapeHtml(id)}" data-report-format="docx">Word 报告</button><button type="button" class="secondary-button agent-report-download" data-report-id="${escapeHtml(id)}" data-report-format="html">HTML / 打印 PDF</button></div><div class="agent-download-status" role="status" aria-live="polite"></div>`:""}<span class="finding-note">报告暂存在本地内存；过期或重启后请重新检测。</span></div>`;
-}
-function agentResultHtml(data){
-  const findings=Object.entries(data.findings||{}).map(([name,value])=>{
-    const result=value&&typeof value==="object"?value:{};
-    if(name==="document")return agentDocumentHtml(result);
-    const hasScore=Number.isFinite(result.risk_score);
-    const score=hasScore?`${fmtScore(result.risk_score)}/100`:"未给分";
-    const provisional=["experimental_cross_source","low_resolution_experimental","unverified_platform","english_no_valid_external_benchmark"].includes(result.applicability);
-    const note=provisional?"未经目标平台校准的候选分数":"模型风险分数，不代表 AI 所占比例";
-    const modelScores=Array.isArray(result.model_scores)?result.model_scores.filter(item=>item&&Number.isFinite(item.score)):[];
-    const components=modelScores.length?`<span class="finding-note">${modelScores.map(item=>`${escapeHtml(item.model||"模型")} ${fmtScore(item.score)}/100`).join(" · ")}</span>`:"";
-    const title=name==="image"?"图像模型风险指数（实验性）":name==="text"?"文本模型风险分数":`${escapeHtml(name)} 模型风险分数`;
-    const decisionText=name==="image"&&hasScore&&String(result.decision).toLowerCase().includes("uncertain")?"模型筛查分数 · 结论未校准":decisionLabel(result.decision);
-    return`<div class="agent-finding"><strong>${title}</strong><span class="finding-score">${score}</span><span>${escapeHtml(decisionText)}</span><span class="finding-note">${note}</span>${components}<span>${escapeHtml(evidenceList(result.evidence||result.signals)[0]||"")}</span>${name==="image"?localEvidenceHtml(result.local_evidence)+provenanceHtml(result.provenance):""}${name==="text"?segmentResultHtml(result):""}</div>`;
-  }).join("");
-  const edit=data.editing_result,llm=data.llm_preview;
-  const status={no_input:"未提交内容",insufficient_evidence:"证据不足",mixed_signals:"检测信号不一致",review_recommended:"模型证据已汇总"};
-  const explanation={no_input:"未提交图像或文本。",insufficient_evidence:"至少一个检测工具没有给分，当前无法形成完整结论。",mixed_signals:"图像与文本工具的结论不同；当前没有经过验证的跨模态融合模型。",review_recommended:"图像、文本分别展示候选分数和局部证据；分数不能解释为 AI 内容比例或来源结论。"};
-  const scored=Object.entries(data.findings||{}).filter(([,result])=>Number.isFinite(result?.risk_score)).map(([name])=>name);
-  const partial=data.decision==="insufficient_evidence"&&scored.length;
-  const title=partial?scored.length===1&&scored[0]==="image"?"图像模型结果":scored.length===1&&scored[0]==="text"?"文本模型结果":"部分模型有分数":status[data.decision]||"模型证据摘要";
-  const summary=partial?"已显示可用模型的候选分数；其他模态未提交或无法评分。分数不能证明内容来源。":explanation[data.decision]||data.explanation||"";
-  return`<div class="agent-summary"><strong>${escapeHtml(title)}</strong><p>${escapeHtml(summary)}</p></div><div class="agent-findings">${findings||"未运行检测工具"}${edit?`<div class="agent-finding"><strong>可信编辑</strong><span>${escapeHtml(edit.applied_edits?.length||0)} 处自动修改，${escapeHtml(edit.suggestions?.length||0)} 条人工建议</span></div>`:""}${llm?`<div class="agent-finding"><strong>大模型编辑预览</strong><span>${llm.status==="review_candidate"?"候选改写，需人工核对":llm.status==="outside_scope"?"超出预览范围":"输出未通过检查"}</span>${llm.status==="review_candidate"?`<span>${escapeHtml(llm.candidate)}</span>`:""}</div>`:""}</div>`;
-}
-function setAgentImage(file){
-  const error=validateImage(file);
-  if(error){clearAgentImage();addMessage("assistant",error);return}
-  state.agentImage=file;
-  $("agent-image-name").textContent=`${file.name} · ${bytes(file.size)}`;
-  $("agent-image-name").hidden=false;
-  $("agent-clear-image").hidden=false;
-  $("agent-use-image").checked=false;
-  updateAgentInput();
-}
-function clearAgentImage(){state.agentImage=null;$("agent-image-input").value="";$("agent-image-name").hidden=true;$("agent-clear-image").hidden=true;updateAgentInput()}
-function updateAgentInput(){const length=Array.from($("agent-input").value).length;const file=state.agentImage||($("agent-use-image").checked?state.image:null);const conflict=Boolean(state.agentDocument&&$("agent-input").value.trim());$("agent-text-count").textContent=conflict?"文档和粘贴文本请分别提交":`${length} / 10,000 字符${length>10000?" · 长文请上传为文档":""}`;$("agent-text-count").classList.toggle("over-limit",length>10000||conflict);$("agent-form").querySelector("button").disabled=state.agentBusy||length>10000||conflict||(!$("agent-input").value.trim()&&!file&&!state.agentDocument)}
-function setAgentDocument(file){
-  if(!file)return;
-  if(!/\.(docx|pdf|txt|md)$/i.test(file.name)||file.size===0||file.size>20*1048576){clearAgentDocument();addMessage("assistant",file.size===0?"文档为空，请重新选择。":"文档支持 DOCX、PDF、TXT、MD，最大 20 MB。");return}
-  state.agentDocument=file;
-  $("agent-document-name").textContent=`${file.name} · ${bytes(file.size)}`;
-  $("agent-document-name").hidden=false;$("agent-clear-document").hidden=false;updateAgentInput();
-}
-function clearAgentDocument(){state.agentDocument=null;$("agent-document-input").value="";$("agent-document-name").hidden=true;$("agent-clear-document").hidden=true;updateAgentInput()}
-async function importAgentText(file){
-  if(!file)return;
+async function showModelInfo(){
+  const dialog=$("model-dialog");dialog.showModal();
   try{
-    if(!/\.(txt|md)$/i.test(file.name))throw Error("仅支持 TXT 或 Markdown 文本文件。");
-    if(file.size>100000)throw Error("文本文件超过 100 KB，请选择较短的文件。");
-    const content=new TextDecoder("utf-8",{fatal:true}).decode(await file.arrayBuffer());
-    if(Array.from(content).length>10000)throw Error("文本超过 10,000 字符，请缩短后重试。");
-    $("agent-input").value=content;
-    $("agent-input").focus();
-    updateAgentInput();
-  }catch(error){addMessage("assistant",error.message||"无法导入文本文件。")}
-  finally{$("agent-text-file").value=""}
+    const data=await api("/api/models");state.models=data;
+    const scope=data.scope||{},results=Array.isArray(data.evaluation_summary)?data.evaluation_summary:[];
+    const rates=results.map(row=>`<div class="evaluation-summary"><strong>${escapeHtml(row.name||"样本评测")}</strong><p>${escapeHtml(row.samples)} 条样本 · 准确率 ${pct(100*row.accuracy)} · 误报率 ${pct(100*row.false_positive_rate)} · 漏报率 ${pct(100*row.false_negative_rate)}</p></div>`).join("");
+    $("model-details").innerHTML=`<p>${data.available?"模型已就绪":"模型暂不可用"}${data.reason?`：${escapeHtml(data.reason)}`:""}</p><h3>图像检测</h3><p>${escapeHtml(scope.image||"")}</p><h3>文本检测</h3><p>${escapeHtml(scope.text||"")}</p>${rates?`<h3>近期标注样本实测</h3>${rates}<p>表内按 0.5 阈值统计；检测页保留 0.2–0.8 的复核区间。完整记录保存在项目评测目录。</p>`:""}<h3>可信编辑</h3><p>${escapeHtml(scope.editing||"")}</p><details><summary>模型版本与参数</summary><p class="model-manifest">${escapeHtml(JSON.stringify(data.manifest||{},null,2))}</p></details>`;
+  }catch(error){$("model-details").innerHTML=`<p class="muted">模型信息暂不可用：${escapeHtml(error.message)}</p>`}
 }
-async function sendAgent(message){
-  const points=Array.from(message);
-  const file=state.agentImage||($("agent-use-image").checked?state.image:null);
-  const documentFile=state.agentDocument;
-  if((!message.trim()&&!file&&!documentFile)||points.length>10000||state.agentBusy||(documentFile&&message.trim()))return;
-  const preview=points.length>160?`${points.slice(0,160).join("")}…`:message;
-  const userMessage=addMessage("user",`${file?`[${file.name}] `:""}${documentFile?`[${documentFile.name}] `:""}${preview||"开始检测附件"}`);
-  if(file){const url=URL.createObjectURL(file);const image=document.createElement("img");image.className="agent-preview";image.alt=`已上传图片：${file.name}`;image.onload=()=>URL.revokeObjectURL(url);image.onerror=()=>URL.revokeObjectURL(url);image.src=url;userMessage.querySelector(".bubble").append(image)}
-  const pending=addMessage("assistant","正在调用工具…");
-  state.agentBusy=true;
-  updateAgentInput();
-  try{
-    const payload=new FormData();
-    payload.append("text",message);
-    payload.append("edit",String($("agent-use-edit").checked));
-    payload.append("llm_preview",String($("agent-use-llm").checked));
-    if(file)payload.append("file",file);
-    if(documentFile)payload.append("document",documentFile);
-    const data=await api("/api/agent/upload",{method:"POST",body:payload});
-    pending.querySelector(".bubble").innerHTML=agentResultHtml(data);
-    attachLocalEvidenceImage(pending,file);
-    if(message&&data.findings?.text&&window.AIGCDocument)pending.querySelector(".bubble").append(window.AIGCDocument.renderInline(message,data.findings.text.segments));
-    renderTrace(data);
-  }catch(error){pending.querySelector(".bubble").textContent=`请求失败：${error.message}`}
-  finally{state.agentBusy=false;updateAgentInput()}
-}
-async function showModelInfo(){const dialog=$("model-dialog");dialog.showModal();try{const data=await api("/api/models");state.models=data;const scope=data.scope||{};const versions=data.manifest||{};$("model-details").innerHTML=`<p>${data.available?"模型已加载":"模型暂不可用"}${data.reason?`：${escapeHtml(data.reason)}`:""}</p><h3>图像检测</h3><p>${escapeHtml(scope.image||"适用范围未提供")}</p><h3>文本检测</h3><p>${escapeHtml(scope.text||"适用范围未提供")}</p><h3>可信编辑</h3><p>${escapeHtml(scope.editing||"适用范围未提供")}</p><h3>模型清单</h3><p>${escapeHtml(JSON.stringify(versions))}</p><p>所有检测结果都需要人工复核。</p>`}catch(error){$("model-details").innerHTML=`<p class="muted">模型信息暂不可用：${escapeHtml(error.message)}</p>`}}
 async function checkHealth(){
   if(state.healthBusy)return;
   clearTimeout(state.healthTimer);state.healthBusy=true;
@@ -239,21 +155,23 @@ async function checkHealth(){
   finally{state.healthBusy=false;if(!document.hidden)state.healthTimer=setTimeout(checkHealth,3000)}
 }
 document.addEventListener("visibilitychange",()=>{clearTimeout(state.healthTimer);if(!document.hidden)checkHealth()});
-document.addEventListener("DOMContentLoaded",()=>{icon();document.querySelectorAll(".nav-item").forEach(el=>el.onclick=()=>setView(el.dataset.view));$("image-input").onchange=event=>setImage(event.target.files[0]);$("clear-image").onclick=clearImage;const drop=$("image-dropzone");["dragenter","dragover"].forEach(name=>drop.addEventListener(name,event=>{event.preventDefault();drop.classList.add("dragging")}));["dragleave","drop"].forEach(name=>drop.addEventListener(name,event=>{event.preventDefault();drop.classList.remove("dragging")}));drop.addEventListener("drop",event=>setImage(event.dataTransfer.files[0]));document.querySelectorAll(".sample-button").forEach(el=>el.onclick=()=>useSample(el.dataset.sample));$("detect-image").onclick=detectImage;$("text-input").oninput=updateText;$("detect-text").onclick=detectText;$("edit-input").oninput=updateEdit;$("run-edit").onclick=runEdit;$("agent-input").oninput=updateAgentInput;$("agent-use-image").onchange=()=>{if($("agent-use-image").checked)clearAgentImage();updateAgentInput()};$("agent-form").onsubmit=event=>{event.preventDefault();sendAgent($("agent-input").value)};$("model-info-button").onclick=showModelInfo;$("close-dialog").onclick=()=>$("model-dialog").close();$("dialog-done").onclick=()=>$("model-dialog").close();updateAgentInput();checkHealth()});
 document.addEventListener("DOMContentLoaded",()=>{
-  $("agent-image-input").onchange=event=>{if(event.target.files[0])setAgentImage(event.target.files[0])};
-  $("agent-clear-image").onclick=clearAgentImage;
-  $("agent-text-file").onchange=event=>importAgentText(event.target.files[0]);
-  if($("agent-document-input"))$("agent-document-input").onchange=event=>setAgentDocument(event.target.files[0]);
-  if($("agent-clear-document"))$("agent-clear-document").onclick=clearAgentDocument;
-});
-window.addEventListener("aigc:document-result",event=>{
-  const report=event.detail;
-  if(!report||typeof report.report_id!=="string"||!report.document_summary)return;
-  setView("agent");
-  const message=addMessage("assistant","");
-  message.querySelector(".bubble").innerHTML=agentDocumentHtml(report);
-  $("tool-trace").innerHTML='<p class="muted">展示已完成的文档检测结果，本次没有重新调用模型。</p>';
+  icon();
+  document.querySelectorAll(".nav-item").forEach(el=>el.onclick=()=>setView(el.dataset.view));
+  $("image-input").onchange=event=>setImage(event.target.files[0]);
+  $("clear-image").onclick=clearImage;
+  const drop=$("image-dropzone");
+  ["dragenter","dragover"].forEach(name=>drop.addEventListener(name,event=>{event.preventDefault();drop.classList.add("dragging")}));
+  ["dragleave","drop"].forEach(name=>drop.addEventListener(name,event=>{event.preventDefault();drop.classList.remove("dragging")}));
+  drop.addEventListener("drop",event=>setImage(event.dataTransfer.files[0]));
+  document.querySelectorAll(".sample-button").forEach(el=>el.onclick=()=>useSample(el.dataset.sample));
+  $("detect-image").onclick=detectImage;
+  $("text-input").oninput=updateText;$("detect-text").onclick=detectText;
+  $("edit-input").oninput=updateEdit;$("run-edit").onclick=runEdit;
+  $("model-info-button").onclick=showModelInfo;
+  $("close-dialog").onclick=()=>$("model-dialog").close();
+  $("dialog-done").onclick=()=>$("model-dialog").close();
+  checkHealth();
 });
 document.addEventListener("click",event=>{
   const reportButton=event.target.closest?.(".open-document-report");
@@ -266,21 +184,6 @@ document.addEventListener("click",event=>{
   button.textContent=hidden?"显示热图":"隐藏热图";
 });
 
-function openLinkedView(){const view=location.hash.slice(1);if(["image","text","document","edit","agent"].includes(view))setView(view)}
+function openLinkedView(){const view=location.hash.slice(1);if(view==="agent"){setView("document");return;}if(["image","text","document","edit"].includes(view))setView(view)}
 document.addEventListener("DOMContentLoaded",openLinkedView);
 window.addEventListener("hashchange",openLinkedView);
-
-document.addEventListener("click",async event=>{
-  const button=event.target.closest?.(".agent-report-download");
-  if(!button||button.disabled)return;
-  const feedback=button.closest(".agent-finding").querySelector(".agent-download-status");
-  button.disabled=true;feedback.classList.remove("error");feedback.textContent="正在准备下载报告…";
-  try{
-    if(!window.AIGCReports)throw Error("下载组件未就绪，请刷新页面重试。");
-    await window.AIGCReports.download(button.dataset.reportId,button.dataset.reportFormat);
-    feedback.textContent="报告已准备好，浏览器将开始下载。";
-  }catch(error){
-    feedback.classList.add("error");
-    feedback.textContent=error.name==="TimeoutError"?"报告下载超时，请稍后重试。":error instanceof TypeError?"无法连接检测服务，请稍后重试下载。":error.message;
-  }finally{button.disabled=false}
-});

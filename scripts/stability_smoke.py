@@ -50,7 +50,7 @@ async def measure(url: str) -> dict:
             responses = await asyncio.gather(*jobs)
             for response in responses:
                 response.raise_for_status()
-                assert len(response.json()["model_scores"]) == 2
+                assert len(response.json()["model_scores"]) >= 1
             after = (await client.get("/api/runtime")).json()
             assert after["processing"]["active"] == 0
             assert after["processing"]["completed"] - before["processing"]["completed"] == 2

@@ -5,8 +5,6 @@ Run from the project root:
 """
 from __future__ import annotations
 
-import base64
-import binascii
 import hashlib
 import importlib.util
 import inspect
@@ -16,7 +14,6 @@ import logging
 import math
 import sys
 import threading
-import time
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
@@ -32,7 +29,6 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 from starlette.responses import JSONResponse
 from starlette.concurrency import run_in_threadpool
 
-from agent import run_agent
 from editing import edit_text
 from llm_preview import LLMPreviewService, LLMPreviewUnavailable
 from provenance import inspect_provenance
@@ -167,6 +163,12 @@ class ModelService:
             "highres_image_vit": self.root / "models" / "highres_nyuad" / "model.safetensors",
             "text": self.root / "models" / "text_detector.joblib",
             "chinese_text": self.root / "models" / "text_detector_zh.joblib",
+            "image_2026": self.root / "models" / "dear_r" / "model.pth",
+            "text_2026": self.root / "models" / "taste" / "detector_ep3.pt",
+            "chinese_head_2026": self.root / "models" / "taste" / "chinese_head.npz",
+            "image_lowres_2026": self.root / "models" / "dear_c" / "model.pth",
+            "mpu_chinese_v3": self.root / "models" / "mpu_zh_v3" / "pytorch_model.bin",
+            "mpu_english_v3": self.root / "models" / "mpu_en_v3" / "pytorch_model.bin",
         }
         result = {}
         for modality, path in paths.items():
@@ -183,11 +185,6 @@ class TextRequest(BaseModel):
     text: str = Field(min_length=1, max_length=MAX_TEXT_CHARS)
 
 
-class AgentRequest(BaseModel):
-    text: str | None = Field(default=None, max_length=MAX_TEXT_CHARS)
-    image_base64: str | None = None
-    edit: bool = True
-    llm_preview: bool = False
 
 
 def _uncertain(reason: str, applicability: str = "outside_training_scope", modality: str | None = None) -> dict:
@@ -256,9 +253,10 @@ def _normalize_prediction(raw: dict, modality: str, fingerprint: str | None = No
             raise RuntimeError("Model returned invalid component scores.")
         result["model_scores"] = scores
         disagreement = raw.get("model_disagreement")
-        if not isinstance(disagreement, (int, float)) or isinstance(disagreement, bool) or not math.isfinite(disagreement) or not 0 <= disagreement <= 1:
-            raise RuntimeError("Model returned invalid disagreement.")
-        result["model_disagreement"] = round(float(disagreement), 4)
+        if len(scores) > 1 or disagreement is not None:
+            if not isinstance(disagreement, (int, float)) or isinstance(disagreement, bool) or not math.isfinite(disagreement) or not 0 <= disagreement <= 1:
+                raise RuntimeError("Model returned invalid disagreement.")
+            result["model_disagreement"] = round(float(disagreement), 4)
         hints = raw.get("metadata_hints", [])
         if not isinstance(hints, list) or not all(isinstance(item, str) for item in hints):
             raise RuntimeError("Model returned invalid metadata hints.")
@@ -326,21 +324,6 @@ def _decode_image(data: bytes) -> Image.Image:
         raise HTTPException(status_code=400, detail="Unsupported or corrupt image.") from exc
 
 
-def _decode_base64_image(encoded: str) -> bytes:
-    if encoded.startswith("data:"):
-        header, sep, payload = encoded.partition(",")
-        if not sep or ";base64" not in header or not header.startswith("data:image/"):
-            raise HTTPException(status_code=400, detail="Invalid image data URL.")
-        encoded = payload
-    if len(encoded) > (MAX_IMAGE_BYTES * 4 // 3) + 8:
-        raise HTTPException(status_code=413, detail="Image exceeds the 25 MB limit.")
-    try:
-        data = base64.b64decode(encoded, validate=True)
-    except (binascii.Error, ValueError) as exc:
-        raise HTTPException(status_code=400, detail="Invalid base64 image.") from exc
-    if len(data) > MAX_IMAGE_BYTES:
-        raise HTTPException(status_code=413, detail="Image exceeds the 25 MB limit.")
-    return data
 
 
 def create_app(model_service: Any | None = None, llm_service: Any | None = None,
@@ -436,8 +419,6 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
         image = _decode_image(data)
         if getattr(image, "n_frames", 1) != 1:
             return _uncertain("Animated images were not evaluated in training.", modality="image")
-        if image.size == (32, 32) and image.mode != "RGB":
-            return _uncertain("The image model was evaluated on RGB images, not this color mode.", modality="image")
         try:
             predictor = get_bundle().predict_image
             supports_local_evidence = "include_local_evidence" in inspect.signature(predictor).parameters
@@ -490,7 +471,9 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
 
     @api.get("/api/models")
     def models() -> dict:
-        manifest_path = ROOT / "models" / "manifest.json"
+        manifest_path = ROOT / "models" / "algorithm_policy.json"
+        if not manifest_path.is_file():
+            manifest_path = ROOT / "models" / "manifest.json"
         if not manifest_path.is_file():
             manifest_path = ROOT / "models" / "model_config.json"
         manifest = None
@@ -508,12 +491,13 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
             "available": available,
             "reason": reason,
             "manifest": manifest,
+            "evaluation_summary": manifest.get("evaluation_summary", []) if isinstance(manifest, dict) else [],
             "artifact_fingerprints": service.artifact_fingerprints() if hasattr(service, "artifact_fingerprints") else {},
             "scope": {
-                "image": "32×32 CIFAKE 教学模型；其他短边至少 200 像素的静态图片采用 SigLIP 与 ViT 交叉检查，显示未经平台校准的候选分数、分歧和九宫格遮挡敏感度。短边 200–511 像素尤其属于低分辨率实验性输出，低于 200 像素弃判；颜色不是局部 AI 来源真值，普通图的来源结论仍未校准。",
-                "local_evidence": "九宫格逐格模糊后比较双模型均分下降；无明显正向下降时不绘制热图。敏感度不是区域 AI 率或局部篡改真值。",
+                "image": "支持 4K 及以下任意正尺寸的静态 JPG/PNG，包括竖图、超宽图与小图。新版采用 ICML 2026 DEAR，保留原图，最多分析 9 个原生尺度图块，并提供内容凭证与局部敏感度。",
+                "local_evidence": "九宫格逐格模糊后比较模型分数变化；无明显变化时不着色。颜色表示模型对区域的敏感度。",
                 "provenance": "JPG/PNG 原始字节可进行本地 C2PA 内容凭证核验；无凭证不表示 AI 生成，有效但不受信任的声明也不能当作来源证明。",
-                "text": "最多 10,000 字符的中文或英文文本可逐段筛查；整篇超出已评估长度或段落信号明显冲突时弃判。高亮比例不是 AI 撰写比例，真实平台迁移效果尚未验证。",
+                "text": (manifest.get("text_description") if isinstance(manifest, dict) else None) or "中英文分别检测，文本页最多 10,000 字符；新版 Transformer 按 512 token 滑窗覆盖长文本，并提供逐段评分。",
                 "document": "DOCX、含文本层的 PDF、TXT 和 Markdown 可提取并检测，最多 20 MB、100,000 字符，PDF 最多 200 页。不执行 OCR。下划线表示高风险模型段落，AI 特征覆盖率是高亮字符覆盖率，不是真实 AI 撰写比例。报告保存在本地内存中，最多 30 分钟；可导出 Word、HTML 和 JSON。",
                 "editing": "基于规则的清晰度建议和原意表面检查。",
                 "llm_preview": "可选的英文 LoRA 改写预览；未通过表面检查时拒绝候选。",
@@ -654,68 +638,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
             LOG.exception("LLM preview failed")
             raise HTTPException(status_code=503, detail=f"LLM preview unavailable: {type(exc).__name__}.") from exc
 
-    @api.post("/api/agent/run")
-    def agent_run(body: AgentRequest) -> dict:
-        if (body.text is None or not body.text.strip()) and body.image_base64 is None:
-            raise HTTPException(status_code=400, detail="Supply text or image_base64.")
-        image_data = _decode_base64_image(body.image_base64) if body.image_base64 is not None else None
-        if image_data is not None:
-            _decode_image(image_data)
-        return run_agent(
-            text=body.text,
-            image_bytes=image_data,
-            request_edit=body.edit,
-            detect_text=detect_text,
-            detect_image=detect_image,
-            edit_text=edit_text,
-            request_llm_preview=body.llm_preview,
-            suggest_llm=llm.suggest if body.llm_preview else None,
-        )
 
-    @api.post("/api/agent/upload")
-    async def agent_upload(
-        text: str = Form(""),
-        file: UploadFile | None = File(None),
-        document: UploadFile | None = File(None),
-        edit: bool = Form(False),
-        llm_preview: bool = Form(False),
-    ) -> dict:
-        text = text.replace("\r\n", "\n").replace("\r", "\n")
-        if len(text) > MAX_TEXT_CHARS:
-            raise HTTPException(status_code=413, detail="Text exceeds the 10,000-character limit.")
-        if text.strip() and document is not None:
-            raise HTTPException(status_code=400, detail="文档和粘贴文本请分别提交；文档可与图片一起分析。")
-        if not text.strip() and file is None and document is None:
-            raise HTTPException(status_code=400, detail="Supply text, an image file, or a document.")
-        image_data = None
-        if file is not None:
-            if file.content_type not in {"image/jpeg", "image/png"}:
-                raise HTTPException(status_code=415, detail="Upload a JPG or PNG image.")
-            image_data = await file.read(MAX_IMAGE_BYTES + 1)
-            await run_in_threadpool(_decode_image, image_data)
-        source = await read_document(document) if document is not None else None
-        result = await run_in_threadpool(run_agent,
-            text=text or None,
-            image_bytes=image_data,
-            request_edit=edit,
-            detect_text=detect_text,
-            detect_image=detect_image,
-            edit_text=edit_text,
-            request_llm_preview=llm_preview,
-            suggest_llm=llm.suggest if llm_preview else None,
-        )
-        if source is not None:
-            started = time.perf_counter()
-            report = await run_in_threadpool(detect_document, source)
-            result["findings"]["document"] = report
-            result["tool_calls"].append({"tool": "document_detection", "status": "ok",
-                                          "input_summary": f"{len(source['text'])} extracted characters",
-                                          "duration_ms": round((time.perf_counter() - started) * 1000, 1)})
-            result["decision"] = "screening_complete"
-            result["explanation"] = "文档和图像分别完成检测；文档提供模型分数、覆盖率及下划线报告，不合成来源概率。"
-            if edit or llm_preview:
-                result["limitations"].append("文档未执行整篇改写；请在可信编辑页选择具体段落。")
-        return JSONResponse(result, headers={"Cache-Control": "no-store"}) if document is not None else result
 
     return api
 

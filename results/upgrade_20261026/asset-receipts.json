@@ -74,15 +74,37 @@
     },
     {
       "path": "data/benchmarks_2026/nlpcc/data/train_data.json",
-      "url": "https://raw.githubusercontent.com/NLP2CT/NLPCC-2026-Task6-Detection/961a485fa72f9821d6315836d46c9d94818b18b1/data/train_data.json",
-      "bytes": 134,
-      "sha256": "74ca05483e93a6156a60c41b87dfbd0f0d124a58474bc8fc57f7c2af9ebbe2b8"
-    },
-    {
-      "path": "data/benchmarks_2026/nlpcc/data/train_data.json",
       "url": "https://media.githubusercontent.com/media/NLP2CT/NLPCC-2026-Task6-Detection/961a485fa72f9821d6315836d46c9d94818b18b1/data/train_data.json",
       "bytes": 212700850,
       "sha256": "d07059d8af0c7ba86629a8ceba3f09669d79f13356f09d0853861b53a8d5c01f"
+    },
+    {
+      "path": "models/taste/config.json",
+      "bytes": 625,
+      "sha256": "4d10c2021c6b5fbe8b70698abc6ccc6691dc28d1bae9732f7fa1087782feba7e",
+      "url": "https://drive.usercontent.google.com/download?id=1w1hbdiZMS_JzPntVMWM3qrTQ4KxJf-t6&export=download&confirm=t",
+      "archive_member": "TASTE/detector/config.json"
+    },
+    {
+      "path": "models/taste/tokenizer.json",
+      "bytes": 1961828,
+      "sha256": "f4a4d5bf7301717e261fafbe26e1eb967f6ba4cb3ae0ab7a29f4642ec229f386",
+      "url": "https://drive.usercontent.google.com/download?id=1w1hbdiZMS_JzPntVMWM3qrTQ4KxJf-t6&export=download&confirm=t",
+      "archive_member": "TASTE/detector/tokenizer.json"
+    },
+    {
+      "path": "models/taste/tokenizer_config.json",
+      "bytes": 49,
+      "sha256": "0f6d13e6f4da6f9e24f22ada6bc3be571123d858d7c0c05a8a7cd55a9c23c2e8",
+      "url": "https://drive.usercontent.google.com/download?id=1w1hbdiZMS_JzPntVMWM3qrTQ4KxJf-t6&export=download&confirm=t",
+      "archive_member": "TASTE/detector/tokenizer_config.json"
+    },
+    {
+      "path": "models/taste/detector_ep3.pt",
+      "bytes": 711502561,
+      "sha256": "f79328c19ec0f1044dd24dd6eb9c5d5c96aa01b7036765251be9a426b9a46cbf",
+      "url": "https://drive.usercontent.google.com/download?id=1w1hbdiZMS_JzPntVMWM3qrTQ4KxJf-t6&export=download&confirm=t",
+      "archive_member": "TASTE/detector/detector_ep3.pt"
     }
   ]
 }

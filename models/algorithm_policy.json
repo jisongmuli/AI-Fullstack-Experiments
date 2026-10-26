@@ -1,0 +1,147 @@
+{
+  "version": "2026-10-26",
+  "cpu_threads": 4,
+  "text_backend": "transformer_2026",
+  "image_backend": "dear",
+  "text_chinese": "mpu",
+  "text_english": "MPU-v3-short",
+  "image_native": "DEAR-r-ICML2026",
+  "image_low_resolution": "DEAR-c-ICML2026",
+  "evaluation_summary": [
+    {
+      "name": "中文 · NLPCC 2026 Phase 2",
+      "total_samples": 768,
+      "samples": 768,
+      "scored_coverage": 1.0,
+      "human": 384,
+      "ai": 384,
+      "precision": 0.9819121447028424,
+      "recall": 0.9895833333333334,
+      "f1": 0.9857328145265889,
+      "accuracy_wilson_95": [
+        0.9745359245492713,
+        0.9919838075467766
+      ],
+      "fpr_wilson_95": [
+        0.008857651820499819,
+        0.03714428638111607
+      ],
+      "fnr_wilson_95": [
+        0.004058086643044981,
+        0.02647361271859711
+      ],
+      "accuracy": 0.9856770833333334,
+      "balanced_accuracy": 0.9856770833333334,
+      "auroc": 0.998779296875,
+      "false_positive_rate": 0.018229166666666668,
+      "false_negative_rate": 0.010416666666666666,
+      "tn": 377,
+      "fp": 7,
+      "fn": 4,
+      "tp": 380
+    },
+    {
+      "name": "英文 · 2026年9月生成样本与人工对照",
+      "total_samples": 394,
+      "samples": 394,
+      "scored_coverage": 1.0,
+      "human": 338,
+      "ai": 56,
+      "precision": 0.6049382716049383,
+      "recall": 0.875,
+      "f1": 0.7153284671532847,
+      "accuracy_wilson_95": [
+        0.8675431453773408,
+        0.9267431035638993
+      ],
+      "fpr_wilson_95": [
+        0.06786174145774182,
+        0.13059709690182347
+      ],
+      "fnr_wilson_95": [
+        0.06189068695717122,
+        0.2362547655819014
+      ],
+      "accuracy": 0.9010152284263959,
+      "balanced_accuracy": 0.8901627218934911,
+      "auroc": 0.8949704142011834,
+      "false_positive_rate": 0.09467455621301775,
+      "false_negative_rate": 0.125,
+      "tn": 306,
+      "fp": 32,
+      "fn": 7,
+      "tp": 49
+    },
+    {
+      "name": "图片 · NTIRE 2026 保留集",
+      "total_samples": 200,
+      "samples": 200,
+      "scored_coverage": 1.0,
+      "human": 100,
+      "ai": 100,
+      "precision": 0.9047619047619048,
+      "recall": 0.95,
+      "f1": 0.926829268292683,
+      "accuracy_wilson_95": [
+        0.8799563897637055,
+        0.954025082815618
+      ],
+      "fpr_wilson_95": [
+        0.0552291370606751,
+        0.17436566150491345
+      ],
+      "fnr_wilson_95": [
+        0.02154367915436796,
+        0.11175046923191913
+      ],
+      "accuracy": 0.925,
+      "balanced_accuracy": 0.925,
+      "auroc": 0.9805999999999999,
+      "false_positive_rate": 0.1,
+      "false_negative_rate": 0.05,
+      "tn": 90,
+      "fp": 10,
+      "fn": 5,
+      "tp": 95
+    },
+    {
+      "name": "小图 · 320×240 保留集",
+      "total_samples": 120,
+      "samples": 120,
+      "scored_coverage": 1.0,
+      "human": 60,
+      "ai": 60,
+      "precision": 0.8813559322033898,
+      "recall": 0.8666666666666667,
+      "f1": 0.8739495798319328,
+      "accuracy_wilson_95": [
+        0.8039705979199262,
+        0.9227650272660463
+      ],
+      "fpr_wilson_95": [
+        0.0576772064005603,
+        0.2217878802417086
+      ],
+      "fnr_wilson_95": [
+        0.06914109480586972,
+        0.24165159676499615
+      ],
+      "accuracy": 0.875,
+      "balanced_accuracy": 0.875,
+      "auroc": 0.9258333333333333,
+      "false_positive_rate": 0.11666666666666667,
+      "false_negative_rate": 0.13333333333333333,
+      "tn": 53,
+      "fp": 7,
+      "fn": 8,
+      "tp": 52
+    }
+  ],
+  "evaluation_threshold": 0.5,
+  "runtime_confidence_thresholds": [
+    0.2,
+    0.8
+  ],
+  "text_description": "采用 MPU 项目作者当前公开的中英文专项 v3 Short 权重，中文通过 NLPCC 2026 Phase 1 独立校准。按 512 token 滑窗处理长文本，并提供逐段评分。",
+  "model_release_note": "MPU paper ICLR 2024, latest author v3 weights 2025-06; DEAR ICML 2026. TASTE 2026 was evaluated as a candidate."
+}

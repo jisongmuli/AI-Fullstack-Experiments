@@ -110,22 +110,21 @@ class DocumentApiTests(unittest.TestCase):
         data = HIGH.encode("utf-8") if content is None else content
         return self.client.post("/api/document/detect", files={"file": (filename, data, mime)})
 
-    def test_report_list_survives_browser_clients_and_includes_agent_reports(self):
+    def test_report_list_survives_browser_clients(self):
         report = self.detect(filename="first.txt").json()
-        agent = self.client.post("/api/agent/upload", files={
-            "document": ("agent.txt", LOW.encode("utf-8"), "text/plain")}).json()
-        agent_id = agent["findings"]["document"]["report_id"]
+        second = self.detect(filename="second.txt", content=LOW.encode("utf-8")).json()
+        second_id = second["report_id"]
         browser = TestClient(self.app, base_url="http://localhost")
         listing = browser.get("/api/document/reports")
         self.assertEqual(listing.status_code, 200)
         self.assertEqual(listing.headers["cache-control"], "no-store")
         self.assertEqual([item["report_id"] for item in listing.json()["reports"]],
-                         [agent_id, report["report_id"]])
+                         [second_id, report["report_id"]])
         for item in listing.json()["reports"]:
             self.assertNotIn("extracted_text", item)
             self.assertNotIn("detection", item)
-        self.assertEqual(browser.get(f"/api/document/reports/{agent_id}").status_code, 200)
-        self.assertEqual(browser.delete(f"/api/document/reports/{agent_id}").status_code, 200)
+        self.assertEqual(browser.get(f"/api/document/reports/{second_id}").status_code, 200)
+        self.assertEqual(browser.delete(f"/api/document/reports/{second_id}").status_code, 200)
         self.assertEqual([item["report_id"] for item in browser.get("/api/document/reports").json()["reports"]],
                          [report["report_id"]])
         self.app.state.report_store.close()
@@ -283,28 +282,7 @@ class DocumentApiTests(unittest.TestCase):
         self.assertEqual(restarted.get(f"/api/document/reports/{other}").status_code, 404)
         self.assertEqual(self.client.get("/api/document/reports/unknown").status_code, 404)
 
-    def test_agent_document_alone_and_with_image_without_score_fusion(self):
-        for with_image in (False, True):
-            with self.subTest(with_image=with_image):
-                files = {"document": ("作业.txt", HIGH.encode(), "text/plain")}
-                if with_image:
-                    files["file"] = ("picture.png", png_bytes(), "image/png")
-                response = self.client.post("/api/agent/upload", files=files)
-                self.assertEqual(response.status_code, 200, response.text)
-                result = response.json()
-                expected = {"document", "image"} if with_image else {"document"}
-                self.assertEqual(set(result["findings"]), expected)
-                self.assertEqual(result["findings"]["document"]["extracted_text"], HIGH)
-                self.assertEqual(result["tool_calls"][-1]["tool"], "document_detection")
-                self.assertNotIn("risk_score", result)
-                self.assertNotIn(HIGH, str(result["tool_calls"]))
 
-    def test_agent_rejects_document_plus_text_and_bad_documents(self):
-        both = self.client.post("/api/agent/upload", data={"text": HIGH},
-                                files={"document": ("作业.txt", HIGH.encode(), "text/plain")})
-        self.assertEqual(both.status_code, 400)
-        bad = self.client.post("/api/agent/upload", files={"document": ("fake.docx", b"bad", "application/octet-stream")})
-        self.assertEqual(bad.status_code, 422)
 
     def test_missing_model_returns_service_error_without_persisting_report(self):
         app = create_app(MissingDocumentBundle())

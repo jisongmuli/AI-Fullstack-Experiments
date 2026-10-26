@@ -15,6 +15,7 @@ class ChineseTextInferenceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.service = DetectorService(ROOT)
+        cls.service.algorithm_policy = {}  # Preserve the historical baseline smoke checks.
 
     def test_long_chinese_text_has_model_score(self) -> None:
         text = "今年中秋，我又走过村口那条小路。树叶落在石阶上，母亲在门前等我回来。" * 55

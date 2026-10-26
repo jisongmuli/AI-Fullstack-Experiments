@@ -4,6 +4,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import shutil
+import zipfile
 from pathlib import Path
 
 import httpx
@@ -81,6 +83,21 @@ def main():
             url = "https://drive.usercontent.google.com/download?id=1w1hbdiZMS_JzPntVMWM3qrTQ4KxJf-t6&export=download&confirm=t"
             target = ROOT / ".cache/research_2026/TASTE.zip"
             receipts.append(download(client, url, target, expected_sha=TASTE_SHA, expected_size=712225547))
+            with zipfile.ZipFile(target) as archive:
+                for name in ("config.json", "tokenizer.json", "tokenizer_config.json", "detector_ep3.pt"):
+                    member = "TASTE/detector/" + name
+                    destination = ROOT / "models/taste" / name
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    expected_size = archive.getinfo(member).file_size
+                    if not destination.exists() or destination.stat().st_size != expected_size:
+                        temporary = destination.with_name(destination.name + ".part")
+                        with archive.open(member) as source, temporary.open("wb") as output_file:
+                            shutil.copyfileobj(source, output_file, length=1024*1024)
+                        temporary.replace(destination)
+                    if name == "detector_ep3.pt" and file_hash(destination) != "f79328c19ec0f1044dd24dd6eb9c5d5c96aa01b7036765251be9a426b9a46cbf":
+                        raise RuntimeError("TASTE checkpoint fingerprint mismatch")
+                    receipts.append({"path": destination.relative_to(ROOT).as_posix(), "url": url,
+                                     "archive_member": member, "bytes": expected_size, "sha256": file_hash(destination)})
     output = ROOT / "results/upgrade_20261026/asset-receipts.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     existing = json.loads(output.read_text(encoding="utf-8"))["assets"] if output.exists() else []
