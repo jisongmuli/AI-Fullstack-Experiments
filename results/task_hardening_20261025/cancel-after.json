@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "status_while_cleanup_blocked": "cancel_requested",
+  "active_while_cleanup_blocked": 1,
+  "final_status": "cancelled",
+  "active_after": 0
+}

@@ -1,0 +1,5 @@
+{
+  "before_fix": true,
+  "status_while_cleanup_blocked": "cancelled",
+  "active_while_cleanup_blocked": 1
+}

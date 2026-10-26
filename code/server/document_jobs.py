@@ -49,7 +49,7 @@ class DocumentJobs:
 
     def _snapshot(self, job: dict) -> dict:
         return {key: job[key] for key in ("job_id", "filename", "status", "stage", "completed",
-                "total", "progress", "created_at", "updated_at", "expires_at", "report_id")} | {
+                "total", "progress", "created_at", "updated_at", "expires_at", "report_id", "revision")} | {
                     "error": dict(job["error"]) if job["error"] else None}
 
     def submit(self, filename: str, processor: Callable, lease: ProcessingLease) -> dict:
@@ -67,7 +67,7 @@ class DocumentJobs:
             job = {"job_id": job_id, "filename": filename, "status": "pending", "stage": "pending",
                    "completed": 0, "total": 0, "progress": 0, "created_at": timestamp(now),
                    "updated_at": timestamp(now), "expires_at": None, "report_id": None,
-                   "error": None, "finished": None, "cancel": threading.Event()}
+                   "error": None, "finished": None, "cancel": threading.Event(), "revision": 0}
             self._jobs[job_id] = job
             try:
                 self._executor.submit(self._run, job, processor, lease)
@@ -89,32 +89,57 @@ class DocumentJobs:
             with self._lock:
                 check_cancel()
                 job.update(status="running", stage=stage, completed=completed, total=total,
+                           revision=job["revision"] + 1,
                            updated_at=timestamp(self.clock()), progress=(5 if stage == "extracting" else
                                95 if stage == "saving" else round(10 + 85 * completed / max(total, 1))))
 
         report_id = None
+        outcome = "failed"
+        error = {"message": "文档处理失败，请检查文件或模型后重试。", "status_code": 503}
         try:
             check_cancel()
             report_id = processor(progress, check_cancel)
             if not isinstance(report_id, str) or not report_id:
                 raise JobError("任务未生成可用报告，请重新检测。")
-            with self._lock:
-                check_cancel()
-                job.update(status="completed", stage="completed", progress=100, report_id=report_id)
+            outcome, error = "completed", None
         except Exception as exc:
-            with self._lock:
-                cancelled = job["cancel"].is_set() or isinstance(exc, JobCancelled)
-                job.update(status="cancelled" if cancelled else "failed", stage="cancelled" if cancelled else "failed")
-                if not cancelled:
-                    job["error"] = {"message": str(exc) if isinstance(exc, JobError) else "文档处理失败，请检查文件或模型后重试。",
-                                    "status_code": exc.status_code if isinstance(exc, JobError) else 503}
+            cancelled = job["cancel"].is_set() or isinstance(exc, JobCancelled)
+            outcome = "cancelled" if cancelled else "failed"
+            error = None if cancelled else {"message": str(exc) if isinstance(exc, JobError) else "文档处理失败，请检查文件或模型后重试。",
+                                           "status_code": exc.status_code if isinstance(exc, JobError) else 503}
+        finally:
+            self._finish(job, outcome, report_id, error, lease)
+
+    def _finish(self, job: dict, outcome: str, report_id: str | None,
+                error: dict | None, lease: ProcessingLease) -> None:
+        def publish() -> None:
+            # Publishing a terminal status guarantees cleanup and capacity release.
+            lease.release()
+            now = self.clock()
+            job.update(status=outcome, stage=outcome, error=error, revision=job["revision"] + 1,
+                       report_id=report_id if outcome == "completed" else None,
+                       progress=100 if outcome == "completed" else job["progress"],
+                       finished=now, updated_at=timestamp(now), expires_at=timestamp(now + self.ttl_seconds))
+
+        with self._lock:
+            if job["cancel"].is_set():
+                outcome, error = "cancelled", None
+            if outcome == "completed":
+                publish()
+                return
+        cleanup_failed = False
+        try:
             if report_id:
                 self.delete_report(report_id)
+        except Exception:
+            cleanup_failed = True
+            outcome = "failed"
+            error = {"message": "报告清理失败，请从报告列表检查并删除。", "status_code": 503}
         finally:
             with self._lock:
-                now = self.clock()
-                job.update(finished=now, updated_at=timestamp(now), expires_at=timestamp(now + self.ttl_seconds))
-            lease.release()
+                if job["cancel"].is_set() and not cleanup_failed:
+                    outcome, error = "cancelled", None
+                publish()
 
     def get(self, job_id: str) -> dict | None:
         with self._lock:
@@ -133,17 +158,29 @@ class DocumentJobs:
             job = self._jobs.get(job_id)
             if job is None:
                 return None
-            if job["status"] not in TERMINAL:
+            if job["status"] not in TERMINAL and not job["cancel"].is_set():
                 job["cancel"].set()
-                job.update(status="cancel_requested", updated_at=timestamp(self.clock()))
+                job.update(status="cancel_requested", updated_at=timestamp(self.clock()), revision=job["revision"] + 1)
             return self._snapshot(job)
+
+    def delete(self, job_id: str) -> bool:
+        with self._lock:
+            self._prune()
+            job = self._jobs.get(job_id)
+            if job is None:
+                return False
+            if job["status"] not in TERMINAL:
+                raise JobError("请先取消任务，结束后再移除记录。", 409)
+            del self._jobs[job_id]
+            return True
 
     def close(self) -> None:
         with self._lock:
             self._closing = True
             for job in self._jobs.values():
-                if job["status"] not in TERMINAL:
+                if job["status"] not in TERMINAL and not job["cancel"].is_set():
                     job["cancel"].set()
+                    job.update(status="cancel_requested", updated_at=timestamp(self.clock()), revision=job["revision"] + 1)
         self._executor.shutdown(wait=True)
         with self._lock:
             self._jobs.clear()

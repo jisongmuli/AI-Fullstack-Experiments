@@ -152,8 +152,99 @@ class DocumentJobApiTests(unittest.TestCase):
         report = self.client.get(f"/api/document/reports/{done['report_id']}").json()
         self.assertEqual(report["format"], "txt")
 
+    def test_cancel_revisions_are_monotonic_and_repeated_cancel_is_idempotent(self):
+        self.model.finish.clear()
+        job = self.submit()
+        self.assertTrue(self.model.entered.wait(1))
+        before = self.client.get(f"/api/document/jobs/{job['job_id']}").json()
+        cancelled = self.client.post(f"/api/document/jobs/{job['job_id']}/cancel").json()
+        again = self.client.post(f"/api/document/jobs/{job['job_id']}/cancel").json()
+        self.assertGreater(cancelled["revision"], before["revision"])
+        self.assertEqual(again["revision"], cancelled["revision"])
+        self.model.finish.set()
+        done = self.wait_done(job["job_id"])
+        self.assertGreater(done["revision"], cancelled["revision"])
+
+    def test_deleting_completed_task_metadata_preserves_its_report(self):
+        job = self.submit()
+        done = self.wait_done(job["job_id"])
+        removed = self.client.delete(f"/api/document/jobs/{job['job_id']}")
+        self.assertEqual(removed.json(), {"deleted": True})
+        self.assertEqual(removed.headers["cache-control"], "no-store")
+        self.assertEqual(self.client.get(f"/api/document/jobs/{job['job_id']}").status_code, 404)
+        self.assertEqual(self.client.get(f"/api/document/reports/{done['report_id']}").status_code, 200)
+        self.assertEqual(self.client.delete(f"/api/document/jobs/{job['job_id']}").json(), {"deleted": False})
+
+    def test_active_task_cannot_be_removed(self):
+        self.model.finish.clear()
+        job = self.submit()
+        self.assertTrue(self.model.entered.wait(1))
+        self.assertEqual(self.client.delete(f"/api/document/jobs/{job['job_id']}").status_code, 409)
+        self.assertEqual(self.app.state.processing.snapshot()["active"], 1)
+        self.assertEqual(len(self.client.get("/api/document/jobs").json()["jobs"]), 1)
+
 
 class JobWorkerTests(unittest.TestCase):
+    def test_cancelled_is_published_only_after_cleanup_and_capacity_release(self):
+        state = ProcessingState(1); state.acquire()
+        entered, finish, cleaning, cleaned = (threading.Event() for _ in range(4))
+
+        def process(progress, check_cancel):
+            entered.set(); finish.wait(3)
+            return "fresh-report"
+
+        def remove(report_id):
+            cleaning.set(); cleaned.wait(3)
+            return True
+
+        jobs = DocumentJobs(workers=1, delete_report=remove)
+        self.addCleanup(jobs.close); self.addCleanup(cleaned.set); self.addCleanup(finish.set)
+        job = jobs.submit("fixture.txt", process, ProcessingLease(state))
+        self.assertTrue(entered.wait(1))
+        jobs.cancel(job["job_id"]); finish.set()
+        self.assertTrue(cleaning.wait(1))
+        during = jobs.get(job["job_id"])
+        self.assertEqual(during["status"], "cancel_requested")
+        self.assertIsNone(during["expires_at"])
+        self.assertEqual(state.snapshot()["active"], 1)
+        cleaned.set()
+        deadline = time.monotonic() + 2
+        while time.monotonic() < deadline:
+            done = jobs.get(job["job_id"])
+            if done["status"] == "cancelled":
+                break
+            time.sleep(.002)
+        self.assertEqual(done["status"], "cancelled")
+        self.assertIsNotNone(done["expires_at"])
+        self.assertEqual(state.snapshot()["active"], 0)
+
+    def test_cleanup_failure_is_reported_and_still_releases_capacity(self):
+        state = ProcessingState(1); state.acquire()
+        entered, finish = threading.Event(), threading.Event()
+
+        def process(progress, check_cancel):
+            entered.set(); finish.wait(3)
+            return "fresh-report"
+
+        def remove(report_id):
+            raise RuntimeError("private parser detail")
+
+        jobs = DocumentJobs(workers=1, delete_report=remove)
+        self.addCleanup(jobs.close); self.addCleanup(finish.set)
+        job = jobs.submit("fixture.txt", process, ProcessingLease(state))
+        self.assertTrue(entered.wait(1))
+        jobs.cancel(job["job_id"]); finish.set()
+        deadline = time.monotonic() + 2
+        while time.monotonic() < deadline:
+            done = jobs.get(job["job_id"])
+            if done["status"] == "failed":
+                break
+            time.sleep(.002)
+        self.assertEqual(done["status"], "failed")
+        self.assertNotIn("private parser detail", json.dumps(done))
+        self.assertIn("清理失败", done["error"]["message"])
+        self.assertEqual(state.snapshot()["active"], 0)
+
     def test_retention_preserves_an_older_running_job(self):
         state = ProcessingState(2)
         jobs = DocumentJobs(workers=2, max_jobs=2, delete_report=lambda _: True)

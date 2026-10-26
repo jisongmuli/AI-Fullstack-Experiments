@@ -90,5 +90,6 @@ async (page) => {
   await openReport.waitFor({state:'detached'});
   check('Deleting the open report removes its result and list entry', await page.locator('#document-annotated-text').count() === 0);
   check('No uncaught browser errors', errors.length === 0);
+  await page.request.delete(`http://127.0.0.1:8002/api/document/jobs/${acceptedJob.job_id}`);
   return {status:'passed', checks, errors, downloadNames};
 }

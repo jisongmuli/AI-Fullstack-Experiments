@@ -605,6 +605,14 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
             raise HTTPException(status_code=404, detail="任务记录已过期或服务已重启。")
         return JSONResponse(job, headers={"Cache-Control": "no-store"})
 
+    @api.delete("/api/document/jobs/{job_id}")
+    async def delete_document_job(job_id: str) -> Response:
+        try:
+            deleted = document_jobs.delete(job_id)
+        except JobError as exc:
+            raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
+        return JSONResponse({"deleted": deleted}, headers={"Cache-Control": "no-store"})
+
     @api.get("/api/document/reports/{report_id}")
     def document_report(report_id: str) -> Response:
         return JSONResponse(retrieve_report(report_id), headers={"Cache-Control": "no-store"})

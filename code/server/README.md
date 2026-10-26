@@ -20,6 +20,7 @@ The trained inference module and artifacts from experiments 2-3 must be present 
 | `GET /api/document/jobs` | none | Bounded task metadata, without source text |
 | `GET /api/document/jobs/{job_id}` | task ID | Stage, progress, report ID or error |
 | `POST /api/document/jobs/{job_id}/cancel` | task ID | Cooperative cancellation status |
+| `DELETE /api/document/jobs/{job_id}` | completed, failed or cancelled task ID | Remove task metadata; preserve its report |
 | `POST /api/text/edit` | JSON `{"text":"..."}` | Conservative edits, suggestions and meaning checks |
 | `POST /api/text/edit/llm-preview` | JSON `{"text":"..."}` | Opt-in LoRA draft or explicit rejection, never automatic replacement |
 | `POST /api/agent/run` | JSON `{"text":"...","image_base64":"...","edit":true,"llm_preview":false}` | Separate tool findings, optional LLM preview, call log and cautious conclusion |
@@ -35,3 +36,5 @@ python -m unittest discover -s code/server/tests -v
 ```
 
 The suite covers API behavior, Agent orchestration, report retention, document tasks, shared capacity and cancellation with predictable stand-in outputs. Run `scripts/document_jobs_smoke.py` for generated-input checks using actual local models. Tasks retain their processing slot after the 202 response until the worker finishes. Cancellation is checked between extraction and model calls; completed tasks reference the existing report endpoints. See `docs/文档任务升级_20261025.md` for the workflow and verification records. The server binds to localhost and accepts only loopback Host headers.
+
+Task snapshots include a monotonic `revision` for merging delayed responses. Terminal status is published after report cleanup and processing-capacity release. Ended task metadata can be removed independently of its report. See `docs/任务状态与Agent下载加固_20261026.md` for the cancellation and download checks.

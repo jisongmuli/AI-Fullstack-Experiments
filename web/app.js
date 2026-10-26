@@ -142,8 +142,7 @@ function agentDocumentHtml(report){
   const id=typeof report.report_id==="string"?report.report_id:"";
   const segments=Array.isArray(report.detection?.segments)?report.detection.segments:[];
   const samples=segments.filter(item=>item.highlighted===true).slice(0,3);
-  const base=`/api/document/reports/${encodeURIComponent(id)}`;
-  return`<div class="agent-finding"><strong>文档检测 · ${escapeHtml(report.filename||"文档")}</strong><span class="finding-score">${pct(rate)}</span><span>AI 特征覆盖率：高风险段字符占全文非空白字符的比例</span><span class="finding-note">不是实际 AI 撰写比例。可评分覆盖 ${pct(summary.scored_character_percent)} · ${escapeHtml(summary.high_risk_segments??0)} 个高风险片段</span>${Number.isFinite(summary.mean_segment_score)?`<span>可评分片段模型均分 ${fmtScore(summary.mean_segment_score)}/100</span>`:""}${samples.map(item=>`<p class="document-agent-excerpt"><u>${escapeHtml(Array.from(item.text||"").slice(0,220).join(""))}${Array.from(item.text||"").length>220?"…":""}</u></p>`).join("")}${summary.mixed_signals?'<span class="finding-note">段落信号存在明显差异，未提供整篇来源分数。</span>':""}${id?`<div class="result-actions"><button type="button" class="secondary-button open-document-report" data-report-id="${escapeHtml(id)}">完整下划线标注</button><a class="secondary-button" href="${base}/docx" download>Word 报告</a><a class="secondary-button" href="${base}/html" download>HTML / 打印 PDF</a></div>`:""}<span class="finding-note">报告暂存在本地内存；过期或重启后请重新检测。</span></div>`;
+  return`<div class="agent-finding"><strong>文档检测 · ${escapeHtml(report.filename||"文档")}</strong><span class="finding-score">${pct(rate)}</span><span>AI 特征覆盖率：高风险段字符占全文非空白字符的比例</span><span class="finding-note">不是实际 AI 撰写比例。可评分覆盖 ${pct(summary.scored_character_percent)} · ${escapeHtml(summary.high_risk_segments??0)} 个高风险片段</span>${Number.isFinite(summary.mean_segment_score)?`<span>可评分片段模型均分 ${fmtScore(summary.mean_segment_score)}/100</span>`:""}${samples.map(item=>`<p class="document-agent-excerpt"><u>${escapeHtml(Array.from(item.text||"").slice(0,220).join(""))}${Array.from(item.text||"").length>220?"…":""}</u></p>`).join("")}${summary.mixed_signals?'<span class="finding-note">段落信号存在明显差异，未提供整篇来源分数。</span>':""}${id?`<div class="result-actions"><button type="button" class="secondary-button open-document-report" data-report-id="${escapeHtml(id)}">完整下划线标注</button><button type="button" class="secondary-button agent-report-download" data-report-id="${escapeHtml(id)}" data-report-format="docx">Word 报告</button><button type="button" class="secondary-button agent-report-download" data-report-id="${escapeHtml(id)}" data-report-format="html">HTML / 打印 PDF</button></div><div class="agent-download-status" role="status" aria-live="polite"></div>`:""}<span class="finding-note">报告暂存在本地内存；过期或重启后请重新检测。</span></div>`;
 }
 function agentResultHtml(data){
   const findings=Object.entries(data.findings||{}).map(([name,value])=>{
@@ -270,3 +269,18 @@ document.addEventListener("click",event=>{
 function openLinkedView(){const view=location.hash.slice(1);if(["image","text","document","edit","agent"].includes(view))setView(view)}
 document.addEventListener("DOMContentLoaded",openLinkedView);
 window.addEventListener("hashchange",openLinkedView);
+
+document.addEventListener("click",async event=>{
+  const button=event.target.closest?.(".agent-report-download");
+  if(!button||button.disabled)return;
+  const feedback=button.closest(".agent-finding").querySelector(".agent-download-status");
+  button.disabled=true;feedback.classList.remove("error");feedback.textContent="正在准备下载报告…";
+  try{
+    if(!window.AIGCReports)throw Error("下载组件未就绪，请刷新页面重试。");
+    await window.AIGCReports.download(button.dataset.reportId,button.dataset.reportFormat);
+    feedback.textContent="报告已准备好，浏览器将开始下载。";
+  }catch(error){
+    feedback.classList.add("error");
+    feedback.textContent=error.name==="TimeoutError"?"报告下载超时，请稍后重试。":error instanceof TypeError?"无法连接检测服务，请稍后重试下载。":error.message;
+  }finally{button.disabled=false}
+});

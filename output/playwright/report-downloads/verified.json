@@ -1,6 +1,6 @@
 {
   "schema_version": "document-screening-v1",
-  "created_at": "2026-10-25T13:04:39+00:00",
+  "created_at": "2026-10-25T13:40:44+00:00",
   "filename": "报告流程验证.txt",
   "format": "txt",
   "source_sha256": "732d177c9e713d29d869deece352555cb6b81ce48ff7bfc7e76a307bd3cbeb77",
@@ -79,8 +79,8 @@
     "mixed_signals": false,
     "metric_note": "AI 特征占比按整段标注：所在段落模型风险分数达到 0.99 的非空白字符占比；不是 AI 实际撰写比例，也不是逐字来源定位。模型均分不是整篇来源概率。"
   },
-  "report_id": "d9UdTj9WzhynN4FLyB6DsFgBszWNDK4z",
-  "expires_at": "2026-10-25T13:34:39.418581+00:00",
+  "report_id": "_zLEcQxRnNAqxNC1_dPoZ5ZnBfe45SdI",
+  "expires_at": "2026-10-25T14:10:44.605505+00:00",
   "retention_note": "报告仅在本地服务内存中保存最多 30 分钟、20 份；达到内存上限会提前移除旧报告。重启后失效。",
   "report_export": {
     "schema_version": 1,

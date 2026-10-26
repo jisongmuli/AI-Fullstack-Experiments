@@ -55,6 +55,7 @@ def main():
                 "final_progress": progress[-1], "elapsed_seconds": round(time.monotonic() - started, 3),
                 "original_characters": len(result["extracted_text"]), "exports": ["docx", "html", "json"]})
             client.delete("/api/document/reports/" + job["report_id"]).raise_for_status()
+            client.delete("/api/document/jobs/" + job["job_id"]).raise_for_status()
         runtime = client.get("/api/runtime").json()
         assert runtime["processing"]["active"] == 0
         record["processing_after"] = runtime["processing"]

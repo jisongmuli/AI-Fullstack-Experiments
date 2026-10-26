@@ -45,3 +45,5 @@ py -3.12 setup_environment.py --with-llm
 后续缺陷修复见 `docs/缺陷排查与修复_20261025.md`，对应复现与回归资料保存在 `results/bugs_20261025/` 和 `output/playwright/`。
 
 文档任务升级见 `docs/文档任务升级_20261025.md`，支持进度、取消、后台继续和刷新恢复；本机模型检查见 `results/jobs_20261025/`。
+
+任务状态和 Agent 下载加固见 `docs/任务状态与Agent下载加固_20261026.md`，补充延迟响应合并、结束记录移除及统一下载反馈。
