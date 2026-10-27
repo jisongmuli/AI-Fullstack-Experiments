@@ -6,7 +6,7 @@ Use Python 3.12 and the project virtual environment. Start from the project root
 .venv\Scripts\python.exe run.py --port 8005
 ```
 
-The four workflows are image detection, text detection, document analysis, and editing. Previous Agent routes have been removed and return 404.
+The six workflows are image detection, text detection, document analysis, editing, course experiments, and a fine-tuned local LLM Agent. The obsolete `/api/agent/upload` protocol remains removed. The new multipart `/api/agent/run` route uses Qwen3.5 to select API tools.
 
 | Endpoint | Purpose |
 | --- | --- |
@@ -24,8 +24,12 @@ The four workflows are image detection, text detection, document analysis, and e
 | `DELETE /api/document/reports/{id}` | Delete report content |
 | `POST /api/text/edit` | English clarity suggestions and surface-content checks |
 | `POST /api/text/edit/llm-preview` | Local SmolLM2/LoRA editing preview |
+| `GET /api/course` | The five-stage course evidence and measured comparisons |
+| `POST /api/course/image/detect?stage=trained|optimized` | The group's trained CNN or pruned TorchScript model |
+| `POST /api/course/text/detect` | The group's full or compressed Chinese classifier; `stage` in JSON |
+| `GET /api/agent/status`, `POST /api/agent/run` | Local model readiness and actual LLM-selected API tools |
 
-The active policy is `models/algorithm_policy.json`. MPU v3 Short handles Chinese and English; Chinese calibration uses a separate NLPCC 2026 Phase 1 slice. DEAR uses native-scale crops and resolution-specific calibration. TASTE and earlier classifiers are retained for reproducing comparisons.
+The advanced policy is `models/algorithm_policy.json`. MPU v3 Short handles Chinese and English; DEAR uses native-scale crops and resolution-specific calibration. The course deployment reads `models/course_20261027` and the Agent reads `models/agent_qwen35` plus `models/agent_router`. Agent uploads are bound to server-validated inputs; allowlisted tools issue real requests through the same app routes via ASGITransport. Agent admission permits one orchestration at a time and detector tools retain the normal two-request limit.
 
 Images accept arbitrary positive dimensions through 4K, subject to 25 MiB / 25-million-pixel limits. Text input allows 10,000 characters. Documents allow 20 MiB / 100,000 characters / 200 PDF pages. Reports stay in memory for 30 minutes, limited to 20 reports / 32 MiB. Browser history stores summaries only.
 

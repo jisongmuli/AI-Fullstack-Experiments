@@ -12,8 +12,10 @@
   <link rel="stylesheet" href="/static/document.css?v=jobs20261025">
   <script src="/static/assets/lucide.min.js" defer></script>
   <script src="/static/report-downloads.js?v=upgrade20261026" defer></script>
-  <script src="/static/app.js?v=performance20261026" defer></script>
+  <script src="/static/app.js?v=course20261027" defer></script>
   <script src="/static/document.js?v=upgrade20261026" defer></script>
+  <link rel="stylesheet" href="/static/course.css?v=course20261027">
+  <script src="/static/course.js?v=course20261027" defer></script>
 </head>
 <body>
   <div class="shell">
@@ -24,6 +26,8 @@
         <button class="nav-item" data-view="text" type="button"><i data-lucide="file-text"></i><span>文本检测</span></button>
         <button class="nav-item" data-view="document" type="button"><i data-lucide="files"></i><span>文档检测</span></button>
         <button class="nav-item" data-view="edit" type="button"><i data-lucide="pencil-line"></i><span>可信编辑</span></button>
+        <button class="nav-item" data-view="course" type="button"><i data-lucide="graduation-cap"></i><span>课程实验</span></button>
+        <button class="nav-item" data-view="agent" type="button"><i data-lucide="bot"></i><span>大模型助手</span></button>
       </nav>
       <div class="sidebar-bottom"><span class="status-dot" id="service-dot"></span><span id="service-label" role="status" aria-live="polite">连接中</span></div>
     </aside>
@@ -31,7 +35,7 @@
     <div class="main-shell">
       <header class="topbar">
         <div class="topbar-title"><span class="eyebrow">AIGC CONTENT REVIEW</span><h1 id="page-title">图像检测</h1></div>
-        <div class="topbar-actions"><span class="scope-pill">实验性辅助判断</span><button class="icon-button" id="model-info-button" type="button" title="模型与适用范围" aria-label="模型与适用范围"><i data-lucide="info"></i></button></div>
+        <div class="topbar-actions"><select id="model-profile" aria-label="图像与文本检测方案" title="用于图像与文本检测；文档页保持增强方案"><option value="advanced">增强检测（默认）</option><option value="course-optimized">课程 · 优化模型</option><option value="course-trained">课程 · 训练基线</option></select><button class="icon-button" id="model-info-button" type="button" title="模型与适用范围" aria-label="模型与适用范围"><i data-lucide="info"></i></button></div>
       </header>
 
       <main id="main-content">
@@ -91,6 +95,31 @@
           <div class="workspace-grid">
             <div class="work-panel"><label class="field-label" for="edit-input">原文</label><textarea id="edit-input" spellcheck="true" placeholder="粘贴你有权编辑的英文文本…"></textarea><div class="field-footer"><span>数字、姓名与引用请人工核对</span><span id="edit-count">0 字符</span></div><button class="primary-button" id="run-edit" type="button" disabled><i data-lucide="wand-sparkles"></i><span>生成编辑建议</span></button><button class="secondary-button llm-preview-button" id="run-llm-edit" type="button" disabled><i data-lucide="sparkles"></i><span>大模型改写预览</span></button><p class="input-note"><i data-lucide="notebook-pen"></i>大模型仅提供实验性建议；未通过检查的内容不会作为可用改写展示。</p></div>
             <div class="result-panel" id="edit-result" aria-live="polite"><div class="empty-result"><i data-lucide="text-cursor-input"></i><strong>等待原文</strong><p>建议及保留原意检查将显示在这里。</p></div></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-course" aria-labelledby="course-heading">
+          <div class="section-intro"><div><h2 id="course-heading">五次实验，完整衔接</h2><p>查看本组从新数据、模型训练到压缩部署与大模型微调的实际记录。</p></div><span class="dataset-chip">2026 年样本</span></div>
+          <div id="course-stages" class="course-stages" aria-live="polite"><p>正在读取实验记录…</p></div>
+          <div class="course-actions"><button id="course-try-image" type="button" class="secondary-button">试用课程图像模型</button><button id="course-try-text" type="button" class="secondary-button">试用课程文本模型</button><button id="course-open-agent" type="button" class="primary-button">打开大模型助手</button><button id="course-download" type="button" class="secondary-button">下载实验记录 JSON</button></div>
+          <div id="course-measurements" class="work-panel course-measurements"></div>
+          <p class="document-helper">课程图像样例与文本样例来自各自保留测试集。课程 CNN 展示训练和压缩过程；增强方案继续用于常规检测。图片指标、文本指标与工具选择指标分别统计。</p>
+          <details class="work-panel"><summary>查看完整实验记录</summary><pre id="course-records" class="course-json"></pre></details>
+        </section>
+
+        <section class="view" id="view-agent" aria-labelledby="agent-heading">
+          <div class="section-intro"><div><h2 id="agent-heading">大模型选择工具，读取真实结果</h2><p>本地 Qwen3.5 + LoRA 根据你的需求选择工具，调用检测 API，并整理答复。</p></div><span id="agent-model-status" class="dataset-chip">正在检查模型…</span></div>
+          <div class="workspace-grid">
+            <form id="agent-form" class="work-panel">
+              <label class="field-label" for="agent-instruction">希望助手做什么</label><textarea id="agent-instruction" maxlength="1000" rows="3" placeholder="例如：分别检测图片和正文；检查文档并生成报告；介绍五次实验的完成情况。" required></textarea>
+              <div class="course-prompt-buttons"><button type="button" data-agent-prompt="介绍五次实验的结果">课程实验</button><button type="button" data-agent-prompt="检测这段文本">检测正文</button><button type="button" data-agent-prompt="图片和文字都检测">图文检测</button></div>
+              <label class="field-label" for="agent-text">待分析正文（可选）</label><textarea id="agent-text" maxlength="20000" rows="5" placeholder="粘贴需要检测或编辑的正文，最多 10,000 字符。"></textarea>
+              <div class="agent-file-fields"><label>图片（可选，25 MB）<input id="agent-image" type="file" accept="image/png,image/jpeg"></label><label>文档（可选，20 MB）<input id="agent-document" type="file" accept=".docx,.pdf,.txt,.md"></label></div>
+              <label class="field-label" for="agent-profile">工具采用的检测方案</label><select id="agent-profile"><option value="advanced">增强检测方案</option><option value="course">课程优化模型（图片与中文文本）</option></select>
+              <div class="course-actions"><button id="agent-submit" type="submit" class="primary-button">提交给大模型助手</button><button id="agent-clear" type="button" class="secondary-button">清空对话与附件</button></div>
+              <p class="document-helper">对话与附件仅用于当前页面和请求。工具调用记录会显示接口、耗时、状态与返回结果。图文附件合计需满足 35 MB 请求上限。</p>
+            </form>
+            <div class="result-panel" id="agent-result" aria-live="polite"><div class="empty-result"><i data-lucide="bot"></i><strong>等待你的需求</strong><p>助手可检测图片、文字、文档，给出英文编辑建议，也可介绍模型和课程实验。</p></div></div>
           </div>
         </section>
 

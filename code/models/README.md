@@ -1,4 +1,10 @@
-# Experiment 2/3 model interface
+# Current detector and course model interfaces
+
+The 2026-10-27 course chain trains `CourseCNN` and a Chinese character TF-IDF classifier on the new 2026 data splits. `scripts/train_course_2026.py` saves both trained and optimized artifacts to `models/course_20261027`; `course_models.py` loads these exact weights for `/api/course/image/detect` and `/api/course/text/detect`.
+
+The advanced detector in `inference.py` keeps DEAR / MPU as the default. Select the course trained or optimized profile in the image/text pages to demonstrate the experiment-two → experiment-three → experiment-four deployment chain. Measured compression tradeoffs and all five experiments are documented in `docs/课程要求对照与验收_20261027.md`.
+
+## Historical 2026-10-11 training interface
 
 Run `train_and_optimize.py` from this directory or pass `--root` to train on the
 experiment-one splits. It writes model artifacts under `models/` and metrics,

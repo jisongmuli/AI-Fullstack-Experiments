@@ -53,3 +53,5 @@ py -3.12 setup_environment.py --with-llm
 当前版本已移除 Agent，采用验证集选定的 MPU v3 / DEAR 模型，并支持 4K 及以下任意正尺寸。新模型、2026 样本及测量记录见 `docs/20261026_模型升级与Agent移除.md` 和 `results/upgrade_20261026/`。
 
 后续按需加载、模型信息查询和图片预览优化见 `docs/启动与预览优化_20261026.md`，性能对照与验证资料保存在 `results/performance_20261026/`。
+
+2026-10-27 已按五次实验要求补齐新的课程训练链路与真实大模型 Agent：数据在 `data/course_20261027/`，课程模型在 `models/course_20261027/`，Qwen 与 LoRA 在 `models/agent_qwen35/`、`models/agent_router/`，训练、压缩及联调记录在 `results/course_20261027/`。验收步骤见 `docs/课程要求对照与验收_20261027.md`。

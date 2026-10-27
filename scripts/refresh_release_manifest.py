@@ -46,11 +46,24 @@ def main():
         row.pop("url")
         row.update(repo=group["repo"], revision=group["revision"], filename="pytorch_model.bin", role="active text detector")
         downloads[row["path"]] = row
-    runtime.update(version="2026-10-26", downloads=list(downloads.values()),
+    course_assets = ROOT / "results/course_20261027/agent-assets.json"
+    if course_assets.exists():
+        agent_assets = json.loads(course_assets.read_text(encoding="utf-8"))
+        for item in agent_assets["assets"]:
+            if item["path"].endswith(".safetensors"):
+                row = {key: item[key] for key in ("path", "bytes", "sha256")}
+                row.update(repo=agent_assets["repo"], revision=agent_assets["revision"],
+                           filename=Path(item["path"]).name, role="local course Agent text backbone")
+                downloads[row["path"]] = row
+    release_version = "2026-10-27" if course_assets.exists() else "2026-10-26"
+    runtime.update(version=release_version, downloads=list(downloads.values()),
                    active_policy="models/algorithm_policy.json",
                    research_candidates=[{"path": "models/taste/detector_ep3.pt", "role": "evaluated comparison candidate",
                                          "restore": "scripts/fetch_2026_assets.py"}],
-                   notes="DEAR and MPU are active. Earlier classifiers and TASTE are retained for reproducible comparisons. Clone with Git LFS to restore all bundled assets.")
+                   notes="DEAR and MPU are the advanced detectors. The course model chain and fine-tuned Qwen3.5 Agent are available separately. Clone with Git LFS to restore all bundled assets.")
+    if course_assets.exists():
+        runtime.update(course_models="models/course_20261027", agent_adapter="models/agent_router",
+                       agent_backbone="models/agent_qwen35")
     write(path, runtime)
 
     manifest_path = ROOT / "FILE_MANIFEST.json"
@@ -67,7 +80,7 @@ def main():
                 names.add(name)
     names.add("RUNTIME_MODELS.json")
     names.discard("FILE_MANIFEST.json")
-    write(manifest_path, {"version": "2026-10-26", "files": [fingerprint(ROOT / name) for name in sorted(names)]})
+    write(manifest_path, {"version": release_version, "files": [fingerprint(ROOT / name) for name in sorted(names)]})
     print(json.dumps({"runtime_downloads": len(downloads), "fingerprints": len(names)}))
 
 

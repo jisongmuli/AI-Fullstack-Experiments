@@ -9,7 +9,9 @@ const bytes=n=>n<1024?`${n} B`:n<1048576?`${(n/1024).toFixed(1)} KB`:`${(n/10485
 function previewReason(result){if(result.status==="outside_scope")return"当前只支持 20 至 320 字符的英文段落。";const reason=String(result.reason||"");const issues=[];if(reason.includes("distinct edit"))issues.push("未产生有效改写");if(reason.includes("commentary"))issues.push("输出包含解释文字");if(reason.includes("unexpectedly long"))issues.push("输出长度异常");if(reason.includes("meaning safeguard"))issues.push("原意表面检查未通过");if(reason.includes("identifier"))issues.push("字母数字标识发生变化");return issues.length?`${issues.join("；")}。请保留原文并人工核对。`:"候选改写仅供参考；使用前请逐句核对事实和原意。"}
 const api=async(path,options={})=>{const response=await fetch(path,options);let data;try{data=await response.json()}catch{data={detail:`HTTP ${response.status}`}}if(!response.ok)throw Error(typeof data.detail==="string"?data.detail:JSON.stringify(data.detail||data));return data};
 const jsonPost=(path,payload)=>api(path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
-function setView(view){if(!["image","text","document","edit"].includes(view))return;history.replaceState(null,"",`#${view}`);state.view=view;document.querySelectorAll(".nav-item").forEach(el=>el.classList.toggle("active",el.dataset.view===view));document.querySelectorAll(".view").forEach(el=>el.classList.toggle("active",el.id===`view-${view}`));$("page-title").textContent={image:"图像检测",text:"文本检测",document:"文档检测",edit:"可信编辑"}[view]||"内容可信";window.dispatchEvent(new CustomEvent("aigc:view-changed",{detail:{view}}));}
+function setView(view){if(!["image","text","document","edit","course","agent"].includes(view))return;history.replaceState(null,"",`#${view}`);state.view=view;document.querySelectorAll(".nav-item").forEach(el=>el.classList.toggle("active",el.dataset.view===view));document.querySelectorAll(".view").forEach(el=>el.classList.toggle("active",el.id===`view-${view}`));$("page-title").textContent={image:"图像检测",text:"文本检测",document:"文档检测",edit:"可信编辑",course:"课程实验",agent:"大模型助手"}[view]||"内容可信";window.dispatchEvent(new CustomEvent("aigc:view-changed",{detail:{view}}));}
+function detectionProfile(){const value=$("model-profile")?.value||"advanced";return{course:value.startsWith("course-"),stage:value==="course-trained"?"trained":"optimized"}}
+function updateProfileControl(){if($("model-profile"))$("model-profile").disabled=state.imageBusy||state.textBusy}
 function setBusy(button,target,message){button.disabled=true;target.innerHTML=`<div class="busy-state"><span class="spinner"></span>${escapeHtml(message)}</div>`;}
 function showError(target,error){target.innerHTML=`<div class="error-state">${escapeHtml(error.message||error)}</div><div class="empty-result"><i data-lucide="circle-alert"></i><strong>暂未生成结果</strong><p>请检查输入后重试。</p></div>`;icon()}
 function decisionClass(decision){const value=String(decision||"").toLowerCase();if(value.includes("uncertain")||value.includes("abstain")||value.includes("无法"))return"";return value.includes("high")||value.includes("ai")||value.includes("生成")?"high":value.includes("low")||value.includes("human")||value.includes("真实")?"low":""}
@@ -125,9 +127,10 @@ async function detectImage(){
   if(state.imageBusy||!state.image||!state.imageReady)return;
   const button=$("detect-image"),target=$("image-result"),file=state.image;
   state.imageBusy=true;setBusy(button,target,"正在分析图片…");
-  try{const body=new FormData();body.append("file",file);const result=await api("/api/image/detect",{method:"POST",body});if(state.image===file)renderDetection(target,result,"image",file)}
+  updateProfileControl();
+  try{const body=new FormData();body.append("file",file);const profile=detectionProfile(),path=profile.course?`/api/course/image/detect?stage=${profile.stage}`:"/api/image/detect";const result=await api(path,{method:"POST",body});if(state.image===file)renderDetection(target,result,"image",file)}
   catch(error){if(state.image===file)showError(target,error)}
-  finally{state.imageBusy=false;button.disabled=!state.image||!state.imageReady}
+  finally{state.imageBusy=false;button.disabled=!state.image||!state.imageReady;updateProfileControl()}
 }
 function inputUpdated(target){target.innerHTML='<div class="empty-result"><i data-lucide="file-pen-line"></i><strong>输入已更新</strong><p>请重新提交，查看当前文本的结果。</p></div>';icon()}
 function updateText(){const value=$("text-input").value,length=Array.from(value).length;if(state.textResultSource!==null&&state.textResultSource!==value){state.textResultSource=null;inputUpdated($("text-result"))}$("text-count").textContent=`${length} / 10,000 字符`;const valid=Boolean(value.trim())&&length<=10000;$("detect-text").disabled=state.textBusy||!valid;$("text-hint").textContent=length>10000?"长于 10,000 字符，请使用文档检测":state.textBusy?"分析中；修改文本后请重新分析":valid?"可开始分析；短段落可能无法评分":"请输入文本"}
@@ -135,9 +138,10 @@ async function detectText(){
   const button=$("detect-text"),target=$("text-result"),text=$("text-input").value;
   if(state.textBusy||!text.trim()||Array.from(text).length>10000)return;
   state.textBusy=true;state.textResultSource=null;setBusy(button,target,"正在分析文本…");updateText();
-  try{const result=await jsonPost("/api/text/detect",{text});if($("text-input").value!==text)return;renderDetection(target,result,"text");if(window.AIGCDocument)target.append(window.AIGCDocument.renderInline(text,result.segments,{showUnscored:true}));target.insertAdjacentHTML("beforeend",segmentResultHtml(result));state.textResultSource=text}
+  updateProfileControl();
+  try{const profile=detectionProfile(),result=await jsonPost(profile.course?"/api/course/text/detect":"/api/text/detect",profile.course?{text,stage:profile.stage}:{text});if($("text-input").value!==text)return;renderDetection(target,result,"text");if(window.AIGCDocument&&Array.isArray(result.segments))target.append(window.AIGCDocument.renderInline(text,result.segments,{showUnscored:true}));target.insertAdjacentHTML("beforeend",segmentResultHtml(result));state.textResultSource=text}
   catch(error){if($("text-input").value===text)showError(target,error)}
-  finally{state.textBusy=false;if($("text-input").value!==text)inputUpdated(target);updateText()}
+  finally{state.textBusy=false;if($("text-input").value!==text)inputUpdated(target);updateText();updateProfileControl()}
 }
 function updateEdit(){if(state.editResultSource!==null&&state.editResultSource!==$("edit-input").value){state.editResultSource=null;inputUpdated($("edit-result"))}const length=Array.from($("edit-input").value).length,valid=Array.from($("edit-input").value.trim()).length>=20&&length<=10000;$("edit-count").textContent=`${length} / 10,000 字符`;$("run-edit").disabled=state.editBusy||!valid;$("run-llm-edit").disabled=state.editBusy||!valid}
 function renderEdit(target,data){const edited=data.edited_text??data.revised_text??data.text??"";const suggestions=evidenceList(data.suggestions||data.changes);const checks=Object.entries(data.meaning_check?.checks||{}).map(([name,passed])=>`${name}: ${passed?"通过":"需核对"}`);const applied=data.applied_edits||[];target.innerHTML=`<div class="result-header"><div><small>编辑建议</small><h3>改写预览</h3></div><span class="decision">请作者确认</span></div><div class="edit-output" id="edit-output">${escapeHtml(edited||"未生成改写文本")}</div><div class="result-actions"><button class="secondary-button" id="copy-edit" type="button">复制建议</button><button class="secondary-button" id="use-edit" type="button">放入原文框</button></div><div class="detail-section"><h4>修改与建议</h4><p>自动修改 ${applied.length} 处；人工建议 ${suggestions.length} 条。</p>${suggestions.length?`<ul>${suggestions.map(s=>`<li>${escapeHtml(s)}</li>`).join("")}</ul>`:"<p>未发现预设规则覆盖的问题，请仍逐句核对。</p>"}</div><div class="detail-section"><h4>原意保留检查</h4>${checks.length?`<ul>${checks.map(s=>`<li>${escapeHtml(s)}</li>`).join("")}</ul>`:"<p>数字、姓名、引文和事实仍需作者核对。</p>"}<p>${escapeHtml(data.meaning_check?.limitation||"表面检查不证明语义等价。")}</p></div><div class="result-foot">编辑结果不用于规避检测；确认后再使用。</div>`;const copy=$("copy-edit");copy.onclick=async()=>{try{await navigator.clipboard.writeText(edited);copy.textContent="已复制";copy.title="";setTimeout(()=>{if(copy.isConnected)copy.textContent="复制建议"},2000)}catch{copy.textContent="复制失败，请手动复制";copy.title="请在上方建议文本中选择并复制。"}};$("use-edit").onclick=()=>{$("edit-input").value=edited;updateEdit()}}
@@ -176,7 +180,7 @@ async function checkHealth(){
   try{
     const data=await api("/api/runtime",{signal:AbortSignal.timeout(4000)}),tasks=data.processing;
     $("service-dot").className="status-dot ready";
-    $("service-label").textContent=tasks.active?`处理中 ${tasks.active} / ${tasks.limit}`:"服务就绪";
+    $("service-label").textContent=tasks.active?`处理中 ${tasks.active} / ${tasks.limit}`:data.agent?.active?"助手处理中":"服务就绪";
     $("service-label").title=`已完成 ${tasks.completed} 项请求 · 暂存报告 ${data.reports.count} / ${data.reports.limit} 份`;
   }catch{$("service-dot").className="status-dot error";$("service-label").textContent="服务未连接";$("service-label").title="请检查本地服务是否已启动"}
   finally{state.healthBusy=false;if(!document.hidden)state.healthTimer=setTimeout(checkHealth,3000)}
@@ -196,6 +200,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   $("text-input").oninput=updateText;$("detect-text").onclick=detectText;
   $("edit-input").oninput=updateEdit;$("run-edit").onclick=runEdit;
   $("model-info-button").onclick=showModelInfo;
+  $("model-profile").onchange=()=>{state.textResultSource=null;inputUpdated($("text-result"));if(state.imageReady)inputUpdated($("image-result"))};
   $("close-dialog").onclick=()=>$("model-dialog").close();
   $("dialog-done").onclick=()=>$("model-dialog").close();
   checkHealth();
@@ -211,6 +216,6 @@ document.addEventListener("click",event=>{
   button.textContent=hidden?"显示热图":"隐藏热图";
 });
 
-function openLinkedView(){const view=location.hash.slice(1);if(view==="agent"){setView("document");return;}if(["image","text","document","edit"].includes(view))setView(view)}
+function openLinkedView(){const view=location.hash.slice(1);if(["image","text","document","edit","course","agent"].includes(view))setView(view)}
 document.addEventListener("DOMContentLoaded",openLinkedView);
 window.addEventListener("hashchange",openLinkedView);

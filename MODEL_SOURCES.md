@@ -1,5 +1,15 @@
 # 运行模型来源与许可依据
 
+## 2026-10-27 课程链路与本地大模型 Agent
+
+课程检测使用本组在 2026 年 NTIRE / NLPCC 样本上新训练的 CNN 与中文 TF-IDF 模型，权重位于 `models/course_20261027`，对应数据划分、训练与压缩记录在 `results/course_20261027`。增强检测方案继续使用下述 DEAR / MPU。
+
+Agent 使用 [Qwen 官方 Qwen3.5-0.8B](https://huggingface.co/Qwen/Qwen3.5-0.8B)，固定 revision `2fc06364715b967f1860aea9cf38778875588b17`。完整官方权重为 1746942600 B，SHA-256 为 `04b1c301231dd422b8860db31311ab2721511346a32cb1e079c4c4e5f1fe4696`；Apache-2.0 许可原文保存在 `models/agent_qwen35/LICENSE`，逐文件来源与哈希见 `results/course_20261027/agent-assets.json`。
+
+运行时载入官方文本骨干；图像内容由图像检测 API 分析。LoRA 工具路由由本组课程脚本实际训练 64 步、rank 4、159744 个参数，适配器为 642112 B，SHA-256 `372a5b49d5c45a112156ffc78bd8d064f3a9ed2a845ca12e7caa419c91b0f527`。80 / 20 / 30 条教学指令的划分、微调前后预测和逐步损失均保留在 `results/course_20261027/agent`。
+
+完整五实验对应关系见 `docs/课程要求对照与验收_20261027.md`。
+
 ## 2026-10-26 开发版补充
 
 当前运行策略为 `models/algorithm_policy.json`，中文和英文使用 MPU 作者 v3 Short，图片按分辨率选择 DEAR-r / DEAR-c。原有模型保留为历史基线。

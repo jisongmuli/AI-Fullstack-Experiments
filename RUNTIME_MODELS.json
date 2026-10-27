@@ -56,6 +56,15 @@
       "revision": "32a89cd8ace09f3eccdf930bd0a3f80f77b55d27",
       "filename": "pytorch_model.bin",
       "role": "active text detector"
+    },
+    {
+      "path": "models/agent_qwen35/model.safetensors-00001-of-00001.safetensors",
+      "bytes": 1746942600,
+      "sha256": "04b1c301231dd422b8860db31311ab2721511346a32cb1e079c4c4e5f1fe4696",
+      "repo": "Qwen/Qwen3.5-0.8B",
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+      "filename": "model.safetensors-00001-of-00001.safetensors",
+      "role": "local course Agent text backbone"
     }
   ],
   "bundled_local_models": [
@@ -68,8 +77,8 @@
     "text_zh_config.json"
   ],
   "local_adapter": "models/llm/adapter",
-  "notes": "DEAR and MPU are active. Earlier classifiers and TASTE are retained for reproducible comparisons. Clone with Git LFS to restore all bundled assets.",
-  "version": "2026-10-26",
+  "notes": "DEAR and MPU are the advanced detectors. The course model chain and fine-tuned Qwen3.5 Agent are available separately. Clone with Git LFS to restore all bundled assets.",
+  "version": "2026-10-27",
   "active_policy": "models/algorithm_policy.json",
   "research_candidates": [
     {
@@ -77,5 +86,8 @@
       "role": "evaluated comparison candidate",
       "restore": "scripts/fetch_2026_assets.py"
     }
-  ]
+  ],
+  "course_models": "models/course_20261027",
+  "agent_adapter": "models/agent_router",
+  "agent_backbone": "models/agent_qwen35"
 }

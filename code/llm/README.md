@@ -1,4 +1,8 @@
-# Experiment 5: small LLM adaptation
+# Experiment 5: current course Agent and historical editing adaptation
+
+The current 2026-10-27 Agent uses the official Qwen3.5-0.8B text backbone with a genuinely trained LoRA tool router. Its 80 training, 20 validation and 30 heldout bilingual cases, 64-step loss log, checkpoint comparisons and actual API traces are in `results/course_20261027/agent`. Entry points: `agent_model.py`, `scripts/train_agent_router.py`, and the server's `/api/agent/run` multipart endpoint. Full course instructions are in `docs/课程要求对照与验收_20261027.md`.
+
+The following sections describe the earlier SmolLM2 editing experiments. Their original result directories were not included in the transferred runtime bundle; the new course Agent has a complete new record set.
 
 This is a real, limited LoRA training exercise for the trustworthy editing module. It does not fine-tune the image detector, text detector, or the deterministic Agent. The base model is [SmolLM2-135M-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct), revision `12fd25f77366fa6b3b4b768ec3050bf629380bac`; the data is [CoEdIT](https://huggingface.co/datasets/grammarly/coedit), revision `e9a255c33ef910bc33a9d2b522653fa87521583e`. Both source cards state Apache-2.0. The download script uses the public `hf-mirror.com` mirror because direct Hugging Face access was unavailable on this machine. Original files, SHA-256 hashes, source URLs and revisions are recorded in `results/exp5/source_manifest.json`.
 

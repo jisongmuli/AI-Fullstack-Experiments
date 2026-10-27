@@ -1,4 +1,4 @@
-"""Removal keeps the four direct workflows and prevents legacy Agent access."""
+"""Six course workflows and rejection of the obsolete Agent protocol."""
 from __future__ import annotations
 
 import sys
@@ -13,22 +13,23 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from app import create_app
 
 
-class RemovedAgentTests(unittest.TestCase):
+class CourseNavigationTests(unittest.TestCase):
     def test_legacy_endpoints_are_absent_from_routes_and_openapi(self):
         with TestClient(create_app(), base_url="http://localhost") as client:
             paths = client.get("/openapi.json").json()["paths"]
-            for endpoint in ("/api/agent/run", "/api/agent/upload"):
+            for endpoint in ("/api/agent/upload",):
                 self.assertNotIn(endpoint, paths)
                 self.assertEqual(client.post(endpoint, json={"text": "example"}).status_code, 404)
+            self.assertIn("/api/agent/run", paths)
+            self.assertEqual(client.post("/api/agent/run", json={"text": "example"}).status_code, 422)
             self.assertEqual(client.get("/api/runtime").json()["processing"]["active"], 0)
 
     def test_home_keeps_four_direct_workflows_without_agent_controls(self):
         with TestClient(create_app(), base_url="http://localhost") as client:
             html = client.get("/").text
-            for name in ("image", "text", "document", "edit"):
+            for name in ("image", "text", "document", "edit", "course", "agent"):
                 self.assertIn(f'data-view="{name}"', html)
-            self.assertNotIn('data-view="agent"', html)
-            self.assertNotIn('id="view-agent"', html)
+            self.assertIn('id="view-agent"', html)
             self.assertNotIn("agent.css", html)
             self.assertIn("/static/text.css", html)
 

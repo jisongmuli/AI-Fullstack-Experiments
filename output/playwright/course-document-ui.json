@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "A real local LLM selects document detection from an uploaded file",
+      "passed": true
+    },
+    {
+      "name": "The real document API produces a stored report",
+      "passed": true
+    },
+    {
+      "name": "Agent results link to the document workflow",
+      "passed": true
+    },
+    {
+      "name": "The Agent report retains the exact Unicode source",
+      "passed": true
+    },
+    {
+      "name": "Agent document export: docx",
+      "passed": true
+    },
+    {
+      "name": "Agent document export: html",
+      "passed": true
+    },
+    {
+      "name": "Agent document export: json",
+      "passed": true
+    },
+    {
+      "name": "Agent-linked document results fit the mobile viewport",
+      "passed": true
+    },
+    {
+      "name": "No uncaught errors in the Agent document handoff",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "actual_models": true
+}

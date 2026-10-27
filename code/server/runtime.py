@@ -11,6 +11,7 @@ PROCESSING_PATHS = frozenset({
     "/api/image/detect", "/api/text/detect", "/api/document/detect",
     "/api/document/jobs",
     "/api/text/edit", "/api/text/edit/llm-preview",
+    "/api/course/image/detect", "/api/course/text/detect",
 })
 
 

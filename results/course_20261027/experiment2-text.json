@@ -1,0 +1,65 @@
+{
+  "selection_rule": "smallest vocabulary with validation macro-F1 loss <=2 percentage points",
+  "candidates": [
+    {
+      "features": 2000,
+      "validation_macro_f1": 0.9866665185168724
+    },
+    {
+      "features": 4000,
+      "validation_macro_f1": 0.9883333009258359
+    },
+    {
+      "features": 8000,
+      "validation_macro_f1": 0.9849999583332176
+    }
+  ],
+  "trained": {
+    "samples": 600,
+    "accuracy": 0.9833333333333333,
+    "macro_f1": 0.9833325925596693,
+    "auroc": 0.9994888888888889,
+    "false_positive_rate": 0.01,
+    "false_negative_rate": 0.023333333333333334,
+    "confusion_matrix": [
+      [
+        297,
+        3
+      ],
+      [
+        7,
+        293
+      ]
+    ],
+    "features": 12000,
+    "latency": {
+      "median_ms": 1.7440500014345162,
+      "p95_ms": 2.264424999884794,
+      "runs": 40
+    }
+  },
+  "optimized": {
+    "samples": 600,
+    "accuracy": 0.985,
+    "macro_f1": 0.9849999583332176,
+    "auroc": 0.9990222222222221,
+    "false_positive_rate": 0.013333333333333334,
+    "false_negative_rate": 0.016666666666666666,
+    "confusion_matrix": [
+      [
+        296,
+        4
+      ],
+      [
+        5,
+        295
+      ]
+    ],
+    "features": 2000,
+    "latency": {
+      "median_ms": 0.9295499985455535,
+      "p95_ms": 1.250920000893529,
+      "runs": 40
+    }
+  }
+}

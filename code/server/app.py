@@ -17,6 +17,7 @@ import threading
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
+from typing import Literal
 from urllib.parse import quote
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
@@ -38,6 +39,8 @@ from document_reports import build_report
 from report_store import ReportStore
 from runtime import ProcessingLimit, ProcessingState
 from document_jobs import DocumentJobs, JobError
+from course import CourseService
+from course_agent import CourseAgent, AgentError
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -202,6 +205,10 @@ class TextRequest(BaseModel):
     text: str = Field(min_length=1, max_length=MAX_TEXT_CHARS)
 
 
+class CourseTextRequest(TextRequest):
+    stage: Literal["trained", "optimized"] = "optimized"
+
+
 
 
 def _uncertain(reason: str, applicability: str = "outside_training_scope", modality: str | None = None) -> dict:
@@ -344,7 +351,7 @@ def _decode_image(data: bytes) -> Image.Image:
 
 
 def create_app(model_service: Any | None = None, llm_service: Any | None = None,
-               *, max_active_requests: int = 2) -> FastAPI:
+               *, max_active_requests: int = 2, agent_model: Any | None = None, course_service: Any | None = None) -> FastAPI:
     report_store = ReportStore()
     processing = ProcessingState(max_active_requests)
     document_jobs = DocumentJobs(workers=max_active_requests, delete_report=report_store.delete)
@@ -382,11 +389,15 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
             return FileResponse(web_dir / "index.html", headers={"Cache-Control": "no-store, max-age=0"})
     service = model_service or ModelService()
     llm = llm_service or LLMPreviewService(ROOT)
+    course = course_service or CourseService(ROOT)
+    agent = CourseAgent(ROOT, model=agent_model)
     api.state.model_service = service
     api.state.llm_service = llm
     api.state.report_store = report_store
     api.state.processing = processing
     api.state.document_jobs = document_jobs
+    api.state.course_service = course
+    api.state.course_agent = agent
 
     def get_bundle() -> Any:
         try:
@@ -490,7 +501,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
     @api.get("/api/runtime")
     async def runtime() -> Response:
         return JSONResponse({"status": "ok", "processing": processing.snapshot(),
-                             "reports": report_store.stats()},
+                             "reports": report_store.stats(), "agent": {"active": agent.active.is_set()}},
                             headers={"Cache-Control": "no-store"})
 
     @api.get("/api/models")
@@ -546,6 +557,78 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
     @api.post("/api/text/detect")
     def text_detect(body: TextRequest) -> dict:
         return detect_text(body.text)
+
+    @api.get("/api/course")
+    def course_overview() -> dict:
+        return course.overview()
+
+    @api.get("/api/course/example/image")
+    def course_example_image() -> Response:
+        manifest = json.loads((ROOT / "data/course_20261027/images.json").read_text(encoding="utf-8"))
+        example = next(row for row in manifest["records"] if row["split"] == "test")
+        return FileResponse(ROOT / example["path"], media_type="image/png")
+
+    @api.get("/api/course/example/text")
+    def course_example_text() -> dict:
+        path = ROOT / "data/course_20261027/processed/text/test.jsonl"
+        with path.open(encoding="utf-8") as stream:
+            row = json.loads(next(stream))
+        return {"text": row["text"], "id": row["id"], "split": "test"}
+
+    @api.post("/api/course/image/detect")
+    async def course_image_detect(file: UploadFile = File(...), stage: Literal["trained", "optimized"] = "optimized") -> dict:
+        data = await file.read(MAX_IMAGE_BYTES + 1)
+        image = await run_in_threadpool(_decode_image, data)
+        try:
+            prediction = await run_in_threadpool(lambda: course.models().predict_image(image, stage))
+            result = _normalize_prediction(prediction, "image")
+            result["provenance"] = await run_in_threadpool(inspect_provenance, data, image.format)
+            return result
+        except Exception as exc:
+            raise HTTPException(status_code=503, detail=f"课程图像模型暂不可用：{type(exc).__name__}") from exc
+
+    @api.post("/api/course/text/detect")
+    def course_text_detect(body: CourseTextRequest) -> dict:
+        try:
+            return _normalize_prediction(course.models().predict_text(body.text, body.stage), "text")
+        except Exception as exc:
+            raise HTTPException(status_code=503, detail=f"课程文本模型暂不可用：{type(exc).__name__}") from exc
+
+    @api.get("/api/agent/status")
+    def agent_status() -> dict:
+        return agent.model.status()
+
+    @api.post("/api/agent/run")
+    async def agent_run(instruction: str = Form(..., min_length=1, max_length=1000), text: str = Form("", max_length=MAX_TEXT_CHARS),
+                        image: UploadFile | None = File(None), document: UploadFile | None = File(None),
+                        history: str = Form("[]", max_length=12000), profile: Literal["advanced", "course"] = Form("advanced")) -> Response:
+        if not instruction.strip():
+            raise HTTPException(status_code=400, detail="请输入希望助手完成的操作。")
+        try:
+            messages = json.loads(history)
+            if not isinstance(messages, list) or len(messages) > 6 or any(not isinstance(row, dict) or row.get("role") not in {"user", "assistant"}
+                    or not isinstance(row.get("content"), str) or len(row["content"]) > 1000 for row in messages):
+                raise ValueError("Invalid conversation")
+        except (ValueError, json.JSONDecodeError):
+            raise HTTPException(status_code=400, detail="对话记录格式不正确，请刷新后重试。")
+        image_input = document_input = None
+        if image is not None:
+            data = await image.read(MAX_IMAGE_BYTES+1)
+            await run_in_threadpool(_decode_image, data)
+            image_input = (image.filename or "image.png", data, image.content_type or "image/png")
+        if document is not None:
+            data = await document.read(MAX_DOCUMENT_BYTES+1)
+            if len(data) > MAX_DOCUMENT_BYTES:
+                raise HTTPException(status_code=413, detail="文档超过 20 MB。")
+            # Validate before model execution; keep the original bytes for the API tool.
+            await run_in_threadpool(extract_document, data, document.filename or "")
+            document_input = (document.filename or "document.txt", data, document.content_type or "application/octet-stream")
+        try:
+            result = await agent.run(api, instruction.strip(), text=text, image=image_input, document=document_input,
+                                     history=messages, profile=profile)
+            return JSONResponse(result, headers={"Cache-Control": "no-store"})
+        except AgentError as exc:
+            raise HTTPException(status_code=exc.status_code, detail=str(exc), headers={"Retry-After": "2"}) from exc
 
     @api.post("/api/document/detect")
     async def document_detect(file: UploadFile | None = File(None), text: str = Form("")) -> Response:

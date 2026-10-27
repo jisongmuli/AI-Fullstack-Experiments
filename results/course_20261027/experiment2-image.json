@@ -1,0 +1,53 @@
+{
+  "selection_rule": "pruned validation macro-F1 loss <=5 percentage points; no test selection",
+  "pruning_selected": true,
+  "trained": {
+    "samples": 80,
+    "accuracy": 0.6875,
+    "macro_f1": 0.6870599280237835,
+    "auroc": 0.7262500000000001,
+    "false_positive_rate": 0.275,
+    "false_negative_rate": 0.35,
+    "confusion_matrix": [
+      [
+        29,
+        11
+      ],
+      [
+        14,
+        26
+      ]
+    ],
+    "parameters": 23938,
+    "latency": {
+      "median_ms": 0.44675000026472844,
+      "p95_ms": 0.5124299994349713,
+      "runs": 40
+    }
+  },
+  "optimized": {
+    "samples": 80,
+    "accuracy": 0.6625,
+    "macro_f1": 0.6624472573839661,
+    "auroc": 0.76625,
+    "false_positive_rate": 0.35,
+    "false_negative_rate": 0.325,
+    "confusion_matrix": [
+      [
+        26,
+        14
+      ],
+      [
+        13,
+        27
+      ]
+    ],
+    "parameters": 13634,
+    "latency": {
+      "median_ms": 0.29320000248844735,
+      "p95_ms": 0.41545000131009124,
+      "runs": 40
+    }
+  },
+  "export_max_logit_difference": 0.0
+}
