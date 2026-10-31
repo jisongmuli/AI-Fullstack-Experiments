@@ -1,0 +1,244 @@
+{
+  "status": "passed",
+  "baseline_commit": "ef605bc1e2ec91e31724f43e40414e3a5a4a57ed",
+  "runtime": "CPU; existing trained models",
+  "fixtures": "Generated prose and synthetic edge cases; no authorship accuracy labels",
+  "timing_note": "First four workloads repeat four source passages; final two use distinct paragraphs. Both versions use identical inputs and trained weights.",
+  "normal_document_cases": [
+    {
+      "case": 1,
+      "characters": 98,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 2,
+      "characters": 89,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 3,
+      "characters": 101,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 4,
+      "characters": 100,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 5,
+      "characters": 80,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 6,
+      "characters": 83,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 7,
+      "characters": 84,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 8,
+      "characters": 81,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 9,
+      "characters": 180,
+      "segments": 2,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 10,
+      "characters": 174,
+      "segments": 2,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 11,
+      "characters": 187,
+      "segments": 2,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 12,
+      "characters": 183,
+      "segments": 2,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 13,
+      "characters": 86,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 14,
+      "characters": 89,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 15,
+      "characters": 90,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 16,
+      "characters": 87,
+      "segments": 1,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 17,
+      "characters": 3958,
+      "segments": 40,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 18,
+      "characters": 5038,
+      "segments": 60,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 19,
+      "characters": 4390,
+      "segments": 48,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 20,
+      "characters": 5629,
+      "segments": 40,
+      "same_scores_decisions_offsets_and_evidence": true
+    },
+    {
+      "case": 21,
+      "characters": 6049,
+      "segments": 60,
+      "same_scores_decisions_offsets_and_evidence": true
+    }
+  ],
+  "normal_batch_passages": 128,
+  "zero_feature_correction": [
+    {
+      "fixture": "unseen_latin_ngrams",
+      "old_score": 0.020736,
+      "old_decision": "human",
+      "new_score": null,
+      "new_applicability": "insufficient_model_features"
+    },
+    {
+      "fixture": "unseen_han_ngrams",
+      "old_score": 0.022298,
+      "old_decision": "human",
+      "new_score": null,
+      "new_applicability": "insufficient_model_features"
+    }
+  ],
+  "warm_repeats": 7,
+  "timings": [
+    {
+      "fixture": "english_40_paragraphs",
+      "before": {
+        "median_ms": 103.41,
+        "min_ms": 101.77,
+        "max_ms": 153.324
+      },
+      "after": {
+        "median_ms": 2.857,
+        "min_ms": 2.841,
+        "max_ms": 3.014
+      },
+      "speedup": 36.2
+    },
+    {
+      "fixture": "chinese_60_paragraphs",
+      "before": {
+        "median_ms": 18.732,
+        "min_ms": 18.298,
+        "max_ms": 19.391
+      },
+      "after": {
+        "median_ms": 4.663,
+        "min_ms": 4.538,
+        "max_ms": 5.724
+      },
+      "speedup": 4.02
+    },
+    {
+      "fixture": "mixed_48_paragraphs",
+      "before": {
+        "median_ms": 75.871,
+        "min_ms": 69.524,
+        "max_ms": 78.541
+      },
+      "after": {
+        "median_ms": 4.829,
+        "min_ms": 4.747,
+        "max_ms": 5.092
+      },
+      "speedup": 15.71
+    },
+    {
+      "fixture": "batch_128_passages",
+      "before": {
+        "median_ms": 171.99,
+        "min_ms": 171.374,
+        "max_ms": 183.972
+      },
+      "after": {
+        "median_ms": 1.158,
+        "min_ms": 1.12,
+        "max_ms": 1.27
+      },
+      "speedup": 148.52
+    },
+    {
+      "fixture": "english_40_unique_paragraphs",
+      "before": {
+        "median_ms": 104.675,
+        "min_ms": 104.303,
+        "max_ms": 104.873
+      },
+      "after": {
+        "median_ms": 8.501,
+        "min_ms": 8.403,
+        "max_ms": 8.562
+      },
+      "speedup": 12.31
+    },
+    {
+      "fixture": "chinese_60_unique_paragraphs",
+      "before": {
+        "median_ms": 20.47,
+        "min_ms": 19.665,
+        "max_ms": 21.233
+      },
+      "after": {
+        "median_ms": 9.826,
+        "min_ms": 9.714,
+        "max_ms": 10.115
+      },
+      "speedup": 2.08
+    }
+  ],
+  "model_sha256": {
+    "text_detector.joblib": "8e2f2f49727982e45d39e2b4f54548b1f9f70ce327f95ef887ad9b82d1d8a36e",
+    "text_detector_zh.joblib": "49cce5724a6a865668174f83f8641d928c03d9968f7a838e682ab3d92d0adc26"
+  },
+  "accuracy_evaluated": false
+}

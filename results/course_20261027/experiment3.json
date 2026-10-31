@@ -1,0 +1,162 @@
+{
+  "image": {
+    "selection_rule": "pruned validation macro-F1 loss <=5 percentage points; no test selection",
+    "pruning_selected": true,
+    "trained": {
+      "samples": 80,
+      "accuracy": 0.6875,
+      "macro_f1": 0.6870599280237835,
+      "auroc": 0.7262500000000001,
+      "false_positive_rate": 0.275,
+      "false_negative_rate": 0.35,
+      "confusion_matrix": [
+        [
+          29,
+          11
+        ],
+        [
+          14,
+          26
+        ]
+      ],
+      "parameters": 23938,
+      "latency": {
+        "median_ms": 0.44675000026472844,
+        "p95_ms": 0.5124299994349713,
+        "runs": 40
+      }
+    },
+    "optimized": {
+      "samples": 80,
+      "accuracy": 0.6625,
+      "macro_f1": 0.6624472573839661,
+      "auroc": 0.76625,
+      "false_positive_rate": 0.35,
+      "false_negative_rate": 0.325,
+      "confusion_matrix": [
+        [
+          26,
+          14
+        ],
+        [
+          13,
+          27
+        ]
+      ],
+      "parameters": 13634,
+      "latency": {
+        "median_ms": 0.29320000248844735,
+        "p95_ms": 0.41545000131009124,
+        "runs": 40
+      }
+    },
+    "export_max_logit_difference": 0.0
+  },
+  "text": {
+    "selection_rule": "smallest vocabulary with validation macro-F1 loss <=2 percentage points",
+    "candidates": [
+      {
+        "features": 2000,
+        "validation_macro_f1": 0.9866665185168724
+      },
+      {
+        "features": 4000,
+        "validation_macro_f1": 0.9883333009258359
+      },
+      {
+        "features": 8000,
+        "validation_macro_f1": 0.9849999583332176
+      }
+    ],
+    "trained": {
+      "samples": 600,
+      "accuracy": 0.9833333333333333,
+      "macro_f1": 0.9833325925596693,
+      "auroc": 0.9994888888888889,
+      "false_positive_rate": 0.01,
+      "false_negative_rate": 0.023333333333333334,
+      "confusion_matrix": [
+        [
+          297,
+          3
+        ],
+        [
+          7,
+          293
+        ]
+      ],
+      "features": 12000,
+      "latency": {
+        "median_ms": 1.7440500014345162,
+        "p95_ms": 2.264424999884794,
+        "runs": 40
+      }
+    },
+    "optimized": {
+      "samples": 600,
+      "accuracy": 0.985,
+      "macro_f1": 0.9849999583332176,
+      "auroc": 0.9990222222222221,
+      "false_positive_rate": 0.013333333333333334,
+      "false_negative_rate": 0.016666666666666666,
+      "confusion_matrix": [
+        [
+          296,
+          4
+        ],
+        [
+          5,
+          295
+        ]
+      ],
+      "features": 2000,
+      "latency": {
+        "median_ms": 0.9295499985455535,
+        "p95_ms": 1.250920000893529,
+        "runs": 40
+      }
+    }
+  },
+  "assets": [
+    {
+      "path": "models/course_20261027/config.json",
+      "bytes": 891,
+      "sha256": "43aa64cec2c407fd155be0c686f65f95833a23ef377c2ca6cbecde89f563fecd"
+    },
+    {
+      "path": "models/course_20261027/image_optimized.pt",
+      "bytes": 62982,
+      "sha256": "7efef75a38df0bb9ce9c7d821177c70006983a5e88e7245c8f5cedf429914118"
+    },
+    {
+      "path": "models/course_20261027/image_optimized.ts",
+      "bytes": 85938,
+      "sha256": "912c96420b8ee25f7aca5c78b3afc6965fcc61f2129f66e68efa80180d80a4b7"
+    },
+    {
+      "path": "models/course_20261027/image_trained.pt",
+      "bytes": 104780,
+      "sha256": "f9f479e93e24ed93cc3bcc8a5f2132573196bd3fadee3a864232d4e752cec423"
+    },
+    {
+      "path": "models/course_20261027/text_compact.joblib",
+      "bytes": 41160,
+      "sha256": "5d67683597a6b8b3143840383902af1eab8a5f574c03ae3446c6a9df2d59e9c7"
+    },
+    {
+      "path": "models/course_20261027/text_full.joblib",
+      "bytes": 219464,
+      "sha256": "7d24899e9abee2cdec061960ded5fe525400006aad9583b4fe5965e84a503931"
+    }
+  ],
+  "pipeline": [
+    "scripts/prepare_course_2026.py",
+    "scripts/train_course_2026.py",
+    "code/models/course_models.py"
+  ],
+  "environment": {
+    "torch": "2.14.0+cpu",
+    "threads": 4,
+    "device": "cpu"
+  }
+}

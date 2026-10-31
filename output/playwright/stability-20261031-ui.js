@@ -1,0 +1,80 @@
+async (page) => {
+  const checks=[],errors=[],root='http://127.0.0.1:8006';
+  const check=(value,name)=>{if(!value)throw Error(name);checks.push({name,passed:true})};
+  page.on('pageerror',error=>errors.push(error.message));
+  try{
+    await page.setViewportSize({width:1440,height:1000});
+    await page.goto(root+'/?v=stability20261031#course');
+    await page.locator('.course-stage').last().waitFor();
+    check(await page.locator('.course-stage').count()===5,'Five experiment cards remain available');
+    await page.route('**/api/course/example/image',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({detail:'fixture unavailable'})}));
+    await page.locator('#course-try-image').click();
+    await page.waitForFunction(()=>document.getElementById('course-example-status').textContent.includes('暂不可用'));
+    check(await page.locator('.course-stage').count()===5,'A failed example download preserves all experiment cards');
+    check(await page.locator('#course-try-image').isEnabled(),'Example controls recover after a failed download');
+    await page.unroute('**/api/course/example/image');
+
+    let release,entered;
+    const held=new Promise(resolve=>{release=resolve}),started=new Promise(resolve=>{entered=resolve});
+    await page.route('**/api/course/example/text',async route=>{entered();await held;await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({text:'STALE EXAMPLE'})}).catch(()=>{})});
+    await page.locator('#course-try-text').click();await started;
+    check(await page.locator('#course-try-image').isDisabled(),'Example buttons prevent overlapping downloads');
+    await page.locator('.nav-item[data-view="text"]').click();
+    const passage='研究团队核对样本来源，保留训练、验证和测试的划分记录。模型结果经过逐项检查，报告保留原文与模型版本。'.repeat(4);
+    await page.locator('#text-input').fill(passage);
+    await page.locator('#model-profile').selectOption('course-trained');
+    release();
+    await page.waitForFunction(()=>!document.getElementById('course-try-text').disabled);
+    check(await page.locator('#text-input').inputValue()===passage,'Late sample response preserves newly entered text');
+    check(await page.locator('#model-profile').inputValue()==='course-trained','Late sample response preserves the new model selection');
+    check(await page.locator('#view-text').evaluate(node=>node.classList.contains('active')),'Late sample response preserves current navigation');
+    await page.unroute('**/api/course/example/text');
+
+    let finish,modelEntered;
+    const modelHeld=new Promise(resolve=>{finish=resolve}),modelStarted=new Promise(resolve=>{modelEntered=resolve});
+    await page.route('**/api/course/text/detect',async route=>{const response=await route.fetch();modelEntered();await modelHeld;await route.fulfill({response})});
+    await page.locator('#detect-text').click();await modelStarted;
+    await page.locator('.nav-item[data-view="course"]').click();
+    await page.locator('#course-try-text').click();
+    check((await page.locator('#course-example-status').textContent()).includes('检测正在进行'),'Active detection is protected from course sample replacement');
+    check(await page.locator('#model-profile').inputValue()==='course-trained','In-flight detection retains its selected model');
+    finish();await page.waitForFunction(()=>!state.textBusy);
+    await page.unroute('**/api/course/text/detect');
+    await page.locator('#course-try-text').click();
+    await page.waitForFunction(()=>state.view==='text');
+    check(await page.locator('#model-profile').inputValue()==='course-optimized','A fresh text example selects the actual optimized deployment');
+    const [textResponse]=await Promise.all([page.waitForResponse(r=>r.url().endsWith('/api/course/text/detect')&&r.request().method()==='POST'),page.locator('#detect-text').click()]);
+    check((await textResponse.json()).model_version==='course-text-optimized-20261027','Text detection still executes the optimized trained weights');
+    await page.waitForFunction(()=>!state.textBusy);
+    await page.locator('.nav-item[data-view="course"]').click();
+    await page.locator('#course-try-image').click();await page.waitForFunction(()=>state.imageReady);
+    const [imageResponse]=await Promise.all([page.waitForResponse(r=>r.url().includes('/api/course/image/detect')&&r.request().method()==='POST'),page.locator('#detect-image').click()]);
+    check((await imageResponse.json()).model_version==='course-image-optimized-20261027','Image example still executes the physically pruned model');
+    await page.waitForFunction(()=>!state.imageBusy);
+
+    await page.locator('.nav-item[data-view="agent"]').click();
+    await page.locator('#agent-instruction').fill('检查这份文档');
+    await page.locator('#agent-document').setInputFiles({name:'old.doc',mimeType:'application/msword',buffer:Buffer.from('old document')});
+    const [invalid]=await Promise.all([page.waitForResponse(r=>r.url().endsWith('/api/agent/run')&&r.request().method()==='POST'),page.locator('#agent-submit').click()]);
+    check(invalid.status()===415,'Unsupported Agent document gets a readable ingestion error');
+    await page.locator('#agent-result .error-state').waitFor();
+    check((await page.locator('#agent-result').textContent()).includes('.docx'),'The interface displays the document conversion advice');
+    check(await page.locator('#agent-submit').isEnabled(),'The Agent form recovers after invalid input');
+    await page.locator('#agent-clear').click();
+    await page.locator('#agent-instruction').fill('展示课程各阶段的可复查材料');
+    const [agentResponse]=await Promise.all([page.waitForResponse(r=>r.url().endsWith('/api/agent/run')&&r.request().method()==='POST',{timeout:180000}),page.locator('#agent-submit').click()]);
+    const result=await agentResponse.json();
+    check(agentResponse.status()===200&&result.planner.tools.join(',')==='course_overview','The real local fine-tuned Agent works after the failed document');
+    check(result.answer_source==='local_llm'&&result.tool_calls[0].http_status===200,'The local LLM summarizes a successful real API result');
+    await page.locator('#agent-result .agent-tool').waitFor();
+    await page.setViewportSize({width:390,height:844});
+    check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Agent results fit a 390px viewport');
+    await page.screenshot({path:'output/playwright/stability-20261031-agent-mobile.png',fullPage:true});
+    await page.locator('.nav-item[data-view="course"]').click();
+    check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Course page and status fit a 390px viewport');
+    await page.screenshot({path:'output/playwright/stability-20261031-course-mobile.png',fullPage:true});
+    check(errors.length===0,'No uncaught JavaScript errors');
+    await page.locator('#agent-clear').evaluate(node=>node.click());
+    return JSON.stringify({status:'passed',checks,errors,actual_models:true});
+  }catch(error){return JSON.stringify({status:'failed',checks,errors,error:String(error)})}
+}

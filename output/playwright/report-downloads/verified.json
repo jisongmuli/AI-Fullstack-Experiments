@@ -1,0 +1,91 @@
+{
+  "schema_version": "document-screening-v1",
+  "created_at": "2026-10-25T13:40:44+00:00",
+  "filename": "报告流程验证.txt",
+  "format": "txt",
+  "source_sha256": "732d177c9e713d29d869deece352555cb6b81ce48ff7bfc7e76a307bd3cbeb77",
+  "source_sha256_kind": "uploaded_file_bytes",
+  "extracted_text": "小组在整理公开资料时，逐一检查文件格式、来源和内容完整性。每份记录都有稳定编号，重复项和缺失值分别统计。完成处理后，小组保留了原始记录和操作参数，方便复查本次实验。\n\nThe team checked the source files before preparing the data. Each record received a stable identifier, and missing values were counted separately.",
+  "sections": [
+    {
+      "label": "原文",
+      "start": 0,
+      "end": 230
+    }
+  ],
+  "warnings": [],
+  "detection": {
+    "risk_score": null,
+    "decision": "uncertain",
+    "evidence": [
+      "整篇文本超出已评估范围；仅提供各适用段落的实验性筛查结果。"
+    ],
+    "model_version": "sha256:49cce5724a6a8656",
+    "applicability": "outside_training_scope",
+    "modality": "text",
+    "threshold": null,
+    "limitations": "英文模型仅在来源受限的学术摘要片段上训练；既有外测数据混入大量写作指令，不能用其准确率推断真实平台表现。分数不是 AI 撰写比例或身份判定。 段落高亮阈值仅用于人工复核；混合作者文本和真实平台段落未经过独立标注验证。",
+    "evidence_note": "弃判不代表内容由人或 AI 创作。",
+    "disclaimer": "该结果不能证明内容来源或作者身份。",
+    "segments": [
+      {
+        "start": 0,
+        "end": 82,
+        "text": "小组在整理公开资料时，逐一检查文件格式、来源和内容完整性。每份记录都有稳定编号，重复项和缺失值分别统计。完成处理后，小组保留了原始记录和操作参数，方便复查本次实验。",
+        "risk_score": 0.008433,
+        "decision": "likely_human",
+        "highlighted": false,
+        "evidence": [
+          "中文字符 2-4 元片段的统计分类；训练集主要为问答、新闻和生成长文。",
+          "该分数不是内容来源证明；小说、平台内容与新模型尚缺独立盲测。"
+        ],
+        "applicability": "unverified_platform"
+      },
+      {
+        "start": 84,
+        "end": 230,
+        "text": "The team checked the source files before preparing the data. Each record received a stable identifier, and missing values were counted separately.",
+        "risk_score": 0.004373,
+        "decision": "likely_human",
+        "highlighted": false,
+        "evidence": [
+          "字符片段 'we' 对 AI 类打分贡献 +0.066（仅为模型相关性）",
+          "字符片段 'a' 对 AI 类打分贡献 +0.062（仅为模型相关性）",
+          "字符片段 'were' 对 AI 类打分贡献 -0.084（仅为模型相关性）",
+          "字符片段 'wer' 对 AI 类打分贡献 -0.084（仅为模型相关性）"
+        ],
+        "applicability": "english_no_valid_external_benchmark"
+      }
+    ],
+    "segment_summary": {
+      "highlighted_character_percent": 0.0,
+      "scored_character_percent": 100.0,
+      "highlight_threshold": 0.99,
+      "mixed_signals": false,
+      "meaning": "AI 特征占比按整段标注：所在段落模型风险分数达到 0.99 的非空白字符占比；不是 AI 实际撰写比例，也不是逐字来源定位。模型均分不是整篇来源概率。"
+    }
+  },
+  "document_summary": {
+    "total_characters": 230,
+    "visible_characters": 207,
+    "scored_character_percent": 100.0,
+    "highlighted_character_percent": 0.0,
+    "highlighted_total_percent": 0.0,
+    "mean_segment_score": 0.005981,
+    "high_risk_segments": 0,
+    "unscored_segments": 0,
+    "scored_segments": 2,
+    "total_segments": 2,
+    "mixed_signals": false,
+    "metric_note": "AI 特征占比按整段标注：所在段落模型风险分数达到 0.99 的非空白字符占比；不是 AI 实际撰写比例，也不是逐字来源定位。模型均分不是整篇来源概率。"
+  },
+  "report_id": "_zLEcQxRnNAqxNC1_dPoZ5ZnBfe45SdI",
+  "expires_at": "2026-10-25T14:10:44.605505+00:00",
+  "retention_note": "报告仅在本地服务内存中保存最多 30 分钟、20 份；达到内存上限会提前移除旧报告。重启后失效。",
+  "report_export": {
+    "schema_version": 1,
+    "metric_note": "AI 特征覆盖率表示模型评分达到高风险阈值的非空白字符占比，不是实际 AI 撰写比例，也不是作者身份或内容来源的证明。",
+    "annotation_note": "下划线按模型评分片段标注提取后的原文；它不表示逐字定位准确率，也不修改原文件或保留其原始分页、图片、公式和复杂排版。",
+    "offset_unit": "Unicode codepoints; start inclusive, end exclusive"
+  }
+}

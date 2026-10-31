@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "powershell": "7.6.5",
+  "json_time_type": "DateTime",
+  "actual_process_matches": true,
+  "iso_string_matches": true,
+  "changed_time_rejected": true
+}

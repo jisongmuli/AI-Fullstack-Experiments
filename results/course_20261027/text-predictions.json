@@ -1,0 +1,7202 @@
+[
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1407-0",
+    "label": 0,
+    "score": 0.001695734260184988,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1407-1",
+    "label": 1,
+    "score": 0.9999937522860908,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2794-0",
+    "label": 0,
+    "score": 0.008094052684980906,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2794-1",
+    "label": 1,
+    "score": 0.9975664196986154,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-432-0",
+    "label": 0,
+    "score": 0.00030863767622799987,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-432-1",
+    "label": 1,
+    "score": 0.9999320037543513,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-873-0",
+    "label": 0,
+    "score": 0.0013108572837902909,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-873-1",
+    "label": 1,
+    "score": 0.9957957668841445,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-486-0",
+    "label": 0,
+    "score": 0.0001116429102721367,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-486-1",
+    "label": 1,
+    "score": 0.9999685695865703,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-926-0",
+    "label": 0,
+    "score": 0.0003788819937306954,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-926-1",
+    "label": 1,
+    "score": 0.9998502244142883,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-848-0",
+    "label": 0,
+    "score": 0.0002246972156855019,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-848-1",
+    "label": 1,
+    "score": 0.9999766857234641,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-693-0",
+    "label": 0,
+    "score": 0.0017234424273240244,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-693-1",
+    "label": 1,
+    "score": 0.9999642403004293,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1856-0",
+    "label": 0,
+    "score": 1.2143238145990975e-07,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1856-1",
+    "label": 1,
+    "score": 0.9932045509614114,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1274-0",
+    "label": 0,
+    "score": 9.51975863724686e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1274-1",
+    "label": 1,
+    "score": 0.9996761118800079,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-482-0",
+    "label": 0,
+    "score": 0.0014774491786996313,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-482-1",
+    "label": 1,
+    "score": 0.9999997833197162,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1236-0",
+    "label": 0,
+    "score": 3.452676480951633e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1236-1",
+    "label": 1,
+    "score": 0.9999095135161946,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2653-0",
+    "label": 0,
+    "score": 0.004044448407752232,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2653-1",
+    "label": 1,
+    "score": 0.9877673070590588,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1602-0",
+    "label": 0,
+    "score": 0.0023225882788734165,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1602-1",
+    "label": 1,
+    "score": 0.9987657557515307,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-290-0",
+    "label": 0,
+    "score": 0.000252112877343802,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-290-1",
+    "label": 1,
+    "score": 0.9994512199505395,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2508-0",
+    "label": 0,
+    "score": 0.14200512955094274,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2508-1",
+    "label": 1,
+    "score": 0.98581426496422,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1966-0",
+    "label": 0,
+    "score": 0.0006187309309818505,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1966-1",
+    "label": 1,
+    "score": 0.9999989073135287,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2613-0",
+    "label": 0,
+    "score": 0.01253982412603559,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2613-1",
+    "label": 1,
+    "score": 0.9996029503928885,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1050-0",
+    "label": 0,
+    "score": 0.015686042713155088,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1050-1",
+    "label": 1,
+    "score": 0.9999657670062837,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1837-0",
+    "label": 0,
+    "score": 0.0018323938820795174,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1837-1",
+    "label": 1,
+    "score": 0.9938265170954719,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1423-0",
+    "label": 0,
+    "score": 0.0004980648553740512,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1423-1",
+    "label": 1,
+    "score": 0.9999800690317066,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1911-0",
+    "label": 0,
+    "score": 0.0006778028106553149,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1911-1",
+    "label": 1,
+    "score": 0.9999794554552135,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-964-0",
+    "label": 0,
+    "score": 0.0001191737143255724,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-964-1",
+    "label": 1,
+    "score": 0.9999558141541678,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2923-0",
+    "label": 0,
+    "score": 0.0024415690744793305,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2923-1",
+    "label": 1,
+    "score": 0.999860373357561,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2083-0",
+    "label": 0,
+    "score": 0.0009303799823631531,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2083-1",
+    "label": 1,
+    "score": 0.9033514944393102,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1450-0",
+    "label": 0,
+    "score": 0.00044743155396126546,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1450-1",
+    "label": 1,
+    "score": 0.9774162618263303,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1803-0",
+    "label": 0,
+    "score": 3.918160757429438e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1803-1",
+    "label": 1,
+    "score": 0.9999553240110808,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2320-0",
+    "label": 0,
+    "score": 1.1347913028315826e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2320-1",
+    "label": 1,
+    "score": 0.9999554244101835,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-892-0",
+    "label": 0,
+    "score": 0.6778153429390139,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-892-1",
+    "label": 1,
+    "score": 0.999994097578055,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-902-0",
+    "label": 0,
+    "score": 1.1693985915560815e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-902-1",
+    "label": 1,
+    "score": 0.9999982810857443,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1745-0",
+    "label": 0,
+    "score": 2.3185119516242178e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1745-1",
+    "label": 1,
+    "score": 0.9977129610964478,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1050-0",
+    "label": 0,
+    "score": 0.029266968706142885,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1050-1",
+    "label": 1,
+    "score": 0.9999629456547547,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-963-0",
+    "label": 0,
+    "score": 0.00012656109840312484,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-963-1",
+    "label": 1,
+    "score": 0.9926316919056388,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2154-0",
+    "label": 0,
+    "score": 0.005999143525576916,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2154-1",
+    "label": 1,
+    "score": 0.9641592412670645,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1597-0",
+    "label": 0,
+    "score": 9.280289867234877e-07,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1597-1",
+    "label": 1,
+    "score": 0.9999884314080183,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-26-0",
+    "label": 0,
+    "score": 0.0002645751270711953,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-26-1",
+    "label": 1,
+    "score": 0.999983447478895,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-795-0",
+    "label": 0,
+    "score": 0.0017220686503999223,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-795-1",
+    "label": 1,
+    "score": 0.9997195767072803,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1429-0",
+    "label": 0,
+    "score": 0.00027006636089920664,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1429-1",
+    "label": 1,
+    "score": 0.9994434019368497,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2025-0",
+    "label": 0,
+    "score": 0.014355192566899624,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2025-1",
+    "label": 1,
+    "score": 0.9818109392967521,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2965-0",
+    "label": 0,
+    "score": 0.0001189845014796295,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2965-1",
+    "label": 1,
+    "score": 0.9167493474765565,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1441-0",
+    "label": 0,
+    "score": 0.004349479638173251,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1441-1",
+    "label": 1,
+    "score": 0.10821838525576309,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2241-0",
+    "label": 0,
+    "score": 8.783789097196451e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2241-1",
+    "label": 1,
+    "score": 0.3524445224881073,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2347-0",
+    "label": 0,
+    "score": 0.0001709208063613627,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2347-1",
+    "label": 1,
+    "score": 0.9885268333116128,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1172-0",
+    "label": 0,
+    "score": 0.09867413265645708,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1172-1",
+    "label": 1,
+    "score": 0.99577170804611,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2289-0",
+    "label": 0,
+    "score": 0.06593023592683438,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2289-1",
+    "label": 1,
+    "score": 0.9746870980158207,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1847-0",
+    "label": 0,
+    "score": 0.000351896561984398,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1847-1",
+    "label": 1,
+    "score": 0.9994708789557871,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-366-0",
+    "label": 0,
+    "score": 0.002056819114130482,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-366-1",
+    "label": 1,
+    "score": 0.9999872563108116,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2553-0",
+    "label": 0,
+    "score": 0.011444346797841584,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2553-1",
+    "label": 1,
+    "score": 0.900491554865187,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2799-0",
+    "label": 0,
+    "score": 9.156307649689783e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2799-1",
+    "label": 1,
+    "score": 0.9999350551370767,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1860-0",
+    "label": 0,
+    "score": 0.016043911057931935,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1860-1",
+    "label": 1,
+    "score": 0.9999023474909404,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-416-0",
+    "label": 0,
+    "score": 5.4525368211084396e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-416-1",
+    "label": 1,
+    "score": 0.9983024279900224,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1795-0",
+    "label": 0,
+    "score": 2.761482495316718e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1795-1",
+    "label": 1,
+    "score": 0.9997278100497871,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1748-0",
+    "label": 0,
+    "score": 0.05669185733834503,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1748-1",
+    "label": 1,
+    "score": 0.9991073065870764,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2511-0",
+    "label": 0,
+    "score": 0.00033517227259175777,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2511-1",
+    "label": 1,
+    "score": 0.9998033961815396,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2254-0",
+    "label": 0,
+    "score": 0.0067427638702240505,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2254-1",
+    "label": 1,
+    "score": 0.9997822016122639,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2335-0",
+    "label": 0,
+    "score": 0.0011207462279883898,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2335-1",
+    "label": 1,
+    "score": 0.9996136476882026,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-643-0",
+    "label": 0,
+    "score": 1.6203363852223044e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-643-1",
+    "label": 1,
+    "score": 0.9699657122933603,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1345-0",
+    "label": 0,
+    "score": 0.048388098363972204,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1345-1",
+    "label": 1,
+    "score": 0.9953838466295252,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-624-0",
+    "label": 0,
+    "score": 3.591929325946175e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-624-1",
+    "label": 1,
+    "score": 0.9999973088331067,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-160-0",
+    "label": 0,
+    "score": 0.00016998662459317005,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-160-1",
+    "label": 1,
+    "score": 0.9995451082400699,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2638-0",
+    "label": 0,
+    "score": 0.3215679248314619,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2638-1",
+    "label": 1,
+    "score": 0.9998015192248114,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1311-0",
+    "label": 0,
+    "score": 0.00011914575847898348,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1311-1",
+    "label": 1,
+    "score": 0.9999906407030354,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1988-0",
+    "label": 0,
+    "score": 7.148002447557163e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1988-1",
+    "label": 1,
+    "score": 0.9044409897764304,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1587-0",
+    "label": 0,
+    "score": 0.3700594514278301,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1587-1",
+    "label": 1,
+    "score": 0.9998895612542371,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1875-0",
+    "label": 0,
+    "score": 1.5806755607578264e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1875-1",
+    "label": 1,
+    "score": 0.9999832865863899,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1290-0",
+    "label": 0,
+    "score": 0.010764923287380154,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1290-1",
+    "label": 1,
+    "score": 0.9999211648896591,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-315-0",
+    "label": 0,
+    "score": 0.013388258751789008,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-315-1",
+    "label": 1,
+    "score": 0.9999091673976097,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2672-0",
+    "label": 0,
+    "score": 0.004938075074692098,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2672-1",
+    "label": 1,
+    "score": 0.872084247647136,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2461-0",
+    "label": 0,
+    "score": 0.05295409296712053,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2461-1",
+    "label": 1,
+    "score": 0.999405346923019,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1560-0",
+    "label": 0,
+    "score": 0.0016995220938937745,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1560-1",
+    "label": 1,
+    "score": 0.9237223635520988,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2488-0",
+    "label": 0,
+    "score": 0.024393088758200145,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2488-1",
+    "label": 1,
+    "score": 0.9987433014441848,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-497-0",
+    "label": 0,
+    "score": 0.01976248995217175,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-497-1",
+    "label": 1,
+    "score": 0.9997516713116367,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-776-0",
+    "label": 0,
+    "score": 0.10972428288586988,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-776-1",
+    "label": 1,
+    "score": 0.9999336706898297,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1626-0",
+    "label": 0,
+    "score": 0.004501799919330503,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1626-1",
+    "label": 1,
+    "score": 0.9999449918550345,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1259-0",
+    "label": 0,
+    "score": 0.003343256872818956,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1259-1",
+    "label": 1,
+    "score": 0.999963955605828,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1408-0",
+    "label": 0,
+    "score": 0.016933202057407237,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1408-1",
+    "label": 1,
+    "score": 0.9999797529595174,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1501-0",
+    "label": 0,
+    "score": 0.00017086677424060345,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1501-1",
+    "label": 1,
+    "score": 0.9111437675487011,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-296-0",
+    "label": 0,
+    "score": 5.036300338289127e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-296-1",
+    "label": 1,
+    "score": 0.9958265796715062,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1338-0",
+    "label": 0,
+    "score": 0.22290953389237864,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1338-1",
+    "label": 1,
+    "score": 0.9999949714468686,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-745-0",
+    "label": 0,
+    "score": 0.002837096539550447,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-745-1",
+    "label": 1,
+    "score": 0.9861380088700044,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1844-0",
+    "label": 0,
+    "score": 0.00010060768138887166,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1844-1",
+    "label": 1,
+    "score": 0.9998795512951473,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2643-0",
+    "label": 0,
+    "score": 0.0011157576356660105,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2643-1",
+    "label": 1,
+    "score": 0.9961395621293407,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1487-0",
+    "label": 0,
+    "score": 2.4542425144985822e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1487-1",
+    "label": 1,
+    "score": 0.9999949049004002,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-967-0",
+    "label": 0,
+    "score": 0.004792390293868498,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-967-1",
+    "label": 1,
+    "score": 0.9999957202259858,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1998-0",
+    "label": 0,
+    "score": 1.8860999351107558e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1998-1",
+    "label": 1,
+    "score": 0.9999765687529125,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2479-0",
+    "label": 0,
+    "score": 0.02882088286992073,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2479-1",
+    "label": 1,
+    "score": 0.9999742590383758,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-33-0",
+    "label": 0,
+    "score": 4.9594297611558966e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-33-1",
+    "label": 1,
+    "score": 0.9989937392299029,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1383-0",
+    "label": 0,
+    "score": 0.00798990357343707,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1383-1",
+    "label": 1,
+    "score": 0.9994638555661801,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2295-0",
+    "label": 0,
+    "score": 0.0006690237349669158,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2295-1",
+    "label": 1,
+    "score": 0.9880625456486849,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-733-0",
+    "label": 0,
+    "score": 0.0011700094836181068,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-733-1",
+    "label": 1,
+    "score": 0.9999431307826291,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2194-0",
+    "label": 0,
+    "score": 0.0002551718386768838,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2194-1",
+    "label": 1,
+    "score": 0.977828558213126,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2377-0",
+    "label": 0,
+    "score": 0.0003326758519360305,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2377-1",
+    "label": 1,
+    "score": 0.9999101383950606,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2912-0",
+    "label": 0,
+    "score": 0.00030432441997666984,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2912-1",
+    "label": 1,
+    "score": 0.9832749275671674,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-735-0",
+    "label": 0,
+    "score": 2.8025713671561104e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-735-1",
+    "label": 1,
+    "score": 0.9468090227486069,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-681-0",
+    "label": 0,
+    "score": 0.0007541043954810009,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-681-1",
+    "label": 1,
+    "score": 0.9850343531821917,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-452-0",
+    "label": 0,
+    "score": 0.00011186107235574025,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-452-1",
+    "label": 1,
+    "score": 0.9999958442500875,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-893-0",
+    "label": 0,
+    "score": 0.019801273105811496,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-893-1",
+    "label": 1,
+    "score": 0.9999139322461089,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1654-0",
+    "label": 0,
+    "score": 0.012799990586870048,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1654-1",
+    "label": 1,
+    "score": 0.9999993633099401,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1815-0",
+    "label": 0,
+    "score": 0.00015801068476108837,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1815-1",
+    "label": 1,
+    "score": 0.9991356401160789,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-280-0",
+    "label": 0,
+    "score": 3.3221223978853184e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-280-1",
+    "label": 1,
+    "score": 0.999800732291135,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1445-0",
+    "label": 0,
+    "score": 0.0004510433689193157,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1445-1",
+    "label": 1,
+    "score": 0.9962110399635892,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1138-0",
+    "label": 0,
+    "score": 0.012365477082811263,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1138-1",
+    "label": 1,
+    "score": 0.9997893150696892,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2439-0",
+    "label": 0,
+    "score": 0.003590952315578756,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2439-1",
+    "label": 1,
+    "score": 0.9524524967902318,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1625-0",
+    "label": 0,
+    "score": 0.0004883354430545091,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1625-1",
+    "label": 1,
+    "score": 0.9995656633967023,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1070-0",
+    "label": 0,
+    "score": 0.020207622447378525,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1070-1",
+    "label": 1,
+    "score": 0.9999855143217247,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-368-0",
+    "label": 0,
+    "score": 1.0155924739556487e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-368-1",
+    "label": 1,
+    "score": 0.9999610399961584,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1506-0",
+    "label": 0,
+    "score": 0.0007120980700995989,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1506-1",
+    "label": 1,
+    "score": 0.9999965664374401,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2616-0",
+    "label": 0,
+    "score": 1.725251633688939e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2616-1",
+    "label": 1,
+    "score": 0.9998606106836163,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-915-0",
+    "label": 0,
+    "score": 1.0379653117091244e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-915-1",
+    "label": 1,
+    "score": 0.9999682995062077,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2031-0",
+    "label": 0,
+    "score": 1.5037583418750556e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2031-1",
+    "label": 1,
+    "score": 0.9998415792651753,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1851-0",
+    "label": 0,
+    "score": 3.99122811231759e-07,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1851-1",
+    "label": 1,
+    "score": 0.9999985741194605,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1579-0",
+    "label": 0,
+    "score": 0.004266652970905864,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1579-1",
+    "label": 1,
+    "score": 0.9999908832589899,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2972-0",
+    "label": 0,
+    "score": 0.0012820759441583473,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2972-1",
+    "label": 1,
+    "score": 0.9320480419145613,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1806-0",
+    "label": 0,
+    "score": 0.0008720630678008945,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1806-1",
+    "label": 1,
+    "score": 0.9999365278957398,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-670-0",
+    "label": 0,
+    "score": 0.014119285208073585,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-670-1",
+    "label": 1,
+    "score": 0.9995607415449331,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1046-0",
+    "label": 0,
+    "score": 0.0006408169709718603,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1046-1",
+    "label": 1,
+    "score": 0.9999791016985294,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2193-0",
+    "label": 0,
+    "score": 2.3518821625322517e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2193-1",
+    "label": 1,
+    "score": 0.9683518222124594,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1093-0",
+    "label": 0,
+    "score": 7.640847194836769e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1093-1",
+    "label": 1,
+    "score": 0.9993453703346754,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2185-0",
+    "label": 0,
+    "score": 1.3467605295889872e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2185-1",
+    "label": 1,
+    "score": 0.9999191565170209,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-249-0",
+    "label": 0,
+    "score": 0.000178122370016671,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-249-1",
+    "label": 1,
+    "score": 0.9998229104291527,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1184-0",
+    "label": 0,
+    "score": 0.001744119864693559,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1184-1",
+    "label": 1,
+    "score": 0.9999990139075008,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1288-0",
+    "label": 0,
+    "score": 8.075113507902513e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1288-1",
+    "label": 1,
+    "score": 0.999979716766867,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2539-0",
+    "label": 0,
+    "score": 0.0014674304640075841,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2539-1",
+    "label": 1,
+    "score": 0.9801029437503682,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1244-0",
+    "label": 0,
+    "score": 0.00032473977063455194,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1244-1",
+    "label": 1,
+    "score": 0.9999994583640133,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-966-0",
+    "label": 0,
+    "score": 0.0003209931280978478,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-966-1",
+    "label": 1,
+    "score": 0.9999726643133539,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1917-0",
+    "label": 0,
+    "score": 7.056109046010438e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1917-1",
+    "label": 1,
+    "score": 0.9993023333349252,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2985-0",
+    "label": 0,
+    "score": 0.0005944173378490049,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2985-1",
+    "label": 1,
+    "score": 0.924256668352719,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2267-0",
+    "label": 0,
+    "score": 0.0032823020900614413,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2267-1",
+    "label": 1,
+    "score": 0.999989463888607,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-530-0",
+    "label": 0,
+    "score": 0.0021116717142866414,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-530-1",
+    "label": 1,
+    "score": 0.9994838550875715,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-922-0",
+    "label": 0,
+    "score": 2.571858025987921e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-922-1",
+    "label": 1,
+    "score": 0.9999714132814213,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1688-0",
+    "label": 0,
+    "score": 1.9240984800465902e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1688-1",
+    "label": 1,
+    "score": 0.9999041179006355,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1252-0",
+    "label": 0,
+    "score": 0.03439763734549397,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1252-1",
+    "label": 1,
+    "score": 0.9997964035613808,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1572-0",
+    "label": 0,
+    "score": 3.0465135214372353e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1572-1",
+    "label": 1,
+    "score": 0.9997100027334721,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-969-0",
+    "label": 0,
+    "score": 2.877613329422514e-07,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-969-1",
+    "label": 1,
+    "score": 0.9999569533864064,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1261-0",
+    "label": 0,
+    "score": 0.0001362856608579193,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1261-1",
+    "label": 1,
+    "score": 0.9999968529808646,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-471-0",
+    "label": 0,
+    "score": 2.936014834614572e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-471-1",
+    "label": 1,
+    "score": 0.9999982332875186,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2092-0",
+    "label": 0,
+    "score": 0.23929029359246912,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2092-1",
+    "label": 1,
+    "score": 0.9999560940292508,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-422-0",
+    "label": 0,
+    "score": 0.0009497423685642492,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-422-1",
+    "label": 1,
+    "score": 0.9998223884049376,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2864-0",
+    "label": 0,
+    "score": 1.9234369806925663e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2864-1",
+    "label": 1,
+    "score": 0.9988233177911812,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1473-0",
+    "label": 0,
+    "score": 0.0070598751214354955,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1473-1",
+    "label": 1,
+    "score": 0.9999952093631712,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-945-0",
+    "label": 0,
+    "score": 0.011266249024375246,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-945-1",
+    "label": 1,
+    "score": 0.9997757976137644,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2287-0",
+    "label": 0,
+    "score": 4.1892560498310185e-07,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2287-1",
+    "label": 1,
+    "score": 0.9999087531849089,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2418-0",
+    "label": 0,
+    "score": 0.0040823895598633125,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2418-1",
+    "label": 1,
+    "score": 0.9756579329690935,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2541-0",
+    "label": 0,
+    "score": 7.647847298916657e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2541-1",
+    "label": 1,
+    "score": 0.9994846541684751,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1415-0",
+    "label": 0,
+    "score": 0.0001332749935240721,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1415-1",
+    "label": 1,
+    "score": 0.999077596616356,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2862-0",
+    "label": 0,
+    "score": 0.0004323347959389289,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2862-1",
+    "label": 1,
+    "score": 0.998687236907918,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-448-0",
+    "label": 0,
+    "score": 0.00304163596272957,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-448-1",
+    "label": 1,
+    "score": 0.9996639560293853,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1378-0",
+    "label": 0,
+    "score": 0.011807615546992835,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1378-1",
+    "label": 1,
+    "score": 0.9999211500959115,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1690-0",
+    "label": 0,
+    "score": 0.0001567103352315084,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1690-1",
+    "label": 1,
+    "score": 0.8895121683037436,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1421-0",
+    "label": 0,
+    "score": 6.536558007778802e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1421-1",
+    "label": 1,
+    "score": 0.9995976441203668,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2540-0",
+    "label": 0,
+    "score": 6.32573254753163e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2540-1",
+    "label": 1,
+    "score": 0.9829729510856782,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1375-0",
+    "label": 0,
+    "score": 0.0006531159692155147,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1375-1",
+    "label": 1,
+    "score": 0.9997447760367223,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2171-0",
+    "label": 0,
+    "score": 0.02101354881875029,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2171-1",
+    "label": 1,
+    "score": 0.9999961105712503,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1619-0",
+    "label": 0,
+    "score": 5.971968561294094e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1619-1",
+    "label": 1,
+    "score": 0.9999905106654362,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1356-0",
+    "label": 0,
+    "score": 0.00012576744428338953,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1356-1",
+    "label": 1,
+    "score": 0.997066759783447,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2100-0",
+    "label": 0,
+    "score": 0.001810369404200104,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2100-1",
+    "label": 1,
+    "score": 0.9997681034507623,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2566-0",
+    "label": 0,
+    "score": 0.05801761046492469,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2566-1",
+    "label": 1,
+    "score": 0.9998680472271567,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2152-0",
+    "label": 0,
+    "score": 0.0007347544824115811,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2152-1",
+    "label": 1,
+    "score": 0.9671086164994112,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1781-0",
+    "label": 0,
+    "score": 4.6984268490591545e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1781-1",
+    "label": 1,
+    "score": 0.9994719321426118,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-247-0",
+    "label": 0,
+    "score": 0.0005731647828791703,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-247-1",
+    "label": 1,
+    "score": 0.9999752452799782,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2591-0",
+    "label": 0,
+    "score": 0.030723885903679565,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2591-1",
+    "label": 1,
+    "score": 0.999859006022323,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2285-0",
+    "label": 0,
+    "score": 0.0002988101843883776,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2285-1",
+    "label": 1,
+    "score": 0.9842671624029314,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1128-0",
+    "label": 0,
+    "score": 0.06928989883279528,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1128-1",
+    "label": 1,
+    "score": 0.9999962492449922,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1224-0",
+    "label": 0,
+    "score": 0.0003683708534916549,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1224-1",
+    "label": 1,
+    "score": 0.9997763594059786,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-611-0",
+    "label": 0,
+    "score": 0.00016111758494224453,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-611-1",
+    "label": 1,
+    "score": 0.99991389937171,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-76-0",
+    "label": 0,
+    "score": 0.007768384067181505,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-76-1",
+    "label": 1,
+    "score": 0.9999955409079905,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2124-0",
+    "label": 0,
+    "score": 2.2985004082312983e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2124-1",
+    "label": 1,
+    "score": 0.9998803285793788,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1983-0",
+    "label": 0,
+    "score": 7.90363510966274e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1983-1",
+    "label": 1,
+    "score": 0.9117613794514395,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1913-0",
+    "label": 0,
+    "score": 0.003694021756999922,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1913-1",
+    "label": 1,
+    "score": 0.999752081681935,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1856-0",
+    "label": 0,
+    "score": 0.003222484808513349,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1856-1",
+    "label": 1,
+    "score": 0.9999844880806515,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-122-0",
+    "label": 0,
+    "score": 0.004566254062566436,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-122-1",
+    "label": 1,
+    "score": 0.9999997407481923,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-650-0",
+    "label": 0,
+    "score": 0.014502325373553648,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-650-1",
+    "label": 1,
+    "score": 0.9999969477685431,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2429-0",
+    "label": 0,
+    "score": 0.002025758510489662,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2429-1",
+    "label": 1,
+    "score": 0.6821992490705924,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-689-0",
+    "label": 0,
+    "score": 4.890524555230576e-07,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-689-1",
+    "label": 1,
+    "score": 0.9999234755455918,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1813-0",
+    "label": 0,
+    "score": 0.0013706294875999222,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1813-1",
+    "label": 1,
+    "score": 0.9940037796144671,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-278-0",
+    "label": 0,
+    "score": 0.0017230762078549104,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-278-1",
+    "label": 1,
+    "score": 0.999996748458941,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1593-0",
+    "label": 0,
+    "score": 0.0010879425789295347,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1593-1",
+    "label": 1,
+    "score": 0.9987401859706699,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1693-0",
+    "label": 0,
+    "score": 0.00026072204597785104,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1693-1",
+    "label": 1,
+    "score": 0.9998605068955931,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1029-0",
+    "label": 0,
+    "score": 2.4024490024975017e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1029-1",
+    "label": 1,
+    "score": 0.9999698238338828,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2756-0",
+    "label": 0,
+    "score": 1.7139011168791108e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2756-1",
+    "label": 1,
+    "score": 0.9999315673865952,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1797-0",
+    "label": 0,
+    "score": 0.0007468797610975597,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1797-1",
+    "label": 1,
+    "score": 0.99998779375039,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-722-0",
+    "label": 0,
+    "score": 0.3296845311820534,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-722-1",
+    "label": 1,
+    "score": 0.9997972955100781,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2421-0",
+    "label": 0,
+    "score": 0.00032926047102348676,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2421-1",
+    "label": 1,
+    "score": 0.958860973157646,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1144-0",
+    "label": 0,
+    "score": 0.021248193084417496,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1144-1",
+    "label": 1,
+    "score": 0.9999910234671336,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1399-0",
+    "label": 0,
+    "score": 0.0005056907684577251,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1399-1",
+    "label": 1,
+    "score": 0.999079741412578,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2489-0",
+    "label": 0,
+    "score": 0.0001117371002427218,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2489-1",
+    "label": 1,
+    "score": 0.9977274665877452,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1231-0",
+    "label": 0,
+    "score": 0.021512712806634863,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1231-1",
+    "label": 1,
+    "score": 0.9993222849198752,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2430-0",
+    "label": 0,
+    "score": 0.0021607769654169405,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2430-1",
+    "label": 1,
+    "score": 0.9997440521432067,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-338-0",
+    "label": 0,
+    "score": 0.004391038506083809,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-338-1",
+    "label": 1,
+    "score": 0.9996516896728762,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1954-0",
+    "label": 0,
+    "score": 0.01903553795566117,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1954-1",
+    "label": 1,
+    "score": 0.9999989567302772,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1932-0",
+    "label": 0,
+    "score": 8.382886635883156e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1932-1",
+    "label": 1,
+    "score": 0.9966480035516202,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1752-0",
+    "label": 0,
+    "score": 0.0007194739186686112,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1752-1",
+    "label": 1,
+    "score": 0.9680313893854622,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2266-0",
+    "label": 0,
+    "score": 1.093666552661996e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2266-1",
+    "label": 1,
+    "score": 0.9999977209768781,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1712-0",
+    "label": 0,
+    "score": 0.002546681769276484,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1712-1",
+    "label": 1,
+    "score": 0.9974846547989554,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-840-0",
+    "label": 0,
+    "score": 0.004461512638525256,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-840-1",
+    "label": 1,
+    "score": 0.9997458564584393,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-897-0",
+    "label": 0,
+    "score": 0.00022861696811254587,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-897-1",
+    "label": 1,
+    "score": 0.9979478982891673,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1253-0",
+    "label": 0,
+    "score": 0.008440824741184266,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1253-1",
+    "label": 1,
+    "score": 0.9999768695159442,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-27-0",
+    "label": 0,
+    "score": 0.0015873225342878641,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-27-1",
+    "label": 1,
+    "score": 0.9998250595691818,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1796-0",
+    "label": 0,
+    "score": 0.00044868497592255666,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1796-1",
+    "label": 1,
+    "score": 0.9999321794392793,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2156-0",
+    "label": 0,
+    "score": 0.0007421303788168127,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2156-1",
+    "label": 1,
+    "score": 0.9939836768982571,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-4-0",
+    "label": 0,
+    "score": 0.00034938170677474014,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-4-1",
+    "label": 1,
+    "score": 0.9968191729965653,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-139-0",
+    "label": 0,
+    "score": 5.134390088535921e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-139-1",
+    "label": 1,
+    "score": 0.9999991351218762,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-353-0",
+    "label": 0,
+    "score": 0.0020352203404567968,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-353-1",
+    "label": 1,
+    "score": 0.9995444481237292,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1243-0",
+    "label": 0,
+    "score": 0.0034113319163544082,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1243-1",
+    "label": 1,
+    "score": 0.9988517084391421,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-253-0",
+    "label": 0,
+    "score": 0.005506647668146902,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-253-1",
+    "label": 1,
+    "score": 0.9999547317539618,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2811-0",
+    "label": 0,
+    "score": 0.006582274751827004,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2811-1",
+    "label": 1,
+    "score": 0.9979233014065588,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-273-0",
+    "label": 0,
+    "score": 0.0050847341978942145,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-273-1",
+    "label": 1,
+    "score": 0.9991535818410914,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1845-0",
+    "label": 0,
+    "score": 0.00013813001754995298,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1845-1",
+    "label": 1,
+    "score": 0.9998371287251837,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1882-0",
+    "label": 0,
+    "score": 0.005158527234575503,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1882-1",
+    "label": 1,
+    "score": 0.9974096554948997,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-835-0",
+    "label": 0,
+    "score": 0.0012400004640106502,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-835-1",
+    "label": 1,
+    "score": 0.9998559417721131,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1419-0",
+    "label": 0,
+    "score": 9.722208106377505e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1419-1",
+    "label": 1,
+    "score": 0.9995880246761419,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1575-0",
+    "label": 0,
+    "score": 0.0006953293154561103,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1575-1",
+    "label": 1,
+    "score": 0.9606118767508771,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1113-0",
+    "label": 0,
+    "score": 0.00024331408748819592,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1113-1",
+    "label": 1,
+    "score": 0.9999853205042224,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1096-0",
+    "label": 0,
+    "score": 0.01354391997056314,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1096-1",
+    "label": 1,
+    "score": 0.9988096243154972,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-674-0",
+    "label": 0,
+    "score": 0.019559076643230363,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-674-1",
+    "label": 1,
+    "score": 0.9999985915144874,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1397-0",
+    "label": 0,
+    "score": 0.03383954524503792,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1397-1",
+    "label": 1,
+    "score": 0.9999983657845039,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2311-0",
+    "label": 0,
+    "score": 0.0012821133503437088,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2311-1",
+    "label": 1,
+    "score": 0.9999892693568457,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1202-0",
+    "label": 0,
+    "score": 8.68028865944364e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1202-1",
+    "label": 1,
+    "score": 0.9996935657684645,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1840-0",
+    "label": 0,
+    "score": 0.00084406740716195,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1840-1",
+    "label": 1,
+    "score": 0.8954321743011087,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2481-0",
+    "label": 0,
+    "score": 0.0027923195813691214,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2481-1",
+    "label": 1,
+    "score": 0.9547358284865629,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1394-0",
+    "label": 0,
+    "score": 0.0008466746553570106,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1394-1",
+    "label": 1,
+    "score": 0.9909674442165913,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1111-0",
+    "label": 0,
+    "score": 0.00013163973622174754,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1111-1",
+    "label": 1,
+    "score": 0.99999310628327,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-874-0",
+    "label": 0,
+    "score": 0.003115011636133239,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-874-1",
+    "label": 1,
+    "score": 0.9998729005507642,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1965-0",
+    "label": 0,
+    "score": 0.00020866913748208957,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1965-1",
+    "label": 1,
+    "score": 0.1389866889785468,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2436-0",
+    "label": 0,
+    "score": 3.4950094225271305e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2436-1",
+    "label": 1,
+    "score": 0.9993359671664087,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1344-0",
+    "label": 0,
+    "score": 0.0040167897540194794,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1344-1",
+    "label": 1,
+    "score": 0.7428167985067848,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2710-0",
+    "label": 0,
+    "score": 8.865477385686797e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2710-1",
+    "label": 1,
+    "score": 0.9891257435171856,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1834-0",
+    "label": 0,
+    "score": 0.0008657707448617006,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1834-1",
+    "label": 1,
+    "score": 0.3673667241591587,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-677-0",
+    "label": 0,
+    "score": 8.498472636621233e-08,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-677-1",
+    "label": 1,
+    "score": 0.9995130202700528,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-948-0",
+    "label": 0,
+    "score": 0.00015337029418995612,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-948-1",
+    "label": 1,
+    "score": 0.9997373380832266,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1982-0",
+    "label": 0,
+    "score": 0.000237229801502097,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1982-1",
+    "label": 1,
+    "score": 0.9916962462981561,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-56-0",
+    "label": 0,
+    "score": 0.001831026850159956,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-56-1",
+    "label": 1,
+    "score": 0.9999294870373169,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2829-0",
+    "label": 0,
+    "score": 0.00030809939463578704,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2829-1",
+    "label": 1,
+    "score": 0.9999908066816182,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1734-0",
+    "label": 0,
+    "score": 2.1433336808561298e-07,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1734-1",
+    "label": 1,
+    "score": 0.9999973952281175,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1682-0",
+    "label": 0,
+    "score": 0.0009544670352287592,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1682-1",
+    "label": 1,
+    "score": 0.9999887805415363,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-623-0",
+    "label": 0,
+    "score": 0.0005906144867040106,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-623-1",
+    "label": 1,
+    "score": 0.9997781466896012,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-833-0",
+    "label": 0,
+    "score": 0.0004997559722226744,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-833-1",
+    "label": 1,
+    "score": 0.9999951849640841,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-946-0",
+    "label": 0,
+    "score": 0.00015745725179574832,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-946-1",
+    "label": 1,
+    "score": 0.9995655450288802,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2188-0",
+    "label": 0,
+    "score": 6.500095733020518e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2188-1",
+    "label": 1,
+    "score": 0.9999733114391592,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1981-0",
+    "label": 0,
+    "score": 0.00011939348029347204,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1981-1",
+    "label": 1,
+    "score": 0.9996465428491161,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-731-0",
+    "label": 0,
+    "score": 2.8970472939714042e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-731-1",
+    "label": 1,
+    "score": 0.999917949589907,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1638-0",
+    "label": 0,
+    "score": 3.4554699387013684e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1638-1",
+    "label": 1,
+    "score": 0.9999999753104526,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-725-0",
+    "label": 0,
+    "score": 0.0024931393581293635,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-725-1",
+    "label": 1,
+    "score": 0.999744644833943,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1773-0",
+    "label": 0,
+    "score": 0.00025412412937109434,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1773-1",
+    "label": 1,
+    "score": 0.9999944338871588,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1897-0",
+    "label": 0,
+    "score": 3.790401043192885e-07,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1897-1",
+    "label": 1,
+    "score": 0.9965210135589304,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-724-0",
+    "label": 0,
+    "score": 9.288312228800753e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-724-1",
+    "label": 1,
+    "score": 0.9993838802962852,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1412-0",
+    "label": 0,
+    "score": 0.00011133297102702997,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1412-1",
+    "label": 1,
+    "score": 0.9963045266652655,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-474-0",
+    "label": 0,
+    "score": 2.2774490937523018e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-474-1",
+    "label": 1,
+    "score": 0.9999304668834423,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-552-0",
+    "label": 0,
+    "score": 0.0415890008453784,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-552-1",
+    "label": 1,
+    "score": 0.9999893406044115,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1462-0",
+    "label": 0,
+    "score": 0.0003187871360280942,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1462-1",
+    "label": 1,
+    "score": 0.431037727651909,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-809-0",
+    "label": 0,
+    "score": 0.014443716145507449,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-809-1",
+    "label": 1,
+    "score": 0.9999981404220045,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-359-0",
+    "label": 0,
+    "score": 0.0040236734672921505,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-359-1",
+    "label": 1,
+    "score": 0.9758916603523593,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1581-0",
+    "label": 0,
+    "score": 0.003948972975480356,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1581-1",
+    "label": 1,
+    "score": 0.9999636087772481,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1864-0",
+    "label": 0,
+    "score": 0.0005340696953651297,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1864-1",
+    "label": 1,
+    "score": 0.9999997712420688,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2219-0",
+    "label": 0,
+    "score": 0.00010782196795930854,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2219-1",
+    "label": 1,
+    "score": 0.8305767256534655,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1333-0",
+    "label": 0,
+    "score": 1.4260623514928584e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1333-1",
+    "label": 1,
+    "score": 0.9999623048857881,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1663-0",
+    "label": 0,
+    "score": 6.109952856865032e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1663-1",
+    "label": 1,
+    "score": 0.7590951700873574,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-312-0",
+    "label": 0,
+    "score": 6.661142764484235e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-312-1",
+    "label": 1,
+    "score": 0.9995945132022424,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2583-0",
+    "label": 0,
+    "score": 0.00039573572760165723,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2583-1",
+    "label": 1,
+    "score": 0.9998240885021258,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2529-0",
+    "label": 0,
+    "score": 7.525078393879428e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2529-1",
+    "label": 1,
+    "score": 0.8611666719114027,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1544-0",
+    "label": 0,
+    "score": 8.161717075586759e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1544-1",
+    "label": 1,
+    "score": 0.9012739966383708,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-764-0",
+    "label": 0,
+    "score": 0.4029750079532023,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-764-1",
+    "label": 1,
+    "score": 0.999830444762283,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2001-0",
+    "label": 0,
+    "score": 1.604534139982495e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2001-1",
+    "label": 1,
+    "score": 0.9121252036371553,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1482-0",
+    "label": 0,
+    "score": 2.8932000925854266e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1482-1",
+    "label": 1,
+    "score": 0.996274073166336,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-779-0",
+    "label": 0,
+    "score": 0.006603626281314363,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-779-1",
+    "label": 1,
+    "score": 0.9996044637460855,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1456-0",
+    "label": 0,
+    "score": 0.012003508205488168,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1456-1",
+    "label": 1,
+    "score": 0.9820439920816099,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2915-0",
+    "label": 0,
+    "score": 0.010876448849484063,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2915-1",
+    "label": 1,
+    "score": 0.9989047138952525,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2687-0",
+    "label": 0,
+    "score": 0.6496564285361445,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2687-1",
+    "label": 1,
+    "score": 0.9997256702082488,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2701-0",
+    "label": 0,
+    "score": 0.00040254840248164943,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2701-1",
+    "label": 1,
+    "score": 0.9669567832438416,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1986-0",
+    "label": 0,
+    "score": 0.0029655761636539625,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1986-1",
+    "label": 1,
+    "score": 0.9999878215324851,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-978-0",
+    "label": 0,
+    "score": 0.002055568300336368,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-978-1",
+    "label": 1,
+    "score": 0.9968471408250499,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1786-0",
+    "label": 0,
+    "score": 0.00021809957929654804,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1786-1",
+    "label": 1,
+    "score": 0.9999876789342588,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-904-0",
+    "label": 0,
+    "score": 0.014577311931973858,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-904-1",
+    "label": 1,
+    "score": 0.9999746900413444,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2530-0",
+    "label": 0,
+    "score": 0.044014937573418886,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2530-1",
+    "label": 1,
+    "score": 0.9988218303607932,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2518-0",
+    "label": 0,
+    "score": 1.4908236425545239e-07,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2518-1",
+    "label": 1,
+    "score": 0.9990272985831016,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1984-0",
+    "label": 0,
+    "score": 0.0007148414390221112,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1984-1",
+    "label": 1,
+    "score": 0.8791860732398031,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2778-0",
+    "label": 0,
+    "score": 0.00015830932084754832,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2778-1",
+    "label": 1,
+    "score": 0.4959229219637709,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2016-0",
+    "label": 0,
+    "score": 0.0033329882022544556,
+    "stage": "trained"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2016-1",
+    "label": 1,
+    "score": 0.9999821065395449,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-449-0",
+    "label": 0,
+    "score": 0.07194101536813274,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-449-1",
+    "label": 1,
+    "score": 0.9999328415202264,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-422-0",
+    "label": 0,
+    "score": 0.00048206483280497915,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-422-1",
+    "label": 1,
+    "score": 0.9999808924703621,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1476-0",
+    "label": 0,
+    "score": 0.021951392175696884,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1476-1",
+    "label": 1,
+    "score": 0.9999931276455782,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2066-0",
+    "label": 0,
+    "score": 0.03774418220711198,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2066-1",
+    "label": 1,
+    "score": 0.9991993519081508,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1689-0",
+    "label": 0,
+    "score": 0.06487627256924984,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1689-1",
+    "label": 1,
+    "score": 0.9998831483575638,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-729-0",
+    "label": 0,
+    "score": 0.0001525863925673951,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-729-1",
+    "label": 1,
+    "score": 0.9995399186048043,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1440-0",
+    "label": 0,
+    "score": 0.0008318499103450844,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1440-1",
+    "label": 1,
+    "score": 0.979409372621801,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1958-0",
+    "label": 0,
+    "score": 0.034076452561384495,
+    "stage": "trained"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1958-1",
+    "label": 1,
+    "score": 0.9911325654245389,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1550-0",
+    "label": 0,
+    "score": 0.000409210910597203,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1550-1",
+    "label": 1,
+    "score": 0.9998122796485638,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-405-0",
+    "label": 0,
+    "score": 2.1195532167697533e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-405-1",
+    "label": 1,
+    "score": 0.9916947322766911,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1808-0",
+    "label": 0,
+    "score": 0.00024463366598336884,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1808-1",
+    "label": 1,
+    "score": 0.9995144021658614,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-282-0",
+    "label": 0,
+    "score": 0.013036373888387277,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-282-1",
+    "label": 1,
+    "score": 0.9999650738080139,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-523-0",
+    "label": 0,
+    "score": 1.495985076653556e-07,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-523-1",
+    "label": 1,
+    "score": 0.9776839689433805,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-378-0",
+    "label": 0,
+    "score": 0.00017566591425378732,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-378-1",
+    "label": 1,
+    "score": 0.999976997381932,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2318-0",
+    "label": 0,
+    "score": 0.0003005278936158395,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2318-1",
+    "label": 1,
+    "score": 0.9997731962021398,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-832-0",
+    "label": 0,
+    "score": 9.01426527932657e-06,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-832-1",
+    "label": 1,
+    "score": 0.9999531784144485,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-866-0",
+    "label": 0,
+    "score": 0.0022974121902433306,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-866-1",
+    "label": 1,
+    "score": 0.9999883316797287,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-407-0",
+    "label": 0,
+    "score": 4.774878920095193e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-407-1",
+    "label": 1,
+    "score": 0.9999866828302956,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2396-0",
+    "label": 0,
+    "score": 6.839595744267217e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2396-1",
+    "label": 1,
+    "score": 0.34659116739067647,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-662-0",
+    "label": 0,
+    "score": 0.8405264539799807,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-662-1",
+    "label": 1,
+    "score": 0.9999965918866506,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2146-0",
+    "label": 0,
+    "score": 0.001445422443243175,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2146-1",
+    "label": 1,
+    "score": 0.9999974084810537,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-163-0",
+    "label": 0,
+    "score": 1.721413910998379e-05,
+    "stage": "trained"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-163-1",
+    "label": 1,
+    "score": 0.9999477160628107,
+    "stage": "trained"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1407-0",
+    "label": 0,
+    "score": 0.0007638921829872059,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1407-1",
+    "label": 1,
+    "score": 0.999989116860058,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2794-0",
+    "label": 0,
+    "score": 0.0029463822449725266,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2794-1",
+    "label": 1,
+    "score": 0.9733056187708369,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-432-0",
+    "label": 0,
+    "score": 0.00028185163077491517,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-432-1",
+    "label": 1,
+    "score": 0.999898604891527,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-873-0",
+    "label": 0,
+    "score": 0.0011473998044612874,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-873-1",
+    "label": 1,
+    "score": 0.9767040737561329,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-486-0",
+    "label": 0,
+    "score": 0.0001696077295773033,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-486-1",
+    "label": 1,
+    "score": 0.9999735251112537,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-926-0",
+    "label": 0,
+    "score": 0.0024373267233810643,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-926-1",
+    "label": 1,
+    "score": 0.9993460696443601,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-848-0",
+    "label": 0,
+    "score": 0.00010974294074515027,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-848-1",
+    "label": 1,
+    "score": 0.9999715947992851,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-693-0",
+    "label": 0,
+    "score": 0.00289006663471973,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-693-1",
+    "label": 1,
+    "score": 0.9999598800522116,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1856-0",
+    "label": 0,
+    "score": 2.007889864915671e-07,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1856-1",
+    "label": 1,
+    "score": 0.9420787223119329,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1274-0",
+    "label": 0,
+    "score": 0.00010648805329123476,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1274-1",
+    "label": 1,
+    "score": 0.9992359396699425,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-482-0",
+    "label": 0,
+    "score": 0.001116456800062842,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-482-1",
+    "label": 1,
+    "score": 0.9999997020155116,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1236-0",
+    "label": 0,
+    "score": 1.567986191194875e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1236-1",
+    "label": 1,
+    "score": 0.9998326715386756,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2653-0",
+    "label": 0,
+    "score": 0.0017842507035587582,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2653-1",
+    "label": 1,
+    "score": 0.9596366691245911,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1602-0",
+    "label": 0,
+    "score": 0.00014884902686039222,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1602-1",
+    "label": 1,
+    "score": 0.9984082256158282,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-290-0",
+    "label": 0,
+    "score": 8.988373729865866e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-290-1",
+    "label": 1,
+    "score": 0.9991055633171487,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2508-0",
+    "label": 0,
+    "score": 0.17737966645921804,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2508-1",
+    "label": 1,
+    "score": 0.9948439255850529,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1966-0",
+    "label": 0,
+    "score": 0.0016147226661571868,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1966-1",
+    "label": 1,
+    "score": 0.9999981278541452,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2613-0",
+    "label": 0,
+    "score": 0.016938675996496153,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2613-1",
+    "label": 1,
+    "score": 0.9986022327876621,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1050-0",
+    "label": 0,
+    "score": 0.1235828980533227,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1050-1",
+    "label": 1,
+    "score": 0.9999770234416641,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1837-0",
+    "label": 0,
+    "score": 0.007934206388313233,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1837-1",
+    "label": 1,
+    "score": 0.9909829050543266,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1423-0",
+    "label": 0,
+    "score": 0.00031632396217200323,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1423-1",
+    "label": 1,
+    "score": 0.9997434916674685,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1911-0",
+    "label": 0,
+    "score": 0.001205602568746885,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1911-1",
+    "label": 1,
+    "score": 0.999993813964943,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-964-0",
+    "label": 0,
+    "score": 1.7552913420289256e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-964-1",
+    "label": 1,
+    "score": 0.9999377436764246,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2923-0",
+    "label": 0,
+    "score": 0.00141899351877071,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2923-1",
+    "label": 1,
+    "score": 0.9989044443926285,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2083-0",
+    "label": 0,
+    "score": 0.0004472387557469573,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2083-1",
+    "label": 1,
+    "score": 0.3519553346540841,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1450-0",
+    "label": 0,
+    "score": 0.0009926802546661913,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1450-1",
+    "label": 1,
+    "score": 0.9761339399141444,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1803-0",
+    "label": 0,
+    "score": 3.087662456469654e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1803-1",
+    "label": 1,
+    "score": 0.9999289314602856,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2320-0",
+    "label": 0,
+    "score": 6.363661167880427e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2320-1",
+    "label": 1,
+    "score": 0.9993323851875141,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-892-0",
+    "label": 0,
+    "score": 0.875795445295407,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-892-1",
+    "label": 1,
+    "score": 0.9999929183809166,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-902-0",
+    "label": 0,
+    "score": 3.7008347685349696e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-902-1",
+    "label": 1,
+    "score": 0.9999969430896902,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1745-0",
+    "label": 0,
+    "score": 9.441935029412612e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1745-1",
+    "label": 1,
+    "score": 0.9965505199474406,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1050-0",
+    "label": 0,
+    "score": 0.12207035990835395,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1050-1",
+    "label": 1,
+    "score": 0.999926264789269,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-963-0",
+    "label": 0,
+    "score": 1.0646440191519784e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-963-1",
+    "label": 1,
+    "score": 0.9986479436487747,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2154-0",
+    "label": 0,
+    "score": 0.0015990778144668511,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2154-1",
+    "label": 1,
+    "score": 0.9793679330603986,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1597-0",
+    "label": 0,
+    "score": 4.42561051646411e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1597-1",
+    "label": 1,
+    "score": 0.999973768839473,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-26-0",
+    "label": 0,
+    "score": 0.0002947576048122062,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-26-1",
+    "label": 1,
+    "score": 0.999809928626392,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-795-0",
+    "label": 0,
+    "score": 0.007158174616762978,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-795-1",
+    "label": 1,
+    "score": 0.9994921489004466,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1429-0",
+    "label": 0,
+    "score": 0.00011399302826224327,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1429-1",
+    "label": 1,
+    "score": 0.97011981469385,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2025-0",
+    "label": 0,
+    "score": 0.034724861985003276,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2025-1",
+    "label": 1,
+    "score": 0.9941430412501931,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2965-0",
+    "label": 0,
+    "score": 0.0002533660707383727,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2965-1",
+    "label": 1,
+    "score": 0.9372538715131039,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1441-0",
+    "label": 0,
+    "score": 0.003908214777722372,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1441-1",
+    "label": 1,
+    "score": 0.20631459233321608,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2241-0",
+    "label": 0,
+    "score": 0.0003817521432847087,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2241-1",
+    "label": 1,
+    "score": 0.5502996658846169,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2347-0",
+    "label": 0,
+    "score": 0.0001656591358591988,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2347-1",
+    "label": 1,
+    "score": 0.9958691663577101,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1172-0",
+    "label": 0,
+    "score": 0.06548374368176187,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1172-1",
+    "label": 1,
+    "score": 0.9998297195047537,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2289-0",
+    "label": 0,
+    "score": 0.11786782525414953,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2289-1",
+    "label": 1,
+    "score": 0.9888755626200667,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1847-0",
+    "label": 0,
+    "score": 0.0005863019045743477,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1847-1",
+    "label": 1,
+    "score": 0.999969145595676,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-366-0",
+    "label": 0,
+    "score": 0.0008449724814363042,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-366-1",
+    "label": 1,
+    "score": 0.9997819824550626,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2553-0",
+    "label": 0,
+    "score": 0.003424048013011417,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2553-1",
+    "label": 1,
+    "score": 0.5562404055429281,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2799-0",
+    "label": 0,
+    "score": 8.335958669202672e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2799-1",
+    "label": 1,
+    "score": 0.9997821882903235,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1860-0",
+    "label": 0,
+    "score": 0.0034813191610152507,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1860-1",
+    "label": 1,
+    "score": 0.9999955740689412,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-416-0",
+    "label": 0,
+    "score": 4.305463198139011e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-416-1",
+    "label": 1,
+    "score": 0.9956258033287261,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1795-0",
+    "label": 0,
+    "score": 4.968662067073246e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1795-1",
+    "label": 1,
+    "score": 0.9991111142891695,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1748-0",
+    "label": 0,
+    "score": 0.010454050741163042,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1748-1",
+    "label": 1,
+    "score": 0.9998885030675493,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2511-0",
+    "label": 0,
+    "score": 0.0003330634180561632,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2511-1",
+    "label": 1,
+    "score": 0.9870027442598003,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2254-0",
+    "label": 0,
+    "score": 0.010614455641231776,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2254-1",
+    "label": 1,
+    "score": 0.9999088455762039,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2335-0",
+    "label": 0,
+    "score": 0.0013057050595070248,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2335-1",
+    "label": 1,
+    "score": 0.9996459957639727,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-643-0",
+    "label": 0,
+    "score": 1.0433016912283113e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-643-1",
+    "label": 1,
+    "score": 0.8661856134857554,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1345-0",
+    "label": 0,
+    "score": 0.04404657573371464,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1345-1",
+    "label": 1,
+    "score": 0.9960162281180984,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-624-0",
+    "label": 0,
+    "score": 0.00010590695333506546,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-624-1",
+    "label": 1,
+    "score": 0.9999796638305508,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-160-0",
+    "label": 0,
+    "score": 0.00019683469964938165,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-160-1",
+    "label": 1,
+    "score": 0.9998081190284983,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2638-0",
+    "label": 0,
+    "score": 0.053952460773601454,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2638-1",
+    "label": 1,
+    "score": 0.9987272487866072,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1311-0",
+    "label": 0,
+    "score": 0.00035925693390924385,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1311-1",
+    "label": 1,
+    "score": 0.9999943322919819,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1988-0",
+    "label": 0,
+    "score": 0.00016877295004903397,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1988-1",
+    "label": 1,
+    "score": 0.9854014109329859,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1587-0",
+    "label": 0,
+    "score": 0.37925640739892236,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1587-1",
+    "label": 1,
+    "score": 0.9998288017079101,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1875-0",
+    "label": 0,
+    "score": 3.514732709374579e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1875-1",
+    "label": 1,
+    "score": 0.9988442498680468,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1290-0",
+    "label": 0,
+    "score": 0.010094423146607781,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1290-1",
+    "label": 1,
+    "score": 0.9998256408356303,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-315-0",
+    "label": 0,
+    "score": 0.013303288868929878,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-315-1",
+    "label": 1,
+    "score": 0.9997138282370471,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2672-0",
+    "label": 0,
+    "score": 0.004179711197750371,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2672-1",
+    "label": 1,
+    "score": 0.9816839808031027,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2461-0",
+    "label": 0,
+    "score": 0.06395197579627447,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2461-1",
+    "label": 1,
+    "score": 0.9997110808951207,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1560-0",
+    "label": 0,
+    "score": 0.0020566334348195406,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1560-1",
+    "label": 1,
+    "score": 0.9887080231380234,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2488-0",
+    "label": 0,
+    "score": 0.003245539724903604,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2488-1",
+    "label": 1,
+    "score": 0.9884210663716995,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-497-0",
+    "label": 0,
+    "score": 0.014002743783595237,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-497-1",
+    "label": 1,
+    "score": 0.9991325701680988,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-776-0",
+    "label": 0,
+    "score": 0.004482209876184507,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-776-1",
+    "label": 1,
+    "score": 0.999937345707171,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1626-0",
+    "label": 0,
+    "score": 0.0008841879426416574,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1626-1",
+    "label": 1,
+    "score": 0.999875363291107,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1259-0",
+    "label": 0,
+    "score": 0.0009471629919725905,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1259-1",
+    "label": 1,
+    "score": 0.9990719771035818,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1408-0",
+    "label": 0,
+    "score": 0.01062337513624111,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1408-1",
+    "label": 1,
+    "score": 0.9999609585110576,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1501-0",
+    "label": 0,
+    "score": 7.955608078871886e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1501-1",
+    "label": 1,
+    "score": 0.8356164220793619,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-296-0",
+    "label": 0,
+    "score": 6.016719052769976e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-296-1",
+    "label": 1,
+    "score": 0.9991522514208873,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1338-0",
+    "label": 0,
+    "score": 0.14209134051689565,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1338-1",
+    "label": 1,
+    "score": 0.9999989834807846,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-745-0",
+    "label": 0,
+    "score": 0.0011366351547696229,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-745-1",
+    "label": 1,
+    "score": 0.9995430256541968,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1844-0",
+    "label": 0,
+    "score": 0.00011529643241984182,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1844-1",
+    "label": 1,
+    "score": 0.9991839991882998,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2643-0",
+    "label": 0,
+    "score": 0.0006161577256431972,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2643-1",
+    "label": 1,
+    "score": 0.9912693067336735,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1487-0",
+    "label": 0,
+    "score": 0.000565119126443184,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1487-1",
+    "label": 1,
+    "score": 0.99999285384914,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-967-0",
+    "label": 0,
+    "score": 0.0048608282556812646,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-967-1",
+    "label": 1,
+    "score": 0.9999915610682741,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1998-0",
+    "label": 0,
+    "score": 8.473609448868626e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1998-1",
+    "label": 1,
+    "score": 0.9999023821835733,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2479-0",
+    "label": 0,
+    "score": 0.03481499889038922,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2479-1",
+    "label": 1,
+    "score": 0.9989086036823683,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-33-0",
+    "label": 0,
+    "score": 2.161626715575411e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-33-1",
+    "label": 1,
+    "score": 0.997078071540032,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1383-0",
+    "label": 0,
+    "score": 0.012605885772373898,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1383-1",
+    "label": 1,
+    "score": 0.9993682346155871,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2295-0",
+    "label": 0,
+    "score": 0.0014034638610312539,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2295-1",
+    "label": 1,
+    "score": 0.997477456371657,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-733-0",
+    "label": 0,
+    "score": 0.003156100453566462,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-733-1",
+    "label": 1,
+    "score": 0.9996622908928656,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2194-0",
+    "label": 0,
+    "score": 0.0003561142709706998,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2194-1",
+    "label": 1,
+    "score": 0.9983338703026413,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2377-0",
+    "label": 0,
+    "score": 0.0001404717369201246,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2377-1",
+    "label": 1,
+    "score": 0.9994012837526463,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2912-0",
+    "label": 0,
+    "score": 0.000328841150416121,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2912-1",
+    "label": 1,
+    "score": 0.9915521617408755,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-735-0",
+    "label": 0,
+    "score": 3.12193109545182e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-735-1",
+    "label": 1,
+    "score": 0.6835785763776194,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-681-0",
+    "label": 0,
+    "score": 0.0007252861632559881,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-681-1",
+    "label": 1,
+    "score": 0.991439193789774,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-452-0",
+    "label": 0,
+    "score": 0.00026890710284285547,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-452-1",
+    "label": 1,
+    "score": 0.9999792436070881,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-893-0",
+    "label": 0,
+    "score": 0.018620788393191083,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-893-1",
+    "label": 1,
+    "score": 0.999987238458043,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1654-0",
+    "label": 0,
+    "score": 0.0033951700908400368,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1654-1",
+    "label": 1,
+    "score": 0.9999994578424185,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1815-0",
+    "label": 0,
+    "score": 0.00016118510896174877,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1815-1",
+    "label": 1,
+    "score": 0.9901508717014664,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-280-0",
+    "label": 0,
+    "score": 3.165049553737332e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-280-1",
+    "label": 1,
+    "score": 0.9996110673906828,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1445-0",
+    "label": 0,
+    "score": 0.00011962518621522505,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1445-1",
+    "label": 1,
+    "score": 0.996690046318575,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1138-0",
+    "label": 0,
+    "score": 0.005401559613020693,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1138-1",
+    "label": 1,
+    "score": 0.9972829992994553,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2439-0",
+    "label": 0,
+    "score": 0.005662400173601487,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2439-1",
+    "label": 1,
+    "score": 0.97000830496684,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1625-0",
+    "label": 0,
+    "score": 0.0007122897465266002,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1625-1",
+    "label": 1,
+    "score": 0.999871347790017,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1070-0",
+    "label": 0,
+    "score": 0.06125726207542311,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1070-1",
+    "label": 1,
+    "score": 0.9999565864167436,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-368-0",
+    "label": 0,
+    "score": 2.493967286429033e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-368-1",
+    "label": 1,
+    "score": 0.9997172702265019,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1506-0",
+    "label": 0,
+    "score": 0.0057861243383084005,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1506-1",
+    "label": 1,
+    "score": 0.9999993825439668,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2616-0",
+    "label": 0,
+    "score": 0.0008012343352449466,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2616-1",
+    "label": 1,
+    "score": 0.9997726295995144,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-915-0",
+    "label": 0,
+    "score": 1.1686464101752968e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-915-1",
+    "label": 1,
+    "score": 0.9999519502597823,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2031-0",
+    "label": 0,
+    "score": 5.758359562204691e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2031-1",
+    "label": 1,
+    "score": 0.9816589237427363,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1851-0",
+    "label": 0,
+    "score": 6.672624342824507e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1851-1",
+    "label": 1,
+    "score": 0.9999994259454865,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1579-0",
+    "label": 0,
+    "score": 0.0006201181196964733,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1579-1",
+    "label": 1,
+    "score": 0.9998170816355039,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2972-0",
+    "label": 0,
+    "score": 7.851562715137669e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2972-1",
+    "label": 1,
+    "score": 0.778000983970626,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1806-0",
+    "label": 0,
+    "score": 0.00026430303512955174,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1806-1",
+    "label": 1,
+    "score": 0.999988796991938,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-670-0",
+    "label": 0,
+    "score": 0.010403893074508008,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-670-1",
+    "label": 1,
+    "score": 0.9988705421080701,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1046-0",
+    "label": 0,
+    "score": 0.0004036347276677362,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1046-1",
+    "label": 1,
+    "score": 0.9999913248095178,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2193-0",
+    "label": 0,
+    "score": 0.00011495990403248313,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2193-1",
+    "label": 1,
+    "score": 0.9793442829438452,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1093-0",
+    "label": 0,
+    "score": 0.00012037984711002184,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1093-1",
+    "label": 1,
+    "score": 0.9973632035980927,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2185-0",
+    "label": 0,
+    "score": 6.89457425716655e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2185-1",
+    "label": 1,
+    "score": 0.9999539353028866,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-249-0",
+    "label": 0,
+    "score": 0.00012307584603778022,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-249-1",
+    "label": 1,
+    "score": 0.9955536273983581,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1184-0",
+    "label": 0,
+    "score": 0.0020420153113249145,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1184-1",
+    "label": 1,
+    "score": 0.9999734563564817,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1288-0",
+    "label": 0,
+    "score": 6.244597565417861e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1288-1",
+    "label": 1,
+    "score": 0.9999830652357241,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2539-0",
+    "label": 0,
+    "score": 0.0012037325194176607,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2539-1",
+    "label": 1,
+    "score": 0.986347124479319,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1244-0",
+    "label": 0,
+    "score": 0.00030918689242799964,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1244-1",
+    "label": 1,
+    "score": 0.9999997506282028,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-966-0",
+    "label": 0,
+    "score": 0.0009993277240343973,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-966-1",
+    "label": 1,
+    "score": 0.9999917500141343,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1917-0",
+    "label": 0,
+    "score": 2.1761063932447336e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1917-1",
+    "label": 1,
+    "score": 0.9851351362076899,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2985-0",
+    "label": 0,
+    "score": 0.000186605915027978,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2985-1",
+    "label": 1,
+    "score": 0.9955364101567741,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2267-0",
+    "label": 0,
+    "score": 0.004063016487589744,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2267-1",
+    "label": 1,
+    "score": 0.999847760508954,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-530-0",
+    "label": 0,
+    "score": 0.0005441101724613612,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-530-1",
+    "label": 1,
+    "score": 0.999829018510016,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-922-0",
+    "label": 0,
+    "score": 1.2410263199739063e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-922-1",
+    "label": 1,
+    "score": 0.9998923976077586,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1688-0",
+    "label": 0,
+    "score": 0.00020898987845658926,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1688-1",
+    "label": 1,
+    "score": 0.9998794047465929,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1252-0",
+    "label": 0,
+    "score": 0.0016907928914246557,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1252-1",
+    "label": 1,
+    "score": 0.9999246815370636,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1572-0",
+    "label": 0,
+    "score": 9.271208621987257e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1572-1",
+    "label": 1,
+    "score": 0.9989754088082647,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-969-0",
+    "label": 0,
+    "score": 4.141690616460251e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-969-1",
+    "label": 1,
+    "score": 0.9984049075115564,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1261-0",
+    "label": 0,
+    "score": 0.00013649627001589897,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1261-1",
+    "label": 1,
+    "score": 0.9999986841579275,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-471-0",
+    "label": 0,
+    "score": 5.252257070912544e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-471-1",
+    "label": 1,
+    "score": 0.9999968106019339,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2092-0",
+    "label": 0,
+    "score": 0.19736242739895435,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2092-1",
+    "label": 1,
+    "score": 0.9998871619974289,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-422-0",
+    "label": 0,
+    "score": 0.00014783403387162434,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-422-1",
+    "label": 1,
+    "score": 0.9990495854605557,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2864-0",
+    "label": 0,
+    "score": 2.334186950414698e-07,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2864-1",
+    "label": 1,
+    "score": 0.9999506859602335,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1473-0",
+    "label": 0,
+    "score": 0.00028945688081040096,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1473-1",
+    "label": 1,
+    "score": 0.9999369531516251,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-945-0",
+    "label": 0,
+    "score": 0.0035050906096662105,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-945-1",
+    "label": 1,
+    "score": 0.9999382545162036,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2287-0",
+    "label": 0,
+    "score": 6.510363195593505e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2287-1",
+    "label": 1,
+    "score": 0.9999834010371721,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2418-0",
+    "label": 0,
+    "score": 0.0013290336618751973,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2418-1",
+    "label": 1,
+    "score": 0.9731308615627567,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2541-0",
+    "label": 0,
+    "score": 0.00015196843648946536,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2541-1",
+    "label": 1,
+    "score": 0.9990674728619504,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1415-0",
+    "label": 0,
+    "score": 6.150052794068854e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1415-1",
+    "label": 1,
+    "score": 0.9987872989031086,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2862-0",
+    "label": 0,
+    "score": 0.0001374254025654019,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2862-1",
+    "label": 1,
+    "score": 0.9777746833104907,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-448-0",
+    "label": 0,
+    "score": 0.00082713864020196,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-448-1",
+    "label": 1,
+    "score": 0.998570508768114,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1378-0",
+    "label": 0,
+    "score": 0.11956097556606374,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1378-1",
+    "label": 1,
+    "score": 0.9999814979336086,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1690-0",
+    "label": 0,
+    "score": 0.00022384601067773556,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1690-1",
+    "label": 1,
+    "score": 0.9371771378021793,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1421-0",
+    "label": 0,
+    "score": 0.0005275197327568172,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1421-1",
+    "label": 1,
+    "score": 0.9969175367845,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2540-0",
+    "label": 0,
+    "score": 2.3230170985776488e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2540-1",
+    "label": 1,
+    "score": 0.9043711469543542,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1375-0",
+    "label": 0,
+    "score": 0.0008169017808566284,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1375-1",
+    "label": 1,
+    "score": 0.9987059946111959,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2171-0",
+    "label": 0,
+    "score": 0.012451311876861177,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2171-1",
+    "label": 1,
+    "score": 0.9999751165818503,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1619-0",
+    "label": 0,
+    "score": 0.00025375008131007723,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1619-1",
+    "label": 1,
+    "score": 0.9999798395857832,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1356-0",
+    "label": 0,
+    "score": 0.00011793220103536383,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1356-1",
+    "label": 1,
+    "score": 0.9988302537791957,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2100-0",
+    "label": 0,
+    "score": 0.00018610079785439274,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2100-1",
+    "label": 1,
+    "score": 0.9997982974850063,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2566-0",
+    "label": 0,
+    "score": 0.004186488135701091,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2566-1",
+    "label": 1,
+    "score": 0.9995085693885759,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2152-0",
+    "label": 0,
+    "score": 0.008721581322894679,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2152-1",
+    "label": 1,
+    "score": 0.9862497161629815,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1781-0",
+    "label": 0,
+    "score": 1.1371544674643802e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1781-1",
+    "label": 1,
+    "score": 0.9993947804693137,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-247-0",
+    "label": 0,
+    "score": 0.0007252841858099813,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-247-1",
+    "label": 1,
+    "score": 0.9999526558692596,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2591-0",
+    "label": 0,
+    "score": 0.011731654041569678,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2591-1",
+    "label": 1,
+    "score": 0.9994289035472246,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2285-0",
+    "label": 0,
+    "score": 9.279857804803388e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2285-1",
+    "label": 1,
+    "score": 0.9807916572684144,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1128-0",
+    "label": 0,
+    "score": 0.06066304985578022,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1128-1",
+    "label": 1,
+    "score": 0.9999779491447799,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1224-0",
+    "label": 0,
+    "score": 0.00025677478501648094,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1224-1",
+    "label": 1,
+    "score": 0.999974920642156,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-611-0",
+    "label": 0,
+    "score": 0.0002132951262382829,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-611-1",
+    "label": 1,
+    "score": 0.9999526380713805,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-76-0",
+    "label": 0,
+    "score": 0.0019664002194774714,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-76-1",
+    "label": 1,
+    "score": 0.999998247425107,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2124-0",
+    "label": 0,
+    "score": 8.639766889705888e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2124-1",
+    "label": 1,
+    "score": 0.9999627087860454,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1983-0",
+    "label": 0,
+    "score": 4.0128832121572515e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1983-1",
+    "label": 1,
+    "score": 0.9344755425073666,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1913-0",
+    "label": 0,
+    "score": 0.002252809468173247,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1913-1",
+    "label": 1,
+    "score": 0.99669128697657,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1856-0",
+    "label": 0,
+    "score": 0.01588130400469705,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1856-1",
+    "label": 1,
+    "score": 0.9999959570608898,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-122-0",
+    "label": 0,
+    "score": 0.009074679999253451,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-122-1",
+    "label": 1,
+    "score": 0.9999966022514419,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-650-0",
+    "label": 0,
+    "score": 0.11041846436113979,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-650-1",
+    "label": 1,
+    "score": 0.9999802456290018,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2429-0",
+    "label": 0,
+    "score": 0.0007120673869496905,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2429-1",
+    "label": 1,
+    "score": 0.7673020706585458,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-689-0",
+    "label": 0,
+    "score": 2.7043651450757765e-07,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-689-1",
+    "label": 1,
+    "score": 0.999593076669116,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1813-0",
+    "label": 0,
+    "score": 0.0007329691309566505,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1813-1",
+    "label": 1,
+    "score": 0.9984133634968424,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-278-0",
+    "label": 0,
+    "score": 0.000677456024986895,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-278-1",
+    "label": 1,
+    "score": 0.9999961751593329,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1593-0",
+    "label": 0,
+    "score": 0.0001961925472210607,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1593-1",
+    "label": 1,
+    "score": 0.9995496253531484,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1693-0",
+    "label": 0,
+    "score": 0.00022792807804528794,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1693-1",
+    "label": 1,
+    "score": 0.9999288162237775,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1029-0",
+    "label": 0,
+    "score": 0.00031276223214046496,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1029-1",
+    "label": 1,
+    "score": 0.9997199308406589,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2756-0",
+    "label": 0,
+    "score": 1.0223069733649512e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2756-1",
+    "label": 1,
+    "score": 0.9997530509513651,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1797-0",
+    "label": 0,
+    "score": 0.003321910909810269,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1797-1",
+    "label": 1,
+    "score": 0.9999956308942368,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-722-0",
+    "label": 0,
+    "score": 0.5945975642698701,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-722-1",
+    "label": 1,
+    "score": 0.9995282998083718,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2421-0",
+    "label": 0,
+    "score": 0.0012218613816202507,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2421-1",
+    "label": 1,
+    "score": 0.9821484595190222,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1144-0",
+    "label": 0,
+    "score": 0.01365611894513341,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1144-1",
+    "label": 1,
+    "score": 0.9999819497222872,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1399-0",
+    "label": 0,
+    "score": 0.00046983536865872187,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1399-1",
+    "label": 1,
+    "score": 0.9981303401555603,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2489-0",
+    "label": 0,
+    "score": 1.645293304733881e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2489-1",
+    "label": 1,
+    "score": 0.9920108430301638,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1231-0",
+    "label": 0,
+    "score": 0.010931998588327297,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1231-1",
+    "label": 1,
+    "score": 0.9996778740982329,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2430-0",
+    "label": 0,
+    "score": 0.0013633878761028005,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2430-1",
+    "label": 1,
+    "score": 0.9997933687438839,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-338-0",
+    "label": 0,
+    "score": 0.004436944213813307,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-338-1",
+    "label": 1,
+    "score": 0.9999866406043362,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1954-0",
+    "label": 0,
+    "score": 0.014211968323887292,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1954-1",
+    "label": 1,
+    "score": 0.9999988696455216,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1932-0",
+    "label": 0,
+    "score": 1.4012322215642022e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1932-1",
+    "label": 1,
+    "score": 0.9979918705190852,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1752-0",
+    "label": 0,
+    "score": 0.0010235531231822348,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1752-1",
+    "label": 1,
+    "score": 0.9629005792175959,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2266-0",
+    "label": 0,
+    "score": 0.00016315196546435223,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Rewrite-ID-2266-1",
+    "label": 1,
+    "score": 0.9999988140618354,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1712-0",
+    "label": 0,
+    "score": 0.0008145103642474289,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1712-1",
+    "label": 1,
+    "score": 0.9883102853920808,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-840-0",
+    "label": 0,
+    "score": 0.004078272672389828,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-840-1",
+    "label": 1,
+    "score": 0.9998484738938581,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-897-0",
+    "label": 0,
+    "score": 3.048977611809385e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-897-1",
+    "label": 1,
+    "score": 0.9986932867785331,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1253-0",
+    "label": 0,
+    "score": 0.008065730935259871,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1253-1",
+    "label": 1,
+    "score": 0.9999163651596663,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-27-0",
+    "label": 0,
+    "score": 0.005790893127597077,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-27-1",
+    "label": 1,
+    "score": 0.9999884128613156,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1796-0",
+    "label": 0,
+    "score": 0.001214837353077774,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1796-1",
+    "label": 1,
+    "score": 0.9999807379803083,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2156-0",
+    "label": 0,
+    "score": 0.00178136963204143,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2156-1",
+    "label": 1,
+    "score": 0.9983071324833847,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-4-0",
+    "label": 0,
+    "score": 0.0002641949970710774,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-4-1",
+    "label": 1,
+    "score": 0.9975375562949271,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-139-0",
+    "label": 0,
+    "score": 0.00012119572203654243,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-139-1",
+    "label": 1,
+    "score": 0.9999739387792967,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-353-0",
+    "label": 0,
+    "score": 0.0004116283834461379,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-353-1",
+    "label": 1,
+    "score": 0.9968129648031903,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1243-0",
+    "label": 0,
+    "score": 0.0009716751867348486,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1243-1",
+    "label": 1,
+    "score": 0.9693957887999148,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-253-0",
+    "label": 0,
+    "score": 0.008600435435606015,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-253-1",
+    "label": 1,
+    "score": 0.9999804924324177,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2811-0",
+    "label": 0,
+    "score": 0.007001373803511332,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2811-1",
+    "label": 1,
+    "score": 0.9878291231872718,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-273-0",
+    "label": 0,
+    "score": 0.005056694945183107,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-273-1",
+    "label": 1,
+    "score": 0.9994633102179847,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1845-0",
+    "label": 0,
+    "score": 0.0001520925386663004,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1845-1",
+    "label": 1,
+    "score": 0.9961399660010295,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1882-0",
+    "label": 0,
+    "score": 0.003864798235729471,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1882-1",
+    "label": 1,
+    "score": 0.993850103577072,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-835-0",
+    "label": 0,
+    "score": 0.0007615119889472779,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-835-1",
+    "label": 1,
+    "score": 0.9999282451037516,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1419-0",
+    "label": 0,
+    "score": 5.038748842617874e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1419-1",
+    "label": 1,
+    "score": 0.9998432756368124,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1575-0",
+    "label": 0,
+    "score": 2.1183929169127724e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1575-1",
+    "label": 1,
+    "score": 0.9710913631393641,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1113-0",
+    "label": 0,
+    "score": 0.00047615035377100685,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1113-1",
+    "label": 1,
+    "score": 0.9999807953562703,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1096-0",
+    "label": 0,
+    "score": 0.01764090950287914,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1096-1",
+    "label": 1,
+    "score": 0.9991146249916946,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-674-0",
+    "label": 0,
+    "score": 0.012656685278808139,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-674-1",
+    "label": 1,
+    "score": 0.9999953063881025,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1397-0",
+    "label": 0,
+    "score": 0.014590696059482575,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1397-1",
+    "label": 1,
+    "score": 0.9999932375605453,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2311-0",
+    "label": 0,
+    "score": 0.002759075637611927,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2311-1",
+    "label": 1,
+    "score": 0.999946284103838,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1202-0",
+    "label": 0,
+    "score": 3.026165632369193e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1202-1",
+    "label": 1,
+    "score": 0.9984209785378374,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1840-0",
+    "label": 0,
+    "score": 0.0005963916557650372,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1840-1",
+    "label": 1,
+    "score": 0.9851468693887869,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2481-0",
+    "label": 0,
+    "score": 0.001433754306523891,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2481-1",
+    "label": 1,
+    "score": 0.7547287962509975,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1394-0",
+    "label": 0,
+    "score": 0.0005013927951834323,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1394-1",
+    "label": 1,
+    "score": 0.9717227283198903,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1111-0",
+    "label": 0,
+    "score": 0.00010067696520110198,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1111-1",
+    "label": 1,
+    "score": 0.9999917468321762,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-874-0",
+    "label": 0,
+    "score": 6.218203293478951e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-874-1",
+    "label": 1,
+    "score": 0.9998869121998254,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1965-0",
+    "label": 0,
+    "score": 0.00010123259970353588,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1965-1",
+    "label": 1,
+    "score": 0.031190889159777066,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2436-0",
+    "label": 0,
+    "score": 0.00019529698420009886,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2436-1",
+    "label": 1,
+    "score": 0.9997487801033117,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1344-0",
+    "label": 0,
+    "score": 0.0023105249841571343,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1344-1",
+    "label": 1,
+    "score": 0.9196517179422803,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2710-0",
+    "label": 0,
+    "score": 1.2271118366666413e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2710-1",
+    "label": 1,
+    "score": 0.9813533203652617,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1834-0",
+    "label": 0,
+    "score": 0.006382655685845865,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1834-1",
+    "label": 1,
+    "score": 0.6804523654999661,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-677-0",
+    "label": 0,
+    "score": 1.4795170176933962e-08,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-677-1",
+    "label": 1,
+    "score": 0.9989010883215441,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-948-0",
+    "label": 0,
+    "score": 9.998272313213557e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-948-1",
+    "label": 1,
+    "score": 0.9998279564398037,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1982-0",
+    "label": 0,
+    "score": 0.00039198569793278624,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1982-1",
+    "label": 1,
+    "score": 0.9970011363344701,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-56-0",
+    "label": 0,
+    "score": 0.0021212428834549283,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-56-1",
+    "label": 1,
+    "score": 0.9998567248149643,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2829-0",
+    "label": 0,
+    "score": 0.0004679158496045251,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2829-1",
+    "label": 1,
+    "score": 0.9999911619881766,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1734-0",
+    "label": 0,
+    "score": 5.353436966101134e-07,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1734-1",
+    "label": 1,
+    "score": 0.9999849092023549,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1682-0",
+    "label": 0,
+    "score": 0.0015013784793243893,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Rewrite-ID-1682-1",
+    "label": 1,
+    "score": 0.9999898229578282,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-623-0",
+    "label": 0,
+    "score": 0.0010916183902884157,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-623-1",
+    "label": 1,
+    "score": 0.999901584710084,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-833-0",
+    "label": 0,
+    "score": 0.0004033060445795241,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-833-1",
+    "label": 1,
+    "score": 0.9999972385414289,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-946-0",
+    "label": 0,
+    "score": 9.368804413699854e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-946-1",
+    "label": 1,
+    "score": 0.9997122405092637,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2188-0",
+    "label": 0,
+    "score": 2.3857958076672642e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2188-1",
+    "label": 1,
+    "score": 0.9999298786664886,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1981-0",
+    "label": 0,
+    "score": 6.279646165026757e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-1981-1",
+    "label": 1,
+    "score": 0.9998842362181274,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-731-0",
+    "label": 0,
+    "score": 9.098993711057139e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-731-1",
+    "label": 1,
+    "score": 0.9998858702899295,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1638-0",
+    "label": 0,
+    "score": 0.0009847500287626227,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1638-1",
+    "label": 1,
+    "score": 0.9999999087568275,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-725-0",
+    "label": 0,
+    "score": 0.002028542938489746,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-725-1",
+    "label": 1,
+    "score": 0.9996724160655867,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1773-0",
+    "label": 0,
+    "score": 0.00010953303291710156,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1773-1",
+    "label": 1,
+    "score": 0.9999643737585403,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1897-0",
+    "label": 0,
+    "score": 3.2882604910458874e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1897-1",
+    "label": 1,
+    "score": 0.9852557333413074,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-724-0",
+    "label": 0,
+    "score": 0.0001022720656427027,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-724-1",
+    "label": 1,
+    "score": 0.9996605371585621,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1412-0",
+    "label": 0,
+    "score": 2.5171326943185087e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1412-1",
+    "label": 1,
+    "score": 0.9826439122996032,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-474-0",
+    "label": 0,
+    "score": 5.364309328986216e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-474-1",
+    "label": 1,
+    "score": 0.9998851317904637,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-552-0",
+    "label": 0,
+    "score": 0.04582692241902694,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-552-1",
+    "label": 1,
+    "score": 0.9999965888161242,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1462-0",
+    "label": 0,
+    "score": 0.0004079741493112071,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1462-1",
+    "label": 1,
+    "score": 0.4543834367019221,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-809-0",
+    "label": 0,
+    "score": 0.004469655806450219,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-809-1",
+    "label": 1,
+    "score": 0.9999957529253131,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-359-0",
+    "label": 0,
+    "score": 0.006321612639338386,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-359-1",
+    "label": 1,
+    "score": 0.7682022447484687,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1581-0",
+    "label": 0,
+    "score": 0.00418987802351498,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1581-1",
+    "label": 1,
+    "score": 0.9998260918592613,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1864-0",
+    "label": 0,
+    "score": 0.0006158670797350443,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Rewrite-ID-1864-1",
+    "label": 1,
+    "score": 0.9999902137814766,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2219-0",
+    "label": 0,
+    "score": 0.0011006952455633317,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2219-1",
+    "label": 1,
+    "score": 0.9736182732660738,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1333-0",
+    "label": 0,
+    "score": 2.5708694251399853e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-1333-1",
+    "label": 1,
+    "score": 0.9999599160889648,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1663-0",
+    "label": 0,
+    "score": 3.2439179608767155e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1663-1",
+    "label": 1,
+    "score": 0.903223103026134,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-312-0",
+    "label": 0,
+    "score": 3.880168041322067e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-312-1",
+    "label": 1,
+    "score": 0.9995471846822711,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2583-0",
+    "label": 0,
+    "score": 0.00020296483730726785,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2583-1",
+    "label": 1,
+    "score": 0.9993909315036152,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2529-0",
+    "label": 0,
+    "score": 1.7145488337909582e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2529-1",
+    "label": 1,
+    "score": 0.9333775094186464,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1544-0",
+    "label": 0,
+    "score": 2.712215373169365e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1544-1",
+    "label": 1,
+    "score": 0.9797880366348725,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-764-0",
+    "label": 0,
+    "score": 0.3259399438141641,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-764-1",
+    "label": 1,
+    "score": 0.999958897376629,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2001-0",
+    "label": 0,
+    "score": 3.131958222517835e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2001-1",
+    "label": 1,
+    "score": 0.9860640801839895,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1482-0",
+    "label": 0,
+    "score": 2.1885081768463533e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1482-1",
+    "label": 1,
+    "score": 0.99433730942327,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-779-0",
+    "label": 0,
+    "score": 0.009810823359978713,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-779-1",
+    "label": 1,
+    "score": 0.9994666791701445,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1456-0",
+    "label": 0,
+    "score": 0.0048970306534412275,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-Thesis-Polish-ID-1456-1",
+    "label": 1,
+    "score": 0.9980369305837946,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2915-0",
+    "label": 0,
+    "score": 0.01451066376097988,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2915-1",
+    "label": 1,
+    "score": 0.9992904241900732,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2687-0",
+    "label": 0,
+    "score": 0.9466238076784609,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2687-1",
+    "label": 1,
+    "score": 0.9999906018349743,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2701-0",
+    "label": 0,
+    "score": 0.0010625063221603702,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Polish-ID-2701-1",
+    "label": 1,
+    "score": 0.9955221135259432,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1986-0",
+    "label": 0,
+    "score": 0.00015800635133948456,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1986-1",
+    "label": 1,
+    "score": 0.9999957410980301,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-978-0",
+    "label": 0,
+    "score": 0.00044639114295333464,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Polish-ID-978-1",
+    "label": 1,
+    "score": 0.9891998701218268,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1786-0",
+    "label": 0,
+    "score": 0.0003691685596914971,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1786-1",
+    "label": 1,
+    "score": 0.999912900058589,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-904-0",
+    "label": 0,
+    "score": 0.0033476259240261333,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-904-1",
+    "label": 1,
+    "score": 0.9999556384618736,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2530-0",
+    "label": 0,
+    "score": 0.06655429183167723,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-2530-1",
+    "label": 1,
+    "score": 0.9964796831769263,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2518-0",
+    "label": 0,
+    "score": 1.154234371035113e-06,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2518-1",
+    "label": 1,
+    "score": 0.9977191168446717,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1984-0",
+    "label": 0,
+    "score": 0.0005997989082000366,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Polish-ID-1984-1",
+    "label": 1,
+    "score": 0.988517791246824,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2778-0",
+    "label": 0,
+    "score": 4.805186191634087e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Polish-ID-2778-1",
+    "label": 1,
+    "score": 0.5327804637545642,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2016-0",
+    "label": 0,
+    "score": 0.0018223584769377723,
+    "stage": "optimized"
+  },
+  {
+    "id": "ChatGLM-News-Polish-ID-2016-1",
+    "label": 1,
+    "score": 0.9998352095657669,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-449-0",
+    "label": 0,
+    "score": 0.023865273297428467,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-449-1",
+    "label": 1,
+    "score": 0.9999235919037618,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-422-0",
+    "label": 0,
+    "score": 0.0004712311289494926,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-422-1",
+    "label": 1,
+    "score": 0.9999897866259324,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1476-0",
+    "label": 0,
+    "score": 0.009433820050762619,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1476-1",
+    "label": 1,
+    "score": 0.9999956818025737,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2066-0",
+    "label": 0,
+    "score": 0.012004754975370254,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-News-Rewrite-ID-2066-1",
+    "label": 1,
+    "score": 0.9999914022923729,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1689-0",
+    "label": 0,
+    "score": 0.020100942570078686,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1689-1",
+    "label": 1,
+    "score": 0.9998896427557712,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-729-0",
+    "label": 0,
+    "score": 0.0001960238339427553,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-729-1",
+    "label": 1,
+    "score": 0.9979212618435588,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1440-0",
+    "label": 0,
+    "score": 0.0005146790275244132,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-1440-1",
+    "label": 1,
+    "score": 0.9690340869261562,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1958-0",
+    "label": 0,
+    "score": 0.015951374763730982,
+    "stage": "optimized"
+  },
+  {
+    "id": "Baichuan-Thesis-Rewrite-ID-1958-1",
+    "label": 1,
+    "score": 0.9924683501236657,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1550-0",
+    "label": 0,
+    "score": 3.805512730023456e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-1550-1",
+    "label": 1,
+    "score": 0.999821987012049,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-405-0",
+    "label": 0,
+    "score": 2.6662307415876775e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-405-1",
+    "label": 1,
+    "score": 0.9997238301885655,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1808-0",
+    "label": 0,
+    "score": 7.448439408859383e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-Thesis-Polish-ID-1808-1",
+    "label": 1,
+    "score": 0.9972756693298624,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-282-0",
+    "label": 0,
+    "score": 0.1109444052693049,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-282-1",
+    "label": 1,
+    "score": 0.9999859523254646,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-523-0",
+    "label": 0,
+    "score": 8.248972784465965e-07,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-523-1",
+    "label": 1,
+    "score": 0.9947273046150336,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-378-0",
+    "label": 0,
+    "score": 0.0003346839239420711,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-378-1",
+    "label": 1,
+    "score": 0.9999823881332773,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2318-0",
+    "label": 0,
+    "score": 7.654461361581561e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "GPT4-News-Rewrite-ID-2318-1",
+    "label": 1,
+    "score": 0.9999541042737491,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-832-0",
+    "label": 0,
+    "score": 0.0013069334529542181,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Polish-ID-832-1",
+    "label": 1,
+    "score": 0.9999635153298277,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-866-0",
+    "label": 0,
+    "score": 0.0023123480424919484,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-866-1",
+    "label": 1,
+    "score": 0.9999987949221436,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-407-0",
+    "label": 0,
+    "score": 6.076646142432712e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-407-1",
+    "label": 1,
+    "score": 0.9999492474571353,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2396-0",
+    "label": 0,
+    "score": 1.2129885478539207e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2396-1",
+    "label": 1,
+    "score": 0.46915714616525406,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-662-0",
+    "label": 0,
+    "score": 0.8919153970300365,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-Thesis-Rewrite-ID-662-1",
+    "label": 1,
+    "score": 0.9999994499149514,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2146-0",
+    "label": 0,
+    "score": 0.0028336411512505538,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-2146-1",
+    "label": 1,
+    "score": 0.9999922460956998,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-163-0",
+    "label": 0,
+    "score": 3.383841291660823e-05,
+    "stage": "optimized"
+  },
+  {
+    "id": "Qwen-News-Rewrite-ID-163-1",
+    "label": 1,
+    "score": 0.9997729960532337,
+    "stage": "optimized"
+  }
+]

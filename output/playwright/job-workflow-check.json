@@ -1,0 +1,79 @@
+{
+  "status": "passed",
+  "fixture": "deterministic slow model on localhost:8004",
+  "checks": [
+    {
+      "name": "Task 取消进度验证.txt is accepted immediately",
+      "passed": true
+    },
+    {
+      "name": "Actual worker progress is visible",
+      "passed": true
+    },
+    {
+      "name": "Cancellation prevents a conflicting background action",
+      "passed": true
+    },
+    {
+      "name": "Cancel stops the server task and leaves no report",
+      "passed": true
+    },
+    {
+      "name": "Cancellation restores the processing slot",
+      "passed": true
+    },
+    {
+      "name": "Task 后台恢复验证.txt is accepted immediately",
+      "passed": true
+    },
+    {
+      "name": "Background processing leaves document controls available",
+      "passed": true
+    },
+    {
+      "name": "The background worker remains active",
+      "passed": true
+    },
+    {
+      "name": "Reload recovers an in-flight task without its source file",
+      "passed": true
+    },
+    {
+      "name": "A resumed task displays its existing progress",
+      "passed": true
+    },
+    {
+      "name": "Task controls fit a 390px mobile screen",
+      "passed": true
+    },
+    {
+      "name": "A background task completes with the full original",
+      "passed": true
+    },
+    {
+      "name": "Completed metadata links to an existing report",
+      "passed": true
+    },
+    {
+      "name": "The completed task can reopen its report",
+      "passed": true
+    },
+    {
+      "name": "Task 损坏任务验证.docx is accepted immediately",
+      "passed": true
+    },
+    {
+      "name": "Bad documents show a failed task with a readable error",
+      "passed": true
+    },
+    {
+      "name": "Task failure preserves the report already being reviewed",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

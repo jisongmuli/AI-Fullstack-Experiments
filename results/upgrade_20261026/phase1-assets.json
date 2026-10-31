@@ -1,0 +1,14 @@
+[
+  {
+    "path": "data/benchmarks_2026/nlpcc/data/testp1.json",
+    "url": "https://raw.githubusercontent.com/NLP2CT/NLPCC-2026-Task6-Detection/961a485fa72f9821d6315836d46c9d94818b18b1/data/testp1.json",
+    "bytes": 15078444,
+    "sha256": "7b3d9a778d7c74eab2d4c51613adf066c241f1e6d303390dc6b61b5ff94e27ff"
+  },
+  {
+    "path": "data/benchmarks_2026/nlpcc/data/testp1_testing_label.json",
+    "url": "https://raw.githubusercontent.com/NLP2CT/NLPCC-2026-Task6-Detection/961a485fa72f9821d6315836d46c9d94818b18b1/data/testp1_testing_label.json",
+    "bytes": 175292,
+    "sha256": "2de4c56898d103935587cda8b4039b24aaabfd3e7afb575e36a8b997f11334d9"
+  }
+]

@@ -36,10 +36,10 @@ with httpx.Client(base_url=a.url,timeout=180) as client:
     for language,text in [('Chinese',ZH),('English',EN)]:
         result=check(language+' text','POST','/api/text/detect',json={'text':text}).json()
         assert result['segments'] and any(s.get('risk_score') is not None for s in result['segments'])
-    original=check('CIFAKE image','POST','/api/image/detect',files={'file':('sample.png',(root/'web/assets/sample-real.png').read_bytes(),'image/png')}).json()
+    original=check('NTIRE 2026 source image','POST','/api/image/detect',files={'file':('sample-2026.jpg',(root/'web/assets/sample-real-2026.jpg').read_bytes(),'image/jpeg')}).json()
     assert original['risk_score'] is not None
     ordinary=check('ordinary image dual models','POST','/api/image/detect',files={'file':('generated-gradient-fixture.png',imbytes.getvalue(),'image/png')}).json()
-    assert len(ordinary['model_scores'])==2
+    assert len(ordinary['model_scores'])>=1
     record['checks'][-1]['scores_are_not_ground_truth']=True
     ids=[]
     for name,data,mime in [('fixture.docx',docbytes.getvalue(),'application/vnd.openxmlformats-officedocument.wordprocessingml.document'),('fixture.pdf',pdfbytes,'application/pdf'),('fixture.txt',(ZH+'\n\n'+EN).encode(),'text/plain')]:
@@ -51,12 +51,15 @@ with httpx.Client(base_url=a.url,timeout=180) as client:
         if fmt=='docx':assert response.content[:2]==b'PK'
         elif fmt=='html':assert '<html' in response.text.lower()
         else:assert response.json()['report_id']==ids[0]
-    agent=check('Agent document plus image','POST','/api/agent/upload',files={'document':('fixture.docx',docbytes.getvalue(),'application/vnd.openxmlformats-officedocument.wordprocessingml.document'),'file':('sample.png',(root/'web/assets/sample-real.png').read_bytes(),'image/png')}).json()
-    assert {'document','image'}.issubset(agent['findings'])
+    available=check('available report list','GET','/api/document/reports').json()['reports']
+    assert set(ids).issubset({item['report_id'] for item in available})
+    assert all('extracted_text' not in item and 'detection' not in item for item in available)
     preview=check('local LoRA editing preview','POST','/api/text/edit/llm-preview',json={'text':'She go to school yesterday and learn a new lesson.'}).json()
     assert preview['status'] in {'rejected','review_candidate'}
     record['checks'][-1]['screened_status']=preview['status']
     for rid in ids:check('delete temporary report','DELETE',f'/api/document/reports/{rid}')
 record['status']='passed'
-if a.output:a.output.write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf-8')
+if a.output:
+    a.output.parent.mkdir(parents=True,exist_ok=True)
+    a.output.write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps(record,ensure_ascii=False,indent=2))

@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "server_tests": {
+    "run": 107,
+    "passed": 106,
+    "skipped": 1,
+    "skip_reason": "Official C2PA fixture not bundled"
+  },
+  "browser_checks": 92,
+  "actual_models_smoke": "passed",
+  "cancel_finalization": "passed",
+  "concurrency": "passed",
+  "browser_fixture_port_8004": "stopped"
+}

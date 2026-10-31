@@ -5,8 +5,6 @@ Run from the project root:
 """
 from __future__ import annotations
 
-import base64
-import binascii
 import hashlib
 import importlib.util
 import inspect
@@ -16,12 +14,13 @@ import logging
 import math
 import sys
 import threading
-import time
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
+from typing import Literal
 from urllib.parse import quote
 
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
@@ -31,7 +30,6 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 from starlette.responses import JSONResponse
 from starlette.concurrency import run_in_threadpool
 
-from agent import run_agent
 from editing import edit_text
 from llm_preview import LLMPreviewService, LLMPreviewUnavailable
 from provenance import inspect_provenance
@@ -39,9 +37,16 @@ from documents import (DocumentError, MAX_DOCUMENT_BYTES, MAX_DOCUMENT_CHARS,
                        analyze_document, extract_document, extract_pasted_text)
 from document_reports import build_report
 from report_store import ReportStore
+from runtime import ProcessingLimit, ProcessingState
+from document_jobs import DocumentJobs, JobError
+from course import CourseService
+from course_agent import CourseAgent, AgentError
 
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "code/models"))
+from runtime_assets import asset_problems  # Pure file inspection; no ML imports.
+
 MAX_IMAGE_BYTES = 25 * 1024 * 1024
 MAX_REQUEST_BYTES = 35 * 1024 * 1024
 MAX_TEXT_CHARS = 10_000
@@ -100,6 +105,7 @@ class RequestSizeLimit:
                 break
 
         body = b"".join(chunks)
+        chunks.clear()
         first = True
 
         async def replay_receive() -> dict:
@@ -156,6 +162,20 @@ class ModelService:
                 self._fingerprints = self._compute_fingerprints()
             return dict(self._fingerprints)
 
+    def inspect_assets(self) -> dict:
+        try:
+            problems = asset_problems(self.root)
+            if not (self.root / "code/models/inference.py").is_file():
+                problems.insert(0, "Trained inference module is not available yet.")
+            return {"available": not problems, "reason": "; ".join(problems) or None,
+                    "loaded": self._bundle is not None}
+        except (OSError, ValueError) as exc:
+            return {"available": False, "reason": str(exc), "loaded": self._bundle is not None}
+
+    def cached_fingerprints(self) -> dict[str, str]:
+        with self._fingerprint_lock:
+            return dict(self._fingerprints or {})
+
     def _compute_fingerprints(self) -> dict[str, str]:
         paths = {
             "image": self.root / "models" / "image_detector.ts",
@@ -163,6 +183,12 @@ class ModelService:
             "highres_image_vit": self.root / "models" / "highres_nyuad" / "model.safetensors",
             "text": self.root / "models" / "text_detector.joblib",
             "chinese_text": self.root / "models" / "text_detector_zh.joblib",
+            "image_2026": self.root / "models" / "dear_r" / "model.pth",
+            "text_2026": self.root / "models" / "taste" / "detector_ep3.pt",
+            "chinese_head_2026": self.root / "models" / "taste" / "chinese_head.npz",
+            "image_lowres_2026": self.root / "models" / "dear_c" / "model.pth",
+            "mpu_chinese_v3": self.root / "models" / "mpu_zh_v3" / "pytorch_model.bin",
+            "mpu_english_v3": self.root / "models" / "mpu_en_v3" / "pytorch_model.bin",
         }
         result = {}
         for modality, path in paths.items():
@@ -179,11 +205,10 @@ class TextRequest(BaseModel):
     text: str = Field(min_length=1, max_length=MAX_TEXT_CHARS)
 
 
-class AgentRequest(BaseModel):
-    text: str | None = Field(default=None, max_length=MAX_TEXT_CHARS)
-    image_base64: str | None = None
-    edit: bool = True
-    llm_preview: bool = False
+class CourseTextRequest(TextRequest):
+    stage: Literal["trained", "optimized"] = "optimized"
+
+
 
 
 def _uncertain(reason: str, applicability: str = "outside_training_scope", modality: str | None = None) -> dict:
@@ -252,9 +277,10 @@ def _normalize_prediction(raw: dict, modality: str, fingerprint: str | None = No
             raise RuntimeError("Model returned invalid component scores.")
         result["model_scores"] = scores
         disagreement = raw.get("model_disagreement")
-        if not isinstance(disagreement, (int, float)) or isinstance(disagreement, bool) or not math.isfinite(disagreement) or not 0 <= disagreement <= 1:
-            raise RuntimeError("Model returned invalid disagreement.")
-        result["model_disagreement"] = round(float(disagreement), 4)
+        if len(scores) > 1 or disagreement is not None:
+            if not isinstance(disagreement, (int, float)) or isinstance(disagreement, bool) or not math.isfinite(disagreement) or not 0 <= disagreement <= 1:
+                raise RuntimeError("Model returned invalid disagreement.")
+            result["model_disagreement"] = round(float(disagreement), 4)
         hints = raw.get("metadata_hints", [])
         if not isinstance(hints, list) or not all(isinstance(item, str) for item in hints):
             raise RuntimeError("Model returned invalid metadata hints.")
@@ -322,30 +348,30 @@ def _decode_image(data: bytes) -> Image.Image:
         raise HTTPException(status_code=400, detail="Unsupported or corrupt image.") from exc
 
 
-def _decode_base64_image(encoded: str) -> bytes:
-    if encoded.startswith("data:"):
-        header, sep, payload = encoded.partition(",")
-        if not sep or ";base64" not in header or not header.startswith("data:image/"):
-            raise HTTPException(status_code=400, detail="Invalid image data URL.")
-        encoded = payload
-    if len(encoded) > (MAX_IMAGE_BYTES * 4 // 3) + 8:
-        raise HTTPException(status_code=413, detail="Image exceeds the 25 MB limit.")
-    try:
-        data = base64.b64decode(encoded, validate=True)
-    except (binascii.Error, ValueError) as exc:
-        raise HTTPException(status_code=400, detail="Invalid base64 image.") from exc
-    if len(data) > MAX_IMAGE_BYTES:
-        raise HTTPException(status_code=413, detail="Image exceeds the 25 MB limit.")
-    return data
 
 
-def create_app(model_service: Any | None = None, llm_service: Any | None = None) -> FastAPI:
+def create_app(model_service: Any | None = None, llm_service: Any | None = None,
+               *, max_active_requests: int = 2, agent_model: Any | None = None, course_service: Any | None = None) -> FastAPI:
+    report_store = ReportStore()
+    processing = ProcessingState(max_active_requests)
+    document_jobs = DocumentJobs(workers=max_active_requests, delete_report=report_store.delete)
+
+    @asynccontextmanager
+    async def lifespan(application: FastAPI):
+        try:
+            yield
+        finally:
+            await run_in_threadpool(document_jobs.close)
+            report_store.close()
+
     api = FastAPI(
         title="AIGC Content Screening and Trustworthy Editing",
         version="0.1.0",
         description="Local course prototype. Results are screening signals, not authorship determinations.",
+        lifespan=lifespan,
     )
     api.add_middleware(RequestSizeLimit)
+    api.add_middleware(ProcessingLimit, state=processing)
     api.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost"])
     api.add_middleware(
         CORSMiddleware,
@@ -363,10 +389,15 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
             return FileResponse(web_dir / "index.html", headers={"Cache-Control": "no-store, max-age=0"})
     service = model_service or ModelService()
     llm = llm_service or LLMPreviewService(ROOT)
+    course = course_service or CourseService(ROOT)
+    agent = CourseAgent(ROOT, model=agent_model)
     api.state.model_service = service
     api.state.llm_service = llm
-    report_store = ReportStore()
     api.state.report_store = report_store
+    api.state.processing = processing
+    api.state.document_jobs = document_jobs
+    api.state.course_service = course
+    api.state.course_agent = agent
 
     def get_bundle() -> Any:
         try:
@@ -378,6 +409,13 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
         if hasattr(service, "artifact_fingerprints"):
             return service.artifact_fingerprints().get(modality)
         return None
+
+    def fallback_fingerprint(raw: Any, modality: str) -> str | None:
+        # Explicit detector versions already identify modern results. Unscored
+        # inputs need no weight scan; legacy unnamed results keep their hash ID.
+        if isinstance(raw, dict) and (raw.get("out_of_scope") or raw.get("model_version") or raw.get("version")):
+            return None
+        return fingerprint(modality)
 
     def detect_text(text: str) -> dict:
         if not text.strip():
@@ -393,7 +431,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
             bundle = get_bundle()
             if hasattr(bundle, "predict_text_segments"):
                 raw = bundle.predict_text_segments(text)
-                return _normalize_prediction(raw, "text", fingerprint("chinese_text" if chinese else "text"))
+                return _normalize_prediction(raw, "text", fallback_fingerprint(raw, "chinese_text" if chinese else "text"))
             if chinese:
                 if len(text) < 80 or len(text) > 4000 or han < 40:
                     return _uncertain("中文检测当前只接受 80 至 4000 字符、至少 40 个汉字的文本。", modality="text")
@@ -405,7 +443,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
                 raw = bundle.predict_text_chinese(text)
             else:
                 raw = bundle.predict_text(text)
-            return _normalize_prediction(raw, "text", fingerprint("chinese_text" if chinese else "text"))
+            return _normalize_prediction(raw, "text", fallback_fingerprint(raw, "chinese_text" if chinese else "text"))
         except HTTPException:
             raise
         except Exception as exc:
@@ -416,14 +454,12 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
         image = _decode_image(data)
         if getattr(image, "n_frames", 1) != 1:
             return _uncertain("Animated images were not evaluated in training.", modality="image")
-        if image.size == (32, 32) and image.mode != "RGB":
-            return _uncertain("The image model was evaluated on RGB images, not this color mode.", modality="image")
         try:
             predictor = get_bundle().predict_image
             supports_local_evidence = "include_local_evidence" in inspect.signature(predictor).parameters
             raw = predictor(image, include_local_evidence=True) if supports_local_evidence else predictor(image)
             result = _normalize_prediction(raw, "image",
-                                           fingerprint("image" if image.size == (32, 32) else "highres_image"))
+                                           fallback_fingerprint(raw, "image" if image.size == (32, 32) else "highres_image"))
             result["provenance"] = inspect_provenance(data, image.format)
             return result
         except HTTPException:
@@ -459,12 +495,20 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
         return report
 
     @api.get("/health")
-    def health() -> dict:
+    async def health() -> dict:
         return {"status": "ok", "service": "aigc-local-api"}
+
+    @api.get("/api/runtime")
+    async def runtime() -> Response:
+        return JSONResponse({"status": "ok", "processing": processing.snapshot(),
+                             "reports": report_store.stats(), "agent": {"active": agent.active.is_set()}},
+                            headers={"Cache-Control": "no-store"})
 
     @api.get("/api/models")
     def models() -> dict:
-        manifest_path = ROOT / "models" / "manifest.json"
+        manifest_path = ROOT / "models" / "algorithm_policy.json"
+        if not manifest_path.is_file():
+            manifest_path = ROOT / "models" / "manifest.json"
         if not manifest_path.is_file():
             manifest_path = ROOT / "models" / "model_config.json"
         manifest = None
@@ -473,21 +517,29 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
                 manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
             except (OSError, json.JSONDecodeError):
                 manifest = None
-        try:
-            service.get_bundle()
-            available, reason = True, None
-        except Exception as exc:
-            available, reason = False, str(exc)
+        if hasattr(service, "inspect_assets"):
+            inspection = service.inspect_assets()
+            available, reason = inspection["available"], inspection["reason"]
+            loaded = inspection["loaded"]
+        else:
+            try:
+                service.get_bundle()
+                available, reason, loaded = True, None, True
+            except Exception as exc:
+                available, reason, loaded = False, str(exc), False
         return {
             "available": available,
+            "loaded": loaded,
             "reason": reason,
             "manifest": manifest,
-            "artifact_fingerprints": service.artifact_fingerprints() if hasattr(service, "artifact_fingerprints") else {},
+            "evaluation_summary": manifest.get("evaluation_summary", []) if isinstance(manifest, dict) else [],
+            "artifact_fingerprints": service.cached_fingerprints() if hasattr(service, "cached_fingerprints") else {},
+            "fingerprints_verified": bool(service.cached_fingerprints()) if hasattr(service, "cached_fingerprints") else False,
             "scope": {
-                "image": "32×32 CIFAKE 教学模型；其他短边至少 200 像素的静态图片采用 SigLIP 与 ViT 交叉检查，显示未经平台校准的候选分数、分歧和九宫格遮挡敏感度。短边 200–511 像素尤其属于低分辨率实验性输出，低于 200 像素弃判；颜色不是局部 AI 来源真值，普通图的来源结论仍未校准。",
-                "local_evidence": "九宫格逐格模糊后比较双模型均分下降；无明显正向下降时不绘制热图。敏感度不是区域 AI 率或局部篡改真值。",
+                "image": "支持 4K 及以下任意正尺寸的静态 JPG/PNG，包括竖图、超宽图与小图。新版采用 ICML 2026 DEAR，保留原图，最多分析 9 个原生尺度图块，并提供内容凭证与局部敏感度。",
+                "local_evidence": "九宫格逐格模糊后比较模型分数变化；无明显变化时不着色。颜色表示模型对区域的敏感度。",
                 "provenance": "JPG/PNG 原始字节可进行本地 C2PA 内容凭证核验；无凭证不表示 AI 生成，有效但不受信任的声明也不能当作来源证明。",
-                "text": "最多 10,000 字符的中文或英文文本可逐段筛查；整篇超出已评估长度或段落信号明显冲突时弃判。高亮比例不是 AI 撰写比例，真实平台迁移效果尚未验证。",
+                "text": (manifest.get("text_description") if isinstance(manifest, dict) else None) or "中英文分别检测，文本页最多 10,000 字符；新版 Transformer 按 512 token 滑窗覆盖长文本，并提供逐段评分。",
                 "document": "DOCX、含文本层的 PDF、TXT 和 Markdown 可提取并检测，最多 20 MB、100,000 字符，PDF 最多 200 页。不执行 OCR。下划线表示高风险模型段落，AI 特征覆盖率是高亮字符覆盖率，不是真实 AI 撰写比例。报告保存在本地内存中，最多 30 分钟；可导出 Word、HTML 和 JSON。",
                 "editing": "基于规则的清晰度建议和原意表面检查。",
                 "llm_preview": "可选的英文 LoRA 改写预览；未通过表面检查时拒绝候选。",
@@ -500,11 +552,86 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
         if not file.content_type or not file.content_type.startswith("image/"):
             raise HTTPException(status_code=415, detail="Upload an image file.")
         data = await file.read(MAX_IMAGE_BYTES + 1)
-        return detect_image(data)
+        return await run_in_threadpool(detect_image, data)
 
     @api.post("/api/text/detect")
     def text_detect(body: TextRequest) -> dict:
         return detect_text(body.text)
+
+    @api.get("/api/course")
+    def course_overview() -> dict:
+        return course.overview()
+
+    @api.get("/api/course/example/image")
+    def course_example_image() -> Response:
+        manifest = json.loads((ROOT / "data/course_20261027/images.json").read_text(encoding="utf-8"))
+        example = next(row for row in manifest["records"] if row["split"] == "test")
+        return FileResponse(ROOT / example["path"], media_type="image/png")
+
+    @api.get("/api/course/example/text")
+    def course_example_text() -> dict:
+        path = ROOT / "data/course_20261027/processed/text/test.jsonl"
+        with path.open(encoding="utf-8") as stream:
+            row = json.loads(next(stream))
+        return {"text": row["text"], "id": row["id"], "split": "test"}
+
+    @api.post("/api/course/image/detect")
+    async def course_image_detect(file: UploadFile = File(...), stage: Literal["trained", "optimized"] = "optimized") -> dict:
+        data = await file.read(MAX_IMAGE_BYTES + 1)
+        image = await run_in_threadpool(_decode_image, data)
+        try:
+            prediction = await run_in_threadpool(lambda: course.models().predict_image(image, stage))
+            result = _normalize_prediction(prediction, "image")
+            result["provenance"] = await run_in_threadpool(inspect_provenance, data, image.format)
+            return result
+        except Exception as exc:
+            raise HTTPException(status_code=503, detail=f"课程图像模型暂不可用：{type(exc).__name__}") from exc
+
+    @api.post("/api/course/text/detect")
+    def course_text_detect(body: CourseTextRequest) -> dict:
+        try:
+            return _normalize_prediction(course.models().predict_text(body.text, body.stage), "text")
+        except Exception as exc:
+            raise HTTPException(status_code=503, detail=f"课程文本模型暂不可用：{type(exc).__name__}") from exc
+
+    @api.get("/api/agent/status")
+    def agent_status() -> dict:
+        return agent.model.status()
+
+    @api.post("/api/agent/run")
+    async def agent_run(instruction: str = Form(..., min_length=1, max_length=1000), text: str = Form("", max_length=MAX_TEXT_CHARS),
+                        image: UploadFile | None = File(None), document: UploadFile | None = File(None),
+                        history: str = Form("[]", max_length=12000), profile: Literal["advanced", "course"] = Form("advanced")) -> Response:
+        if not instruction.strip():
+            raise HTTPException(status_code=400, detail="请输入希望助手完成的操作。")
+        try:
+            messages = json.loads(history)
+            if not isinstance(messages, list) or len(messages) > 6 or any(not isinstance(row, dict) or not isinstance(row.get("role"), str) or row["role"] not in {"user", "assistant"}
+                    or not isinstance(row.get("content"), str) or len(row["content"]) > 1000 for row in messages):
+                raise ValueError("Invalid conversation")
+        except (ValueError, json.JSONDecodeError):
+            raise HTTPException(status_code=400, detail="对话记录格式不正确，请刷新后重试。")
+        image_input = document_input = None
+        if image is not None:
+            data = await image.read(MAX_IMAGE_BYTES+1)
+            await run_in_threadpool(_decode_image, data)
+            image_input = (image.filename or "image.png", data, image.content_type or "image/png")
+        if document is not None:
+            data = await document.read(MAX_DOCUMENT_BYTES+1)
+            if len(data) > MAX_DOCUMENT_BYTES:
+                raise HTTPException(status_code=413, detail="文档超过 20 MB。")
+            # Validate before model execution; keep the original bytes for the API tool.
+            try:
+                await run_in_threadpool(extract_document, data, document.filename or "")
+            except DocumentError as exc:
+                raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
+            document_input = (document.filename or "document.txt", data, document.content_type or "application/octet-stream")
+        try:
+            result = await agent.run(api, instruction.strip(), text=text, image=image_input, document=document_input,
+                                     history=messages, profile=profile)
+            return JSONResponse(result, headers={"Cache-Control": "no-store"})
+        except AgentError as exc:
+            raise HTTPException(status_code=exc.status_code, detail=str(exc), headers={"Retry-After": "2"}) from exc
 
     @api.post("/api/document/detect")
     async def document_detect(file: UploadFile | None = File(None), text: str = Form("")) -> Response:
@@ -519,6 +646,73 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
                 raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
         report = await run_in_threadpool(detect_document, source)
         return JSONResponse(report, headers={"Cache-Control": "no-store"})
+
+    @api.get("/api/document/reports")
+    def document_report_list() -> Response:
+        return JSONResponse({"reports": report_store.list_reports()},
+                            headers={"Cache-Control": "no-store"})
+
+    @api.post("/api/document/jobs")
+    async def start_document_job(request: Request, file: UploadFile | None = File(None),
+                                 text: str = Form("")) -> Response:
+        if file is not None and text.strip():
+            raise HTTPException(status_code=400, detail="请选择上传文件或粘贴文本中的一种方式。")
+        if file is None and not text.strip():
+            raise HTTPException(status_code=400, detail="请上传文档或粘贴文本。")
+        if len(text.replace("\r\n", "\n").replace("\r", "\n")) > MAX_DOCUMENT_CHARS:
+            raise HTTPException(status_code=413, detail="原文超过 100,000 字符，请按章节拆分后检测。")
+        data = await file.read(MAX_DOCUMENT_BYTES + 1) if file else None
+        if data is not None and len(data) > MAX_DOCUMENT_BYTES:
+            raise HTTPException(status_code=413, detail="文件超过 20 MB，请减少内容或拆分后上传。")
+        source_filename = (file.filename or "文档") if file else "粘贴的长文"
+        filename = source_filename.replace("\\", "/").rsplit("/", 1)[-1][:240]
+
+        def process(progress, check_cancel):
+            try:
+                progress("extracting")
+                source = extract_document(data, source_filename) if data is not None else extract_pasted_text(text)
+                check_cancel()
+                result = analyze_document(source, detect_text,
+                    progress=lambda done, total: progress("analyzing", done, total), check_cancel=check_cancel)
+                progress("saving")
+                report = report_store.put(result)
+                return report["report_id"]
+            except DocumentError as exc:
+                raise JobError(str(exc), exc.status_code) from exc
+            except HTTPException as exc:
+                raise JobError(str(exc.detail), exc.status_code) from exc
+
+        try:
+            job = document_jobs.submit(filename, process, request.scope["aigc.processing_lease"])
+        except JobError as exc:
+            raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
+        return JSONResponse(job, status_code=202, headers={"Cache-Control": "no-store"})
+
+    @api.get("/api/document/jobs")
+    async def list_document_jobs() -> Response:
+        return JSONResponse({"jobs": document_jobs.list_jobs()}, headers={"Cache-Control": "no-store"})
+
+    @api.get("/api/document/jobs/{job_id}")
+    async def get_document_job(job_id: str) -> Response:
+        job = document_jobs.get(job_id)
+        if job is None:
+            raise HTTPException(status_code=404, detail="任务记录已过期或服务已重启，请查看可用报告或重新检测。")
+        return JSONResponse(job, headers={"Cache-Control": "no-store"})
+
+    @api.post("/api/document/jobs/{job_id}/cancel")
+    async def cancel_document_job(job_id: str) -> Response:
+        job = document_jobs.cancel(job_id)
+        if job is None:
+            raise HTTPException(status_code=404, detail="任务记录已过期或服务已重启。")
+        return JSONResponse(job, headers={"Cache-Control": "no-store"})
+
+    @api.delete("/api/document/jobs/{job_id}")
+    async def delete_document_job(job_id: str) -> Response:
+        try:
+            deleted = document_jobs.delete(job_id)
+        except JobError as exc:
+            raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
+        return JSONResponse({"deleted": deleted}, headers={"Cache-Control": "no-store"})
 
     @api.get("/api/document/reports/{report_id}")
     def document_report(report_id: str) -> Response:
@@ -561,68 +755,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None)
             LOG.exception("LLM preview failed")
             raise HTTPException(status_code=503, detail=f"LLM preview unavailable: {type(exc).__name__}.") from exc
 
-    @api.post("/api/agent/run")
-    def agent_run(body: AgentRequest) -> dict:
-        if (body.text is None or not body.text.strip()) and body.image_base64 is None:
-            raise HTTPException(status_code=400, detail="Supply text or image_base64.")
-        image_data = _decode_base64_image(body.image_base64) if body.image_base64 is not None else None
-        if image_data is not None:
-            _decode_image(image_data)
-        return run_agent(
-            text=body.text,
-            image_bytes=image_data,
-            request_edit=body.edit,
-            detect_text=detect_text,
-            detect_image=detect_image,
-            edit_text=edit_text,
-            request_llm_preview=body.llm_preview,
-            suggest_llm=llm.suggest if body.llm_preview else None,
-        )
 
-    @api.post("/api/agent/upload")
-    async def agent_upload(
-        text: str = Form(""),
-        file: UploadFile | None = File(None),
-        document: UploadFile | None = File(None),
-        edit: bool = Form(False),
-        llm_preview: bool = Form(False),
-    ) -> dict:
-        text = text.replace("\r\n", "\n").replace("\r", "\n")
-        if len(text) > MAX_TEXT_CHARS:
-            raise HTTPException(status_code=413, detail="Text exceeds the 10,000-character limit.")
-        if text.strip() and document is not None:
-            raise HTTPException(status_code=400, detail="文档和粘贴文本请分别提交；文档可与图片一起分析。")
-        if not text.strip() and file is None and document is None:
-            raise HTTPException(status_code=400, detail="Supply text, an image file, or a document.")
-        image_data = None
-        if file is not None:
-            if file.content_type not in {"image/jpeg", "image/png"}:
-                raise HTTPException(status_code=415, detail="Upload a JPG or PNG image.")
-            image_data = await file.read(MAX_IMAGE_BYTES + 1)
-            _decode_image(image_data)
-        result = await run_in_threadpool(run_agent,
-            text=text or None,
-            image_bytes=image_data,
-            request_edit=edit,
-            detect_text=detect_text,
-            detect_image=detect_image,
-            edit_text=edit_text,
-            request_llm_preview=llm_preview,
-            suggest_llm=llm.suggest if llm_preview else None,
-        )
-        if document is not None:
-            source = await read_document(document)
-            started = time.perf_counter()
-            report = await run_in_threadpool(detect_document, source)
-            result["findings"]["document"] = report
-            result["tool_calls"].append({"tool": "document_detection", "status": "ok",
-                                          "input_summary": f"{len(source['text'])} extracted characters",
-                                          "duration_ms": round((time.perf_counter() - started) * 1000, 1)})
-            result["decision"] = "screening_complete"
-            result["explanation"] = "文档和图像分别完成检测；文档提供模型分数、覆盖率及下划线报告，不合成来源概率。"
-            if edit or llm_preview:
-                result["limitations"].append("文档未执行整篇改写；请在可信编辑页选择具体段落。")
-        return JSONResponse(result, headers={"Cache-Control": "no-store"}) if document is not None else result
 
     return api
 

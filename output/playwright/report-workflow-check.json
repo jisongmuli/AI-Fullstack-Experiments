@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Real document detection preserves the complete original",
+      "passed": true
+    },
+    {
+      "name": "New reports appear in the current service list",
+      "passed": true
+    },
+    {
+      "name": "Unchecked browser history stores neither this report nor its text",
+      "passed": true
+    },
+    {
+      "name": "A report can be restored after a page reload",
+      "passed": true
+    },
+    {
+      "name": "Agent document analysis succeeds",
+      "passed": true
+    },
+    {
+      "name": "Returning from Agent refreshes its report into the list",
+      "passed": true
+    },
+    {
+      "name": "Deletion blocks conflicting analysis and restoration actions",
+      "passed": true
+    },
+    {
+      "name": "Deletion does not offer an ambiguous cancel action",
+      "passed": true
+    },
+    {
+      "name": "Repeated deletion is suppressed",
+      "passed": true
+    },
+    {
+      "name": "Deleting a different report preserves the open report",
+      "passed": true
+    },
+    {
+      "name": "Expired export shows a readable message without downloading an error file",
+      "passed": true
+    },
+    {
+      "name": "Actual docx export preserves the Chinese filename",
+      "passed": true
+    },
+    {
+      "name": "Actual html export preserves the Chinese filename",
+      "passed": true
+    },
+    {
+      "name": "Actual json export preserves the Chinese filename",
+      "passed": true
+    },
+    {
+      "name": "A failed list refresh preserves existing report entries",
+      "passed": true
+    },
+    {
+      "name": "Report list recovers after a connection error",
+      "passed": true
+    },
+    {
+      "name": "The report workflow fits a 390px screen",
+      "passed": true
+    },
+    {
+      "name": "Deleting the open report removes its result and list entry",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "downloadNames": [
+    "文档检测报告_报告流程验证.docx",
+    "文档检测报告_报告流程验证.html",
+    "文档检测报告_报告流程验证.json"
+  ]
+}

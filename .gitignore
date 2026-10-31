@@ -20,6 +20,8 @@ __pycache__/
 # Machine-specific running-process records and server output.
 logs/server-*.json
 logs/server-*.log
+logs/stability-*.log
+.playwright-cli/
 
 # Repeated report rendering outputs; source figures and QA records are retained.
 reports/**/work/render-*/

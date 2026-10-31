@@ -1,4 +1,10 @@
-# Experiment 2/3 model interface
+# Current detector and course model interfaces
+
+The 2026-10-27 course chain trains `CourseCNN` and a Chinese character TF-IDF classifier on the new 2026 data splits. `scripts/train_course_2026.py` saves both trained and optimized artifacts to `models/course_20261027`; `course_models.py` loads these exact weights for `/api/course/image/detect` and `/api/course/text/detect`.
+
+The advanced detector in `inference.py` keeps DEAR / MPU as the default. Select the course trained or optimized profile in the image/text pages to demonstrate the experiment-two → experiment-three → experiment-four deployment chain. Measured compression tradeoffs and all five experiments are documented in `docs/课程要求对照与验收_20261027.md`.
+
+## Historical 2026-10-11 training interface
 
 Run `train_and_optimize.py` from this directory or pass `--root` to train on the
 experiment-one splits. It writes model artifacts under `models/` and metrics,
@@ -10,17 +16,26 @@ The application entry point is `DetectorService(root)` in `inference.py`:
 service = DetectorService(project_root)
 service.predict_image(image_bytes)
 service.predict_text(text)
+service.predict_text_batch([text, another_text])
 ```
 
-Each method returns a JSON-serializable dictionary with `risk_score` (the
+Single-input methods return a JSON-serializable dictionary with `risk_score` (the
 source-dataset calibrated AI-class score), `decision` (`human`, `ai`, or
 `uncertain`), `threshold`, `signals`, and `limitations`. Scores are not proof of
 authorship or provenance.
 
+`predict_text_batch` returns predictions in input order, groups sparse feature
+extraction by language, and bounds each batch to 32 inputs by default (maximum
+64). Identical passages are reused within the call. The segment path uses this
+batch method for paragraphs and the whole document. Inputs with zero vocabulary
+features return a null score with `insufficient_model_features`; they are excluded
+from scored coverage. See [the inference upgrade measurements](../../docs/文本推理算法升级_20261026.md).
+
 The current runtime also routes Chinese passages to `predict_text_chinese()` and
-normal-resolution images to a separate pretrained candidate. Images with a shortest
-side below 512 px abstain; larger normal images return an unvalidated candidate
-score with an `uncertain` decision. See [the 12 GB GPU and image-input audit](../../docs/普通图片与12GB显存验证.md).
+normal-resolution images to two pretrained candidates. Non-teaching images with a
+shortest side below 200 px abstain; 200–511 px images return experimental candidate
+scores, and larger normal images return cross-source candidate scores. Normal
+images retain an `uncertain` decision. See [the image-input audit](../../docs/普通图片与12GB显存验证.md).
 
 For an acceptance audit, run `evaluate_acceptance.py` against independently
 labeled prediction CSVs. It reports abstention coverage, false-positive and

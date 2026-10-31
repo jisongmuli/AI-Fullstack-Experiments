@@ -1,0 +1,962 @@
+[
+  {
+    "id": "ca0f7fb9c72d9e0d9d06.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.3080885454799247
+  },
+  {
+    "id": "5a098c0e766922d38ac8.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.4013569109687284
+  },
+  {
+    "id": "b400a68f9f27f714f487.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.3724660532818011
+  },
+  {
+    "id": "0b9e7215b382caab0b45.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.4487705392644274
+  },
+  {
+    "id": "f56696da25a91c7f458f.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.4019110845106875
+  },
+  {
+    "id": "04c69ca80b32bac840d9.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.25473811176930966
+  },
+  {
+    "id": "93db91e7c3f181691749.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.4865409985825963
+  },
+  {
+    "id": "5711e7330dd4454420a3.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.38007436959309154
+  },
+  {
+    "id": "a42e4bd92d3299f84371.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.31184346028489707
+  },
+  {
+    "id": "f97d2984996ff406e0b0.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.3874197884368076
+  },
+  {
+    "id": "2cb6914534ed7b4cc8be.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.3052386627202583
+  },
+  {
+    "id": "aa880dd2b39de5ce10ed.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.5974994230545174
+  },
+  {
+    "id": "74dcc6efe6613f3cd98c.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.5945786047085002
+  },
+  {
+    "id": "288c1db3d6db816ad13a.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.5950584748391207
+  },
+  {
+    "id": "5ff31e4e5743610d4fac.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.510487672808668
+  },
+  {
+    "id": "ee06d7aeed7def6ef1ef.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.620557298506675
+  },
+  {
+    "id": "93f36e3a0844f381d91d.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.5097101888788634
+  },
+  {
+    "id": "7fd4dd75a7303c2a0855.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.7058465760331422
+  },
+  {
+    "id": "2c9152be9b5471b18946.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.40091467204666414
+  },
+  {
+    "id": "69ec7045683fd60d80ad.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.2768604903436455
+  },
+  {
+    "id": "f4944e097fd93806c947.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.47166396939890953
+  },
+  {
+    "id": "efefe9860c38a9116758.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.4065002912650322
+  },
+  {
+    "id": "8980f27fd28a27723be5.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.4251483984619532
+  },
+  {
+    "id": "c4753fcb7448b23e2787.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.47090136090080686
+  },
+  {
+    "id": "480174b7738f81551fc3.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.30781917875419074
+  },
+  {
+    "id": "e1a8ea6447dc123edd59.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.30912635560993723
+  },
+  {
+    "id": "3848535ebe4b8a8a15f8.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.29333815389314677
+  },
+  {
+    "id": "229c8c29625f2bb928eb.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.23344727652174466
+  },
+  {
+    "id": "7cf95c81b23a3bbed632.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.48501735951852115
+  },
+  {
+    "id": "dd4d45803488a870641b.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.6733948456381941
+  },
+  {
+    "id": "341084b9005062a3a276.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.360022876251344
+  },
+  {
+    "id": "8e0e0d50fb6e3b3e4e8e.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.4568731134674953
+  },
+  {
+    "id": "0ebb4438b7c74a7e334d.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.7124328323655895
+  },
+  {
+    "id": "81f3556f74e55f2c06dd.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.2321534332045378
+  },
+  {
+    "id": "2ba876688a3389c225d3.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.3359053654624133
+  },
+  {
+    "id": "32ac22ffeb66f820e026.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.3114449209511846
+  },
+  {
+    "id": "25223ae216a4974ee0f5.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.6531816512243136
+  },
+  {
+    "id": "4624b988abb45cddd0a5.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.31143057496257165
+  },
+  {
+    "id": "e16e09642b5c50276587.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.2894596352691831
+  },
+  {
+    "id": "6ef266cfcfcbbc7c2529.jpg",
+    "label": 0,
+    "stage": "trained",
+    "score": 0.7489596071102911
+  },
+  {
+    "id": "5cc019f4eea360ada273.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.6048858173528547
+  },
+  {
+    "id": "f11b8343737ef4aa102d.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.5872391151984392
+  },
+  {
+    "id": "d9d8ad430274abd19069.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.32350078756786643
+  },
+  {
+    "id": "d5fad8dd0793d00be127.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.5902733909479462
+  },
+  {
+    "id": "9320a404c042f06112c9.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.4905346046547193
+  },
+  {
+    "id": "7d8a41467656f3161c7c.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.3591870676986187
+  },
+  {
+    "id": "fb675b08643af6b7313a.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.5263092051260102
+  },
+  {
+    "id": "17a6ca833a9e64bd1dea.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.4898141293942131
+  },
+  {
+    "id": "4bbd11b881ba01974123.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.5365782695650715
+  },
+  {
+    "id": "5e91c9435c660e4b161d.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.6866881529026733
+  },
+  {
+    "id": "3a9d2484883591e9bb8e.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.6939194760138834
+  },
+  {
+    "id": "f1e559dcf9230367d879.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.5983280540389654
+  },
+  {
+    "id": "0ac8ec7f7c5847d0afdd.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.6702949521941832
+  },
+  {
+    "id": "959375740b178e66fdc1.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.23391336615134073
+  },
+  {
+    "id": "ce91102826e9d10ed48c.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.7186611455717609
+  },
+  {
+    "id": "3ffb038ad9ed0f580742.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.2515725464387963
+  },
+  {
+    "id": "a6fa269f98c2e0c67411.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.335963991862142
+  },
+  {
+    "id": "5fae87b365eb4ce48996.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.5894053642528881
+  },
+  {
+    "id": "b47c1aae5a00b5b9c440.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.598738542087281
+  },
+  {
+    "id": "a361b838f2bd7ef66a17.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.8493551947639955
+  },
+  {
+    "id": "cd2172204fe46561a842.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.4638669510118134
+  },
+  {
+    "id": "2e1b532680629be7983d.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.6498126555097291
+  },
+  {
+    "id": "17c473b0393febdb13d4.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.6328055270198607
+  },
+  {
+    "id": "daadb67ccb8a836679e3.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.532230361370212
+  },
+  {
+    "id": "dc813f9886e18d547918.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.7858485660084262
+  },
+  {
+    "id": "35a3b7beca4b40277653.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.6441063919695917
+  },
+  {
+    "id": "163eec0127e435cd2f26.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.5096339633332746
+  },
+  {
+    "id": "4b0c08aaefaa93a3ce73.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.48379591051928195
+  },
+  {
+    "id": "b98500293d399d4164c0.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.3642386542857206
+  },
+  {
+    "id": "220f80ad29bcf46f69a2.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.6825326065322485
+  },
+  {
+    "id": "5e07b3ff4ffc58f9ed5f.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.7832645376250519
+  },
+  {
+    "id": "d52b1b69d43b297c81a3.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.6408894933872537
+  },
+  {
+    "id": "0334c19c0372d42ec75e.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.4087823875841594
+  },
+  {
+    "id": "4694bd3a23d3a94c2ce7.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.3407289335897483
+  },
+  {
+    "id": "60704ce351ff48a8b1b9.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.5396946045034773
+  },
+  {
+    "id": "7e653c296cf436fe6960.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.8733557840329407
+  },
+  {
+    "id": "5fa233893f5c49ad181b.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.8580229944006632
+  },
+  {
+    "id": "acb8500c8c287f3d4d3f.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.43320848891998004
+  },
+  {
+    "id": "e9cc4493569b75261087.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.6600618894280296
+  },
+  {
+    "id": "7d2dea3d92ef1e899778.jpg",
+    "label": 1,
+    "stage": "trained",
+    "score": 0.44080731212992724
+  },
+  {
+    "id": "ca0f7fb9c72d9e0d9d06.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.3181263351152347
+  },
+  {
+    "id": "5a098c0e766922d38ac8.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.4441423411137297
+  },
+  {
+    "id": "b400a68f9f27f714f487.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.38002207425666845
+  },
+  {
+    "id": "0b9e7215b382caab0b45.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.4411034462470038
+  },
+  {
+    "id": "f56696da25a91c7f458f.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.3196539603216418
+  },
+  {
+    "id": "04c69ca80b32bac840d9.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.2685134524143757
+  },
+  {
+    "id": "93db91e7c3f181691749.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.3611357410663392
+  },
+  {
+    "id": "5711e7330dd4454420a3.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.3455225759888168
+  },
+  {
+    "id": "a42e4bd92d3299f84371.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.4002732422425222
+  },
+  {
+    "id": "f97d2984996ff406e0b0.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.31139104261250855
+  },
+  {
+    "id": "2cb6914534ed7b4cc8be.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.3053075490245855
+  },
+  {
+    "id": "aa880dd2b39de5ce10ed.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.5200103599710564
+  },
+  {
+    "id": "74dcc6efe6613f3cd98c.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.6671762840138709
+  },
+  {
+    "id": "288c1db3d6db816ad13a.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.5569963365018369
+  },
+  {
+    "id": "5ff31e4e5743610d4fac.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.5171453784520033
+  },
+  {
+    "id": "ee06d7aeed7def6ef1ef.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.5529464945703281
+  },
+  {
+    "id": "93f36e3a0844f381d91d.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.5026256879280817
+  },
+  {
+    "id": "7fd4dd75a7303c2a0855.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.7466665285799494
+  },
+  {
+    "id": "2c9152be9b5471b18946.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.42369277778039033
+  },
+  {
+    "id": "69ec7045683fd60d80ad.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.22079532269872257
+  },
+  {
+    "id": "f4944e097fd93806c947.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.42988985142371544
+  },
+  {
+    "id": "efefe9860c38a9116758.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.5115457081481791
+  },
+  {
+    "id": "8980f27fd28a27723be5.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.40559881380898655
+  },
+  {
+    "id": "c4753fcb7448b23e2787.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.5012332878469697
+  },
+  {
+    "id": "480174b7738f81551fc3.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.4159855724157379
+  },
+  {
+    "id": "e1a8ea6447dc123edd59.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.3272663373241013
+  },
+  {
+    "id": "3848535ebe4b8a8a15f8.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.34141251390731575
+  },
+  {
+    "id": "229c8c29625f2bb928eb.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.2169633516410632
+  },
+  {
+    "id": "7cf95c81b23a3bbed632.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.5150825560850157
+  },
+  {
+    "id": "dd4d45803488a870641b.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.5361491420676932
+  },
+  {
+    "id": "341084b9005062a3a276.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.3867618748586822
+  },
+  {
+    "id": "8e0e0d50fb6e3b3e4e8e.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.4100894948277119
+  },
+  {
+    "id": "0ebb4438b7c74a7e334d.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.5641057662692519
+  },
+  {
+    "id": "81f3556f74e55f2c06dd.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.3644572908435396
+  },
+  {
+    "id": "2ba876688a3389c225d3.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.41994760036499845
+  },
+  {
+    "id": "32ac22ffeb66f820e026.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.33185641376843905
+  },
+  {
+    "id": "25223ae216a4974ee0f5.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.5461611149866948
+  },
+  {
+    "id": "4624b988abb45cddd0a5.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.3078596344871743
+  },
+  {
+    "id": "e16e09642b5c50276587.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.35187344917911156
+  },
+  {
+    "id": "6ef266cfcfcbbc7c2529.jpg",
+    "label": 0,
+    "stage": "optimized",
+    "score": 0.6056876148384754
+  },
+  {
+    "id": "5cc019f4eea360ada273.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.6228619107057888
+  },
+  {
+    "id": "f11b8343737ef4aa102d.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.6450992661032448
+  },
+  {
+    "id": "d9d8ad430274abd19069.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.4334521841377392
+  },
+  {
+    "id": "d5fad8dd0793d00be127.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.5405505584204576
+  },
+  {
+    "id": "9320a404c042f06112c9.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.5444497337169001
+  },
+  {
+    "id": "7d8a41467656f3161c7c.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.3089020639938567
+  },
+  {
+    "id": "fb675b08643af6b7313a.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.5951151124529303
+  },
+  {
+    "id": "17a6ca833a9e64bd1dea.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.45073691429755214
+  },
+  {
+    "id": "4bbd11b881ba01974123.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.4459754373726112
+  },
+  {
+    "id": "5e91c9435c660e4b161d.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.8243231610357857
+  },
+  {
+    "id": "3a9d2484883591e9bb8e.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.6667117040137
+  },
+  {
+    "id": "f1e559dcf9230367d879.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.6028105768411508
+  },
+  {
+    "id": "0ac8ec7f7c5847d0afdd.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.6332765297664753
+  },
+  {
+    "id": "959375740b178e66fdc1.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.4216557014082562
+  },
+  {
+    "id": "ce91102826e9d10ed48c.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.676742536094147
+  },
+  {
+    "id": "3ffb038ad9ed0f580742.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.47993497875646
+  },
+  {
+    "id": "a6fa269f98c2e0c67411.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.33860905914092826
+  },
+  {
+    "id": "5fae87b365eb4ce48996.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.6214243411004451
+  },
+  {
+    "id": "b47c1aae5a00b5b9c440.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.532960832677707
+  },
+  {
+    "id": "a361b838f2bd7ef66a17.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.8385537224631312
+  },
+  {
+    "id": "cd2172204fe46561a842.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.43633724286926245
+  },
+  {
+    "id": "2e1b532680629be7983d.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.7415995915970585
+  },
+  {
+    "id": "17c473b0393febdb13d4.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.5905660990754031
+  },
+  {
+    "id": "daadb67ccb8a836679e3.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.4690516357954463
+  },
+  {
+    "id": "dc813f9886e18d547918.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.7179328085694907
+  },
+  {
+    "id": "35a3b7beca4b40277653.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.5718767176158434
+  },
+  {
+    "id": "163eec0127e435cd2f26.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.5406912552095563
+  },
+  {
+    "id": "4b0c08aaefaa93a3ce73.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.3926887905813867
+  },
+  {
+    "id": "b98500293d399d4164c0.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.32572419392826746
+  },
+  {
+    "id": "220f80ad29bcf46f69a2.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.7008486686809247
+  },
+  {
+    "id": "5e07b3ff4ffc58f9ed5f.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.8288505293807885
+  },
+  {
+    "id": "d52b1b69d43b297c81a3.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.5874434058185332
+  },
+  {
+    "id": "0334c19c0372d42ec75e.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.33259129556321443
+  },
+  {
+    "id": "4694bd3a23d3a94c2ce7.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.41503151783607894
+  },
+  {
+    "id": "60704ce351ff48a8b1b9.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.5104498535015171
+  },
+  {
+    "id": "7e653c296cf436fe6960.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.8441369326416011
+  },
+  {
+    "id": "5fa233893f5c49ad181b.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.7940975356653822
+  },
+  {
+    "id": "acb8500c8c287f3d4d3f.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.5145515500445432
+  },
+  {
+    "id": "e9cc4493569b75261087.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.5978281248834405
+  },
+  {
+    "id": "7d2dea3d92ef1e899778.jpg",
+    "label": 1,
+    "stage": "optimized",
+    "score": 0.5005762514363823
+  }
+]

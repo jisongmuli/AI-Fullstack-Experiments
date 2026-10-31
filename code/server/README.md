@@ -1,33 +1,38 @@
-# Experiments 4-5: local API and Agent
+# Local detection and editing API
 
-From the project root, install the API dependencies and start the server. The opt-in LLM preview also needs the separate LLM requirements:
-
-```powershell
-python -m pip install -r code/server/requirements.txt
-python -m pip install -r code/llm/requirements.txt
-python -m uvicorn app:app --app-dir code/server --host 127.0.0.1 --port 8000
-```
-
-The trained inference module and artifacts from experiments 2-3 must be present for scores. If they are missing, detection returns HTTP 503 and `GET /api/models` reports `available: false`. The editor works without models. Interactive OpenAPI documentation is at `http://127.0.0.1:8000/docs`. The requirements pin scikit-learn 1.9.1 because the saved text estimator was created with that version.
-
-| Endpoint | Input | Output |
-| --- | --- | --- |
-| `GET /health` | none | Liveness status |
-| `GET /api/models` | none | Artifact availability, manifest, SHA-256 fingerprints and applicability scope |
-| `POST /api/image/detect` | multipart `file` | AI risk score, decision, evidence, applicability |
-| `POST /api/text/detect` | JSON `{"text":"..."}` | AI risk score, decision, evidence, applicability |
-| `POST /api/text/edit` | JSON `{"text":"..."}` | Conservative edits, suggestions and meaning checks |
-| `POST /api/text/edit/llm-preview` | JSON `{"text":"..."}` | Opt-in LoRA draft or explicit rejection, never automatic replacement |
-| `POST /api/agent/run` | JSON `{"text":"...","image_base64":"...","edit":true,"llm_preview":false}` | Separate tool findings, optional LLM preview, call log and cautious conclusion |
-
-The API rejects POST bodies over 35 MB before endpoint parsing, including requests without a `Content-Length` header. The image endpoint accepts static JPG/PNG files up to 25 MiB and 25 million pixels. A 32 x 32 RGB image uses the CIFAKE teaching model; normal images with shortest side at least 512 px use a separate 224 x 224 candidate model. Because external false-positive rates are high, normal-image responses always return `decision: uncertain`; their `risk_score` is an uncalibrated research output, not a platform decision. Smaller thumbnails abstain with a null score. The text endpoint accepts up to 10,000 characters; short English essays (23-587 characters) and Chinese passages (80-4000 characters with at least 40 Han characters) route to separate models. Chinese results are marked `unverified_platform`. These are input guards, not claims that all in-range inputs are reliable. See [the image and GPU note](../../docs/普通图片与12GB显存验证.md) for external evaluation and GPU measurements.
-
-The Agent uses deterministic, allowlisted tool routing. When `llm_preview` is true, it additionally calls the actual local SmolLM2-135M-Instruct + CoEdIT LoRA adapter. The language model generates an editing candidate; it does not autonomously plan which tools to call. The workflow records tool status and elapsed time without copying the input into the log, and never combines unpaired image/text scores into one number. The rule editor applies limited redundant-phrase changes and flags vague claims. The LLM preview accepts English passages of 20-320 characters and rejects unchanged output, explanatory text, abnormal length, changes to numbers, negations, quotations, acronyms or alphanumeric identifiers, or low lexical overlap. Passing these surface checks is **not** proof of semantic equivalence; human review remains necessary. Neither editor is a detector-evasion service.
-
-Run the integration tests from the project root:
+Use Python 3.12 and the project virtual environment. Start from the project root:
 
 ```powershell
-python -m unittest discover -s code/server/tests -v
+.venv\Scripts\python.exe run.py --port 8005
 ```
 
-The current suite has 19 tests. It injects predictable stand-in model outputs to verify API behavior and Agent orchestration; it does not replace the experiment 2-3 detector evaluation or the experiment-5 held-out edit assessment. Requests are processed locally and capped before parsing; this API does not write user content or tool logs to disk. The server binds to localhost and accepts only loopback Host headers. It is a course prototype. Public deployment needs target-domain validation, authentication, abuse controls, privacy review, load testing and monitoring.
+The six workflows are image detection, text detection, document analysis, editing, course experiments, and a fine-tuned local LLM Agent. The obsolete `/api/agent/upload` protocol remains removed. The new multipart `/api/agent/run` route uses Qwen3.5 to select API tools.
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /health`, `GET /api/runtime` | Health, active requests and bounded report statistics |
+| `GET /api/models` | Versions, SHA-256 fingerprints, scope and recent sample measurements |
+| `POST /api/image/detect` | JPG/PNG analysis, content credentials and local sensitivity |
+| `POST /api/text/detect` | Chinese/English analysis with original-text segment offsets |
+| `POST /api/document/detect` | Synchronous document analysis |
+| `POST /api/document/jobs` | Start a background document task, returning 202 |
+| `GET /api/document/jobs`, `GET /api/document/jobs/{id}` | Task metadata and progress revision |
+| `POST /api/document/jobs/{id}/cancel` | Cooperative cancellation |
+| `DELETE /api/document/jobs/{id}` | Remove ended task metadata while preserving its report |
+| `GET /api/document/reports`, `GET /api/document/reports/{id}` | List and reopen reports |
+| `GET /api/document/reports/{id}/{format}` | Export docx, html or json |
+| `DELETE /api/document/reports/{id}` | Delete report content |
+| `POST /api/text/edit` | English clarity suggestions and surface-content checks |
+| `POST /api/text/edit/llm-preview` | Local SmolLM2/LoRA editing preview |
+| `GET /api/course` | The five-stage course evidence and measured comparisons |
+| `POST /api/course/image/detect?stage=trained|optimized` | The group's trained CNN or pruned TorchScript model |
+| `POST /api/course/text/detect` | The group's full or compressed Chinese classifier; `stage` in JSON |
+| `GET /api/agent/status`, `POST /api/agent/run` | Local model readiness and actual LLM-selected API tools |
+
+The advanced policy is `models/algorithm_policy.json`. MPU v3 Short handles Chinese and English; DEAR uses native-scale crops and resolution-specific calibration. The course deployment reads `models/course_20261027` and the Agent reads `models/agent_qwen35` plus `models/agent_router`. Agent uploads are bound to server-validated inputs; allowlisted tools issue real requests through the same app routes via ASGITransport. Agent admission permits one orchestration at a time and detector tools retain the normal two-request limit.
+
+Images accept arbitrary positive dimensions through 4K, subject to 25 MiB / 25-million-pixel limits. Text input allows 10,000 characters. Documents allow 20 MiB / 100,000 characters / 200 PDF pages. Reports stay in memory for 30 minutes, limited to 20 reports / 32 MiB. Browser history stores summaries only.
+
+Background jobs retain their shared processing slot until cleanup finishes. Identical paragraphs reuse inference within one document only. The source mapping is released when that analysis ends.
+
+Run `python -m unittest discover -s code/server/tests -q`. Actual-model checks and evaluation records are described in `docs/20261026_模型升级与Agent移除.md`.

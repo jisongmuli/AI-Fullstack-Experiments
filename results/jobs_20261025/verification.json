@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "server_tests": {
+    "run": 102,
+    "passed": 101,
+    "skipped": 1,
+    "skip_reason": "Official C2PA fixtures were not downloaded"
+  },
+  "browser_checks": {
+    "job-workflow-check.json": 18,
+    "job-retention-check.json": 2,
+    "report-workflow-check.json": 19,
+    "bug-regression-check.json": 22,
+    "browser-check.json": 14
+  },
+  "browser_checks_total": 75,
+  "job_browser_model": "deterministic slow fixture",
+  "job_model_smoke": "actual local models, TXT/DOCX/PDF/long pasted text",
+  "legacy_model_smoke": "passed",
+  "fixture_server_stopped": true
+}

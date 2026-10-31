@@ -6,13 +6,16 @@
   <meta name="theme-color" content="#f7f8f6">
   <link rel="icon" href="data:,">
   <title>内容可信工作台</title>
-  <link rel="stylesheet" href="/static/styles.css">
-  <link rel="stylesheet" href="/static/agent.css">
+  <link rel="stylesheet" href="/static/styles.css?v=bugs20261025">
+  <link rel="stylesheet" href="/static/text.css?v=upgrade20261026">
   <link rel="stylesheet" href="/static/preview.css">
-  <link rel="stylesheet" href="/static/document.css?v=document20261011">
+  <link rel="stylesheet" href="/static/document.css?v=jobs20261025">
   <script src="/static/assets/lucide.min.js" defer></script>
-  <script src="/static/app.js?v=document20261011nav2" defer></script>
-  <script src="/static/document.js?v=document20261011" defer></script>
+  <script src="/static/report-downloads.js?v=upgrade20261026" defer></script>
+  <script src="/static/app.js?v=course20261027" defer></script>
+  <script src="/static/document.js?v=upgrade20261026" defer></script>
+  <link rel="stylesheet" href="/static/course.css?v=course20261027">
+  <script src="/static/course.js?v=stability20261031" defer></script>
 </head>
 <body>
   <div class="shell">
@@ -23,20 +26,21 @@
         <button class="nav-item" data-view="text" type="button"><i data-lucide="file-text"></i><span>文本检测</span></button>
         <button class="nav-item" data-view="document" type="button"><i data-lucide="files"></i><span>文档检测</span></button>
         <button class="nav-item" data-view="edit" type="button"><i data-lucide="pencil-line"></i><span>可信编辑</span></button>
-        <button class="nav-item" data-view="agent" type="button"><i data-lucide="workflow"></i><span>Agent 助手</span></button>
+        <button class="nav-item" data-view="course" type="button"><i data-lucide="graduation-cap"></i><span>课程实验</span></button>
+        <button class="nav-item" data-view="agent" type="button"><i data-lucide="bot"></i><span>大模型助手</span></button>
       </nav>
-      <div class="sidebar-bottom"><span class="status-dot" id="service-dot"></span><span id="service-label">连接中</span></div>
+      <div class="sidebar-bottom"><span class="status-dot" id="service-dot"></span><span id="service-label" role="status" aria-live="polite">连接中</span></div>
     </aside>
 
     <div class="main-shell">
       <header class="topbar">
         <div class="topbar-title"><span class="eyebrow">AIGC CONTENT REVIEW</span><h1 id="page-title">图像检测</h1></div>
-        <div class="topbar-actions"><span class="scope-pill">实验性辅助判断</span><button class="icon-button" id="model-info-button" type="button" title="模型与适用范围" aria-label="模型与适用范围"><i data-lucide="info"></i></button></div>
+        <div class="topbar-actions"><select id="model-profile" aria-label="图像与文本检测方案" title="用于图像与文本检测；文档页保持增强方案"><option value="advanced">增强检测（默认）</option><option value="course-optimized">课程 · 优化模型</option><option value="course-trained">课程 · 训练基线</option></select><button class="icon-button" id="model-info-button" type="button" title="模型与适用范围" aria-label="模型与适用范围"><i data-lucide="info"></i></button></div>
       </header>
 
       <main id="main-content">
         <section class="view active" id="view-image" aria-labelledby="image-heading">
-          <div class="section-intro"><div><h2 id="image-heading">检查一张图片</h2><p>查看候选模型分数、内容凭证与图上局部敏感度；分数不是 AI 率。</p></div><span class="dataset-chip">含 4K · 最大 25 MB</span></div>
+          <div class="section-intro"><div><h2 id="image-heading">检查一张图片</h2><p>查看候选模型分数、内容凭证与图上局部敏感度；分数不是 AI 率。</p></div><span class="dataset-chip">任意尺寸 · 含 4K · 25 MB</span></div>
           <div class="workspace-grid">
             <div class="work-panel">
               <label class="dropzone" id="image-dropzone" for="image-input">
@@ -48,9 +52,9 @@
                 <span class="preview-caption" id="preview-caption" hidden></span>
               </label>
               <div class="file-meta" id="file-meta" hidden><i data-lucide="file-image"></i><span id="file-name"></span><span id="file-size"></span><button class="icon-button small" id="clear-image" type="button" title="移除图片" aria-label="移除图片"><i data-lucide="x"></i></button></div>
-              <div class="sample-group"><span>试用公开样本</span><button class="sample-button" data-sample="real" type="button"><img src="/static/assets/sample-real.png" alt="真实类样本缩略图"><span>真实类样本</span></button><button class="sample-button" data-sample="fake" type="button"><img src="/static/assets/sample-fake.png" alt="生成类样本缩略图"><span>生成类样本</span></button></div>
+              <div class="sample-group"><span>试用 2026 标注样本</span><button class="sample-button" data-sample="real" type="button"><img src="/static/assets/sample-real-2026.jpg" alt="真实类样本缩略图"><span>真实类样本</span></button><button class="sample-button" data-sample="fake" type="button"><img src="/static/assets/sample-fake-2026.jpg" alt="生成类样本缩略图"><span>生成类样本</span></button></div>
               <button class="primary-button" id="detect-image" type="button" disabled><i data-lucide="scan-search"></i><span>分析图片</span></button>
-              <p class="input-note"><i data-lucide="triangle-alert"></i>普通图片短边 200–511 像素仅给探索性候选分数；不足 200 像素不评分。32×32 CIFAKE 教学样本单独分析。当前模型尚未达到平台审核要求。</p>
+              <p class="input-note"><i data-lucide="triangle-alert"></i>支持 4K 及以下任意正尺寸。保留原图，通过原生尺度图块分析细节；小尺寸图片也可提交。</p>
             </div>
             <div class="result-panel" id="image-result" aria-live="polite"><div class="empty-result"><i data-lucide="scan-line"></i><strong>等待图片</strong><p>选择图片后查看模型输出、适用范围与判断状态。</p></div></div>
           </div>
@@ -72,11 +76,15 @@
               <div id="document-file-pane"><label class="document-dropzone" id="document-dropzone" for="document-file"><i data-lucide="file-up"></i><strong>选择或拖入一份文档</strong><span>DOCX、PDF、TXT、MD · 最大 20 MB</span></label><input id="document-file" type="file" accept=".docx,.pdf,.txt,.md,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,text/plain,text/markdown" class="sr-only"><div class="document-file-meta" id="document-file-meta" hidden><span id="document-file-name"></span><span id="document-file-size"></span><button type="button" class="icon-button small" id="document-clear-file" aria-label="移除文档" title="移除文档"><i data-lucide="x"></i></button></div><p class="document-helper">PDF 最多 200 页，需含可提取文字；扫描件暂不支持 OCR。旧版 .doc 请先另存为 .docx。提取文字不保留原文档的复杂排版。</p></div>
               <div id="document-text-pane" hidden><label class="field-label" for="document-text">待检测长文</label><textarea id="document-text" rows="10" placeholder="粘贴中文、英文或混合长文，保留段落和换行…"></textarea><div class="field-footer"><span>按段落检测，不会默默截断原文</span><span id="document-character-count">0 / 100,000 字符</span></div></div>
               <div class="document-limit-note">最长 100,000 字符；中文与英文段落使用不同模型。短段、引用及代码可能无法评分。</div>
-              <button class="primary-button" id="document-detect" type="button" disabled><i data-lucide="scan-text"></i><span>检测文档并标注</span></button><button class="secondary-button document-cancel" id="document-cancel" type="button" hidden>取消等待</button>
+              <button class="primary-button" id="document-detect" type="button" disabled><i data-lucide="scan-text"></i><span>检测文档并标注</span></button><div class="document-task-actions"><button class="secondary-button document-cancel" id="document-cancel" type="button" hidden>取消等待</button><button class="secondary-button" id="document-background" type="button" hidden>后台继续</button></div>
               <p class="input-note"><i data-lucide="info"></i>自动输出 AI 特征覆盖率和模型分数；这些指标不能证明真实的 AI 撰写比例。</p>
               <div id="document-status" class="document-status" role="status" aria-live="polite"></div>
-              <div class="document-history-controls"><label><input type="checkbox" id="document-save-history">在本浏览器保留检测记录</label><p>仅保留文件名、时间和结果摘要，不保存原文。最多 20 条；报告约 30 分钟后失效。</p></div>
-              <div class="document-history-heading"><h3>最近检测</h3><button type="button" class="document-link-button" id="document-clear-history">清空记录</button></div><div id="document-history" class="document-history"><p class="muted">尚无本地记录。</p></div>
+              <div class="document-history-heading"><h3>文档任务</h3><button type="button" class="document-link-button" id="document-refresh-jobs">刷新任务</button></div><div id="document-jobs-status" class="document-status" role="status"></div><div id="document-jobs" class="document-history"><p class="muted">正在读取任务…</p></div>
+              <div class="document-history-heading"><h3>当前可用报告 <span id="document-reports-count"></span></h3><button type="button" class="document-link-button" id="document-refresh-reports">刷新列表</button></div>
+              <p class="document-helper">显示文档检测生成的报告，刷新页面后可继续查看。报告在本地服务内存中保留最多 30 分钟。</p>
+              <div id="document-reports-status" class="document-status" role="status"></div><div id="document-server-reports" class="document-history"><p class="muted">正在读取报告列表…</p></div>
+              <details class="document-history-settings"><summary>浏览器摘要记录</summary><div class="document-history-controls"><label><input type="checkbox" id="document-save-history">在本浏览器保留检测记录</label><p>保存文件名、时间和结果摘要，最多 20 条。原文保存在服务内存中，报告过期后可重新上传。</p></div>
+              <div class="document-history-heading"><h3>已保存摘要</h3><button type="button" class="document-link-button" id="document-clear-history">清空记录</button></div><div id="document-history" class="document-history"><p class="muted">尚无本地记录。</p></div></details>
             </div>
             <div class="result-panel document-result-panel" id="document-result" aria-live="polite"><div class="empty-result"><i data-lucide="file-search"></i><strong>等待文档</strong><p>结果将保留提取后的原文，并为高风险段落添加下划线。</p></div></div>
           </div>
@@ -90,10 +98,32 @@
           </div>
         </section>
 
-        <section class="view" id="view-agent" aria-labelledby="agent-heading">
-          <div class="section-intro"><div><h2 id="agent-heading">Agent 工具工作流</h2><p>上传图片并输入文本，分别查看模型候选分数、图像敏感度区域、疑似文本段落与调用记录。</p></div><span class="dataset-chip">图文分别评估</span></div>
-          <div class="agent-layout"><div class="chat-panel"><div class="chat-messages" id="chat-messages" aria-live="polite"><div class="chat-intro"><i data-lucide="workflow"></i><strong>提交待审内容</strong><p>可以只提交图片、只提交文本，或同时提交两者。</p></div></div><div class="quick-prompts"><label class="agent-checkbox"><input id="agent-use-image" type="checkbox" disabled>附上图像页已选图片</label><label class="agent-checkbox"><input id="agent-use-edit" type="checkbox">运行可信编辑检查</label><label class="agent-checkbox"><input id="agent-use-llm" type="checkbox">调用大模型编辑预览</label></div><div class="agent-attachments"><label class="agent-attach-button" for="agent-image-input" title="上传待检测图片"><i data-lucide="image-plus"></i><span>图片</span></label><input id="agent-image-input" type="file" accept="image/jpeg,image/png" hidden><label class="agent-attach-button" for="agent-text-file" title="导入 UTF-8 文本文件"><i data-lucide="file-up"></i><span>文本文件</span></label><input id="agent-text-file" type="file" accept=".txt,.md,text/plain,text/markdown" hidden><label class="agent-attach-button" for="agent-document-input" title="上传 Word、PDF 或文本长文"><i data-lucide="files"></i><span>文档</span></label><input id="agent-document-input" type="file" accept=".docx,.pdf,.txt,.md" hidden><span id="agent-document-name" class="agent-attachment-name" hidden></span><button id="agent-clear-document" class="icon-button small" type="button" title="移除 Agent 文档" aria-label="移除 Agent 文档" hidden><i data-lucide="x"></i></button><span id="agent-image-name" class="agent-attachment-name" hidden></span><button id="agent-clear-image" class="icon-button small" type="button" title="移除 Agent 图片" aria-label="移除 Agent 图片" hidden><i data-lucide="x"></i></button></div><form id="agent-form"><div class="agent-input-wrap"><label class="sr-only" for="agent-input">待分析文本</label><textarea id="agent-input" rows="4" placeholder="粘贴中文或英文文本，保留段落换行…"></textarea><span id="agent-text-count" class="agent-text-count">0 / 10,000 字符</span></div><button class="primary-button send-button" type="submit" title="运行工作流" aria-label="运行工作流" disabled><i data-lucide="arrow-up"></i></button></form></div><aside class="trace-panel"><h3>最近一次工具调用</h3><div id="tool-trace"><p class="muted">调用后显示工具、状态与耗时。</p></div></aside></div>
+        <section class="view" id="view-course" aria-labelledby="course-heading">
+          <div class="section-intro"><div><h2 id="course-heading">五次实验，完整衔接</h2><p>查看本组从新数据、模型训练到压缩部署与大模型微调的实际记录。</p></div><span class="dataset-chip">2026 年样本</span></div>
+          <div id="course-stages" class="course-stages" aria-live="polite"><p>正在读取实验记录…</p></div>
+          <div class="course-actions"><button id="course-try-image" type="button" class="secondary-button">试用课程图像模型</button><button id="course-try-text" type="button" class="secondary-button">试用课程文本模型</button><button id="course-open-agent" type="button" class="primary-button">打开大模型助手</button><button id="course-download" type="button" class="secondary-button">下载实验记录 JSON</button></div>
+          <p id="course-example-status" class="document-status" role="status"></p>
+          <div id="course-measurements" class="work-panel course-measurements"></div>
+          <p class="document-helper">课程图像样例与文本样例来自各自保留测试集。课程 CNN 展示训练和压缩过程；增强方案继续用于常规检测。图片指标、文本指标与工具选择指标分别统计。</p>
+          <details class="work-panel"><summary>查看完整实验记录</summary><pre id="course-records" class="course-json"></pre></details>
         </section>
+
+        <section class="view" id="view-agent" aria-labelledby="agent-heading">
+          <div class="section-intro"><div><h2 id="agent-heading">大模型选择工具，读取真实结果</h2><p>本地 Qwen3.5 + LoRA 根据你的需求选择工具，调用检测 API，并整理答复。</p></div><span id="agent-model-status" class="dataset-chip">正在检查模型…</span></div>
+          <div class="workspace-grid">
+            <form id="agent-form" class="work-panel">
+              <label class="field-label" for="agent-instruction">希望助手做什么</label><textarea id="agent-instruction" maxlength="1000" rows="3" placeholder="例如：分别检测图片和正文；检查文档并生成报告；介绍五次实验的完成情况。" required></textarea>
+              <div class="course-prompt-buttons"><button type="button" data-agent-prompt="介绍五次实验的结果">课程实验</button><button type="button" data-agent-prompt="检测这段文本">检测正文</button><button type="button" data-agent-prompt="图片和文字都检测">图文检测</button></div>
+              <label class="field-label" for="agent-text">待分析正文（可选）</label><textarea id="agent-text" maxlength="20000" rows="5" placeholder="粘贴需要检测或编辑的正文，最多 10,000 字符。"></textarea>
+              <div class="agent-file-fields"><label>图片（可选，25 MB）<input id="agent-image" type="file" accept="image/png,image/jpeg"></label><label>文档（可选，20 MB）<input id="agent-document" type="file" accept=".docx,.pdf,.txt,.md"></label></div>
+              <label class="field-label" for="agent-profile">工具采用的检测方案</label><select id="agent-profile"><option value="advanced">增强检测方案</option><option value="course">课程优化模型（图片与中文文本）</option></select>
+              <div class="course-actions"><button id="agent-submit" type="submit" class="primary-button">提交给大模型助手</button><button id="agent-clear" type="button" class="secondary-button">清空对话与附件</button></div>
+              <p class="document-helper">对话与附件仅用于当前页面和请求。工具调用记录会显示接口、耗时、状态与返回结果。图文附件合计需满足 35 MB 请求上限。</p>
+            </form>
+            <div class="result-panel" id="agent-result" aria-live="polite"><div class="empty-result"><i data-lucide="bot"></i><strong>等待你的需求</strong><p>助手可检测图片、文字、文档，给出英文编辑建议，也可介绍模型和课程实验。</p></div></div>
+          </div>
+        </section>
+
       </main>
     </div>
   </div>

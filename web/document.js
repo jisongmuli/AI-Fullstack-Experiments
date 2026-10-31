@@ -30,7 +30,7 @@
     return '';
   };
 
-  // Shared with the existing text and Agent pages. Return DOM rather than an
+  // Shared with the existing text page. Return DOM rather than an
   // interpolated HTML string so document text can never become executable markup.
   function renderInline(text, suppliedSegments, options = {}) {
     const original = typeof text === 'string' ? text : '';
@@ -70,19 +70,178 @@
       text: byId('document-text'), count: byId('document-character-count'),
       detect: byId('document-detect'), cancel: byId('document-cancel'), status: byId('document-status'),
       result: byId('document-result'), saveHistory: byId('document-save-history'),
-      history: byId('document-history'), clearHistory: byId('document-clear-history')
+      history: byId('document-history'), clearHistory: byId('document-clear-history'),
+      reports: byId('document-server-reports'), refreshReports: byId('document-refresh-reports'),
+      reportsStatus: byId('document-reports-status'), reportsCount: byId('document-reports-count'),
+      jobs: byId('document-jobs'), jobsStatus: byId('document-jobs-status'),
+      refreshJobs: byId('document-refresh-jobs'), background: byId('document-background')
     };
     let mode = 'file';
     let selectedFile = null;
     let busy = false;
+    let busyAction = '';
     let currentReport = null;
     let controller = null;
     let requestVersion = 0;
     let history = readHistory();
+    let serverReports = [];
+    let listVersion = 0;
+    let listLoading = false;
+    let listTimer = null;
+    let jobList = [], jobsVersion = 0, jobsTimer = null;
+    let activeJobId = null, cancelRequested = false, backgrounded = false;
+    const cancellationIntents = new Set();
 
     function status(message = '', isError = false) {
       ui.status.classList.toggle('error', isError);
       ui.status.textContent = message;
+    }
+
+    const terminalJob = job => ['completed', 'failed', 'cancelled'].includes(job.status);
+    const jobText = job => ({pending: '等待开始', extracting: '正在提取文字', analyzing: '正在分析',
+      saving: '正在生成报告', completed: '检测完成', failed: '处理失败', cancelled: '已取消'}[job.stage] || '正在处理');
+    function jobLabel(job) {
+      return job.status === 'cancel_requested' ? '正在取消，请稍候…' : `${jobText(job)}${job.stage === 'analyzing' && job.total ? ` · ${job.completed} / ${job.total}` : ''}`;
+    }
+    function resolveJob(previous, incoming) {
+      let job = previous && (previous.revision || 0) > (incoming.revision || 0) ? previous : incoming;
+      if (terminalJob(job)) cancellationIntents.delete(job.job_id);
+      else if (cancellationIntents.has(job.job_id)) job = {...job, status: 'cancel_requested'};
+      return job;
+    }
+    function rememberJob(incoming) {
+      const job = resolveJob(jobList.find(item => item.job_id === incoming.job_id), incoming);
+      jobList = [job, ...jobList.filter(item => item.job_id !== job.job_id)];
+      renderJobs();
+      return job;
+    }
+    function renderJobs() {
+      ui.jobs.replaceChildren();
+      if (!jobList.length) ui.jobs.append(make('p', 'muted', '暂无文档任务。检测后可在这里查看进度或恢复任务。'));
+      const active = jobList.filter(job => !terminalJob(job));
+      const visible = [...active, ...jobList.filter(terminalJob).slice(0, Math.max(0, 8 - active.length))];
+      visible.forEach(job => {
+        const row = make('div', 'document-job-row');
+        row.append(make('strong', '', job.filename), make('span', '', jobLabel(job)));
+        if (job.status === 'failed') row.append(make('span', 'document-job-error', job.error?.message || '请重新检测。'));
+        if (!terminalJob(job)) {
+          const bar = make('progress'); bar.max = 100; bar.value = job.progress;
+          bar.setAttribute('aria-label', `${job.filename}的处理进度`); row.append(bar);
+        }
+        const actions = make('div', 'document-job-actions');
+        if (!terminalJob(job) || (job.status === 'completed' && job.report_id)) {
+          const open = make('button', 'document-link-button', terminalJob(job) ? '查看报告' : '查看进度');
+          open.type = 'button'; open.disabled = busy;
+          open.setAttribute('aria-label', `${terminalJob(job) ? '查看任务报告' : '恢复任务'}：${job.filename}`);
+          open.onclick = () => terminalJob(job) ? restoreReport(job.report_id) : resumeJob(job);
+          actions.append(open);
+        }
+        if (!terminalJob(job)) {
+          const cancel = make('button', 'document-link-button', '取消任务');
+          cancel.type = 'button'; cancel.disabled = busy || job.status === 'cancel_requested';
+          cancel.dataset.cancelling = String(job.status === 'cancel_requested');
+          cancel.setAttribute('aria-label', `取消任务：${job.filename}`);
+          cancel.onclick = () => requestCancel(job.job_id); actions.append(cancel);
+        } else {
+          const remove = make('button', 'document-link-button', '移除记录');
+          remove.type = 'button'; remove.disabled = busy;
+          remove.setAttribute('aria-label', `移除任务记录：${job.filename}`);
+          remove.onclick = () => removeJob(job.job_id); actions.append(remove);
+        }
+        row.append(actions); ui.jobs.append(row);
+      });
+    }
+    async function refreshJobs() {
+      const version = ++jobsVersion;
+      clearTimeout(jobsTimer);
+      ui.refreshJobs.disabled = true;
+      try {
+        const response = await fetch('/api/document/jobs', {cache: 'no-store', signal: AbortSignal.timeout(5000)});
+        if (!response.ok) throw Error('任务列表读取失败，请刷新重试。');
+        const body = await response.json();
+        if (!Array.isArray(body.jobs)) throw Error('任务列表格式异常，请刷新重试。');
+        if (version !== jobsVersion) return;
+        const previous = new Map(jobList.map(job => [job.job_id, job]));
+        jobList = body.jobs.filter(job => job && typeof job.job_id === 'string' && typeof job.filename === 'string').slice(0, 20).map(job => resolveJob(previous.get(job.job_id), job));
+        ui.jobsStatus.textContent = ''; renderJobs();
+      } catch (error) {
+        if (version === jobsVersion) ui.jobsStatus.textContent = '任务列表暂时不可用，可点击刷新重试。';
+      } finally {
+        if (version === jobsVersion) {
+          ui.refreshJobs.disabled = false;
+          if (!document.hidden && byId('view-document').classList.contains('active')) jobsTimer = setTimeout(refreshJobs, jobList.some(job => !terminalJob(job)) ? 1500 : 15000);
+        }
+      }
+    }
+    async function requestCancel(jobId) {
+      const known = jobList.find(job => job.job_id === jobId);
+      cancellationIntents.add(jobId);
+      if (known && !terminalJob(known)) rememberJob({...known, status: 'cancel_requested'});
+      if (jobId === activeJobId) { cancelRequested = true; updateControls(); }
+      try {
+        const response = await fetch(`/api/document/jobs/${encodeURIComponent(jobId)}/cancel`, {method: 'POST', signal: AbortSignal.timeout(5000)});
+        if (!response.ok) throw Error('任务取消失败，请刷新任务后重试。');
+        const job = rememberJob(await response.json());
+        if (jobId === activeJobId) {
+          cancelRequested = job.status === 'cancel_requested';
+          status(job.status === 'completed' ? '任务已完成，可查看报告。' : jobLabel(job)); updateControls();
+        }
+        refreshJobs();
+      } catch (error) {
+        cancellationIntents.delete(jobId);
+        if (known) rememberJob(known);
+        if (jobId === activeJobId) { cancelRequested = false; updateControls(); }
+        status(error instanceof TypeError ? '取消请求未连接到服务，请重试。' : error.message, true);
+        refreshJobs();
+      }
+    }
+    async function removeJob(jobId) {
+      if (busy) return;
+      busy = true; busyAction = 'history'; ++jobsVersion; updateControls();
+      try {
+        const response = await fetch(`/api/document/jobs/${encodeURIComponent(jobId)}`, {method: 'DELETE', signal: AbortSignal.timeout(5000)});
+        if (!response.ok) {
+          const body = await response.json().catch(() => ({}));
+          throw Error(typeof body.detail === 'string' ? body.detail : '任务记录移除失败，请重试。');
+        }
+        jobList = jobList.filter(job => job.job_id !== jobId); renderJobs();
+        status('已移除任务记录。报告在“当前可用报告”中单独管理。');
+      } catch (error) {
+        status(error instanceof TypeError ? '无法连接服务，请稍后重试移除记录。' : error.message, true);
+      } finally { busy = false; busyAction = ''; updateControls(); refreshJobs(); }
+    }
+    function pause(milliseconds, signal) {
+      return new Promise((resolve, reject) => {
+        if (signal.aborted) { reject(new DOMException('Aborted', 'AbortError')); return; }
+        const abort = () => { clearTimeout(timer); signal.removeEventListener('abort', abort); reject(new DOMException('Aborted', 'AbortError')); };
+        const timer = setTimeout(() => { signal.removeEventListener('abort', abort); resolve(); }, milliseconds);
+        signal.addEventListener('abort', abort, {once: true});
+      });
+    }
+    function showJobProgress(job) {
+      const bar = byId('document-task-progress'), label = byId('document-task-stage');
+      if (bar) { bar.value = job.progress; bar.setAttribute('aria-valuetext', jobLabel(job)); }
+      if (label) label.textContent = jobLabel(job);
+    }
+    async function followJob(job, signal) {
+      activeJobId = job.job_id;
+      updateControls();
+      while (true) {
+        if (signal.aborted) throw new DOMException('Aborted', 'AbortError');
+        job = rememberJob(job);
+        cancelRequested = job.status === 'cancel_requested'; updateControls();
+        showJobProgress(job);
+        if (job.status === 'completed') {
+          const response = await fetch(`/api/document/reports/${encodeURIComponent(job.report_id)}`, {signal});
+          return responseJson(response);
+        }
+        if (job.status === 'failed') throw Error(job.error?.message || '文档处理失败，请重新检测。');
+        if (job.status === 'cancelled') { const error = Error('任务已取消。'); error.name = 'JobCancelled'; throw error; }
+        await pause(750, signal);
+        const response = await fetch(`/api/document/jobs/${encodeURIComponent(job.job_id)}`, {signal: AbortSignal.any([signal, AbortSignal.timeout(5000)]), cache: 'no-store'});
+        if (!response.ok) throw Error('任务记录暂时无法读取，可从文档任务列表恢复。');
+        job = await response.json();
+      }
     }
 
     function readHistory() {
@@ -139,7 +298,90 @@
         });
         ui.history.append(button);
       });
-      ui.clearHistory.disabled = history.length === 0;
+      ui.clearHistory.disabled = busy || history.length === 0;
+    }
+
+    function renderServerReports() {
+      ui.reports.replaceChildren();
+      ui.reportsCount.textContent = `(${serverReports.length})`;
+      if (!serverReports.length) ui.reports.append(make('p', 'muted', '当前没有可恢复的报告。完成一次文档检测后，报告会出现在这里。'));
+      serverReports.forEach((entry) => {
+        const row = make('div', 'document-report-row');
+        const open = make('button', 'document-history-item');
+        open.type = 'button'; open.disabled = busy;
+        open.append(make('strong', '', entry.filename || '粘贴的长文'));
+        open.append(make('span', '', `${dateText(entry.created_at)} · 特征覆盖率 ${percentText(entry.highlighted_total_percent)}`));
+        open.append(make('span', '', `有效至 ${dateText(entry.expires_at)}`));
+        open.setAttribute('aria-label', `打开报告：${entry.filename || '粘贴的长文'}`);
+        open.addEventListener('click', () => restoreReport(entry.report_id));
+        const remove = make('button', 'document-report-delete', '删除');
+        remove.type = 'button'; remove.disabled = busy;
+        remove.setAttribute('aria-label', `删除报告：${entry.filename || '粘贴的长文'}`);
+        remove.addEventListener('click', () => removeReport(entry.report_id));
+        row.append(open, remove); ui.reports.append(row);
+      });
+    }
+
+    async function refreshReports() {
+      const version = ++listVersion;
+      listLoading = true; ui.refreshReports.disabled = true;
+      try {
+        const response = await fetch('/api/document/reports', {cache: 'no-store', signal: AbortSignal.timeout(5000)});
+        if (!response.ok) throw new Error('报告列表更新失败，请稍后刷新。');
+        const body = await response.json();
+        if (!Array.isArray(body.reports)) throw new Error('报告列表格式异常，请刷新重试。');
+        if (version !== listVersion) return;
+        serverReports = body.reports.filter(entry => entry && typeof entry.report_id === 'string' && entry.report_id.length <= 128).slice(0, 20);
+        ui.reportsStatus.textContent = ''; ui.reportsStatus.classList.remove('error');
+        renderServerReports();
+      } catch (error) {
+        if (version !== listVersion) return;
+        ui.reportsStatus.classList.add('error');
+        ui.reportsStatus.textContent = error.name === 'TimeoutError' ? '报告列表读取超时，可点击刷新重试。' : error instanceof TypeError ? '报告列表暂未连接到服务，可点击刷新重试。' : error.message;
+      } finally {
+        if (version === listVersion) { listLoading = false; ui.refreshReports.disabled = busy; }
+      }
+    }
+
+    function emptyResult(title, message) {
+      const empty = make('div', 'empty-result');
+      empty.append(make('strong', '', title), make('p', '', message));
+      ui.result.replaceChildren(empty);
+    }
+
+    async function removeReport(reportId) {
+      if (busy) return;
+      busy = true; busyAction = 'delete'; ++requestVersion;
+      status('正在删除报告…'); updateControls();
+      try {
+        const response = await fetch(`/api/document/reports/${encodeURIComponent(reportId)}`, {method: 'DELETE', signal: AbortSignal.timeout(10000)});
+        if (!response.ok && response.status !== 404 && response.status !== 410) throw new Error(`无法删除报告（${response.status}），请重试。`);
+        if (currentReport?.report_id === reportId) {
+          currentReport = null;
+          emptyResult('报告已删除', '可打开其他报告，或检测新的文档。');
+        }
+        history = history.filter(entry => entry.report_id !== reportId);
+        try { localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); } catch (_) { /* The server report has still been deleted. */ }
+        renderHistory();
+        serverReports = serverReports.filter(entry => entry.report_id !== reportId); renderServerReports();
+        status('已删除所选报告及其提取原文。');
+        await refreshReports();
+      } catch (error) {
+        status(error.name === 'TimeoutError' ? '删除请求超时，请刷新报告列表核对后重试。' : error instanceof TypeError ? '无法连接检测服务，请启动服务后重试删除。' : error.message, true);
+      } finally { busy = false; busyAction = ''; updateControls(); }
+    }
+
+    async function downloadReport(report, format) {
+      if (busy) return;
+      busy = true; busyAction = 'export'; ++requestVersion;
+      status('正在准备下载报告…'); updateControls();
+      try {
+        await window.AIGCReports.download(report.report_id, format);
+        status('报告已准备好，浏览器将开始下载。');
+      } catch (error) {
+        status(error.name === 'TimeoutError' ? '报告下载超时，请稍后重试。' : error instanceof TypeError ? '无法连接检测服务，请启动服务后重试下载。' : error.message, true);
+        await refreshReports();
+      } finally { busy = false; busyAction = ''; updateControls(); }
     }
 
     function updateControls() {
@@ -153,10 +395,20 @@
       ui.file.disabled = busy;
       ui.text.disabled = busy;
       ui.clearFile.disabled = busy;
-      ui.cancel.hidden = !busy;
+      ui.cancel.hidden = !busy || !controller;
+      ui.cancel.disabled = cancelRequested;
+      ui.cancel.textContent = activeJobId ? '取消任务' : '取消等待';
+      ui.background.hidden = !busy || !activeJobId || busyAction !== 'detect';
+      ui.background.disabled = cancelRequested;
       ui.dropzone.classList.toggle('busy', busy);
-      ui.detect.querySelector('span').textContent = busy ? '正在提取和分段分析…' : '检测文档并标注';
+      ui.detect.querySelector('span').textContent = busy ? ({restore: '正在读取报告…', delete: '正在删除报告…', export: '正在导出报告…', history: '正在更新任务记录…'}[busyAction] || '正在提取和分段分析…') : '检测文档并标注';
       ui.history.querySelectorAll('button').forEach((button) => { button.disabled = busy; });
+      ui.reports.querySelectorAll('button').forEach((button) => { button.disabled = busy; });
+      ui.result.querySelectorAll('.document-exports button').forEach((button) => { button.disabled = busy; });
+      ui.clearHistory.disabled = busy || history.length === 0;
+      ui.refreshReports.disabled = busy || listLoading;
+      ui.saveHistory.disabled = busy;
+      ui.jobs.querySelectorAll('button').forEach(button => { button.disabled = busy || button.dataset.cancelling === 'true'; });
     }
 
     function chooseMode(next) {
@@ -217,8 +469,11 @@
     function loadingResult() {
       const box = make('div', 'empty-result');
       const progress = make('div', 'busy-state');
-      progress.append(make('span', 'spinner'), make('span', '', '正在提取文字并逐段分析'));
-      box.append(progress, make('p', '', '文档越长，所需时间越多。结果不会默默截断原文。'));
+      const label = make('span', '', '正在提交文档任务…'); label.id = 'document-task-stage';
+      progress.append(make('span', 'spinner'), label);
+      const bar = make('progress', 'document-task-progress'); bar.id = 'document-task-progress'; bar.max = 100; bar.value = 0;
+      bar.setAttribute('aria-label', '当前文档处理进度');
+      box.append(progress, bar, make('p', '', '可在后台继续处理，刷新后从文档任务恢复。'));
       ui.result.replaceChildren(box);
       ui.result.setAttribute('aria-busy', 'true');
     }
@@ -228,42 +483,63 @@
       const characters = codepointCount(ui.text.value);
       if ((mode === 'file' && !selectedFile) || (mode === 'text' && !ui.text.value.trim())) return;
       if (mode === 'text' && characters > MAX_CHARACTERS) { status('原文超过 100,000 字符，请按章节拆分后检测。', true); return; }
-      const version = ++requestVersion;
-      controller = new AbortController();
-      busy = true;
-      status('正在自动分析。段落结果会保留原文位置。');
-      loadingResult();
-      updateControls();
-      // Browsers normalize string fields in multipart bodies to CRLF. Encode
-      // pasted text as a form URL body so displayed character offsets and the
-      // 100,000-codepoint input boundary retain the user's LF line endings.
       const form = mode === 'file' ? new FormData() : new URLSearchParams();
       if (mode === 'file') form.append('file', selectedFile);
       else form.append('text', ui.text.value);
+      return runDocumentJob(form);
+    }
+
+    async function resumeJob(job) {
+      if (busy) return;
+      return runDocumentJob(null, job);
+    }
+
+    async function runDocumentJob(form, existingJob = null) {
+      const version = ++requestVersion;
+      controller = new AbortController();
+      busy = true;
+      busyAction = 'detect';
+      activeJobId = null; cancelRequested = false; backgrounded = false;
+      status(existingJob ? '正在恢复任务进度…' : '正在提交文档任务…');
+      loadingResult();
+      updateControls();
       try {
-        const response = await fetch('/api/document/detect', {method: 'POST', body: form, signal: controller.signal});
-        const report = await responseJson(response);
+        let job = existingJob;
+        if (!job) {
+          const response = await fetch('/api/document/jobs', {method: 'POST', body: form, signal: controller.signal});
+          const body = await response.json();
+          if (!response.ok) throw Error(typeof body.detail === 'string' ? body.detail : '文档任务未提交，请重试。');
+          if (typeof body.job_id !== 'string') throw Error('未取得文档任务编号，请刷新任务列表。');
+          job = body;
+        }
+        const report = await followJob(job, controller.signal);
         if (version !== requestVersion) return;
         currentReport = report;
         renderReport(report);
         status('检测完成。可查看下划线段落并下载带标注的报告。');
         saveHistory(report);
+        refreshReports();
       } catch (error) {
         if (version !== requestVersion) return;
-        if (error.name === 'AbortError') status('已取消等待，可重新选择文档。');
+        if (error.name === 'JobCancelled') status('任务已取消，可重新选择文档。');
+        else if (error.name === 'AbortError') status(backgrounded ? '任务已转入后台，可从文档任务查看进度和结果。' : '已取消等待，可从文档任务查看处理状态。');
+        else if (error.name === 'TimeoutError') status('进度查询超时，可从文档任务恢复。', true);
         else status(error instanceof TypeError ? '无法连接检测服务，请检查本地服务是否启动。' : error.message, true);
         if (currentReport) renderReport(currentReport);
         else {
           const empty = make('div', 'empty-result');
-          empty.append(make('strong', '', '本次检测未完成'), make('p', '', '请根据左侧提示重新提交，失败请求不会产生检测百分比。'));
+          empty.append(make('strong', '', backgrounded ? '任务已转入后台' : error.name === 'JobCancelled' ? '任务已取消' : '本次检测未完成'), make('p', '', backgrounded ? '完成后可从当前可用报告查看结果。' : '可从文档任务查看状态，或重新提交文档。'));
           ui.result.replaceChildren(empty);
         }
       } finally {
         if (version === requestVersion) {
           busy = false;
+          busyAction = '';
           controller = null;
+          activeJobId = null; cancelRequested = false; backgrounded = false;
           ui.result.removeAttribute('aria-busy');
           updateControls();
+          refreshJobs(); refreshReports();
         }
       }
     }
@@ -272,12 +548,16 @@
       if (busy) return;
       const version = ++requestVersion;
       busy = true;
+      busyAction = 'restore';
       controller = new AbortController();
       status('正在读取已有报告…');
       updateControls();
       try {
         const response = await fetch(`/api/document/reports/${encodeURIComponent(reportId)}`, {signal: controller.signal});
-        if (response.status === 404 || response.status === 410) throw new Error('报告已过期或服务已重启。浏览器未保存原文，请重新上传文档。');
+        if (response.status === 404 || response.status === 410) {
+          refreshReports();
+          throw new Error('报告已过期或服务已重启，请重新上传文档。');
+        }
         const report = await responseJson(response);
         if (version !== requestVersion) return;
         currentReport = report;
@@ -287,7 +567,7 @@
         if (version !== requestVersion) return;
         status(error.name === 'AbortError' ? '已取消读取报告。' : error instanceof TypeError ? '无法连接检测服务，请启动本地服务后重试。' : error.message, error.name !== 'AbortError');
       } finally {
-        if (version === requestVersion) { busy = false; controller = null; updateControls(); }
+        if (version === requestVersion) { busy = false; busyAction = ''; controller = null; updateControls(); }
       }
     }
 
@@ -359,36 +639,15 @@
       fragment.append(distribution);
       const exports = make('div', 'document-exports');
       [['docx', '带下划线的 Word'], ['html', '标注 HTML / 打印 PDF'], ['json', '完整结果 JSON']].forEach(([format, label]) => {
-        const anchor = make('a', 'document-export-link', label);
-        anchor.href = `/api/document/reports/${encodeURIComponent(report.report_id)}/${format}`;
-        anchor.setAttribute('download', '');
-        exports.append(anchor);
+        const button = make('button', 'document-export-link', label);
+        button.type = 'button';
+        button.addEventListener('click', () => downloadReport(report, format));
+        exports.append(button);
       });
-      const agentSummary = make('button', 'document-export-link', '交给 Agent 汇总');
-      agentSummary.type = 'button';
-      agentSummary.addEventListener('click', () => window.dispatchEvent(new CustomEvent('aigc:document-result', {detail: report})));
-      exports.append(agentSummary);
       const deleteReport = make('button', 'document-export-link', '删除本次报告');
       deleteReport.type = 'button';
       deleteReport.title = '从本地服务删除本次报告和提取原文，并移除对应浏览器摘要记录';
-      deleteReport.addEventListener('click', async () => {
-        deleteReport.disabled = true;
-        try {
-          const response = await fetch(`/api/document/reports/${encodeURIComponent(report.report_id)}`, {method: 'DELETE'});
-          if (!response.ok && response.status !== 404 && response.status !== 410) throw new Error(`无法删除报告（${response.status}），请重试。`);
-          if (currentReport && currentReport.report_id === report.report_id) currentReport = null;
-          history = history.filter((entry) => entry.report_id !== report.report_id);
-          try { localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); } catch (_) { /* No source text is stored. */ }
-          renderHistory();
-          const empty = make('div', 'empty-result');
-          empty.append(make('strong', '', '本次报告已删除'), make('p', '', '可重新上传或检测新的文档。'));
-          ui.result.replaceChildren(empty);
-          status('已从本地服务删除本次报告和提取原文。');
-        } catch (error) {
-          status(error instanceof TypeError ? '无法连接检测服务，请启动服务后重试删除。' : error.message, true);
-          deleteReport.disabled = false;
-        }
-      });
+      deleteReport.addEventListener('click', () => removeReport(report.report_id));
       exports.append(deleteReport);
       fragment.append(exports, make('p', 'document-expiry', `报告${report.expires_at ? `有效至 ${dateText(report.expires_at)}` : '约 30 分钟内有效'}；服务重启后需重新检测。下载文件基于提取后的文字，不是对原文档排版的原样复制。`));
 
@@ -517,9 +776,12 @@
     });
     ui.text.addEventListener('input', updateControls);
     ui.detect.addEventListener('click', detectDocument);
-    ui.cancel.addEventListener('click', () => { if (controller) controller.abort(); });
+    ui.cancel.addEventListener('click', () => { if (activeJobId) requestCancel(activeJobId); else if (controller) controller.abort(); });
+    ui.background.addEventListener('click', () => { if (activeJobId && controller) { backgrounded = true; controller.abort(); } });
+    ui.refreshJobs.addEventListener('click', refreshJobs);
     ui.saveHistory.addEventListener('change', () => { if (ui.saveHistory.checked && currentReport) saveHistory(currentReport); });
     ui.clearHistory.addEventListener('click', () => {
+      if (busy) return;
       try { localStorage.removeItem(HISTORY_KEY); history = []; renderHistory(); status('本浏览器的检测记录已清空。'); }
       catch (_) { status('浏览器未允许清除存储，可在浏览器设置中移除此站点的数据。', true); }
     });
@@ -534,8 +796,22 @@
       renderReport(report);
       status('已打开文档检测报告。');
       saveHistory(report);
+      refreshReports();
       return true;
     }});
-    renderHistory(); updateControls();
+    ui.refreshReports.addEventListener('click', () => { if (!busy) refreshReports(); });
+    const scheduleRefresh = () => {
+      clearTimeout(listTimer);
+      clearTimeout(jobsTimer);
+      if (!document.hidden && byId('view-document').classList.contains('active')) {
+        refreshJobs();
+        if (!busy) refreshReports();
+        listTimer = setTimeout(scheduleRefresh, 30000);
+      }
+    };
+    window.addEventListener('aigc:view-changed', scheduleRefresh);
+    document.addEventListener('visibilitychange', scheduleRefresh);
+    renderHistory(); updateControls(); refreshReports(); refreshJobs();
+    if (byId('view-document').classList.contains('active')) listTimer = setTimeout(scheduleRefresh, 30000);
   });
 })();

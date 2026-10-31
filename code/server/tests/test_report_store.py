@@ -75,6 +75,38 @@ class ReportStoreTests(unittest.TestCase):
         self.assertEqual(len(store._items), 1)
         self.assertEqual(store.get(saved["report_id"])["value"], "good")
 
+    def test_list_metadata_is_detached_and_excludes_source_and_detector_details(self):
+        store = ReportStore()
+        self.addCleanup(store.close)
+        saved = store.put({"filename": "example.txt", "created_at": "2026-10-25T12:00:00Z",
+                           "format": "txt", "extracted_text": "private original",
+                           "source_sha256": "private fingerprint", "sections": [{"text": "private section"}],
+                           "detection": {"segments": [{"text": "private segment"}]},
+                           "document_summary": {"highlighted_total_percent": 12.5, "private_extra": "secret"}})
+        listed = store.list_reports()
+        self.assertEqual(set(listed[0]), {"report_id", "filename", "format", "created_at",
+                                         "expires_at", "highlighted_total_percent"})
+        self.assertEqual(listed[0]["highlighted_total_percent"], 12.5)
+        self.assertNotIn("private", json.dumps(listed))
+        listed[0]["filename"] = "changed.txt"
+        self.assertEqual(store.get(saved["report_id"])["filename"], "example.txt")
+
+    def test_list_is_newest_first_and_respects_expiry_eviction_and_deletion(self):
+        now = [1000.0]
+        store = ReportStore(ttl_seconds=10, max_items=2, clock=lambda: now[0])
+        self.addCleanup(store.close)
+        store.put({"filename": "evicted.txt"})
+        now[0] += 1
+        second = store.put({"filename": "second.txt"})
+        now[0] += 1
+        third = store.put({"filename": "third.txt"})
+        self.assertEqual([item["filename"] for item in store.list_reports()], ["third.txt", "second.txt"])
+        self.assertEqual(store.list_reports()[1]["expires_at"], second["expires_at"])
+        now[0] = 1011
+        self.assertEqual([item["report_id"] for item in store.list_reports()], [third["report_id"]])
+        self.assertTrue(store.delete(third["report_id"]))
+        self.assertEqual(store.list_reports(), [])
+
 
 if __name__ == "__main__":
     unittest.main()

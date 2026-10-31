@@ -1,0 +1,1071 @@
+{
+  "status": "passed",
+  "actual_models": true,
+  "checks": [
+    {
+      "name": "All five course stages have evidence",
+      "passed": true
+    },
+    {
+      "name": "Optimized image API matches all heldout predictions",
+      "samples": 80,
+      "passed": true
+    },
+    {
+      "name": "Optimized text API matches all heldout predictions",
+      "samples": 600,
+      "passed": true
+    },
+    {
+      "name": "Real LLM keeps health responsive and rejects a second Agent request",
+      "health_ms": 0.7391999970423058,
+      "passed": true
+    },
+    {
+      "name": "Real Agent: 看看这篇正文的生成信号",
+      "tools": [
+        "text_detection"
+      ],
+      "elapsed_seconds": 3.95,
+      "passed": true
+    },
+    {
+      "name": "Real Agent: 文字和照片都需要检测结果",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "elapsed_seconds": 2.11,
+      "passed": true
+    },
+    {
+      "name": "Real Agent: 检查这份材料并保留原文标注",
+      "tools": [
+        "document_detection"
+      ],
+      "elapsed_seconds": 3.86,
+      "passed": true
+    }
+  ],
+  "agent_responses": [
+    {
+      "version": "2026-10-27",
+      "planner": {
+        "letter": "B",
+        "tools": [
+          "course_overview"
+        ],
+        "model": "Qwen3.5-0.8B + LoRA",
+        "method": "causal_lm_next_token_among_valid_tool_plans",
+        "allowed_plans": [
+          "A",
+          "B",
+          "J"
+        ]
+      },
+      "profile": "advanced",
+      "tool_calls": [
+        {
+          "tool": "course_overview",
+          "path": "/api/course",
+          "http_status": 200,
+          "status": "ok",
+          "duration_ms": 3.03,
+          "summary": "数据采集与预处理已就绪；模型训练已就绪；算法优化已就绪；前后端开发已就绪；大模型 Agent 与微调已就绪",
+          "result": {
+            "version": "2026-10-27",
+            "stages": [
+              {
+                "number": 1,
+                "name": "数据采集与预处理",
+                "ready": true,
+                "description": "2026 数据、分组划分、像素与文本去重、训练集标准化"
+              },
+              {
+                "number": 2,
+                "name": "模型训练",
+                "ready": true,
+                "description": "本组 CNN 与中文 TF-IDF 分类器，保留逐轮训练和测试记录"
+              },
+              {
+                "number": 3,
+                "name": "算法优化",
+                "ready": true,
+                "description": "真实通道剪枝、词表压缩、TorchScript 导出与前后对照"
+              },
+              {
+                "number": 4,
+                "name": "前后端开发",
+                "ready": true,
+                "description": "实验二基线与实验三优化权重直接接入课程检测 API"
+              },
+              {
+                "number": 5,
+                "name": "大模型 Agent 与微调",
+                "ready": true,
+                "description": "本地 Qwen3.5 + LoRA 选择工具、调用 API 并解释结果"
+              }
+            ],
+            "records": {
+              "experiment1.json": {
+                "status": "completed",
+                "text": {
+                  "dataset": "NLPCC 2026 Task 6 official train",
+                  "source": "data/benchmarks_2026/nlpcc/data/train_data.json",
+                  "source_sha256": "d07059d8af0c7ba86629a8ceba3f09669d79f13356f09d0853861b53a8d5c01f",
+                  "seed": 20261027,
+                  "grouping": "HWT/LGT paired by original ID; same subject stays in one split; normalized text hashes globally unique",
+                  "counts": {
+                    "train": 2800,
+                    "validation": 600,
+                    "test": 600
+                  }
+                },
+                "images": {
+                  "dataset": "NTIRE 2026 official public training shard",
+                  "revision": "b85af61d93cd4fd5e558b3ee69f6d93639fce83f",
+                  "source": "https://huggingface.co/datasets/deepfakesMSU/NTIRE-RobustAIGenDetection-train/resolve/b85af61d93cd4fd5e558b3ee69f6d93639fce83f/shard_5.zip",
+                  "seed": 20261027,
+                  "excluded_prior_audit_ids": 264,
+                  "mean": [
+                    0.5048174091411864,
+                    0.4719816519541657,
+                    0.42981902078822715
+                  ],
+                  "std": [
+                    0.29265671728228293,
+                    0.2832261561896049,
+                    0.29465203030464815
+                  ],
+                  "split_counts": {
+                    "train": 240,
+                    "validation": 80,
+                    "test": 80
+                  },
+                  "processing": "CRC/SHA validation, exact 64x64 pixel deduplication, RGB/Lanczos 64x64, train-only channel mean/std; train-only random horizontal flips",
+                  "downloaded_bytes": 209702016,
+                  "duplicate_candidates_removed": 0
+                }
+              },
+              "experiment2-image.json": {
+                "selection_rule": "pruned validation macro-F1 loss <=5 percentage points; no test selection",
+                "pruning_selected": true,
+                "trained": {
+                  "samples": 80,
+                  "accuracy": 0.6875,
+                  "macro_f1": 0.6870599280237835,
+                  "auroc": 0.7262500000000001,
+                  "false_positive_rate": 0.275,
+                  "false_negative_rate": 0.35,
+                  "confusion_matrix": [
+                    [
+                      29,
+                      11
+                    ],
+                    [
+                      14,
+                      26
+                    ]
+                  ],
+                  "parameters": 23938,
+                  "latency": {
+                    "median_ms": 0.44675000026472844,
+                    "p95_ms": 0.5124299994349713,
+                    "runs": 40
+                  }
+                },
+                "optimized": {
+                  "samples": 80,
+                  "accuracy": 0.6625,
+                  "macro_f1": 0.6624472573839661,
+                  "auroc": 0.76625,
+                  "false_positive_rate": 0.35,
+                  "false_negative_rate": 0.325,
+                  "confusion_matrix": [
+                    [
+                      26,
+                      14
+                    ],
+                    [
+                      13,
+                      27
+                    ]
+                  ],
+                  "parameters": 13634,
+                  "latency": {
+                    "median_ms": 0.29320000248844735,
+                    "p95_ms": 0.41545000131009124,
+                    "runs": 40
+                  }
+                },
+                "export_max_logit_difference": 0.0
+              },
+              "experiment2-text.json": {
+                "selection_rule": "smallest vocabulary with validation macro-F1 loss <=2 percentage points",
+                "candidates": [
+                  {
+                    "features": 2000,
+                    "validation_macro_f1": 0.9866665185168724
+                  },
+                  {
+                    "features": 4000,
+                    "validation_macro_f1": 0.9883333009258359
+                  },
+                  {
+                    "features": 8000,
+                    "validation_macro_f1": 0.9849999583332176
+                  }
+                ],
+                "trained": {
+                  "samples": 600,
+                  "accuracy": 0.9833333333333333,
+                  "macro_f1": 0.9833325925596693,
+                  "auroc": 0.9994888888888889,
+                  "false_positive_rate": 0.01,
+                  "false_negative_rate": 0.023333333333333334,
+                  "confusion_matrix": [
+                    [
+                      297,
+                      3
+                    ],
+                    [
+                      7,
+                      293
+                    ]
+                  ],
+                  "features": 12000,
+                  "latency": {
+                    "median_ms": 1.7440500014345162,
+                    "p95_ms": 2.264424999884794,
+                    "runs": 40
+                  }
+                },
+                "optimized": {
+                  "samples": 600,
+                  "accuracy": 0.985,
+                  "macro_f1": 0.9849999583332176,
+                  "auroc": 0.9990222222222221,
+                  "false_positive_rate": 0.013333333333333334,
+                  "false_negative_rate": 0.016666666666666666,
+                  "confusion_matrix": [
+                    [
+                      296,
+                      4
+                    ],
+                    [
+                      5,
+                      295
+                    ]
+                  ],
+                  "features": 2000,
+                  "latency": {
+                    "median_ms": 0.9295499985455535,
+                    "p95_ms": 1.250920000893529,
+                    "runs": 40
+                  }
+                }
+              },
+              "experiment3.json": {
+                "image": {
+                  "selection_rule": "pruned validation macro-F1 loss <=5 percentage points; no test selection",
+                  "pruning_selected": true,
+                  "trained": {
+                    "samples": 80,
+                    "accuracy": 0.6875,
+                    "macro_f1": 0.6870599280237835,
+                    "auroc": 0.7262500000000001,
+                    "false_positive_rate": 0.275,
+                    "false_negative_rate": 0.35,
+                    "confusion_matrix": [
+                      [
+                        29,
+                        11
+                      ],
+                      [
+                        14,
+                        26
+                      ]
+                    ],
+                    "parameters": 23938,
+                    "latency": {
+                      "median_ms": 0.44675000026472844,
+                      "p95_ms": 0.5124299994349713,
+                      "runs": 40
+                    }
+                  },
+                  "optimized": {
+                    "samples": 80,
+                    "accuracy": 0.6625,
+                    "macro_f1": 0.6624472573839661,
+                    "auroc": 0.76625,
+                    "false_positive_rate": 0.35,
+                    "false_negative_rate": 0.325,
+                    "confusion_matrix": [
+                      [
+                        26,
+                        14
+                      ],
+                      [
+                        13,
+                        27
+                      ]
+                    ],
+                    "parameters": 13634,
+                    "latency": {
+                      "median_ms": 0.29320000248844735,
+                      "p95_ms": 0.41545000131009124,
+                      "runs": 40
+                    }
+                  },
+                  "export_max_logit_difference": 0.0
+                },
+                "text": {
+                  "selection_rule": "smallest vocabulary with validation macro-F1 loss <=2 percentage points",
+                  "candidates": [
+                    {
+                      "features": 2000,
+                      "validation_macro_f1": 0.9866665185168724
+                    },
+                    {
+                      "features": 4000,
+                      "validation_macro_f1": 0.9883333009258359
+                    },
+                    {
+                      "features": 8000,
+                      "validation_macro_f1": 0.9849999583332176
+                    }
+                  ],
+                  "trained": {
+                    "samples": 600,
+                    "accuracy": 0.9833333333333333,
+                    "macro_f1": 0.9833325925596693,
+                    "auroc": 0.9994888888888889,
+                    "false_positive_rate": 0.01,
+                    "false_negative_rate": 0.023333333333333334,
+                    "confusion_matrix": [
+                      [
+                        297,
+                        3
+                      ],
+                      [
+                        7,
+                        293
+                      ]
+                    ],
+                    "features": 12000,
+                    "latency": {
+                      "median_ms": 1.7440500014345162,
+                      "p95_ms": 2.264424999884794,
+                      "runs": 40
+                    }
+                  },
+                  "optimized": {
+                    "samples": 600,
+                    "accuracy": 0.985,
+                    "macro_f1": 0.9849999583332176,
+                    "auroc": 0.9990222222222221,
+                    "false_positive_rate": 0.013333333333333334,
+                    "false_negative_rate": 0.016666666666666666,
+                    "confusion_matrix": [
+                      [
+                        296,
+                        4
+                      ],
+                      [
+                        5,
+                        295
+                      ]
+                    ],
+                    "features": 2000,
+                    "latency": {
+                      "median_ms": 0.9295499985455535,
+                      "p95_ms": 1.250920000893529,
+                      "runs": 40
+                    }
+                  }
+                },
+                "assets": [
+                  {
+                    "path": "models/course_20261027/config.json",
+                    "bytes": 891,
+                    "sha256": "43aa64cec2c407fd155be0c686f65f95833a23ef377c2ca6cbecde89f563fecd"
+                  },
+                  {
+                    "path": "models/course_20261027/image_optimized.pt",
+                    "bytes": 62982,
+                    "sha256": "7efef75a38df0bb9ce9c7d821177c70006983a5e88e7245c8f5cedf429914118"
+                  },
+                  {
+                    "path": "models/course_20261027/image_optimized.ts",
+                    "bytes": 85938,
+                    "sha256": "912c96420b8ee25f7aca5c78b3afc6965fcc61f2129f66e68efa80180d80a4b7"
+                  },
+                  {
+                    "path": "models/course_20261027/image_trained.pt",
+                    "bytes": 104780,
+                    "sha256": "f9f479e93e24ed93cc3bcc8a5f2132573196bd3fadee3a864232d4e752cec423"
+                  },
+                  {
+                    "path": "models/course_20261027/text_compact.joblib",
+                    "bytes": 41160,
+                    "sha256": "5d67683597a6b8b3143840383902af1eab8a5f574c03ae3446c6a9df2d59e9c7"
+                  },
+                  {
+                    "path": "models/course_20261027/text_full.joblib",
+                    "bytes": 219464,
+                    "sha256": "7d24899e9abee2cdec061960ded5fe525400006aad9583b4fe5965e84a503931"
+                  }
+                ],
+                "pipeline": [
+                  "scripts/prepare_course_2026.py",
+                  "scripts/train_course_2026.py",
+                  "code/models/course_models.py"
+                ],
+                "environment": {
+                  "torch": "2.14.0+cpu",
+                  "threads": 4,
+                  "device": "cpu"
+                }
+              },
+              "agent/finetune-metrics.json": {
+                "model": "Qwen/Qwen3.5-0.8B",
+                "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+                "seed": 20261027,
+                "method": "LoRA causal-LM next-token cross-entropy over ten tool-plan letter tokens",
+                "rank": 4,
+                "steps": 64,
+                "training_cases": 80,
+                "validation_cases": 20,
+                "test_cases": 30,
+                "checkpoint_selection": "validation only, earliest highest accuracy",
+                "checkpoints": [
+                  {
+                    "step": 16,
+                    "validation_accuracy": 0.85
+                  },
+                  {
+                    "step": 32,
+                    "validation_accuracy": 0.75
+                  },
+                  {
+                    "step": 48,
+                    "validation_accuracy": 0.7
+                  },
+                  {
+                    "step": 64,
+                    "validation_accuracy": 0.95
+                  }
+                ],
+                "before": {
+                  "accuracy": 0.36666666666666664,
+                  "samples": 30,
+                  "predictions": [
+                    {
+                      "id": "A10",
+                      "expected": "A",
+                      "predicted": "J",
+                      "correct": false
+                    },
+                    {
+                      "id": "A11",
+                      "expected": "A",
+                      "predicted": "A",
+                      "correct": true
+                    },
+                    {
+                      "id": "A12",
+                      "expected": "A",
+                      "predicted": "A",
+                      "correct": true
+                    },
+                    {
+                      "id": "B10",
+                      "expected": "B",
+                      "predicted": "J",
+                      "correct": false
+                    },
+                    {
+                      "id": "B11",
+                      "expected": "B",
+                      "predicted": "J",
+                      "correct": false
+                    },
+                    {
+                      "id": "B12",
+                      "expected": "B",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "C10",
+                      "expected": "C",
+                      "predicted": "C",
+                      "correct": true
+                    },
+                    {
+                      "id": "C11",
+                      "expected": "C",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "C12",
+                      "expected": "C",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "D10",
+                      "expected": "D",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "D11",
+                      "expected": "D",
+                      "predicted": "D",
+                      "correct": true
+                    },
+                    {
+                      "id": "D12",
+                      "expected": "D",
+                      "predicted": "D",
+                      "correct": true
+                    },
+                    {
+                      "id": "E10",
+                      "expected": "E",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "E11",
+                      "expected": "E",
+                      "predicted": "E",
+                      "correct": true
+                    },
+                    {
+                      "id": "E12",
+                      "expected": "E",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "F10",
+                      "expected": "F",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "F11",
+                      "expected": "F",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "F12",
+                      "expected": "F",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "G10",
+                      "expected": "G",
+                      "predicted": "G",
+                      "correct": true
+                    },
+                    {
+                      "id": "G11",
+                      "expected": "G",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "G12",
+                      "expected": "G",
+                      "predicted": "G",
+                      "correct": true
+                    },
+                    {
+                      "id": "H10",
+                      "expected": "H",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "H11",
+                      "expected": "H",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "H12",
+                      "expected": "H",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "I10",
+                      "expected": "I",
+                      "predicted": "C",
+                      "correct": false
+                    },
+                    {
+                      "id": "I11",
+                      "expected": "I",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "I12",
+                      "expected": "I",
+                      "predicted": "A",
+                      "correct": false
+                    },
+                    {
+                      "id": "J10",
+                      "expected": "J",
+                      "predicted": "J",
+                      "correct": true
+                    },
+                    {
+                      "id": "J11",
+                      "expected": "J",
+                      "predicted": "J",
+                      "correct": true
+                    },
+                    {
+                      "id": "J12",
+                      "expected": "J",
+                      "predicted": "J",
+                      "correct": true
+                    }
+                  ]
+                },
+                "after": {
+                  "accuracy": 0.9666666666666667,
+                  "samples": 30,
+                  "predictions": [
+                    {
+                      "id": "A10",
+                      "expected": "A",
+                      "predicted": "A",
+                      "correct": true
+                    },
+                    {
+                      "id": "A11",
+                      "expected": "A",
+                      "predicted": "A",
+                      "correct": true
+                    },
+                    {
+                      "id": "A12",
+                      "expected": "A",
+                      "predicted": "A",
+                      "correct": true
+                    },
+                    {
+                      "id": "B10",
+                      "expected": "B",
+                      "predicted": "B",
+                      "correct": true
+                    },
+                    {
+                      "id": "B11",
+                      "expected": "B",
+                      "predicted": "B",
+                      "correct": true
+                    },
+                    {
+                      "id": "B12",
+                      "expected": "B",
+                      "predicted": "B",
+                      "correct": true
+                    },
+                    {
+                      "id": "C10",
+                      "expected": "C",
+                      "predicted": "C",
+                      "correct": true
+                    },
+                    {
+                      "id": "C11",
+                      "expected": "C",
+                      "predicted": "C",
+                      "correct": true
+                    },
+                    {
+                      "id": "C12",
+                      "expected": "C",
+                      "predicted": "C",
+                      "correct": true
+                    },
+                    {
+                      "id": "D10",
+                      "expected": "D",
+                      "predicted": "D",
+                      "correct": true
+                    },
+                    {
+                      "id": "D11",
+                      "expected": "D",
+                      "predicted": "D",
+                      "correct": true
+                    },
+                    {
+                      "id": "D12",
+                      "expected": "D",
+                      "predicted": "D",
+                      "correct": true
+                    },
+                    {
+                      "id": "E10",
+                      "expected": "E",
+                      "predicted": "E",
+                      "correct": true
+                    },
+                    {
+                      "id": "E11",
+                      "expected": "E",
+                      "predicted": "E",
+                      "correct": true
+                    },
+                    {
+                      "id": "E12",
+                      "expected": "E",
+                      "predicted": "E",
+                      "correct": true
+                    },
+                    {
+                      "id": "F10",
+                      "expected": "F",
+                      "predicted": "F",
+                      "correct": true
+                    },
+                    {
+                      "id": "F11",
+                      "expected": "F",
+                      "predicted": "F",
+                      "correct": true
+                    },
+                    {
+                      "id": "F12",
+                      "expected": "F",
+                      "predicted": "F",
+                      "correct": true
+                    },
+                    {
+                      "id": "G10",
+                      "expected": "G",
+                      "predicted": "G",
+                      "correct": true
+                    },
+                    {
+                      "id": "G11",
+                      "expected": "G",
+                      "predicted": "G",
+                      "correct": true
+                    },
+                    {
+                      "id": "G12",
+                      "expected": "G",
+                      "predicted": "G",
+                      "correct": true
+                    },
+                    {
+                      "id": "H10",
+                      "expected": "H",
+                      "predicted": "H",
+                      "correct": true
+                    },
+                    {
+                      "id": "H11",
+                      "expected": "H",
+                      "predicted": "H",
+                      "correct": true
+                    },
+                    {
+                      "id": "H12",
+                      "expected": "H",
+                      "predicted": "H",
+                      "correct": true
+                    },
+                    {
+                      "id": "I10",
+                      "expected": "I",
+                      "predicted": "C",
+                      "correct": false
+                    },
+                    {
+                      "id": "I11",
+                      "expected": "I",
+                      "predicted": "I",
+                      "correct": true
+                    },
+                    {
+                      "id": "I12",
+                      "expected": "I",
+                      "predicted": "I",
+                      "correct": true
+                    },
+                    {
+                      "id": "J10",
+                      "expected": "J",
+                      "predicted": "J",
+                      "correct": true
+                    },
+                    {
+                      "id": "J11",
+                      "expected": "J",
+                      "predicted": "J",
+                      "correct": true
+                    },
+                    {
+                      "id": "J12",
+                      "expected": "J",
+                      "predicted": "J",
+                      "correct": true
+                    }
+                  ]
+                },
+                "trainable_parameters": 159744,
+                "elapsed_seconds": 111.46,
+                "scope": "Small authored bilingual routing set; actual API execution is tested separately"
+              }
+            },
+            "deployment": {
+              "image": "/api/course/image/detect",
+              "text": "/api/course/text/detect",
+              "stages": [
+                "trained",
+                "optimized"
+              ],
+              "model_directory": "models/course_20261027"
+            }
+          }
+        }
+      ],
+      "answer": "课程各阶段已完成，目前模型训练、算法优化、前后端开发及大模型 Agent 与微调均已就绪。",
+      "answer_source": "local_llm",
+      "model": "Qwen3.5-0.8B"
+    },
+    {
+      "version": "2026-10-27",
+      "planner": {
+        "letter": "C",
+        "tools": [
+          "text_detection"
+        ],
+        "model": "Qwen3.5-0.8B + LoRA",
+        "method": "causal_lm_next_token_among_valid_tool_plans",
+        "allowed_plans": [
+          "A",
+          "B",
+          "C",
+          "F",
+          "I",
+          "J"
+        ]
+      },
+      "profile": "course",
+      "tool_calls": [
+        {
+          "tool": "text_detection",
+          "path": "/api/course/text/detect",
+          "http_status": 200,
+          "status": "ok",
+          "duration_ms": 3.06,
+          "summary": "模型分数 94.1/100；状态 likely_ai；模型 course-text-optimized-20261027",
+          "result": {
+            "risk_score": 0.9412,
+            "decision": "likely_ai",
+            "evidence": [
+              "本组使用 2026 年公开样本训练，训练、验证、测试记录可在课程实验页查看。",
+              "实验三压缩模型已部署到课程检测 API。"
+            ],
+            "model_version": "course-text-optimized-20261027",
+            "applicability": "course_2026",
+            "modality": "text",
+            "threshold": 0.8,
+            "limitations": "课程模型的样本范围和实测指标见实验记录；常规检测可选择增强方案。",
+            "evidence_note": "所列线索是统计特征，不是来源的因果证据。",
+            "disclaimer": "筛查分数不能证明内容来源或作者身份。"
+          }
+        }
+      ],
+      "answer": "模型分数为 94.1/100，判定为 likely_ai，且模型为 course-text-optimized-20261027。",
+      "answer_source": "local_llm",
+      "model": "Qwen3.5-0.8B"
+    },
+    {
+      "version": "2026-10-27",
+      "planner": {
+        "letter": "G",
+        "tools": [
+          "image_detection",
+          "text_detection"
+        ],
+        "model": "Qwen3.5-0.8B + LoRA",
+        "method": "causal_lm_next_token_among_valid_tool_plans",
+        "allowed_plans": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "F",
+          "G",
+          "I",
+          "J"
+        ]
+      },
+      "profile": "course",
+      "tool_calls": [
+        {
+          "tool": "image_detection",
+          "path": "/api/course/image/detect",
+          "http_status": 200,
+          "status": "ok",
+          "duration_ms": 3.78,
+          "summary": "模型分数 31.8/100；状态 uncertain；模型 course-image-optimized-20261027",
+          "result": {
+            "risk_score": 0.3181,
+            "decision": "uncertain",
+            "evidence": [
+              "本组使用 2026 年公开样本训练，训练、验证、测试记录可在课程实验页查看。",
+              "实验三压缩模型已部署到课程检测 API。"
+            ],
+            "model_version": "course-image-optimized-20261027",
+            "applicability": "course_2026",
+            "modality": "image",
+            "threshold": 0.8,
+            "limitations": "课程模型的样本范围和实测指标见实验记录；常规检测可选择增强方案。",
+            "evidence_note": "所列线索是统计特征，不是来源的因果证据。",
+            "disclaimer": "筛查分数不能证明内容来源或作者身份。",
+            "model_scores": [
+              {
+                "model": "课程 CNN · optimized",
+                "score": 0.3181263067337076
+              }
+            ],
+            "metadata_hints": [],
+            "input_size": [
+              64,
+              64
+            ],
+            "model_input_size": [
+              64,
+              64
+            ],
+            "provenance": {
+              "status": "credential_absent",
+              "explanation": "未发现嵌入式内容凭证；这不能说明图片是 AI 生成的。"
+            }
+          }
+        },
+        {
+          "tool": "text_detection",
+          "path": "/api/course/text/detect",
+          "http_status": 200,
+          "status": "ok",
+          "duration_ms": 2.31,
+          "summary": "模型分数 94.1/100；状态 likely_ai；模型 course-text-optimized-20261027",
+          "result": {
+            "risk_score": 0.9412,
+            "decision": "likely_ai",
+            "evidence": [
+              "本组使用 2026 年公开样本训练，训练、验证、测试记录可在课程实验页查看。",
+              "实验三压缩模型已部署到课程检测 API。"
+            ],
+            "model_version": "course-text-optimized-20261027",
+            "applicability": "course_2026",
+            "modality": "text",
+            "threshold": 0.8,
+            "limitations": "课程模型的样本范围和实测指标见实验记录；常规检测可选择增强方案。",
+            "evidence_note": "所列线索是统计特征，不是来源的因果证据。",
+            "disclaimer": "筛查分数不能证明内容来源或作者身份。"
+          }
+        }
+      ],
+      "answer": "检测结果：文字检测为 likely_ai，照片检测为 uncertain。",
+      "answer_source": "local_llm",
+      "model": "Qwen3.5-0.8B"
+    },
+    {
+      "version": "2026-10-27",
+      "planner": {
+        "letter": "E",
+        "tools": [
+          "document_detection"
+        ],
+        "model": "Qwen3.5-0.8B + LoRA",
+        "method": "causal_lm_next_token_among_valid_tool_plans",
+        "allowed_plans": [
+          "A",
+          "B",
+          "E",
+          "J"
+        ]
+      },
+      "profile": "advanced",
+      "tool_calls": [
+        {
+          "tool": "document_detection",
+          "path": "/api/document/detect",
+          "http_status": 200,
+          "status": "ok",
+          "duration_ms": 1821.17,
+          "summary": "文档报告已生成；可评分覆盖率 100.0%；报告可导出 Word、HTML、JSON。",
+          "result": {
+            "report_id": "rVPUNqyrHv3MPlcEjDew8JWEmkGSJKWx",
+            "filename": "course-text.txt",
+            "created_at": "2026-10-27T11:39:56+00:00",
+            "expires_at": "2026-10-27T12:09:56.533258+00:00",
+            "document_summary": {
+              "total_characters": 350,
+              "visible_characters": 350,
+              "scored_character_percent": 100.0,
+              "highlighted_character_percent": 0.0,
+              "highlighted_total_percent": 0.0,
+              "mean_segment_score": 5.1e-05,
+              "high_risk_segments": 0,
+              "unscored_segments": 0,
+              "scored_segments": 1,
+              "total_segments": 1,
+              "mixed_signals": false,
+              "metric_note": "AI 特征占比按整段标注：所在段落模型风险分数达到 0.99 的非空白字符占比；不是 AI 实际撰写比例，也不是逐字来源定位。模型均分不是整篇来源概率。"
+            },
+            "model_versions": null
+          }
+        }
+      ],
+      "answer": "文档报告已生成，可导出 Word、HTML、JSON。",
+      "answer_source": "local_llm",
+      "model": "Qwen3.5-0.8B"
+    }
+  ],
+  "cohort_score_replay": {
+    "images": 80,
+    "texts": 600,
+    "absolute_score_tolerance": 0.0001,
+    "binary_predictions_match": true
+  },
+  "runtime_after": {
+    "status": "ok",
+    "processing": {
+      "active": 0,
+      "limit": 2,
+      "completed": 1118,
+      "rejected": 0
+    },
+    "reports": {
+      "count": 0,
+      "limit": 20,
+      "bytes": 0,
+      "max_bytes": 33554432,
+      "ttl_seconds": 1800
+    },
+    "agent": {
+      "active": false
+    }
+  }
+}
