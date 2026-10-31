@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Five experiment cards remain available",
+      "passed": true
+    },
+    {
+      "name": "A failed example download preserves all experiment cards",
+      "passed": true
+    },
+    {
+      "name": "Example controls recover after a failed download",
+      "passed": true
+    },
+    {
+      "name": "Example buttons prevent overlapping downloads",
+      "passed": true
+    },
+    {
+      "name": "Late sample response preserves newly entered text",
+      "passed": true
+    },
+    {
+      "name": "Late sample response preserves the new model selection",
+      "passed": true
+    },
+    {
+      "name": "Late sample response preserves current navigation",
+      "passed": true
+    },
+    {
+      "name": "Active detection is protected from course sample replacement",
+      "passed": true
+    },
+    {
+      "name": "In-flight detection retains its selected model",
+      "passed": true
+    },
+    {
+      "name": "A fresh text example selects the actual optimized deployment",
+      "passed": true
+    },
+    {
+      "name": "Text detection still executes the optimized trained weights",
+      "passed": true
+    },
+    {
+      "name": "Image example still executes the physically pruned model",
+      "passed": true
+    },
+    {
+      "name": "Unsupported Agent document gets a readable ingestion error",
+      "passed": true
+    },
+    {
+      "name": "The interface displays the document conversion advice",
+      "passed": true
+    },
+    {
+      "name": "The Agent form recovers after invalid input",
+      "passed": true
+    },
+    {
+      "name": "The real local fine-tuned Agent works after the failed document",
+      "passed": true
+    },
+    {
+      "name": "The local LLM summarizes a successful real API result",
+      "passed": true
+    },
+    {
+      "name": "Agent results fit a 390px viewport",
+      "passed": true
+    },
+    {
+      "name": "Course page and status fit a 390px viewport",
+      "passed": true
+    },
+    {
+      "name": "No uncaught JavaScript errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "actual_models": true
+}

@@ -7,7 +7,7 @@ import hashlib
 import io
 import json
 import random
-import unicodedata
+import sys
 import zipfile
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -18,6 +18,8 @@ from PIL import Image, ImageOps
 from fetch_ntire_2026_sample import RemoteZip, REVISION, URL
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "code/models"))
+from course_preprocessing import canonical_text as canonical
 DATA = ROOT / "data/course_20261027"
 RESULTS = ROOT / "results/course_20261027"
 SEED = 20261027
@@ -26,10 +28,6 @@ SEED = 20261027
 def save(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-
-def canonical(text):
-    return " ".join(unicodedata.normalize("NFKC", str(text)).split())
 
 
 def prepare_images(proxy):

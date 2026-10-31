@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 import hashlib
+import argparse
 import json
 import subprocess
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,6 +23,9 @@ def fingerprint(path):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--version", type=lambda value: date.fromisoformat(value).isoformat())
+    args = parser.parse_args()
     receipts_path = AUDIT / "asset-receipts.json"
     receipts = {row["path"]: row for row in json.loads(receipts_path.read_text(encoding="utf-8"))["assets"]}
     for name in ("config.json", "tokenizer.json", "tokenizer_config.json", "detector_ep3.pt"):
@@ -55,7 +60,7 @@ def main():
                 row.update(repo=agent_assets["repo"], revision=agent_assets["revision"],
                            filename=Path(item["path"]).name, role="local course Agent text backbone")
                 downloads[row["path"]] = row
-    release_version = "2026-10-27" if course_assets.exists() else "2026-10-26"
+    release_version = args.version or max(runtime.get("version", "2026-10-26"), "2026-10-27" if course_assets.exists() else "2026-10-26")
     runtime.update(version=release_version, downloads=list(downloads.values()),
                    active_policy="models/algorithm_policy.json",
                    research_candidates=[{"path": "models/taste/detector_ep3.pt", "role": "evaluated comparison candidate",

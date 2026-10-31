@@ -10,6 +10,7 @@ import numpy as np
 import torch
 from PIL import Image, ImageOps
 from torch import nn
+from course_preprocessing import canonical_text
 
 
 class CourseCNN(nn.Module):
@@ -76,7 +77,8 @@ class CourseDetectors:
         return result
 
     def predict_text(self, text, stage="optimized"):
-        if len(text.strip()) < 80 or sum("\u4e00" <= c <= "\u9fff" for c in text) < 40:
+        text = canonical_text(text)
+        if len(text) < 80 or sum("\u4e00" <= c <= "\u9fff" for c in text) < 40:
             return {"modality": "text", "risk_score": None, "decision": "uncertain", "out_of_scope": True,
                     "scope_reason": "课程文本模型使用中文正文训练，请输入至少 80 字符、40 个汉字。",
                     "applicability": "course_chinese_scope", "model_version": "course-text-"+stage+"-20261027"}

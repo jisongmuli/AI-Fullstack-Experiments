@@ -606,7 +606,7 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
             raise HTTPException(status_code=400, detail="请输入希望助手完成的操作。")
         try:
             messages = json.loads(history)
-            if not isinstance(messages, list) or len(messages) > 6 or any(not isinstance(row, dict) or row.get("role") not in {"user", "assistant"}
+            if not isinstance(messages, list) or len(messages) > 6 or any(not isinstance(row, dict) or not isinstance(row.get("role"), str) or row["role"] not in {"user", "assistant"}
                     or not isinstance(row.get("content"), str) or len(row["content"]) > 1000 for row in messages):
                 raise ValueError("Invalid conversation")
         except (ValueError, json.JSONDecodeError):
@@ -621,7 +621,10 @@ def create_app(model_service: Any | None = None, llm_service: Any | None = None,
             if len(data) > MAX_DOCUMENT_BYTES:
                 raise HTTPException(status_code=413, detail="文档超过 20 MB。")
             # Validate before model execution; keep the original bytes for the API tool.
-            await run_in_threadpool(extract_document, data, document.filename or "")
+            try:
+                await run_in_threadpool(extract_document, data, document.filename or "")
+            except DocumentError as exc:
+                raise HTTPException(status_code=exc.status_code, detail=str(exc)) from exc
             document_input = (document.filename or "document.txt", data, document.content_type or "application/octet-stream")
         try:
             result = await agent.run(api, instruction.strip(), text=text, image=image_input, document=document_input,

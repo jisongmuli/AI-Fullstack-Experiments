@@ -8,6 +8,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from fastapi.testclient import TestClient
+from fastapi.responses import PlainTextResponse
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -63,6 +64,62 @@ class AgentApiTests(unittest.TestCase):
             self.assertEqual(client.post("/api/agent/run", data={"instruction": "test", "history": "{}"}).status_code, 400)
             self.assertEqual(client.post("/api/agent/run", data={"instruction": "test"}, files={"image": ("bad.png", b"invalid", "image/png")}).status_code, 400)
             self.assertEqual(client.post("/api/agent/run", data={"instruction": "   "}).status_code, 400)
+
+    def test_invalid_document_keeps_its_ingestion_error_and_allows_retry(self):
+        planner = Planner([])
+        with TestClient(create_app(Tools(), agent_model=planner), base_url="http://localhost", raise_server_exceptions=False) as client:
+            for filename, content, expected in [("old.doc", b"old document", 415), ("broken.docx", b"not a zip", 422),
+                                                 ("empty.txt", b"", 400), ("blank.txt", b"   ", 422)]:
+                with self.subTest(filename=filename), patch.object(planner, "plan") as planned:
+                    response = client.post("/api/agent/run", data={"instruction": "check document"},
+                        files={"document": (filename, content, "application/octet-stream")})
+                    self.assertEqual(response.status_code, expected, response.text)
+                    self.assertIsInstance(response.json()["detail"], str)
+                    planned.assert_not_called()
+            self.assertEqual(client.post("/api/agent/run", data={"instruction": "test"}).status_code, 200)
+            self.assertFalse(client.get("/api/runtime").json()["agent"]["active"])
+
+    def test_nested_history_roles_return_a_validation_message(self):
+        planner = Planner([])
+        with TestClient(create_app(Tools(), agent_model=planner), base_url="http://localhost", raise_server_exceptions=False) as client:
+            for role in ([], {}, None, 1):
+                with self.subTest(role=role), patch.object(planner, "plan") as planned:
+                    response = client.post("/api/agent/run", data={"instruction": "test", "history": json.dumps([{"role": role, "content": "hello"}])})
+                    self.assertEqual(response.status_code, 400, response.text)
+                    planned.assert_not_called()
+
+    def test_malformed_model_plan_fails_cleanly_and_releases_admission(self):
+        planner = Planner([])
+        with TestClient(create_app(Tools(), agent_model=planner), base_url="http://localhost", raise_server_exceptions=False) as client:
+            for plan in (None, [], {"tools": [{}]}, {"tools": [["text_detection"]]}, {"tools": ["model_info", "model_info"]}):
+                with self.subTest(plan=plan), patch.object(planner, "plan", return_value=plan):
+                    response = client.post("/api/agent/run", data={"instruction": "test"})
+                    self.assertEqual(response.status_code, 503, response.text)
+                    self.assertIsInstance(response.json()["detail"], str)
+                    self.assertFalse(client.get("/api/runtime").json()["agent"]["active"])
+            self.assertEqual(client.post("/api/agent/run", data={"instruction": "test"}).status_code, 200)
+
+    def test_non_json_or_broken_tool_keeps_other_tool_results(self):
+        for failure in ("text", "exception", "json-list"):
+            application = create_app(Tools(), agent_model=Planner(["model_info", "course_overview"]))
+            def broken_tool():
+                if failure == "exception":
+                    raise RuntimeError("private diagnostic must not be returned")
+                if failure == "json-list":
+                    return ["unexpected"]
+                return PlainTextResponse("temporarily unavailable", status_code=503)
+            for route in application.routes:
+                if getattr(route, "path", None) == "/api/models":
+                    route.dependant.call = broken_tool
+            with self.subTest(failure=failure), TestClient(application, base_url="http://localhost", raise_server_exceptions=False) as client:
+                response = client.post("/api/agent/run", data={"instruction": "models and course"})
+                self.assertEqual(response.status_code, 200, response.text)
+                calls = response.json()["tool_calls"]
+                self.assertEqual([row["status"] for row in calls], ["failed", "ok"])
+                self.assertIsInstance(calls[0]["result"]["detail"], str)
+                self.assertEqual(calls[1]["http_status"], 200)
+                self.assertNotIn("private diagnostic", response.text)
+                self.assertFalse(client.get("/api/runtime").json()["agent"]["active"])
 
     def test_completed_document_can_be_opened_and_exported(self):
         with TestClient(create_app(Tools(), agent_model=Planner(["document_detection"])), base_url="http://localhost") as client:

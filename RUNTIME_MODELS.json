@@ -78,7 +78,7 @@
   ],
   "local_adapter": "models/llm/adapter",
   "notes": "DEAR and MPU are the advanced detectors. The course model chain and fine-tuned Qwen3.5 Agent are available separately. Clone with Git LFS to restore all bundled assets.",
-  "version": "2026-10-27",
+  "version": "2026-10-31",
   "active_policy": "models/algorithm_policy.json",
   "research_candidates": [
     {

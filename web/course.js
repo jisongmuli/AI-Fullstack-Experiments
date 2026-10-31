@@ -4,6 +4,7 @@
   const percent = value => Number.isFinite(value) ? (100*value).toFixed(2)+'%' : '—';
   const names = {model_info:'模型信息',course_overview:'课程实验',text_detection:'文本检测',image_detection:'图像检测',document_detection:'文档检测',clarity_edit:'英文编辑'};
   let records = null, busy = false, history = [], turns = [];
+  let exampleRequest = null;
   async function get(path, options){const response=await fetch(path, options);const data=await response.json();if(!response.ok)throw Error(typeof data.detail==='string'?data.detail:`请求失败（${response.status}）`);return data}
   async function loadCourse(){
     try{
@@ -18,6 +19,31 @@
     }catch(error){byId('course-stages').textContent='实验记录暂不可用：'+error.message}
   }
   function setCourseProfile(){byId('model-profile').value='course-optimized';byId('model-profile').dispatchEvent(new Event('change'))}
+  async function loadExample(kind){
+    const status=byId('course-example-status');
+    if(state.imageBusy||state.textBusy){status.textContent='检测正在进行，请完成后再载入课程样例。';return}
+    if(exampleRequest)exampleRequest.abort();
+    const request=new AbortController();exampleRequest=request;
+    const selection=state.imageSelectionVersion,text=byId('text-input').value,profile=byId('model-profile').value;
+    const buttons=[byId('course-try-image'),byId('course-try-text')];
+    buttons.forEach(button=>{button.disabled=true});status.textContent='正在载入课程样例…';
+    try{
+      let value;
+      if(kind==='image'){
+        const response=await fetch('/api/course/example/image',{signal:request.signal});
+        if(!response.ok)throw Error('课程样例图片暂不可用，请稍后重试。');
+        value=new File([await response.blob()],'course-test-example.png',{type:'image/png'});
+      }else value=(await get('/api/course/example/text',{signal:request.signal})).text;
+      if(request.signal.aborted||exampleRequest!==request)return;
+      if(state.view!=='course'||state.imageBusy||state.textBusy||state.imageSelectionVersion!==selection||byId('text-input').value!==text||byId('model-profile').value!==profile){
+        status.textContent='输入或检测方案已更新，可重新点击载入样例。';return;
+      }
+      status.textContent='';setCourseProfile();
+      if(kind==='image'){setImage(value);setView('image')}
+      else{byId('text-input').value=value;updateText();setView('text')}
+    }catch(error){if(error.name!=='AbortError'&&exampleRequest===request)status.textContent=error.message}
+    finally{if(exampleRequest===request){exampleRequest=null;buttons.forEach(button=>{button.disabled=false});if(request.signal.aborted)status.textContent=''}}
+  }
   function renderTurns(){
     byId('agent-result').innerHTML=turns.map(turn=>`<article class="agent-turn"><h3>${esc(turn.instruction)}</h3><div class="agent-answer">${esc(turn.answer)}</div><p class="agent-planner">${esc(turn.model)} · 大模型选择：${turn.planner.tools.map(tool=>esc(names[tool]||tool)).join(' → ')||'补充输入'} · ${esc(turn.profile==='course'?'课程优化方案':'增强方案')}</p>${turn.tool_calls.map(call=>`<section class="agent-tool"><h4>${esc(names[call.tool]||call.tool)} · ${call.status==='ok'?'完成':'未完成'}</h4><p>${esc(call.summary)}</p><small>${esc(call.path)} · HTTP ${call.http_status} · ${Math.round(call.duration_ms)} ms</small>${call.result.report_id?`<p><button type="button" class="secondary-button open-document-report" data-report-id="${esc(call.result.report_id)}">打开文档报告</button></p>`:''}${call.tool==='clarity_edit'&&call.result.edited_text?`<p>${esc(call.result.edited_text)}</p>`:''}<details><summary>查看 API 返回</summary><pre class="course-json">${esc(JSON.stringify(call.result,null,2))}</pre></details></section>`).join('')}</article>`).join('');
   }
@@ -25,8 +51,9 @@
   document.addEventListener('DOMContentLoaded',()=>{
     loadCourse();get('/api/agent/status').then(data=>{byId('agent-model-status').textContent=data.available?'Qwen3.5 + LoRA 已准备':'模型尚未准备'}).catch(()=>{byId('agent-model-status').textContent='暂未连接助手服务'});
     byId('course-open-agent').onclick=()=>setView('agent');
-    byId('course-try-image').onclick=async()=>{try{const response=await fetch('/api/course/example/image');if(!response.ok)throw Error('示例图片不可用');const file=new File([await response.blob()],'course-test-example.png',{type:'image/png'});setCourseProfile();setView('image');setImage(file)}catch(error){byId('course-stages').textContent=error.message}};
-    byId('course-try-text').onclick=async()=>{try{const data=await get('/api/course/example/text');setCourseProfile();byId('text-input').value=data.text;updateText();setView('text')}catch(error){byId('course-stages').textContent=error.message}};
+    byId('course-try-image').onclick=()=>loadExample('image');
+    byId('course-try-text').onclick=()=>loadExample('text');
+    window.addEventListener('aigc:view-changed',event=>{if(event.detail.view!=='course'&&exampleRequest)exampleRequest.abort()});
     byId('course-download').onclick=()=>{if(!records)return;const url=URL.createObjectURL(new Blob([JSON.stringify(records,null,2)],{type:'application/json'}));const anchor=document.createElement('a');anchor.href=url;anchor.download='五次实验记录_20261027.json';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
     document.querySelectorAll('[data-agent-prompt]').forEach(button=>{button.onclick=()=>{byId('agent-instruction').value=button.dataset.agentPrompt}});
     byId('agent-clear').onclick=()=>{if(busy)return;history=[];turns=[];byId('agent-form').reset();byId('agent-result').innerHTML='<div class="empty-result"><strong>对话与附件已清空</strong><p>可以开始新的请求。</p></div>'};

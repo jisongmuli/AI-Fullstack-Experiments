@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-27",
+  "version": "2026-10-31",
   "files": [
     {
       "path": "AGENTS.md",
@@ -28,8 +28,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 2634,
-      "sha256": "73822da1c93fc44aa8dd1c8af529a953c116fe9a606b4e970cd79aa6f69f51f9"
+      "bytes": 3016,
+      "sha256": "5865e9462cf7329c3338dca5780eb6edaf5f8f50296f330b67319b3884ecf0a5"
     },
     {
       "path": "README_SOURCE.md",
@@ -39,7 +39,7 @@
     {
       "path": "RUNTIME_MODELS.json",
       "bytes": 3718,
-      "sha256": "992b8e4976553e7359d15f5dfa4e54591721dff393774e491d4417633d31f027"
+      "sha256": "5917fa6b87f80a98e698cfa2934d4eabd5459f50b6a607d201e06e037581dc11"
     },
     {
       "path": "code/audit_confounds.py",
@@ -143,8 +143,13 @@
     },
     {
       "path": "code/models/course_models.py",
-      "bytes": 4911,
-      "sha256": "e7be2330da06ad44f8aa6e046219e39da080b9d983061dd3b39b0663c220fe6d"
+      "bytes": 4987,
+      "sha256": "9c2b64625d46b91ae4640e5ad145ef1168d914798f91e485fe6730fd877c1095"
+    },
+    {
+      "path": "code/models/course_preprocessing.py",
+      "bytes": 192,
+      "sha256": "b815f1769a84f612f2664ab982729e6930fe34a4ea13a1b8bf421793ef427745"
     },
     {
       "path": "code/models/download_highres.py",
@@ -232,6 +237,11 @@
       "sha256": "bce1f75f2bc40dbb6ee218db5fbfe805eb4370e172592e05b6aacb623cd7cb65"
     },
     {
+      "path": "code/models/tests/test_course_preprocessing.py",
+      "bytes": 1750,
+      "sha256": "540d25cadc65eec067d51dd48a562bc366dc4d0a96448a08a4cb02b935225cff"
+    },
+    {
       "path": "code/models/tests/test_evaluate_acceptance.py",
       "bytes": 1647,
       "sha256": "21376553b97b0308cb43a8c783ecc234d3588a468c512c808a0dcfdaa536bc2a"
@@ -298,8 +308,8 @@
     },
     {
       "path": "code/server/app.py",
-      "bytes": 39183,
-      "sha256": "db91c3ea7824947a085a05348581356d2211b85eb28acc6625d6eb1fa86f4692"
+      "bytes": 39375,
+      "sha256": "9637a767af7803455dba14fa2146d638cdd9e1f2b61c5558bc94610486bf6aa6"
     },
     {
       "path": "code/server/course.py",
@@ -308,8 +318,8 @@
     },
     {
       "path": "code/server/course_agent.py",
-      "bytes": 6757,
-      "sha256": "2dde5420d3312f226077a66a049cf20fb03fed0f32f17b0c5f676782d616056c"
+      "bytes": 7211,
+      "sha256": "d34fac73b7a86f1a09ae5b1c40dd8a26fa9537972e8548697437688e7de3071e"
     },
     {
       "path": "code/server/document_jobs.py",
@@ -368,8 +378,8 @@
     },
     {
       "path": "code/server/tests/test_course_agent.py",
-      "bytes": 6665,
-      "sha256": "f11c0c00f9476fac663cd8f4d0e64e426a5561bfe5e660c4aa6ab928ebedf6a8"
+      "bytes": 10900,
+      "sha256": "404e12b3ce1195749a5f71ac763260772ccd596f3b1592fb7b43f1a3ce6bfb33"
     },
     {
       "path": "code/server/tests/test_document_api.py",
@@ -515,6 +525,11 @@
       "path": "docs/普通图片与12GB显存验证.md",
       "bytes": 8461,
       "sha256": "0e2d01002c266ed48918bbd672b56f0390b1dd921cb6c900d8f82e7baad43333"
+    },
+    {
+      "path": "docs/稳定性修复与回归_20261031.md",
+      "bytes": 3949,
+      "sha256": "b983382e1e8bae72ed48c0915ca25ebd3642f75a7b5dd177dd6f222a308b08ec"
     },
     {
       "path": "docs/系统功能与稳定性更新_20261025.md",
@@ -1103,8 +1118,8 @@
     },
     {
       "path": "scripts/prepare_course_2026.py",
-      "bytes": 8048,
-      "sha256": "ed6ca7bff02e9d84cbcae2e7f4ba905dca5247a4c3b82cb773c2ef12c2418681"
+      "bytes": 8054,
+      "sha256": "a95e03ee1f200c510e18bc788a14340b3c36103e6bb07e4dd54071488e97c877"
     },
     {
       "path": "scripts/profile_model_information.py",
@@ -1122,14 +1137,19 @@
       "sha256": "a67f7940a50a5ad29c7d249fbf0fa647e1ecf7690ec5ce1ef6ce87c4c5c525ce"
     },
     {
+      "path": "scripts/record_stability_20261031.py",
+      "bytes": 2421,
+      "sha256": "f57502d5ae04ceedabf280a1737651fb23366f3de3a76b945366898f50c1b9ce"
+    },
+    {
       "path": "scripts/record_upgrade_verification.py",
       "bytes": 2883,
       "sha256": "6f91fa3056f3cb8ad3c0b3fa2decaf002abfa4b0beeedca214946d8b8621208a"
     },
     {
       "path": "scripts/refresh_release_manifest.py",
-      "bytes": 4744,
-      "sha256": "3f3a3cf5586f2fa50fed75a7620d4d6d91c5bd955e21d9faa85232f44f2661ca"
+      "bytes": 5010,
+      "sha256": "45bbd517ade0b10c18d43a878d94837241717c25d2e5994bb0957b166af17972"
     },
     {
       "path": "scripts/server-control.ps1",
@@ -1180,6 +1200,11 @@
       "path": "scripts/verify_image_resolutions.py",
       "bytes": 2824,
       "sha256": "5c8e9eba1877593971ee0caea845ea141504f76ada1d1e495e8968219897859e"
+    },
+    {
+      "path": "scripts/verify_stability_20261031.py",
+      "bytes": 5195,
+      "sha256": "c102e9bcd303bba994c6e1b2c4e8316bbf2e83c7c4629de329e15719cc91cc6f"
     },
     {
       "path": "scripts/write_course_model_cards.py",
@@ -1238,8 +1263,8 @@
     },
     {
       "path": "web/course.js",
-      "bytes": 7475,
-      "sha256": "dc0182d1183c764cb756a8e97fb7e0d93e2e6e1f7012e3149093acadc3b3cd14"
+      "bytes": 8974,
+      "sha256": "500705653642f48e2e7d372327b1287ef0887784999ab7823d9bbec405c9998c"
     },
     {
       "path": "web/document.css",
@@ -1253,8 +1278,8 @@
     },
     {
       "path": "web/index.html",
-      "bytes": 17609,
-      "sha256": "6d176d16963770304c87c5780fb250aa61e3fb1e8947ce5f63ca809c128e3122"
+      "bytes": 17696,
+      "sha256": "559f26986ad9d6fdac31f14430c4295ca4a8824af9533f4b424b3e9edbe88dc4"
     },
     {
       "path": "web/preview.css",

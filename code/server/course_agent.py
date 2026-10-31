@@ -42,8 +42,10 @@ class CourseAgent:
             except Exception as exc:
                 raise AgentError("本地助手模型未完成工具选择，请检查模型文件后重试。") from exc
             allowed = {"model_info", "course_overview", "text_detection", "image_detection", "document_detection", "clarity_edit"}
-            tools = plan.get("tools")
-            if not isinstance(tools, list) or len(tools) > 2 or len(set(tools)) != len(tools) or any(tool not in allowed for tool in tools):
+            tools = plan.get("tools") if isinstance(plan, dict) else None
+            if (not isinstance(tools, list) or len(tools) > 2
+                    or any(not isinstance(tool, str) or tool not in allowed for tool in tools)
+                    or len(set(tools)) != len(tools)):
                 raise AgentError("助手返回了无效的工具计划，请重试。")
             needs = {"text_detection": "text", "clarity_edit": "text", "image_detection": "image", "document_detection": "document"}
             if any(tool in needs and not available[needs[tool]] for tool in tools):
@@ -51,7 +53,7 @@ class CourseAgent:
             calls = []
             # ASGITransport issues real requests through the same routing,
             # decoding, limits and report store as the browser's API calls.
-            async with httpx.AsyncClient(transport=httpx.ASGITransport(app=application), base_url="http://localhost", timeout=180) as client:
+            async with httpx.AsyncClient(transport=httpx.ASGITransport(app=application, raise_app_exceptions=False), base_url="http://localhost", timeout=180) as client:
                 for tool in tools:
                     started = time.perf_counter()
                     prefix = "/api/course" if profile == "course" else "/api"
@@ -70,12 +72,19 @@ class CourseAgent:
                     else:
                         path = "/api/text/edit"
                         response = await client.post(path, json={"text": text})
-                    result = response.json()
-                    if tool == "document_detection" and response.is_success:
+                    try:
+                        result = response.json()
+                    except ValueError:
+                        result = None
+                    valid = isinstance(result, dict)
+                    if not valid:
+                        result = {"detail": "工具接口未返回有效结果，请稍后重试。"}
+                    success = response.is_success and valid
+                    if tool == "document_detection" and success:
                         result = {key: result.get(key) for key in ("report_id", "filename", "created_at", "expires_at", "document_summary", "model_versions")}
-                    summary = summarize_result(tool, result, response.is_success)
+                    summary = summarize_result(tool, result, success)
                     calls.append({"tool": tool, "path": path, "http_status": response.status_code,
-                                  "status": "ok" if response.is_success else "failed", "duration_ms": round((time.perf_counter()-started)*1000, 2),
+                                  "status": "ok" if success else "failed", "duration_ms": round((time.perf_counter()-started)*1000, 2),
                                   "summary": summary, "result": result})
             if not calls:
                 answer, source = "请在正文框提供待分析文本，或上传图片、文档，并说明希望完成的操作。", "missing_input"
