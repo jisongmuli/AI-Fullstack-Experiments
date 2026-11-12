@@ -26,6 +26,8 @@ logs/stability-*.log
 # Repeated report rendering outputs; source figures and QA records are retained.
 reports/**/work/render-*/
 reports/**/work/template-page-*.png
+reports/项目答辩/work/*.log
+reports/项目答辩/work/layout-audit*.json
 
 Thumbs.db
 Desktop.ini
