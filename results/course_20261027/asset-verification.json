@@ -1,0 +1,4306 @@
+{
+  "status": "passed",
+  "images": 400,
+  "texts": 4000,
+  "text_groups": 2000,
+  "course_files_verified": 855,
+  "official_agent_assets_verified": 12,
+  "image_pixel_hash_overlap": 0,
+  "text_hash_overlap": 0,
+  "text_group_overlap": 0,
+  "assets": [
+    {
+      "path": "data/course_20261027/images.json",
+      "bytes": 237163,
+      "sha256": "b9bbac07c324537f1a45fada989b87d55b8365ae01f9008c94d5c34d3cb44cb1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/002e05c958a0451e7e50.png",
+      "bytes": 9590,
+      "sha256": "ce24b1d8f7d47bdf4d1e708a37c3093a6246c8abdfe2cca5ccc72b3bf344e8df"
+    },
+    {
+      "path": "data/course_20261027/processed/images/00e1f8f2f3a63576a056.png",
+      "bytes": 9725,
+      "sha256": "fd48d12fc6fea274b66ae9b9501128dac600947eb053a3cc623b8a7e692de177"
+    },
+    {
+      "path": "data/course_20261027/processed/images/01911fef7a0ece296d38.png",
+      "bytes": 9842,
+      "sha256": "aea9d0884c97dc03fa6fa38f7b44f672c876e039497dba4e8c4b013a4b8e713a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/02436656524f738a44d2.png",
+      "bytes": 8905,
+      "sha256": "5651fbc5c370f2dadb4fac6ca38239c18b1a1e54ca180b9ae82f0b76568a42f2"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0334c19c0372d42ec75e.png",
+      "bytes": 8341,
+      "sha256": "2c9f8a012d168c766ed78e8abc4461dfe67111208a02f014d966cee97b065a6f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0465f85739ca5fe5936c.png",
+      "bytes": 9730,
+      "sha256": "01e8184b70b3fd1bad88fbf8fde71586fc0594d8aaf14eacd36aacb6def62227"
+    },
+    {
+      "path": "data/course_20261027/processed/images/04c69ca80b32bac840d9.png",
+      "bytes": 9441,
+      "sha256": "c0c3fc142318e86a8f4d7fc9baff5f8e06bfe93a338cb886b581a821bff50037"
+    },
+    {
+      "path": "data/course_20261027/processed/images/04f803a3b32401259b39.png",
+      "bytes": 8220,
+      "sha256": "b7d260e575c24cf6a04e08e9e5457b5c558f305e18cf01d7af4ad6d847250ed8"
+    },
+    {
+      "path": "data/course_20261027/processed/images/065b4a7dbca97af01f28.png",
+      "bytes": 9320,
+      "sha256": "c904ab1404ee818db05cad7a9e8c02d97d8de8170bf9d3df9821db0b1bb94239"
+    },
+    {
+      "path": "data/course_20261027/processed/images/074735a7a337ad052632.png",
+      "bytes": 7473,
+      "sha256": "1ae6bfd41b36befca6e868ad8b92785681c991e88ce032d230c873603d0ad1fd"
+    },
+    {
+      "path": "data/course_20261027/processed/images/088f4afbf5ea6d8f3c65.png",
+      "bytes": 9539,
+      "sha256": "3e8ed7bef3c53bfa03a679b7944c832feb46a0f7926e00572a50cb40d32f1b65"
+    },
+    {
+      "path": "data/course_20261027/processed/images/08d8e2297939f7b063e0.png",
+      "bytes": 9462,
+      "sha256": "993df909a86815cc346ebe57b32d3e9115f42c768e808c224ba1d9121f310c7d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/093fedce106f6acb95d9.png",
+      "bytes": 9501,
+      "sha256": "6f698718c6f0ba304830f929b1d7fff4ab93c5aa671a660223108ff2c958cbd1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/094b763e4975615d2e4a.png",
+      "bytes": 8276,
+      "sha256": "0e42c2b08a8ef43b52d3ac4caa0c9268fcb01e1cc7b9ddb849de471c597a801e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/09d7c7eba91fee68fe54.png",
+      "bytes": 9712,
+      "sha256": "e764369d4516a9afd121e8b48fb246f5383096c81c657ab59146db36498270f0"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0a1ac11f395e1615c367.png",
+      "bytes": 10801,
+      "sha256": "d66abd39c56d21c9c847b9ec3dd67699060d44767556db20d3bdd8ab288c7b04"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0ac8ec7f7c5847d0afdd.png",
+      "bytes": 10425,
+      "sha256": "b568670a29adfe3b4c60dbdad4f771f7314d7c0b2680a06016585b05da441faa"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0ad11ea5e237b07d2083.png",
+      "bytes": 9211,
+      "sha256": "a0f599a0f7c96481fbf5796f2b2b29ce5ed6f93a5da65fabd39c0b75015a8b29"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0b721624bf6c12ad2320.png",
+      "bytes": 10000,
+      "sha256": "2091c4695e73a17e2cdd536dd12363122262e4ddd5628199adba4aa38a53fb86"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0b9e7215b382caab0b45.png",
+      "bytes": 8445,
+      "sha256": "528722bf77dc7aee5bd4a8e71454e57213733bff9aae29966cbe7134ec62d968"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0b9e849deb58f7b09a46.png",
+      "bytes": 6909,
+      "sha256": "4ee5ec37d86b9940b2044a7da29b81f9a424f25ea5da2d7f607ead65938e198d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0ebb4438b7c74a7e334d.png",
+      "bytes": 9679,
+      "sha256": "b0474885be594abf65fe34866fa56570c5289813d353259d435882796a774bff"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0ecc47c1c5826e09f514.png",
+      "bytes": 8061,
+      "sha256": "53e4f60e0d92e23f31bcbcd5f0c8e61eb09103765cf1313cf5d659bd131c66ce"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0ee15d0c5cdc0cb7cb52.png",
+      "bytes": 9935,
+      "sha256": "a96da77b86fa0e8c4695f90bc454287e16812658a4411dd065e5732ff59cadc6"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0f8596e1400dc19d905e.png",
+      "bytes": 9765,
+      "sha256": "efd7e6d854afdd67b6986997c0e7a70d4e8913776e798b77367b169f01a2516e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/0fa085df8d723f42655b.png",
+      "bytes": 7976,
+      "sha256": "8921b3343c4d68b8b6ecdc9d819d702c24d08fd2414216235e4dd4d9a11a1cce"
+    },
+    {
+      "path": "data/course_20261027/processed/images/100c3ac0b174df8dc735.png",
+      "bytes": 9488,
+      "sha256": "d07dd0e4e09f9adfd140ff01a52017a127418d7d15257fd0f0d8e86da1198462"
+    },
+    {
+      "path": "data/course_20261027/processed/images/10135550a54f8db3a043.png",
+      "bytes": 9311,
+      "sha256": "197d34296c588296e5bf2709bfc339b4b9b96bb7bc2c132a76f2a76892b71106"
+    },
+    {
+      "path": "data/course_20261027/processed/images/117d409e364ce28dcfe0.png",
+      "bytes": 9676,
+      "sha256": "29017042e9439db7fb12ff0f75e385a16d673d2a1c791542b8c22679d54cf5c9"
+    },
+    {
+      "path": "data/course_20261027/processed/images/13351efffee72a058280.png",
+      "bytes": 9250,
+      "sha256": "2a05712efafdb7e5641e10710b0c13c39e8071ff16988dde7249f96556af2a64"
+    },
+    {
+      "path": "data/course_20261027/processed/images/13d86e7862b165183eb9.png",
+      "bytes": 7430,
+      "sha256": "72d59137e1f110e005dfe316194033f52f7a4c4ed6aa470f3dcd316be2461c23"
+    },
+    {
+      "path": "data/course_20261027/processed/images/15a84cd5433fd4103a9e.png",
+      "bytes": 9444,
+      "sha256": "cc479e964330b98d58a95dfdb8cdfff31c30de64689d1d42f9a7a690ada2ca24"
+    },
+    {
+      "path": "data/course_20261027/processed/images/15ab22e32e3e56c27e85.png",
+      "bytes": 7421,
+      "sha256": "101b2d7187cf0af929fd40efbe4c3addb183a5c71626fe44fbc8e01c7b13d8c8"
+    },
+    {
+      "path": "data/course_20261027/processed/images/15b05fc6907cfec2d1de.png",
+      "bytes": 6330,
+      "sha256": "a57f36e13210ec04a65ea278c8ad18f414b10d46380b76af1534906f2b92c54a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/163eec0127e435cd2f26.png",
+      "bytes": 7658,
+      "sha256": "d1ab1a92bbff7a111a21fbe6270db6d8b8f676cf65b1ffb45581a674c5a49993"
+    },
+    {
+      "path": "data/course_20261027/processed/images/17a6ca833a9e64bd1dea.png",
+      "bytes": 7753,
+      "sha256": "c14fae3dcf2c9aefbe7344351ec57398dfaeee2bc3ae8d45a804ba3ca336af68"
+    },
+    {
+      "path": "data/course_20261027/processed/images/17c473b0393febdb13d4.png",
+      "bytes": 8888,
+      "sha256": "d129a52ac644b27f654bcc2afd0a3edad47c858249c8593491001c3921a6a710"
+    },
+    {
+      "path": "data/course_20261027/processed/images/17f4a39f3d5280d18bae.png",
+      "bytes": 6316,
+      "sha256": "724b56eef413098bc511c41a614bbdbb72d0df4864c1984e2bc1a51ab4760667"
+    },
+    {
+      "path": "data/course_20261027/processed/images/1a2963df14952a08f03d.png",
+      "bytes": 9535,
+      "sha256": "0969ab04db6e8cc2dfdb25e4082d84853ea43554d59c199da2d6a0aa6803b78f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/1a4484c65cd4acc94f37.png",
+      "bytes": 10001,
+      "sha256": "8f40c8c21aa03e76ac46d6f73b248052ec37fe6aa51d009323c14e980073410e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/1bd73081ec0117da00ce.png",
+      "bytes": 8211,
+      "sha256": "f0696046f96744e024aa7ad9d4e232cddb49bbee63eb0114ef51936385aae161"
+    },
+    {
+      "path": "data/course_20261027/processed/images/1bfb0a6507556596ccbe.png",
+      "bytes": 5883,
+      "sha256": "f07220d45dbb5cf32a645204fb6a30ffef0332b759520c28a202dcd64e13ec4c"
+    },
+    {
+      "path": "data/course_20261027/processed/images/1cc895ca999f90b9450c.png",
+      "bytes": 7735,
+      "sha256": "b156ef931ee8304db512d7b65c3d24ccac2df006ec70bc9944c6e8c8bc1b0ff6"
+    },
+    {
+      "path": "data/course_20261027/processed/images/1d214897dfb28820b687.png",
+      "bytes": 10103,
+      "sha256": "030cfd796e81915ae1f5b0922d4b1f7576b5049ca1c84ac7b6959cf7f30aa5be"
+    },
+    {
+      "path": "data/course_20261027/processed/images/20c7dcfe3d2c46711182.png",
+      "bytes": 9871,
+      "sha256": "9babeee6110676ecced93b2e9ab1f6d4e195afa96452ba0009385b74ea7839e6"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2118241503260c7fca94.png",
+      "bytes": 9643,
+      "sha256": "4a50ce5f398c85f5dfd1931cdac258a763dabcf284f1828b443f8ac5a427784f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/220f80ad29bcf46f69a2.png",
+      "bytes": 7992,
+      "sha256": "d018056429a1ad85c8be3a01dc96847bc85234eda2586c93eacb9e95e8baedaa"
+    },
+    {
+      "path": "data/course_20261027/processed/images/229c8c29625f2bb928eb.png",
+      "bytes": 8865,
+      "sha256": "dd2c6141d3d94aa25ed989cdff75ef2de3c980b46c804ade80ac25f11b317003"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2358a9135e7372850db3.png",
+      "bytes": 9138,
+      "sha256": "8d41d687b3b56a12833a3775b70b3c760c307627b1148dc936949663e128967e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/24d479257ac2db6f28f6.png",
+      "bytes": 8717,
+      "sha256": "9d18402deff66489150694971cdc354886d8d741648f2d208473df2a49a91f02"
+    },
+    {
+      "path": "data/course_20261027/processed/images/250300a16db2a5b84d9e.png",
+      "bytes": 10428,
+      "sha256": "65a792c4db1b4b28ef3edda085bffe475c06aa7e847ef43e18fd2af277467d47"
+    },
+    {
+      "path": "data/course_20261027/processed/images/25223ae216a4974ee0f5.png",
+      "bytes": 7975,
+      "sha256": "1bbae62efebe93ffc97d33b8d8f141b03929f58bff3ca631e078a4f4e55687d4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2530f039bc5e34d3eccf.png",
+      "bytes": 8521,
+      "sha256": "bde8efdfbb5639b141d3fac6a152ee2907a5eea3363ac19e0138a324ffefdbed"
+    },
+    {
+      "path": "data/course_20261027/processed/images/253532a5012a7869812c.png",
+      "bytes": 8833,
+      "sha256": "0866282ff3185fc9d02be72bda26a6eb009d5b989bd12c3d939fdf8a541505e1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/266145aa09f300bd64a2.png",
+      "bytes": 9332,
+      "sha256": "8abb1ea809bae5b58e13178a649b38ef3f3341b95f503e201db4784c5baee6d4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/266a96793679440bea56.png",
+      "bytes": 8708,
+      "sha256": "05f88594caf7e368c51cf57489894b25aada4e05dea71a63e5e7c07888ee79eb"
+    },
+    {
+      "path": "data/course_20261027/processed/images/26c3e26035a3c0d4e364.png",
+      "bytes": 9906,
+      "sha256": "57bd40026a48020f892951ac813cae91ee9743455c5be9a63fb7b249d6022a59"
+    },
+    {
+      "path": "data/course_20261027/processed/images/288c1db3d6db816ad13a.png",
+      "bytes": 9935,
+      "sha256": "0be2996e7045b09d9ccb278323d179366fdde321465d0142dbaa037c108b9e2c"
+    },
+    {
+      "path": "data/course_20261027/processed/images/296a38d57acec7a364c2.png",
+      "bytes": 8669,
+      "sha256": "b08994c69debc227fa68235e895957aca9d17f1262028a26c952b2d29ac435c8"
+    },
+    {
+      "path": "data/course_20261027/processed/images/29d8467c1746cdec7063.png",
+      "bytes": 8266,
+      "sha256": "753c435530966220384df91f1e260b5e22e635795b924ea00b3ca74dffd1fb27"
+    },
+    {
+      "path": "data/course_20261027/processed/images/29e90285f5193148e3f4.png",
+      "bytes": 9961,
+      "sha256": "6a74b39fd4f4a8a8f4f1d01db2295f124efd0efb05821d6913b07de0a0e30cbf"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2a3545898d41ee9fd499.png",
+      "bytes": 7970,
+      "sha256": "d0d1d452b052c60b05f2da65018c5dc08769b4f596858a9c65e122af1c4eacbd"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2b2a029293dd8404dd41.png",
+      "bytes": 7893,
+      "sha256": "f44a88b9716d7e07c6a379e3040a32df612dd5008f6f400e7ed4c82f5f8a6510"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2b89d862f427677cec27.png",
+      "bytes": 8630,
+      "sha256": "3346f124956e68c44fe6fea4680889204a744a52dedcd61bac19f3847f6f3123"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2ba876688a3389c225d3.png",
+      "bytes": 9001,
+      "sha256": "50e3a556f0f72a809bc9b9b7ca4b1c94ffdd634686e92aa32bd98dafedc71d38"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2bac0f2d275a62a1926d.png",
+      "bytes": 8237,
+      "sha256": "1b4045186104d308639aeb474ec535cf390d912f14fa3e1c9569c09621c18461"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2bacb7ad8604f73573c6.png",
+      "bytes": 9462,
+      "sha256": "b0de462e73881345224db1c7971c14ac6a0ecc216c5eb908448ed1285c9e4ebd"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2bcb37bbe97ac0df8f86.png",
+      "bytes": 10275,
+      "sha256": "dbd1fcea99789347c76016e9c8e4716b905e37988e199070e20d40048786db78"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2c9152be9b5471b18946.png",
+      "bytes": 9268,
+      "sha256": "b448f4da696193a0f0629a7c0612d410caad595d7cfdb69f058c50897a8a56c4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2cb6914534ed7b4cc8be.png",
+      "bytes": 8827,
+      "sha256": "80b7d7b8747830f7fd47c66b3a12c02438dfa070e88fd70a1a8ea0b277d0cbd9"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2e1b532680629be7983d.png",
+      "bytes": 6472,
+      "sha256": "189a24551865dfec5826e5215934ac3ff42cc069de7c2f693630e34e86494886"
+    },
+    {
+      "path": "data/course_20261027/processed/images/2fea29bb6e31c9c82d93.png",
+      "bytes": 9458,
+      "sha256": "d9db137bec4d1487185608fe6e6c96313d75e713b32e026a4b72960e800c5df2"
+    },
+    {
+      "path": "data/course_20261027/processed/images/30b53ee0b631dc51d180.png",
+      "bytes": 7798,
+      "sha256": "103890881a7cdb23df9588544b58e856abb32dd5aff0386cebd7dcff403e787d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/30e166b8031984ecd079.png",
+      "bytes": 9721,
+      "sha256": "c19204251397b6bb8f01083669f811de32327ac251ee0c75e6c6427b82e54cc4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/31f214e95d0dc1901526.png",
+      "bytes": 6672,
+      "sha256": "68bb66d00c21a251b0c3b823cfc5e86265d762f5a31dbe377406ac7383675c30"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3255545e34ca6f2e947e.png",
+      "bytes": 9259,
+      "sha256": "31b92a46d52bd9439df0ff07a922467e361f855f7cf93b0f74c90f866d4ed075"
+    },
+    {
+      "path": "data/course_20261027/processed/images/32ac22ffeb66f820e026.png",
+      "bytes": 10361,
+      "sha256": "997b6393025a22815369b0e65a8d7bf03a8f519ce9273ca5f915055e6fea80ac"
+    },
+    {
+      "path": "data/course_20261027/processed/images/32cbaeaecbe208600c54.png",
+      "bytes": 8062,
+      "sha256": "3e99bf2c85c0ab6545ac5d75a10bd2eef2f7b560ed4d0b70c10bc81f4a61e5be"
+    },
+    {
+      "path": "data/course_20261027/processed/images/331d141fb18e5a78bb23.png",
+      "bytes": 6206,
+      "sha256": "17df9910d6079ce90a0f343bd8853d8f78bb673e3d42ccd3f2bc2ab69ea00fb9"
+    },
+    {
+      "path": "data/course_20261027/processed/images/341084b9005062a3a276.png",
+      "bytes": 9350,
+      "sha256": "88388ed85e204f5edaa16ba70f32ddd80ac0007d8ad9fc8c18cd1af47545f641"
+    },
+    {
+      "path": "data/course_20261027/processed/images/345b0ddaf0b7949f0e79.png",
+      "bytes": 8161,
+      "sha256": "f39c426b410c654095209e4c2d6d9e5d50f3e5316e82fe5f5d505b0763a6c575"
+    },
+    {
+      "path": "data/course_20261027/processed/images/358d9d485e7be3fa3d02.png",
+      "bytes": 9118,
+      "sha256": "0471c17c7c341c26ece8f70215f64d829eb4deacaf1c63b3e744f5d3865e4d6e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/35a3b7beca4b40277653.png",
+      "bytes": 9267,
+      "sha256": "dac0a13c27562de64fe4c63291f5f8639716bb68a2cde9c278665fa7a949fce7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/35b04aca3a7b6ccf86c5.png",
+      "bytes": 10518,
+      "sha256": "30d28366b884a5b2b3498b8ef7c065313bcf9f57ef1bedca0d2f6cbf08e46311"
+    },
+    {
+      "path": "data/course_20261027/processed/images/366360bb17545bbdda03.png",
+      "bytes": 8658,
+      "sha256": "5fb87ff8027464602cb62534f1b7b4fd7bf9c5afb60f84dd2445093645c889e1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/36f9809c333b5edd5b9e.png",
+      "bytes": 9764,
+      "sha256": "c0291db26e88425be3993c05a78c8de24e854ce9c2049021b6b19d10778ba67b"
+    },
+    {
+      "path": "data/course_20261027/processed/images/377c39981f96e5b35417.png",
+      "bytes": 9807,
+      "sha256": "7c5dc3e47781d9ef48347a87819a5a3ff103a8eeb9aba6b22f393c0b88697f9d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/377c4353b7e304496ada.png",
+      "bytes": 9785,
+      "sha256": "959b2ef48ef123180b00ec2557ba5735808007ae14f7a857e1f3abec79b9b210"
+    },
+    {
+      "path": "data/course_20261027/processed/images/383df6e58d77aa568855.png",
+      "bytes": 8925,
+      "sha256": "7d8295e463c51ffdd915013fd29971d218dd30f759d1503c06c1b8b2afb3c401"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3848535ebe4b8a8a15f8.png",
+      "bytes": 7275,
+      "sha256": "9f89a11fb2784910832ce5013544ff9490c88750284055b9129ba63ca3c128f1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3878eccea207b1a37182.png",
+      "bytes": 8675,
+      "sha256": "fddba92c4762a38a98bd824bdc64423e84a77a9615a08cec7b132954a5765166"
+    },
+    {
+      "path": "data/course_20261027/processed/images/38f169fcf2663d4d0932.png",
+      "bytes": 6592,
+      "sha256": "bfbb3a7a9f16abe6409b0ff4f97456cbb94e1cab7939cbcc144120d8727982d7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/390c5882944d1964023b.png",
+      "bytes": 5048,
+      "sha256": "120ea51ccd91a55d6d20669381ab744a758ce1f13a91474be2104c3fd86c7d7f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/394aaeb49b911a880f09.png",
+      "bytes": 5159,
+      "sha256": "448c44866ea636c6dd6df2858c213774e48d56f8e60c417fb90978e2751cb1b3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3a9d2484883591e9bb8e.png",
+      "bytes": 9115,
+      "sha256": "609db7cb182479b0a891a0541811a8d052ee18ea3c21ed780c8581af2e811e96"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3af6d7fa434750bd3504.png",
+      "bytes": 9423,
+      "sha256": "b67a574702a2bb520ef1d7ba483e00d31d2319429f2293a3f28d91a1f2828ac1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3b0920c1294061505966.png",
+      "bytes": 6900,
+      "sha256": "5c57ded4d45c9f3e260a7a6b348143ba833eda54aadb98b615a32039bb519b9e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3bb0f53993b6d0fcdbef.png",
+      "bytes": 6994,
+      "sha256": "e6a9dcb3563c72884aabefe20b941839a7025e396cd47c3eea718fd1dfa87d69"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3c10a2c1f23c004cb7f3.png",
+      "bytes": 8777,
+      "sha256": "968c9f853a83dd6d1b918bdd64c2c58b889e8e06892d3befcf5b38346801c515"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3cb272d79496ee6969a7.png",
+      "bytes": 7552,
+      "sha256": "9abbf280778c7632b70d11830b750d50be792a79e74b68f1344d7b1e45b268a4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3d6811411cbde91fdadd.png",
+      "bytes": 7661,
+      "sha256": "7de8e0aef73ababa7276472516cb238fee76849a617df5e0a2b83adea52eaa22"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3ddf04ea8574674e4dc9.png",
+      "bytes": 9273,
+      "sha256": "223947131d5c04a4986bbe4cccbcc3ce1e44e4ecb967b4a9353b47f89c75e12e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3de15c21deb18bb24e28.png",
+      "bytes": 7783,
+      "sha256": "bde1f658bab43531c37beef6b12f553bd7c473dcb948886fda0e2dcf369a8149"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3e2d9dc864e90f75fcfa.png",
+      "bytes": 8624,
+      "sha256": "3ff19060d2d2adeccfd45342dc851b314900f25fb791e26f206dca1da979b3b3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/3ffb038ad9ed0f580742.png",
+      "bytes": 6099,
+      "sha256": "b18edd04c7f6d400178dec807404b60a59fba9a649b7e8a88acfede2641fa112"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4044cc6a7c3cbef9aa56.png",
+      "bytes": 9805,
+      "sha256": "4290df1142c737aa94c4dcbd3ec7e7ea576652f222d01966bda7cbd7327b27eb"
+    },
+    {
+      "path": "data/course_20261027/processed/images/417dd1fc4c01264a1dfd.png",
+      "bytes": 8089,
+      "sha256": "9659afd9d088c28482dcdf8337904a6738932bc27fc8e6543c9eeb46a0b61c96"
+    },
+    {
+      "path": "data/course_20261027/processed/images/41f6a2c4dc10b2a5d1fe.png",
+      "bytes": 8924,
+      "sha256": "7ff4f3a3a10ca8955d0dac862fb5896421e7399693db38ddb9b4af6997cc3e70"
+    },
+    {
+      "path": "data/course_20261027/processed/images/42ea517f63082b97b5f0.png",
+      "bytes": 3899,
+      "sha256": "750a389fef09f155afe86d14231bd75592bc9dd22671515d65209bae25b2948d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4515b3d145c92d744c67.png",
+      "bytes": 8226,
+      "sha256": "eac51d5d74ac301190c9395a7e81467214d0e462d1c0acb71e3f41fe901ab4b8"
+    },
+    {
+      "path": "data/course_20261027/processed/images/454ccf8a3e9ea19d7dff.png",
+      "bytes": 9007,
+      "sha256": "61150cfe09be9d351783e5197b55f312adc8b203bf24c0a8c050dbd2ce41c8ec"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4624b988abb45cddd0a5.png",
+      "bytes": 6737,
+      "sha256": "960f89a5559501b750bc50b9dcc5cdb43f23ff67801086890016b3864bb1f1e8"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4694bd3a23d3a94c2ce7.png",
+      "bytes": 6644,
+      "sha256": "f1334354eaa62f57fdb69e36c009e60a8c90beb63a7817fad7c77e6a2e484d2a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/480174b7738f81551fc3.png",
+      "bytes": 8205,
+      "sha256": "041db415c87622de44065aec9346d7f2333c3a0ebf1f48e7adc8d728a6b59f8e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4864bd034aba476131e0.png",
+      "bytes": 8955,
+      "sha256": "2a7711997634e5262d9729a38b286a979487d5e47308d45b20ca4d084b94419d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/48abe1aa68bf887e637d.png",
+      "bytes": 8593,
+      "sha256": "c9f1c359642c32a0ef56ba98d8188f33791349a6d7cd542c56cbea47b23c0c40"
+    },
+    {
+      "path": "data/course_20261027/processed/images/49951221df07f5469793.png",
+      "bytes": 6800,
+      "sha256": "cd59f36f75eaa365128f2b0c8ad460109181eb84f0a6a43a10a1455b1c11fd43"
+    },
+    {
+      "path": "data/course_20261027/processed/images/49afae56f36b56a1d534.png",
+      "bytes": 9833,
+      "sha256": "b7f92d726fc3f236bc375c33af62d8d3423e32bcd5e0be28935f8a39eb752522"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4b0c08aaefaa93a3ce73.png",
+      "bytes": 8629,
+      "sha256": "16614b0dcb9e9ae18f84df9ce054a4a3cc97cd866a28fc4ab1098eba2ac4deb5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4b3271e5adeb03c2cb05.png",
+      "bytes": 8360,
+      "sha256": "ffb8d12778552ec5fa7a63303653631a505b6f3b1d468eed3052cfe43bfb5226"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4b4f326332b8f8bf4665.png",
+      "bytes": 9858,
+      "sha256": "d21f5f0153514c403615459aef2a2287aa69471cb9cea0feffe251768cf16a1b"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4bbd11b881ba01974123.png",
+      "bytes": 9510,
+      "sha256": "d71bc72465b1a2062fa0e1c56ac5ff48125ccb0a267b488b358b6cd45fa70a06"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4c8243f12d5e210638ae.png",
+      "bytes": 9810,
+      "sha256": "0be8bb5ed659ce59c5b6a51b98aea5f21ba39ce57a4ce6f057a9e6a1e5b518c4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4cb74bda0daa38913ddf.png",
+      "bytes": 9165,
+      "sha256": "62963eae632e90caa5a4f2d3b32211822fe3a13bff57f895493326b172816dcd"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4cfa97fab411134bf523.png",
+      "bytes": 10032,
+      "sha256": "b518cd474ee0492e6ff538102ce56bac74f461c960c06c4fa8a6bbffc14acf92"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4da7c7aea8a47cc20c1d.png",
+      "bytes": 8757,
+      "sha256": "ad2bd43297e034f6c7f541febde2891f91a1516ab0b52c79cbd91f5b8076f3df"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4e048fad42308fd9b689.png",
+      "bytes": 10171,
+      "sha256": "4ecdd54b73dd6a99c5186798c5472de8f77411f9695649c3d24e0b2ecc601ab8"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4e0561de14a21cdd5a79.png",
+      "bytes": 9742,
+      "sha256": "532f49a897acb972b1c8f6b511499ace7cde73c64bfcef3abd7b31ad7219715f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4ee6a69ebb9363ab611f.png",
+      "bytes": 9899,
+      "sha256": "637348a9853cc0e7ce775f4c3ef534db75a8790f6d81c43d4e2e7ea10af91c8b"
+    },
+    {
+      "path": "data/course_20261027/processed/images/4ef13d9b938f212044b6.png",
+      "bytes": 9530,
+      "sha256": "ae5470be00f7636a638e57d24f79c895bacbe0d3457dc8bd3b8523adbaf8137a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/51c736a42c79e7d84981.png",
+      "bytes": 9966,
+      "sha256": "5668a27ce12308255f3dc18d546732c0b77f5b7339fdb1490ac745b5b9780325"
+    },
+    {
+      "path": "data/course_20261027/processed/images/51c7643ed9f4024ad659.png",
+      "bytes": 8731,
+      "sha256": "e0c104a0466dcf7be45506edb25a29d67013739cc74d4dd4c83059a586ed03e7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/51cc8285766e46f06156.png",
+      "bytes": 11145,
+      "sha256": "084f2b6b314f87f7cad8ee4bdae68ac65e6c77b9e21d44713114c27294878723"
+    },
+    {
+      "path": "data/course_20261027/processed/images/521aaf24d2a9005749df.png",
+      "bytes": 10372,
+      "sha256": "e4d57781653219b00b07c8caef505978641f9560ce546318bf9770d67781cc15"
+    },
+    {
+      "path": "data/course_20261027/processed/images/523c3018a4e8df32c25a.png",
+      "bytes": 7842,
+      "sha256": "dacf03a4c8a357de42e870efc8b3b1180b39154150e5832d523b7b014b4345f0"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5240609a3b3d56e1c635.png",
+      "bytes": 9765,
+      "sha256": "0c4907ad947920c8099bec777ab97ebee231f0ed210384c755c14d953e42a307"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5247026969ee7d322b93.png",
+      "bytes": 9858,
+      "sha256": "dc7e4264c2d4c4d269f2e2c832ec1407050fc44207d6c51e9d01c396f10122e7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/52a9370372ef834d1583.png",
+      "bytes": 6403,
+      "sha256": "eb236aed4386e098ddce219f4a161450cc13c673ac544f9c4e220e749f7a03c5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/53217f51afdb791829e5.png",
+      "bytes": 8175,
+      "sha256": "db8acde6223d05f026bc46cf635fbaa359a91dafb5ba676352a245a0219febb7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/53570a0dd4389935fff3.png",
+      "bytes": 9093,
+      "sha256": "0be51f9ba311784287cb622a53bc6ddedf3ec42b28885493775c0e73a7904520"
+    },
+    {
+      "path": "data/course_20261027/processed/images/556fa2628e96ccb33159.png",
+      "bytes": 9764,
+      "sha256": "f6733894be2130684d9ff71036ff2ffd41fd2fc6282ce9891ba61cbf3f9c2d20"
+    },
+    {
+      "path": "data/course_20261027/processed/images/55a94ba972938947747d.png",
+      "bytes": 7561,
+      "sha256": "9557a045a087683af2a445ba19533971699361fe6d81174c86e8ccdbdb1c40f5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/55f61e4045eb511daf52.png",
+      "bytes": 9003,
+      "sha256": "ff786863c10adba8c768441e7c8dbdd65fbeb5dc8e2c34c0369312e27197f6b1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5707e58ba7b0397b4b56.png",
+      "bytes": 9607,
+      "sha256": "aed96c6bfe235cf3b4653ae50d3088249bcf74b3014eedca6e33fcdfcc654dda"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5711e7330dd4454420a3.png",
+      "bytes": 9609,
+      "sha256": "a74cdf6412bc887157630ccccdd049fad23eb833e68d601213785ef77f84f24a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5723cd8289464bd5d856.png",
+      "bytes": 8847,
+      "sha256": "f3043a603a6760e5c6a07d5b08c3de5c5e1dea4d2d9966364ce4c002b824f427"
+    },
+    {
+      "path": "data/course_20261027/processed/images/57b91452ab335c17f5bc.png",
+      "bytes": 8655,
+      "sha256": "848d7ca7c8b548a633101d8ead668ba6035a9874e95ed3ee8fdf0175d5c51057"
+    },
+    {
+      "path": "data/course_20261027/processed/images/584d566a77a6887bddff.png",
+      "bytes": 3352,
+      "sha256": "74db8666e0dc7081b163d484b9299f46c6041d4904d171f9ece0b8088137130e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5a098c0e766922d38ac8.png",
+      "bytes": 8585,
+      "sha256": "e14b62c0b42ba507d011fde1085e0367ef8e178d6c3de3595f658fd687e705c7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5a11992423ec0e027737.png",
+      "bytes": 8809,
+      "sha256": "1f03142ed004c7c566326df08993f2a1370ca412ec6741ace190156222202525"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5a142591ecdf23cbcdd9.png",
+      "bytes": 9795,
+      "sha256": "c8273abf66271cce85a88c9fad4862dee1326140c8daff56bba902d5e9c0aaf1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5a1e8a3c97f82b967634.png",
+      "bytes": 6095,
+      "sha256": "a86acfdf4567d5dbe45f3f4f496ed0c4edf7ffbbf2f69e6cc9da8d0dd08100bf"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5a28c6428c43f8981f22.png",
+      "bytes": 9655,
+      "sha256": "05a901e4ba0317eeb389076e014a143468de54b873c1d1867abbf29ceb9b4009"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5ae4c6a87a06f876eee2.png",
+      "bytes": 6308,
+      "sha256": "c9392d3bb62027814bc29a785df0065bf696348b89613ad21ccfdb4daa159187"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5cc019f4eea360ada273.png",
+      "bytes": 10204,
+      "sha256": "ada249a66ffe50fe4d034af4543aacf6a42164cad23c814f22336a0bcce6cae1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5d30a3d02bc13cd053a7.png",
+      "bytes": 8503,
+      "sha256": "faf160a9ce00e245cf608bd6fd8f8d5f12935ca18518c201513dad1b9bae195b"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5d477b1334998628dc2d.png",
+      "bytes": 8988,
+      "sha256": "4627561fba6edb1f85daf5066158fa30cd15183cb176fcb395c23f410a367941"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5e07b3ff4ffc58f9ed5f.png",
+      "bytes": 9557,
+      "sha256": "72e63ffc4b37261de5deeaa6b2638487010a0d24ab9dc1de2d32ed25c289a11e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5e36a18b666a50adac27.png",
+      "bytes": 8434,
+      "sha256": "6ebcf0bc5d68fb958db41517de74935b8002a6f4ae98d12030fae6e1b71c1929"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5e91c9435c660e4b161d.png",
+      "bytes": 9246,
+      "sha256": "5fff1da940a155d35c30731aa9b242f4c0c8e514c82a17a6952d3f86d9fad230"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5fa233893f5c49ad181b.png",
+      "bytes": 8714,
+      "sha256": "58e7e0d87cabdc0b30641c0a28bf75a80511aebc9c9eeb36afaa2d80f2ed7026"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5fae87b365eb4ce48996.png",
+      "bytes": 9872,
+      "sha256": "0432ba1a8a52ad4be4ce2190d5b27fcb2be97e234885ada2f4c1c69ce103fbe2"
+    },
+    {
+      "path": "data/course_20261027/processed/images/5ff31e4e5743610d4fac.png",
+      "bytes": 8132,
+      "sha256": "f3652f7d2398e1daaa79cbf589a3fb03567ec42f8b5c82030b0ff485f91fc3a3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/6049489efa8b80bb965f.png",
+      "bytes": 5243,
+      "sha256": "9232a52977ec4c0d72b7417546480758294c0efb914bd0372ab3b1cf8828ca49"
+    },
+    {
+      "path": "data/course_20261027/processed/images/60704ce351ff48a8b1b9.png",
+      "bytes": 6468,
+      "sha256": "c5a4ee8d3e6f4ad792523ca3c64a80a84979b53c5ee7b9cce708ecdbdf060c49"
+    },
+    {
+      "path": "data/course_20261027/processed/images/612ae0060df99b5ee2c1.png",
+      "bytes": 6531,
+      "sha256": "06a8731085d1367178968a05206f99e00485af7439086195acb1dbd346acc344"
+    },
+    {
+      "path": "data/course_20261027/processed/images/61b130027dc8ebfa0e9b.png",
+      "bytes": 6139,
+      "sha256": "13bd37498d7c431536301190a756e8c4cd1bd8bbb19659b41e3df851a4c6bbf5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/631b5b08b2767a106410.png",
+      "bytes": 7127,
+      "sha256": "01f9696a0f96e2d8c95cb34e7186440a76d249da44b9d0be17579b8700e8701a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/63297bc736dc9e71b57e.png",
+      "bytes": 8598,
+      "sha256": "8672998e55f25c1a8d174a8acac9df33065522c000685c708acf7ca6dba0bacc"
+    },
+    {
+      "path": "data/course_20261027/processed/images/64bee780e98e9a9cf1f8.png",
+      "bytes": 6817,
+      "sha256": "8bd05d4af061be61282963987e8e09563400351bbdb3968d54fbecbf7620ffe4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/651afb16f97b98112f1f.png",
+      "bytes": 9205,
+      "sha256": "722983006a9e1d1ef46eba9ca48c77abab569dbbcb9fa7f98378960099764cdf"
+    },
+    {
+      "path": "data/course_20261027/processed/images/655ae18eeed78801737e.png",
+      "bytes": 5663,
+      "sha256": "98e7180336e65b985a7894eccc328657f962670d3ce8e4579f9882989a4aec3f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/67bea8a12d2c74e8267d.png",
+      "bytes": 9384,
+      "sha256": "da7527da72496925e4271a21ca81442bf6e74a215b3b116a808aad1eaa7cfe9b"
+    },
+    {
+      "path": "data/course_20261027/processed/images/67dc42e8beb5c0be0d00.png",
+      "bytes": 9293,
+      "sha256": "9ed1e1a26ada946fb595d97db48fffe21d5b800ec24d1aabb4b6bf036e22d621"
+    },
+    {
+      "path": "data/course_20261027/processed/images/683f8400449474531a5a.png",
+      "bytes": 9457,
+      "sha256": "fd4db7b460624bc4368bdb7efaecc06d473a7342c8db35662dd490db8b9f20cb"
+    },
+    {
+      "path": "data/course_20261027/processed/images/68617de4e20dfa401848.png",
+      "bytes": 6775,
+      "sha256": "1d1757d1636b7e38d8978b7864eba2f49e8e76bc099d73e6e24c71d35dcd896f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/6986ce9e92224d9f0ce5.png",
+      "bytes": 9242,
+      "sha256": "a6893828ddeabd8a988360b1d2af22670900889de241d37a73eecc01030de9dc"
+    },
+    {
+      "path": "data/course_20261027/processed/images/69ba0b84239face0dff5.png",
+      "bytes": 2661,
+      "sha256": "c922646216436bc7a7f4873bb670d669f245d1f681234f3a20323a6c6ea740c5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/69ec7045683fd60d80ad.png",
+      "bytes": 10250,
+      "sha256": "037f7ed66a48089ff03514cb4ac5a9624f9028645c12592a360d9c51e6cf762c"
+    },
+    {
+      "path": "data/course_20261027/processed/images/6a6dd4d76b9ffaef9ebc.png",
+      "bytes": 6945,
+      "sha256": "6e857ce6b02fb08e782ed9ee193ed282ef3960a37b416f9f7f0b6aa1e0f4109a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/6a92f0249e89a6cc888e.png",
+      "bytes": 9051,
+      "sha256": "1d424b29e03197a244f48a83a6e27b4020211acc62db061de336158c86a330e2"
+    },
+    {
+      "path": "data/course_20261027/processed/images/6b6c84eeb95a585775ed.png",
+      "bytes": 6477,
+      "sha256": "332c75e2c713e9bfa182ba325da8f2146d7a4f51d43d5bf69dea6ebb711051f8"
+    },
+    {
+      "path": "data/course_20261027/processed/images/6c85a373029e81e1c689.png",
+      "bytes": 7663,
+      "sha256": "da38b55d87fa7b6709422a0719485b8cbe5ce1425e373c031baede6e8b91b32a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/6d1798374d7c0cade3ba.png",
+      "bytes": 3779,
+      "sha256": "0d6f1c5e3a74ccdb6f4ee8da1df55f9157913c072f34bf7101c9d34825b583db"
+    },
+    {
+      "path": "data/course_20261027/processed/images/6d3ce9dc0cd759479f54.png",
+      "bytes": 4523,
+      "sha256": "f61384cb2f61fdc62caa860c35a137dab958a209ac6e0b2ed6973e97b102c561"
+    },
+    {
+      "path": "data/course_20261027/processed/images/6e5c1ac865af767d3950.png",
+      "bytes": 9788,
+      "sha256": "7182602211bc60b1a5a723a1071cc59bf4ef97036290f147069fb736d90bb2ee"
+    },
+    {
+      "path": "data/course_20261027/processed/images/6ef266cfcfcbbc7c2529.png",
+      "bytes": 7940,
+      "sha256": "1d9a74f473520994cda53b8aef9a334d39dd1a01cb5c42887d01bdef21aa94c7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/6f84a0c3e98b3614884e.png",
+      "bytes": 9090,
+      "sha256": "b275aedf7e633d28ec888afd21e245399fda71bee7cda9e997922a243f7ab57e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/70552f2d8142d6465f70.png",
+      "bytes": 8570,
+      "sha256": "c1700ce39c2dbb39b120cc5fc2a7dcb0b597ad5d476d0901c2b95403516e1a39"
+    },
+    {
+      "path": "data/course_20261027/processed/images/70c27e1eefeb7155a78b.png",
+      "bytes": 6232,
+      "sha256": "322e128533c6239ded4f88700f933bcff16e7f2f1887d59c8a046c24754502e3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/71ea64f79b750ace7169.png",
+      "bytes": 7731,
+      "sha256": "7d6697945bf1b0934893328ce64d8ce6b5bc309f638209498650ea88a961dc7d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7344fe24b15e93854aa6.png",
+      "bytes": 9997,
+      "sha256": "24649bcaad84db8436ecc865d49b7b78a7d0688667f50e6f711b5d68d9193797"
+    },
+    {
+      "path": "data/course_20261027/processed/images/73cb6cbecbb5f382e9b9.png",
+      "bytes": 7293,
+      "sha256": "c140489c54be7b9e7d282d67607dc6bb17877b86459b8fc9a79a8fd5b6538ea4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/73e7d38b9303461713b0.png",
+      "bytes": 8809,
+      "sha256": "6861bd02cb3042e8271f471ba3976c914ac5b3883f659bfb72601481f2a95f17"
+    },
+    {
+      "path": "data/course_20261027/processed/images/73f78807b757693709ec.png",
+      "bytes": 5445,
+      "sha256": "f05a35d82c88b7119775901bd0e593602a08e36a4f87e81bc7cd7d4141f2d04f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/745ea8f83cbc3dd4ed06.png",
+      "bytes": 9371,
+      "sha256": "395851aebbebcacd7bfedcfaf0b5588172201bf5eff721ecf035917edc12a310"
+    },
+    {
+      "path": "data/course_20261027/processed/images/74dcc6efe6613f3cd98c.png",
+      "bytes": 10657,
+      "sha256": "e285c5f4f1c0d5e23d13a4abf52b90ee33c0374cf08a581f4e687d8ebac7a7f4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/755a4a8d629514934c4c.png",
+      "bytes": 8855,
+      "sha256": "3d3687d18c3a17c2dd511dc56c01b27572fe838b7049011cd4e5b67bf153de7b"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7708450add244f3b0841.png",
+      "bytes": 9403,
+      "sha256": "1194edf2bceff98b0fe7bc92eb856c97d8ea3431d8cfc0b43d0d28137fdb209a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/78b11fd60ef5f64f0394.png",
+      "bytes": 9742,
+      "sha256": "86b96e9722151c13f844bf64e74d959128d32d97904e96915fc2d494515ec57a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/797178158f7bf7327824.png",
+      "bytes": 7879,
+      "sha256": "2fd17dce006d1e99a87b3913ec4a768aa0d842bf022985d398668cefe8df793c"
+    },
+    {
+      "path": "data/course_20261027/processed/images/79be560e4955e497b2bf.png",
+      "bytes": 7149,
+      "sha256": "81f2c8b7ddf7c3eb99347a20a0b11f101e2bc6f2b2f84dcd34092ab9b8281d45"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7a7db55f243389ad2a22.png",
+      "bytes": 7505,
+      "sha256": "1169237892273f057ce148118ba3c235175add954feb0f2c9a5cf8c0aa7daeba"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7b5363ba55b1a1e745c2.png",
+      "bytes": 8579,
+      "sha256": "70e1bda3a9fb3b3f302744db8fd98bd314ca5dc7c5a1c3ec12de6c5a2ccedfe6"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7cf95c81b23a3bbed632.png",
+      "bytes": 9236,
+      "sha256": "3706ddb6c19eaba6962a682d64c81f8d0ff26ce7d9e727781a05bf311919df01"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7d040781a4dc16e1d95c.png",
+      "bytes": 7705,
+      "sha256": "45ec63ce0069c97bc5c6351ceed41a6a085c812de69c6bfc60887d94d26ebfce"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7d2dea3d92ef1e899778.png",
+      "bytes": 8960,
+      "sha256": "412d92ec9b766ba3b65547cfc9d9186385a83052407089c62f75243d4cb37ea0"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7d82b692582589b655dd.png",
+      "bytes": 9308,
+      "sha256": "63dd7682a18035f67c3f5c61b4007de1aad68f761f1555175b8f6c0b0961ba90"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7d8a41467656f3161c7c.png",
+      "bytes": 8355,
+      "sha256": "2886f79b18616be48d32a5e065af6072e61a29f8124c232a43f0c6499ab34b74"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7e653c296cf436fe6960.png",
+      "bytes": 7753,
+      "sha256": "bf263489b97bee21d1c23d570986972adcdc2c2c8d29fb8ec7ce0b565bee2c8a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7f871d1d3981d1c9fa62.png",
+      "bytes": 10170,
+      "sha256": "800156151ace4d572ed73608cd24caf55359d3926c0d6604cf99600c3c41b634"
+    },
+    {
+      "path": "data/course_20261027/processed/images/7fd4dd75a7303c2a0855.png",
+      "bytes": 8941,
+      "sha256": "7480e4c90087a9ff1be43dc2faae5f7af12a93eb059b3eef45322064d10bdb3e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/80e08b72f25021991af1.png",
+      "bytes": 7353,
+      "sha256": "b0384e5eb44009a5be17ea26e47d57501d2df1aa6365d3d972358e9ac3b15eeb"
+    },
+    {
+      "path": "data/course_20261027/processed/images/81f3556f74e55f2c06dd.png",
+      "bytes": 8578,
+      "sha256": "2a12868307d24f28dbeb7e49b1716cdea98eaa76588ddace67ee2a4ecbe8b977"
+    },
+    {
+      "path": "data/course_20261027/processed/images/824e1fbd83c3f7a7277f.png",
+      "bytes": 6974,
+      "sha256": "df76b104fa03368d0d1b6368dec32f939ea5b7395871b85c4269d12b70d92712"
+    },
+    {
+      "path": "data/course_20261027/processed/images/824f4a7fb31497cb28cb.png",
+      "bytes": 9820,
+      "sha256": "496a3fcedfee6c90e3dc5dbe706b679ea8418b28f74dcea73158fd87e67b722e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/84833fd4862833395f41.png",
+      "bytes": 9216,
+      "sha256": "26993ba139855f10bbb83e2fc3e43ef47ac4cd15ee783e90250e885100a6836a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/84a471e753e29527635c.png",
+      "bytes": 9175,
+      "sha256": "e11f2192788b4b004daeb1e978e71dcd6f11cc9cb752ff080354a25f1afdfa0f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8541d7612dd49f52b469.png",
+      "bytes": 9844,
+      "sha256": "1fda1b3a1903f0b0030a6a3aa841f799c1a4c264448ed4435c201c95a58b5ef6"
+    },
+    {
+      "path": "data/course_20261027/processed/images/85a321743659128f7540.png",
+      "bytes": 8710,
+      "sha256": "79537f46a2870deceb2f772b90f69ad32d903e656a291d3c9718553a5c1a2322"
+    },
+    {
+      "path": "data/course_20261027/processed/images/85f59c7dda94226b38b4.png",
+      "bytes": 9221,
+      "sha256": "70881b36ad07a0fae46386c9a06db900d534a79d433316a6377952a018cd7a1e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/87dc689fd226da26a736.png",
+      "bytes": 7767,
+      "sha256": "8e64bab2c0b405bae276c1d921105def7b76b118f6ef1ae9bb735e0cd44c30e7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/88f899b8e9b94ec16a77.png",
+      "bytes": 8695,
+      "sha256": "97b9a858e6143b3b54873e6e066769d76e15d9f409ee36b65ad897df48214750"
+    },
+    {
+      "path": "data/course_20261027/processed/images/895bc4d719d11f3a6ee3.png",
+      "bytes": 8481,
+      "sha256": "1f2c6384864a41ebe9f8de2829462db6e2f8a6212f7dbff58b99b234966ad195"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8980f27fd28a27723be5.png",
+      "bytes": 8949,
+      "sha256": "cb7220d003d96136980119e4bbe1654f710c405a978ba45dcd4b3f2262bcd8e7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8a27373215ceea627bc2.png",
+      "bytes": 8778,
+      "sha256": "f2872ddda6c644a361f30745cfcc3fd64c0224c7360bda80a6f8afeb0a2c87fb"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8b2a0d1054cd196ac97f.png",
+      "bytes": 8479,
+      "sha256": "763794e94c7210ed3408adbc9272455ec2e7eb2b0d9e0b693b06cd90c738cce4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8b3771e504b1374d62cc.png",
+      "bytes": 7491,
+      "sha256": "e29fe44884472cd7d3a790120eb552ea12a7e4fe95f54bde99723dc1a1d0f04e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8bcf34147266e59bdfbe.png",
+      "bytes": 7091,
+      "sha256": "b730960bf64f08a02dde3e651e948f40ef11aa6a0724cfb5d92fa6dc3924e01e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8c8dc7c20053133b558a.png",
+      "bytes": 10409,
+      "sha256": "7dfb5c2c8f099edb44ed0f6e1d31967c22bf8330ce26af792ad05df26353acaf"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8c9f87e725f982031467.png",
+      "bytes": 10149,
+      "sha256": "dc87839a174b4455d1fdf68e0102fcc969e6c286157fe3947785251e6d65e544"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8cfdd5922bff70500fa4.png",
+      "bytes": 8536,
+      "sha256": "fedf846cbad9eac26a21f392b874f04da496f647aa5a0cec981ab50f08e7123c"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8d4f76847dd1308b4f49.png",
+      "bytes": 9018,
+      "sha256": "ae0b9a0cf39b8fb29b387a914b66eb64759d32a0bee7d19ec33cd3cd5b7546d5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8d65e0e25d1ec06fe145.png",
+      "bytes": 9577,
+      "sha256": "ed377a661f3ea4d2fe32d20bb5151d8024db42e2c3650a53d5879136bb2eb299"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8e00547ca260f59bd8b2.png",
+      "bytes": 7744,
+      "sha256": "151bee91a160699d4c49cb1c23d4238e76cc12d8c3a853172997bea49f2bea3c"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8e0e0d50fb6e3b3e4e8e.png",
+      "bytes": 6787,
+      "sha256": "3c6fcf22c8d0ae357f58576f44fd87eec63b7a50a2a597eafe121041d563e413"
+    },
+    {
+      "path": "data/course_20261027/processed/images/8ea9822e585eb48b593a.png",
+      "bytes": 8390,
+      "sha256": "64b58fec49682ab877d1441425f259bfa5e7e115dfd4161bb11134a4e31f96cf"
+    },
+    {
+      "path": "data/course_20261027/processed/images/901f0a6efc38d29abfdb.png",
+      "bytes": 8510,
+      "sha256": "9062157616b4322c76e4bbd4134c282a9d6950140af1032e5f0867e349b59f08"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9034183fc39d1389a3ba.png",
+      "bytes": 8978,
+      "sha256": "3b3b153747d6746ec3c505bb1534d1544f3b7b974417a1acffe8e6ddf412f954"
+    },
+    {
+      "path": "data/course_20261027/processed/images/921a41b24cd04019bbcf.png",
+      "bytes": 10815,
+      "sha256": "5cebded2bf7797a2fbb6e7344758391950fa5e105cf1ad7a981ce31ea2aea236"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9258010274b5b35c605a.png",
+      "bytes": 7546,
+      "sha256": "a432953fe102e26f62d2eec3cd0d0098c30923155d8edad3f67cb26f4d0ec04e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9320a404c042f06112c9.png",
+      "bytes": 7248,
+      "sha256": "a5eaac1c05020dcf15bdb1404a7003dd366d7fcca9dadbce87e8d4931c3fe5ef"
+    },
+    {
+      "path": "data/course_20261027/processed/images/93db91e7c3f181691749.png",
+      "bytes": 9989,
+      "sha256": "aa4558953a934669920cca43fb3c979f28493cd1a5c40072cb2f5b604e57c4e4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/93f36e3a0844f381d91d.png",
+      "bytes": 7387,
+      "sha256": "7449bd179eaca8b18948bfc731659c7278420b54bca46e5b489e5a8a4de174e1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/959375740b178e66fdc1.png",
+      "bytes": 8023,
+      "sha256": "923dba21a1e2716d3ea4f24d3988fedd019b346ef6b7f0ade31e636df82d7e5f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/96a53ae54bd45a726088.png",
+      "bytes": 7417,
+      "sha256": "40a0f7811152e8575f1f84cf18d2133de8614beb07b403dd73471657287e024f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9705549dda8a275a0c71.png",
+      "bytes": 9885,
+      "sha256": "0488bfb3bd7b740b79e5996fd5294210560be26625b0b68786b17eb4a4331743"
+    },
+    {
+      "path": "data/course_20261027/processed/images/977c1b7ce1b61e25803c.png",
+      "bytes": 7500,
+      "sha256": "b8c60d86bb388d35e77d9a2c5be5e3f407f0104fd5d390f6bb6a0defb8fe6d7e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/98244b57c7e8744acc7c.png",
+      "bytes": 8460,
+      "sha256": "bc08e3366779853df5ee08d056b94822a2855a7731090a927242bf7628a7d07b"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9922c0202960f28dec6e.png",
+      "bytes": 9444,
+      "sha256": "252791347952872f665a2f6f8f4213314591c789d3fb38b8bd246d5bd227f118"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9996fcdee829e0ab8432.png",
+      "bytes": 9685,
+      "sha256": "b47472eaf3341acf83023edcb7b856b0592bf868834e57c7b181994c1f2ca4b5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/99c3976e5e7c5645c72f.png",
+      "bytes": 7423,
+      "sha256": "3d420822bfcba627082aa82cb62cbf044a7b7028e8e882cee0e3adb26b37bb7f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9a56ea4218579a985bd6.png",
+      "bytes": 9048,
+      "sha256": "20bb9458f49e684161c5c723f45627b4a5a074e0c4efa1b2e8a823ea75d75cf0"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9bc7588d982f20bc030b.png",
+      "bytes": 9002,
+      "sha256": "0ebe0be226969d4c0cb3c6547b00932e153907f88e14b0fea40b068661490080"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9c6f318f29f4a9315352.png",
+      "bytes": 8971,
+      "sha256": "7cf7bbc379f2e4939babb704e237a07c544369c923a9ad10d0e8f352510bde74"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9d837ec91f326d2afeaa.png",
+      "bytes": 9140,
+      "sha256": "c49f4db29cbf2ff11508ef431ce859c4c05deebb82792d92193d2579bdab66b3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9eab5ba52c415cfbc4d0.png",
+      "bytes": 9393,
+      "sha256": "ebf5845b57fdc9597654cb310b55380abd37c8382f52d8f8b6458a99127e79ea"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9ee6e283d3c12778cc09.png",
+      "bytes": 5715,
+      "sha256": "b86f637bd810e09d174f05a7cb32a042e0077413b7d697f51bfd7c629063f3a1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/9f413e657209f6ebb8a1.png",
+      "bytes": 8210,
+      "sha256": "b3ca52584ed702e9c3dd72a48feeab34f83c605c18497b48230587931b638052"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a1224f3eadc28109624a.png",
+      "bytes": 10705,
+      "sha256": "5cbe298801c020396927493ea02ca80a95c8bcde20278d913ddb5a677f601a41"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a165d1567b3f80446b50.png",
+      "bytes": 8762,
+      "sha256": "c4949ad12196662c8139a3bd565492eb7bd2ae622fd96d1257ed79785c6e7872"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a173f9ee74eee03d5a9e.png",
+      "bytes": 10166,
+      "sha256": "5113596f74d65a564f905f6cf8c50f7a0a1671c85937b7ac52fa0a8b99bcf89e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a2346d7afa77672549ba.png",
+      "bytes": 8310,
+      "sha256": "e54b17e657c843f496aed9531c9849d1c064c8c73d2ecc023ee3cae73a35adb8"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a26b5573cf7e8d73d1db.png",
+      "bytes": 9180,
+      "sha256": "4825447b8013590cf4c859a91d20ed195e2cab725b4c28080186dfcd9e123da8"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a361b838f2bd7ef66a17.png",
+      "bytes": 8321,
+      "sha256": "b825055728c5ff6243ff915c77f4cd7e32438135337cb02242398c83f96c0628"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a42e4bd92d3299f84371.png",
+      "bytes": 5413,
+      "sha256": "d5c1b221b043280fbb341990e6cad6946b24fa354855f0c2e5af63c475f79527"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a4bf5f7abe7f5152908c.png",
+      "bytes": 10024,
+      "sha256": "8e079f69af90f9f3aee9028ee6c5049451ae9a6bee8dbbe8fc57127eed8554ce"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a4ced9e9ac8b0f523bfd.png",
+      "bytes": 10789,
+      "sha256": "2ee2e2cafe4ab53011fc83d1af81866459d55339c70a6b74bfe893ce772ccf60"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a4e4a225a43f5c1ffd8a.png",
+      "bytes": 7414,
+      "sha256": "42b05d918ff1f4e054f51cd14157ab0db58787e6e8e2db8eec7783f0adce0fb7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a533c2c9754ff699c398.png",
+      "bytes": 7605,
+      "sha256": "8edb9d54202e1937a27a181c3011a302f800c8de5c160bd699ec8d709bf3277c"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a59d43ea1166cb1200cc.png",
+      "bytes": 8322,
+      "sha256": "ee3138a60fc7785b65f1558753e6c513753b348d4447effc628ff264287ff236"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a5df35b3429d61d2ccda.png",
+      "bytes": 9495,
+      "sha256": "7a9b7b5bc6d0d68af159ace7c2ca3f35d9b45ee85c8dfcfdc203ce09e1a6e7a1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a6e2429bfd1eb8b16fa6.png",
+      "bytes": 8277,
+      "sha256": "fe345824eba100e04992889b16954d94199af0d8718b8eabc50dd0ff1388ccdf"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a6fa269f98c2e0c67411.png",
+      "bytes": 8836,
+      "sha256": "8e06a6b1755d1748e8a5e3bd9db352fb393b49929c3357f3f1552ae12f15d225"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a702bc6818c9f1ecd6bd.png",
+      "bytes": 10154,
+      "sha256": "a53a823c7017e01990a63a73ab256bd2298f8d67c7878a299251af0345167e7c"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a7403e261c0669f1c072.png",
+      "bytes": 8654,
+      "sha256": "1626bbe14ad17ddeaa5174317b4e36dd25eb8982725f950bef7bdf272e0a827d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a749e22f4d8533ba267d.png",
+      "bytes": 9617,
+      "sha256": "02d9f05e615c89f302355525d2fa77e59ec10450060e49604be76bb3737c5e04"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a83909603dde57660712.png",
+      "bytes": 9097,
+      "sha256": "2def9403bad8ea143d282db172858606783bb2d7b12f145586079f3e5871b4aa"
+    },
+    {
+      "path": "data/course_20261027/processed/images/a92428e34e40e371126e.png",
+      "bytes": 9781,
+      "sha256": "7cc430b915947d27d33d3019a5027417c86ed9d65ddcb76465145885b12db333"
+    },
+    {
+      "path": "data/course_20261027/processed/images/aa880dd2b39de5ce10ed.png",
+      "bytes": 9744,
+      "sha256": "b69bd01566fa468eeae60cdd5e122d7f1ee1de13924482d5508d5a1ebbc66bc7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/aa97067bce12c8d6cb50.png",
+      "bytes": 8864,
+      "sha256": "973dd4f7e8e9e0d0dfb8bc5ba264a1a552d0e2551091fd8bd2c7cd03b4240395"
+    },
+    {
+      "path": "data/course_20261027/processed/images/aadbd702a712c7cf68b1.png",
+      "bytes": 7202,
+      "sha256": "2df9e8d127a1c075cbf914b55c368d1773c80d69236311281cebc34dd3a4fc54"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ab92a9d0419380fb8f09.png",
+      "bytes": 9213,
+      "sha256": "b4b1f5b536cec8274854320d05514eb84a266da42ef72f2451faf9e743621ea0"
+    },
+    {
+      "path": "data/course_20261027/processed/images/acb8500c8c287f3d4d3f.png",
+      "bytes": 8291,
+      "sha256": "2460767093e184a24213ca22409fefbbb4fb07146e52a2a7d999ba439784433d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ad20bd3a541daf7a77ba.png",
+      "bytes": 7657,
+      "sha256": "c687259b4ca747e4d251383664f21c739df1a68aeb02c5326d7273445c112bfc"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ad33e6a0a392435d1637.png",
+      "bytes": 9787,
+      "sha256": "0dd628d3376185f1b2a8e92b99427eac5def6b6457a91768d1574ed969f68f0c"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ad7259fd780e2d9ea203.png",
+      "bytes": 9387,
+      "sha256": "ad432ebc525e45c5a4fc16d033bb475ddaca5443ed5be693312ad730cf88dbdd"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ae981d1285cf4122399a.png",
+      "bytes": 5034,
+      "sha256": "6ecc835e0c69b1f3396e16378ffc21e773b296353b5c318f34ce1f40ef441de4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/aed4c2bc7332ed97efb3.png",
+      "bytes": 8620,
+      "sha256": "3964afc2c5a765da435b13094123de853a2c85f562f7ccdd7e700989e87c19c1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/b060e6c690993da682e2.png",
+      "bytes": 10378,
+      "sha256": "24ffb61b3e29e97ae7e751f0aad187845d1efb98826c115bdbc61193e3497c9d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/b0a273bd00c187c0b14f.png",
+      "bytes": 7834,
+      "sha256": "d57d6253ffca8a0b9a2bdf78be1546f59c268be1765e84b4e522053fd327fc0e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/b1852256143464d5de8b.png",
+      "bytes": 9309,
+      "sha256": "3faf0f38b5716fa6d6f6358393e725a83ae8dc486b8a054c8a13ed1d4c5c83e5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/b35786b59c73fd339248.png",
+      "bytes": 9286,
+      "sha256": "858126bc906c8a9c2cdba3cae18a06b443aa176477b53adbe5534e67856c2944"
+    },
+    {
+      "path": "data/course_20261027/processed/images/b400a68f9f27f714f487.png",
+      "bytes": 4598,
+      "sha256": "9e5465b92d07d2b2939d24dc3a07a35c22f175872cbcbcdb8a11920a81876c36"
+    },
+    {
+      "path": "data/course_20261027/processed/images/b404e2f61b7a0167d54d.png",
+      "bytes": 9505,
+      "sha256": "d2208cef0ad178e735b6b43fa1fef108c1cc94f3e97346cfd57ab7b45d48eb83"
+    },
+    {
+      "path": "data/course_20261027/processed/images/b47c1aae5a00b5b9c440.png",
+      "bytes": 9773,
+      "sha256": "1b7e87dd669b53630a1158e1ea89ad00021f6f1b9c0a593086b1bbcd5e3a06b1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/b55dd897474ba9fc68ce.png",
+      "bytes": 10337,
+      "sha256": "6a6c6af918444f074b5d9d621f430c63193e0cc4d5611f8514a3c60998e16266"
+    },
+    {
+      "path": "data/course_20261027/processed/images/b939c6e5472d6dbb8e2d.png",
+      "bytes": 10609,
+      "sha256": "7677e4eb531abc04c2e68637f3b1b92f9dcf7519aefca0abfd3d26bc98804e12"
+    },
+    {
+      "path": "data/course_20261027/processed/images/b98500293d399d4164c0.png",
+      "bytes": 9422,
+      "sha256": "dad4b6506605305570e920fbbeb03734235b519b8f06f44e897a43c9edd20618"
+    },
+    {
+      "path": "data/course_20261027/processed/images/b9f8847fd0e40fdad263.png",
+      "bytes": 8440,
+      "sha256": "aed80d0df9e44461a4a565981633cbf9ace13cfe0e007fcc474be1c3d394cf9f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ba500b286b2ac2d2a233.png",
+      "bytes": 7917,
+      "sha256": "96279f76a3b039bc68b4e0d2d057226c1d16af247b520315c0df9ce9c73c3040"
+    },
+    {
+      "path": "data/course_20261027/processed/images/bad51f9ea005f6f30868.png",
+      "bytes": 10603,
+      "sha256": "a158c8e2251ca77040eb463d38b52f809ec127c0030753179a372bf4e18a31f9"
+    },
+    {
+      "path": "data/course_20261027/processed/images/bb76007a0015c712566c.png",
+      "bytes": 8968,
+      "sha256": "48c4c82d58d9100c39a2c28bbbfb56ffc6ef6de1bc726215365385d40d953219"
+    },
+    {
+      "path": "data/course_20261027/processed/images/bd3255e00f1d6817b10b.png",
+      "bytes": 6369,
+      "sha256": "3ffb32b5412802648ea76de26a5da8014261bf68fd8290ee4a5ecbc0d17d8e47"
+    },
+    {
+      "path": "data/course_20261027/processed/images/bf27e9792841bf4cf506.png",
+      "bytes": 8883,
+      "sha256": "117b2f618c531a5d8881d5df0ae4e57302107671f35a3cf878be89554bb25c11"
+    },
+    {
+      "path": "data/course_20261027/processed/images/bf78bba8fdc2f3689cd2.png",
+      "bytes": 91,
+      "sha256": "9c3fa26ef2eec6bae60e386221fd6121632cc8e224a339365bb7da9030a6945d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c09e29547807c40adecf.png",
+      "bytes": 9120,
+      "sha256": "03c8a653ffccb89ce22ea923def5f3d1941fc9cc90cfc8a69a9f6f433bd66918"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c0a976013b4eaf0351b6.png",
+      "bytes": 10904,
+      "sha256": "7a54fdd2b73e8fe013b514d89cb7fdc5de286285e34befd3b4f9d0b316ef05d6"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c0c8c684408ee5ad4a06.png",
+      "bytes": 8466,
+      "sha256": "6f7fc92aaff98ef8917836fbca67b8cbdb5de0d96c6ee6fc863c4f3a2be1727a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c12b05c6bc2cb928baa7.png",
+      "bytes": 9348,
+      "sha256": "b04d7ecadbf7e969d8aef7d476b6c3a3e704fbb2f0389b83ad382b8c5f3acd0d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c17c960279827bc68acc.png",
+      "bytes": 8019,
+      "sha256": "839ccd59ea0f8bbdab37c3ca58d725c52fe14a5c62eb170ac9e55645ec08c73e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c1deefc15ff6e5037f94.png",
+      "bytes": 9824,
+      "sha256": "2c947abb53678766131ef28cfd639834459bda46efa85c75c8ca8f6b3b1023d3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c244489c17e063cbad3c.png",
+      "bytes": 8278,
+      "sha256": "9f2db5a098e00d786b7ef596564f2f82169c4ed966de98add2fd85ad4bd8c2f4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c27c7c6b774822c87622.png",
+      "bytes": 10203,
+      "sha256": "9afb237becabcb2230d105a7e4de7dab84f5248fbab4f51a87b15f012e0e4d30"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c29a14094fecfe5601b6.png",
+      "bytes": 8190,
+      "sha256": "109329653420d95ddebac60a81d321d57e294879e034b56aa1d47601d89a9934"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c3022da66cff90ba183a.png",
+      "bytes": 9786,
+      "sha256": "ad61a1467b5d0e92a839700e1b1197c65b2cce209a2355054f739828a3d19f01"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c38e83a59e53cab0b263.png",
+      "bytes": 6902,
+      "sha256": "f367fa9c08e5e3e24931ecce367968df6b509ce52274504268ed986fcb7f6252"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c4753fcb7448b23e2787.png",
+      "bytes": 5535,
+      "sha256": "7662a84a64f5b62ee38097dca6b58b15ea2e9389df4a76f628f20365d12f77fc"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c6b19b5f0b8acd532bf9.png",
+      "bytes": 5914,
+      "sha256": "226e20858568eab1e2825959594f1b49a07bfb3355e15d8e22bfcb9e3396b0d5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c741fd8913d42fd14c3a.png",
+      "bytes": 5665,
+      "sha256": "7d56dd7f634e75c792b7c2edb05f32c034d404eaf2acd383577664d833c9ea12"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c7b5bdc4b6f0d522b523.png",
+      "bytes": 8707,
+      "sha256": "f91c378421bf590f617b28805c3a5b1da31fd83523bbc612d037d4715695a650"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c82a6c267299d60cdb17.png",
+      "bytes": 8564,
+      "sha256": "86be33f6533dd8a52364e2850850b7aa79f2a2023dbd1f14d5f4a503c7d08404"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c8d7eaa7f24a7c2baae4.png",
+      "bytes": 8915,
+      "sha256": "544950ba54cfdca199292400b5b2de2b5020320cc277da96b426651ecc5ffb61"
+    },
+    {
+      "path": "data/course_20261027/processed/images/c96019cb810c90122299.png",
+      "bytes": 7838,
+      "sha256": "43721212f1c96c2cb858549b53fd3199c1ae3b0f73c7faaea33a208b595eb061"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ca0f7fb9c72d9e0d9d06.png",
+      "bytes": 6521,
+      "sha256": "43418469c449849644470d8f2a4d361335b04d3572e1a9ed75f0c88e1af30666"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ca3f3a2a65ae73cca1c0.png",
+      "bytes": 10329,
+      "sha256": "4427d4f59e3a5520370a02bc656c31249fc126df3aa422e561fc9b4378f6de4e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/cac7ce9a4c77255da816.png",
+      "bytes": 5643,
+      "sha256": "e9815000899b48f0b7bd14d2235fafc150aba3bfe6c43a7f852d2c2fce3ecec5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/cc5babe4fa71a67bd6ff.png",
+      "bytes": 8754,
+      "sha256": "f017e0aaa39a57e3c871fd4f92e4819b92a50fa21dd836c995ddcdc21a18bcb6"
+    },
+    {
+      "path": "data/course_20261027/processed/images/cd2172204fe46561a842.png",
+      "bytes": 5636,
+      "sha256": "bde576d5b16730a54ef79c9790fc95d06bd0cd8ea43cd2b9b8f42692108945c1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/cdb219d1d71831974f3f.png",
+      "bytes": 6673,
+      "sha256": "212d4150d8c21866806ccc2af3f2fa06276627ea3a1277c0ad2abe11d1583ab5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ce018b97d01ecfea7b90.png",
+      "bytes": 6224,
+      "sha256": "971c3073b02928fa79565d15cc1b1761d2792821d6bbfaf5fea952ec28deb869"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ce91102826e9d10ed48c.png",
+      "bytes": 10175,
+      "sha256": "c254a6bf96a7d8d3f3a16893d597df7c99773437b0643bf26dc700afd10d6fba"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ce9960bcdb9c2ca20deb.png",
+      "bytes": 8822,
+      "sha256": "0d683ba213e7e94f43d34be85bdb222bc9718f5764eb7ac7f27bbc1725905bdf"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ceb079457fea4d47eb44.png",
+      "bytes": 8064,
+      "sha256": "95f7d19044c34c73e3aa4958c153b1c9be8e16a3e46d748f005b7f37d3fce273"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ced616918dea0db21f1a.png",
+      "bytes": 9596,
+      "sha256": "c48454dd461db56785344c6705c0dbdf0939910edc3ac4353a5a6a4562902e76"
+    },
+    {
+      "path": "data/course_20261027/processed/images/cf3fe4abe992449f4ee5.png",
+      "bytes": 8076,
+      "sha256": "e98eee2c46e886a62211466f1357519d9663a6983aeb1f18706883d5dbbe7b3a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d1e3737a844daaa0a8f2.png",
+      "bytes": 9181,
+      "sha256": "efa556ebd302809b1ab71876dd8d592192e7307355d838fa1cf6bd58bc17d411"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d2610a82aed36b304364.png",
+      "bytes": 4342,
+      "sha256": "d8cea50d83b6a704f92495b3c2677f18ae8296aa39cc1f44b2af039bdff0c8ca"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d33f144cb5bb2c03d22b.png",
+      "bytes": 9767,
+      "sha256": "154d936bf6140c340656ba56ebc4e499aa7828b9946f9a6f3c5ca9e1a7e9477e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d4b424809b2b4359cf7a.png",
+      "bytes": 9765,
+      "sha256": "4ac1764dc6037eeb71a5b8ced771b7d9df05f29b643513480407d7b01c23734f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d4f1790bf2b6d55c1641.png",
+      "bytes": 7533,
+      "sha256": "6f73927420f15eec49a455da18770c92508ca4936fd326be8179262caf973b3d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d501ce6fac7560e2f79a.png",
+      "bytes": 8021,
+      "sha256": "b103b06d4d990c0ebc89233546a11a9ffa4051fecd8d37865ea06b8a5d1b4d40"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d52b1b69d43b297c81a3.png",
+      "bytes": 7617,
+      "sha256": "b06419c9c66fcc9ed3297d9dbc37749ea835634c3c153c2860e574f7e79606a3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d5d6d68699da13ad6cd4.png",
+      "bytes": 9245,
+      "sha256": "9c0d0eff99cc77c6eb46c2a9e10156dddd8e30ca7699a446657dd21477e9ef3f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d5ee6a75e669df2ccea0.png",
+      "bytes": 9352,
+      "sha256": "c84e9bfec38d06a8466a55882bcf803671d40a9669290ac6de783c9d97b9ced8"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d5fad8dd0793d00be127.png",
+      "bytes": 8184,
+      "sha256": "921610c5186b5b0c77cd5588e02c024b6cffb98707e44e8ecbbe816a54e53376"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d70ff3720043ab00c2c4.png",
+      "bytes": 9481,
+      "sha256": "dd5bbb02a6612d5d7e5815c0b1d034ac2bda2a0aaf257dd72681043dab2194db"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d7a1ec06213fc246b31e.png",
+      "bytes": 9528,
+      "sha256": "a15d3db5a9f0ac6115fc08a393f38871fd49011ee51ed12e542c58b96fd37b81"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d81576ce50eb34810dfe.png",
+      "bytes": 10549,
+      "sha256": "af1f2344042edb4ab5f8b5a1ba09752bfe99900e743f8cdd47b2c659b71a17ca"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d83263b89458c019067a.png",
+      "bytes": 9431,
+      "sha256": "e479d60bb19b685e2559a1f5d85edc0a439d4fcda7937caa90bd2d02b4db7982"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d8b39a8bab43a12d8b3f.png",
+      "bytes": 9211,
+      "sha256": "852c2d55c98fa8c3153d0190594f0155b907c65ee36d084146043907fd33b4e6"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d8c31062085d6c380d8c.png",
+      "bytes": 7832,
+      "sha256": "fe2cfdf2ba3b955ba64b5106b8f8a9c5e4dff821f382af20026c82f5979e19d2"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d97e595473e3a0347296.png",
+      "bytes": 10340,
+      "sha256": "17a882522f41116664871a94988158aa6fe79d814cceeae7ddef32370aa05bc6"
+    },
+    {
+      "path": "data/course_20261027/processed/images/d9d8ad430274abd19069.png",
+      "bytes": 9690,
+      "sha256": "61f9da59907151e3d8b171455543406728803dc5917c8477205d278a11297494"
+    },
+    {
+      "path": "data/course_20261027/processed/images/da3c3b34e51ed74592d0.png",
+      "bytes": 8697,
+      "sha256": "3e5e99db93875bc7d0a7ff0d7e1ccd841bbb4afb1c98b923eb664762600045c6"
+    },
+    {
+      "path": "data/course_20261027/processed/images/daadb67ccb8a836679e3.png",
+      "bytes": 8426,
+      "sha256": "93bd2435ae915a0f534e5ddaf46d1d75ff0415eae299211e856d5935586d346e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/dab10dea779684436e57.png",
+      "bytes": 10926,
+      "sha256": "af6f603008fd4e7894d8e130df94056a5721b3b53b1c29defe918b86ab5c0c27"
+    },
+    {
+      "path": "data/course_20261027/processed/images/db52fd0a062a90cb0422.png",
+      "bytes": 9117,
+      "sha256": "7faa5d6a6ea3ff6f74e8f012dec14c1ef0d37fb87bcc4f4c6c6fd248d9282416"
+    },
+    {
+      "path": "data/course_20261027/processed/images/db7d79938a094ae4ef40.png",
+      "bytes": 9921,
+      "sha256": "a8fd44092912a4b7b96bcf1ae8a01f87900bcc8028dcdc005dda2fa62c629f5d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/db8410e94e280e04adbe.png",
+      "bytes": 8781,
+      "sha256": "0b13712327c35969a3a496f4a97aecacf0cf297efcf5e61e7ab92ca2ac49e0f9"
+    },
+    {
+      "path": "data/course_20261027/processed/images/dc813f9886e18d547918.png",
+      "bytes": 9673,
+      "sha256": "27ad13b04be252189d13df551b4719b30b0a0af05efb8c03d02cf6dd7751488d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/dd4d45803488a870641b.png",
+      "bytes": 10503,
+      "sha256": "d541425c9e13c1acec270a1d81423f55c95fd1d5ed19ff3cf42817a1d3f43b95"
+    },
+    {
+      "path": "data/course_20261027/processed/images/dd576ae422787b9b0f41.png",
+      "bytes": 4746,
+      "sha256": "66cfc17d72e73484d0c2d08c46852bf5e05c40dfa54d5946f331e7e3c9f6eb9e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ddef95125ebf92212f3d.png",
+      "bytes": 9416,
+      "sha256": "f7bf607b6b71dbd8eb51b8a3ef4307768ec7905b286d2cfce9815a42a4be8bbd"
+    },
+    {
+      "path": "data/course_20261027/processed/images/de99580c84c4389f7d7f.png",
+      "bytes": 9040,
+      "sha256": "8dd0b395deb6baa006ca61b82995dac30a33b6722983d079fe0f036d0235726b"
+    },
+    {
+      "path": "data/course_20261027/processed/images/defe65043246d2601dcb.png",
+      "bytes": 9327,
+      "sha256": "913e811eb8aee4cadffc568c18245aa8692795016fd18d920fabb8c84cfacafa"
+    },
+    {
+      "path": "data/course_20261027/processed/images/df372a681e54f0e539d9.png",
+      "bytes": 8098,
+      "sha256": "5c418b03a14d9e2d644627468383f239c723dc17846959edd0207c1b6b7d1a6d"
+    },
+    {
+      "path": "data/course_20261027/processed/images/df6b0d34493294f67e00.png",
+      "bytes": 7092,
+      "sha256": "ce79a8b53f1e965a30547e6d4befb0db1a084aa770b51cd616c798a89d2aedb0"
+    },
+    {
+      "path": "data/course_20261027/processed/images/dfbd62b9accbe86b222c.png",
+      "bytes": 8850,
+      "sha256": "f4aa3c2e38ecd2ad5ddcb1f4b9eb4e28a7fce9ca83f50428bf166b4029d90df7"
+    },
+    {
+      "path": "data/course_20261027/processed/images/dfca54e3cb35123266fe.png",
+      "bytes": 7878,
+      "sha256": "8d27148f944e82d579d7ab4de2c949a58bb3ac50f4967f5d0b33fdcd2c09e24e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e065bc5d862c1159f3e5.png",
+      "bytes": 9457,
+      "sha256": "68b801e7cf3b83221838baccfe0a2d200544475ca71def67ffacb24853794627"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e0d0c4d440e1523f67da.png",
+      "bytes": 9495,
+      "sha256": "4c14c846a3365b26bdb9cfc24b6b2d6875977bd4ea8b8995427aa6cf413859c4"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e16e09642b5c50276587.png",
+      "bytes": 9248,
+      "sha256": "8f4e8565103d7098bbdc37c8d9aa8f4bea58ac7d2a8b78324648afe218a4bc21"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e1a8ea6447dc123edd59.png",
+      "bytes": 9394,
+      "sha256": "ac18edbd101ea803e934569c2f88749b7dc93c149316b91d3ee1525e619f885e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e1aca7352f5b55bde3c5.png",
+      "bytes": 9911,
+      "sha256": "4aa4416335d56e417eb17f0c5f1c7aca0e5ecfc46423c42c4a3138006233450a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e22ffc17d3e14872d504.png",
+      "bytes": 7726,
+      "sha256": "1f6d5c1c4653b38dcc28de3be68a6d4fea4ba9d99fac11ddfc84f18454f9d616"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e2d6d1c640d6896c7c80.png",
+      "bytes": 9375,
+      "sha256": "b33a3db599f2788fc172469bcfdad5d09f3d688f1af403100859cdcf21659237"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e34c64790033274a7ecc.png",
+      "bytes": 8109,
+      "sha256": "80e3b5d0c86d1da55bb372665d7936899858eb4fbc311cac7bff98ee8fc0834e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e3af2089a6e9e19270b1.png",
+      "bytes": 9179,
+      "sha256": "f9ce307b28008bfc67f921b2dbb5deb76af4286188dfacc43a6ea5d466703333"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e3c416f15b7d72f1d953.png",
+      "bytes": 8082,
+      "sha256": "6a50e63d90d959c0b42f7abbe2017f78a97204558ae998312b526077a920b29b"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e594517bcfcde46b1b44.png",
+      "bytes": 5981,
+      "sha256": "a12a8b8860fd507347d2970759214ee4552b8ecb47922d3bf2f764390d9847ef"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e6f89249c24864701866.png",
+      "bytes": 7810,
+      "sha256": "9a37619d8446b01ba4fea4aca0e2339aff60b0fb51d131f46a88212f57b0fab2"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e79afbd5bec76f296a3f.png",
+      "bytes": 6747,
+      "sha256": "a19b6983d546426093e7863973a48dbfc4151a4f644ee878970d2525fe96a5ba"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e7ca5900c41f05103599.png",
+      "bytes": 7195,
+      "sha256": "5ac73acb23ad509609ec31214911aca001e6142f7342f49c1dfb0c10cd7cc2f2"
+    },
+    {
+      "path": "data/course_20261027/processed/images/e9cc4493569b75261087.png",
+      "bytes": 8551,
+      "sha256": "9d0dd792623f3a4eedf419dd4d3c10be8171751078c5510523fe1884e05a1683"
+    },
+    {
+      "path": "data/course_20261027/processed/images/eae85423315d4135ca71.png",
+      "bytes": 6959,
+      "sha256": "4590e647834062ceadfb6174105944803225239babe9d5748af04fa4941a6b8f"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ebd9e420d7f62940e3f6.png",
+      "bytes": 6490,
+      "sha256": "1859d99afcf6d4c247a590f1d32b6b2ab240769dff47db993ea9a13878058ec3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ec1314d756dd284079e4.png",
+      "bytes": 10139,
+      "sha256": "5b4718bb1fdd45f94735b1e72aa2cec31a758e88ce57929a5593fb634c4ded92"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ecbaeaf0295dfaee3748.png",
+      "bytes": 7546,
+      "sha256": "c34e4368b3d623bca013dd41a42c770d2aebf60664e58983f9c8e30c5155b36e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ee06d7aeed7def6ef1ef.png",
+      "bytes": 4666,
+      "sha256": "7165b2c79ec6021c46a9a9080cfb57c38c2c0a12c81daadcd91dfa4d7c5984c5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/eeeedd57c9d731b5fcdb.png",
+      "bytes": 8607,
+      "sha256": "7e75c958f607fb29536295d75e24bb5c78820f74908a5a06daa8075a5e181606"
+    },
+    {
+      "path": "data/course_20261027/processed/images/eef58f4df87fcabd8cb3.png",
+      "bytes": 9164,
+      "sha256": "87a948da767c655d7ee008d29f42e0e089a97d3ecf7537a4d831c6a67bc02dd3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/efefe9860c38a9116758.png",
+      "bytes": 5924,
+      "sha256": "e623120dd77a155d6cb379d0aa25d7f07459a21e3b7e3ffedf1f2cdefb90c8eb"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f11b8343737ef4aa102d.png",
+      "bytes": 9386,
+      "sha256": "839bc378dcba7b2f719c29dd6de2ddcf747dc8bf9a2f0271ac4c4c592d4c29b3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f1e4debfbd3fdfe80215.png",
+      "bytes": 8894,
+      "sha256": "ce80ebbcf5cecfffb310ce2b9f01012f9917eec0754be676b735cc9cabdfc348"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f1e559dcf9230367d879.png",
+      "bytes": 10894,
+      "sha256": "46bf2dc634ecf49867bcd4c5741440b76579d73df237393b3001392e5076f8a3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f2f588837275ddc77c6e.png",
+      "bytes": 10211,
+      "sha256": "c6f18edffa0550cae0ed293cb0fa02db37c94d08895aeb8368d9b97e51517ab8"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f3a2a014a9cba76e850f.png",
+      "bytes": 9694,
+      "sha256": "9b5b3c02fdabde66b8cc8af1574937fe7d2c8707054aaf81cb7c5eea73d377b1"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f3cd113f98d608f703e2.png",
+      "bytes": 5681,
+      "sha256": "bf9b1dad24aea16fc61b2079efef715b290f452cb6bc3890ada5cc34186fc75c"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f4944e097fd93806c947.png",
+      "bytes": 8384,
+      "sha256": "61c9250107e6a2963248fb9a657f84c97ef21515b4976abd04551ac331d7b806"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f508f691d7f268cb38ca.png",
+      "bytes": 8641,
+      "sha256": "807b89fa8af4e5cee45d3bc8d047941aac9c3f6c347a74f7ea82fba214d1b57e"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f56696da25a91c7f458f.png",
+      "bytes": 8655,
+      "sha256": "8af6f6c261671e03bce5f829121a77471586379dc595602144fc43759b8ce3ee"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f6ffe36323ce4313a82d.png",
+      "bytes": 8846,
+      "sha256": "69652b83c2189f5209e67185122ea0cd00139e65abb828bfca95e677544bb11a"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f70a2dfe423fc8076326.png",
+      "bytes": 10017,
+      "sha256": "2c97b35a5a949ba3c572a8f8345f1599ec2e208800e6f7639773baa1c9de9998"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f70cb46238ff98b9bcca.png",
+      "bytes": 8977,
+      "sha256": "448fd15a111bf0da10dde293c6e94402bb11d9482f2dfaf3896676229b9c97db"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f76a9b692a55015f3644.png",
+      "bytes": 7225,
+      "sha256": "2271a7c169a99bb5e51324f11951101363893cf15a7fabc77dccbde20abed5e5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f86d556e6e88d0fb02f8.png",
+      "bytes": 8986,
+      "sha256": "e84f49b93ce18574d0d2f11be05de08d119f6e1b1c6c8ea9211fefa62ce98190"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f95f107b49cadaf7a808.png",
+      "bytes": 9276,
+      "sha256": "59a08cdefa6640ef1db8e6fbbc379d4262a72f711bd5d40334b222d2274384f5"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f97d2984996ff406e0b0.png",
+      "bytes": 8314,
+      "sha256": "78c5d0210080fd23892ffa6ea801e913fb2e908f43797bc8ee4d3d0684793ba6"
+    },
+    {
+      "path": "data/course_20261027/processed/images/f98fb4cea3eed9552610.png",
+      "bytes": 7729,
+      "sha256": "42a918f58c4ed84f7a8f98184b4c3c65758635f71ac18a1da51667729bb66d9b"
+    },
+    {
+      "path": "data/course_20261027/processed/images/fa4a6ac214e5c55fac41.png",
+      "bytes": 9900,
+      "sha256": "4c81f52d0979c9b732721642d4a247b792f15be9ea07c7b9783270a99abbd9dc"
+    },
+    {
+      "path": "data/course_20261027/processed/images/fa69d39483e944dfd8bf.png",
+      "bytes": 7301,
+      "sha256": "d858e8d83ff33cedcd4af4413eb32480d7e86e7984d1df36e82598f1261c3784"
+    },
+    {
+      "path": "data/course_20261027/processed/images/fad96f95846fe04f3f2b.png",
+      "bytes": 6728,
+      "sha256": "81fdaaaa47699b694fe489626b6b09eab640001bb615835c71841a3a222de6a0"
+    },
+    {
+      "path": "data/course_20261027/processed/images/fb675b08643af6b7313a.png",
+      "bytes": 9535,
+      "sha256": "8a442be7384f2c8fe9a6ef05383babbac2ed4a024e24cbaebbe8723ce82733ef"
+    },
+    {
+      "path": "data/course_20261027/processed/images/fd42eeb41105282e562a.png",
+      "bytes": 10204,
+      "sha256": "81c1ef9a495b96f48d6634b9c105a98529e8d62d08c6ec46e783d402646b7c56"
+    },
+    {
+      "path": "data/course_20261027/processed/images/fdf6c1480129bab729f8.png",
+      "bytes": 7519,
+      "sha256": "3df987b163c607a922550443d3da028a47c898f78f44a62296b66a925f29c274"
+    },
+    {
+      "path": "data/course_20261027/processed/images/fe0a56f930de72ef037a.png",
+      "bytes": 8470,
+      "sha256": "007fafa901048fa2ab8bd579b173cba6fa16c69f0259b82e3eb42034ea395680"
+    },
+    {
+      "path": "data/course_20261027/processed/images/fe45326b68e5e8e67be1.png",
+      "bytes": 10140,
+      "sha256": "557c4178d1eb051affb7b4275690d043904524600e32f319b034c961a997edfe"
+    },
+    {
+      "path": "data/course_20261027/processed/images/feb0085ab5058cfba993.png",
+      "bytes": 5621,
+      "sha256": "7457dc82e0f9dafbae76db2bdbaaef3ed1169ccddf5c1e6f510eb22fe05769c3"
+    },
+    {
+      "path": "data/course_20261027/processed/images/ffd1363521963e70a88e.png",
+      "bytes": 10462,
+      "sha256": "caf26991089efc4d6cb97b3dd3af22109fb204811cbcc1c71fda2369e1f51a4e"
+    },
+    {
+      "path": "data/course_20261027/processed/text/test.jsonl",
+      "bytes": 2282730,
+      "sha256": "0d03027d0ac2640a2e658e4a74c85ad1975ca1fdcb9f0cf50a58542601c7c2a9"
+    },
+    {
+      "path": "data/course_20261027/processed/text/train.jsonl",
+      "bytes": 10590934,
+      "sha256": "7a62f1d84b738d6451bc996e78e18ee743327ea2c21a552c80a0dfd2002e420d"
+    },
+    {
+      "path": "data/course_20261027/processed/text/validation.jsonl",
+      "bytes": 2275592,
+      "sha256": "33673d29dca4a898b8059a51babe88baf95e723f2bc51b2092bc6b0c41683099"
+    },
+    {
+      "path": "data/course_20261027/raw/images/002e05c958a0451e7e50.jpg",
+      "bytes": 151777,
+      "sha256": "49068c82aff2a42b20842c395c8f785fd16678ec9d113ec7f161ed8829680922"
+    },
+    {
+      "path": "data/course_20261027/raw/images/00e1f8f2f3a63576a056.jpg",
+      "bytes": 589781,
+      "sha256": "7c14b26f5d2c702fbe16c284ce1ce31e4eb31c9cf0302062489f2361c33338e1"
+    },
+    {
+      "path": "data/course_20261027/raw/images/01911fef7a0ece296d38.jpg",
+      "bytes": 66414,
+      "sha256": "f7fb64452cc87a50aa7cc2647d6828abb0587bd6886d774aca1e9f0963c08ef9"
+    },
+    {
+      "path": "data/course_20261027/raw/images/02436656524f738a44d2.jpg",
+      "bytes": 127371,
+      "sha256": "7f55a45e64a662e455b55ed50f842cbc8a55cae20f61dc7a7599df0656d607c0"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0334c19c0372d42ec75e.jpg",
+      "bytes": 61478,
+      "sha256": "9eff8c3fa7c48bf9e12480bca411b4b715959dc754da43c857edc622747a8f60"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0465f85739ca5fe5936c.jpg",
+      "bytes": 362130,
+      "sha256": "3f4352592d340c36d51e8385dd589380e3fdfc2665575b5967a014fa923ccc02"
+    },
+    {
+      "path": "data/course_20261027/raw/images/04c69ca80b32bac840d9.jpg",
+      "bytes": 1291157,
+      "sha256": "b590e80ddc371168d1046338b0fe4a1fa597c2e840b0c1fffdcd81cc20afe01d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/04f803a3b32401259b39.jpg",
+      "bytes": 279962,
+      "sha256": "442569846eb25a5e06f19ba63fa792bfc9c82f46de8bdbe1ecc7aee2213f6108"
+    },
+    {
+      "path": "data/course_20261027/raw/images/065b4a7dbca97af01f28.jpg",
+      "bytes": 325250,
+      "sha256": "9db8660aae8b475c3cb858fd15de90b869963f6e2bc32c9c85d842002c3cd35a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/074735a7a337ad052632.jpg",
+      "bytes": 79144,
+      "sha256": "5b13a16b2fb4d02d3d6991543bdb2602f821b451e1ea565d8e0d1cc31faf6745"
+    },
+    {
+      "path": "data/course_20261027/raw/images/088f4afbf5ea6d8f3c65.jpg",
+      "bytes": 475125,
+      "sha256": "6522c950a2976698fd2071bc4ce7ca63e1293e4672142b4f2e0697e886d3f86d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/08d8e2297939f7b063e0.jpg",
+      "bytes": 390115,
+      "sha256": "b6bf71a2cc1ea226d1d80b20dbf425131a2788bc666e20456a6bbd2f049853c3"
+    },
+    {
+      "path": "data/course_20261027/raw/images/093fedce106f6acb95d9.jpg",
+      "bytes": 389619,
+      "sha256": "9961b51c99e50a4381a0676de3f6c5e0430e4734592fdbcdf719f337c036870c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/094b763e4975615d2e4a.jpg",
+      "bytes": 99956,
+      "sha256": "40ae7a80164f0e5e7f7c2e07d102d8ef36a174d037b57c8623d1f99a69851860"
+    },
+    {
+      "path": "data/course_20261027/raw/images/09d7c7eba91fee68fe54.jpg",
+      "bytes": 262292,
+      "sha256": "8b3b9dee3802600d36f695a7b71ed92300491b3cbd93041f6bc42d9b60f65e85"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0a1ac11f395e1615c367.jpg",
+      "bytes": 3321191,
+      "sha256": "df9104414af0ffc026cfcaabee5cd152345515740c71b8a30695ffd81d1a4ca8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0ac8ec7f7c5847d0afdd.jpg",
+      "bytes": 523502,
+      "sha256": "ece9c80ab24d45fc6b07c865818093d311e323fd4939e868f24751d0ad3ebde6"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0ad11ea5e237b07d2083.jpg",
+      "bytes": 1265283,
+      "sha256": "7374ba2a1cc93f4b6abb38255ad85b35d8b586e1aefdbc4e7bf98286283d8b4d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0b721624bf6c12ad2320.jpg",
+      "bytes": 299290,
+      "sha256": "54379584392a6ed07130e976ab535d2c4a7be50d7bb44f85f2b913dc5efa091b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0b9e7215b382caab0b45.jpg",
+      "bytes": 356900,
+      "sha256": "210ae221eb873e30ef7426b05d131586415c09b5efd5f4382e4a13125ba6332c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0b9e849deb58f7b09a46.jpg",
+      "bytes": 205678,
+      "sha256": "e5a2366348a2459c4ec804fd7a2cc282558a2e08abdd0247e81fb8868298a8b2"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0ebb4438b7c74a7e334d.jpg",
+      "bytes": 226651,
+      "sha256": "7ff16614a1f4da171d9233c766364a06eafed76853ed27cd4af05bed1c2086a2"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0ecc47c1c5826e09f514.jpg",
+      "bytes": 536361,
+      "sha256": "793ce5e629d1f2a743fa9cbb756bc5691ca79c4e6c63b4e384e04ec8190f8c42"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0ee15d0c5cdc0cb7cb52.jpg",
+      "bytes": 199103,
+      "sha256": "03b53f1bd10e775f324da041dd00453c4bf0481b9a0f15595920b478354c7401"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0f8596e1400dc19d905e.jpg",
+      "bytes": 199984,
+      "sha256": "82856ea6f714734bfd9dd404313a54d28283d9ea3ecd404aceb4bdaabab17ae2"
+    },
+    {
+      "path": "data/course_20261027/raw/images/0fa085df8d723f42655b.jpg",
+      "bytes": 169089,
+      "sha256": "5b40c97f89f6d308dc94f9e63a07575a9cb2017ff1a59fceefbc35cd02e7b56a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/100c3ac0b174df8dc735.jpg",
+      "bytes": 139356,
+      "sha256": "4369b13914087d2a598b9148456f3362fa9124e8f668deec5dc24cabbd631cd9"
+    },
+    {
+      "path": "data/course_20261027/raw/images/10135550a54f8db3a043.jpg",
+      "bytes": 118895,
+      "sha256": "9780ef094c38924592b7d1c86fb93d8c65304914601126c880dc2f9e9ed9b464"
+    },
+    {
+      "path": "data/course_20261027/raw/images/117d409e364ce28dcfe0.jpg",
+      "bytes": 435074,
+      "sha256": "640b79c2c5d4d65e4aa1b32c16419691e08b0933a39dbd29dcf1ea7b7bafe625"
+    },
+    {
+      "path": "data/course_20261027/raw/images/13351efffee72a058280.jpg",
+      "bytes": 337217,
+      "sha256": "ee74b5358db10b7af4c265dc297762cc37c44b5b6df90b3d5a7cd44a1a851d79"
+    },
+    {
+      "path": "data/course_20261027/raw/images/13d86e7862b165183eb9.jpg",
+      "bytes": 163129,
+      "sha256": "99bd3da929ba5e19bf3b21993880447f89d6f4c8a85c210b22274bad2bddee06"
+    },
+    {
+      "path": "data/course_20261027/raw/images/15a84cd5433fd4103a9e.jpg",
+      "bytes": 190496,
+      "sha256": "bc61f00417efcf28ee7097d5fb05bbeae0676de397f1db678e94c4a696975775"
+    },
+    {
+      "path": "data/course_20261027/raw/images/15ab22e32e3e56c27e85.jpg",
+      "bytes": 1233894,
+      "sha256": "0d3ced16c9e0cc549f06ae9cac3ac64dd37fc5cc9ef1afc0611bee7c921b73c8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/15b05fc6907cfec2d1de.jpg",
+      "bytes": 34837,
+      "sha256": "847c54011cabb9d97c2beba1d42eea59aa3cf295394ff9979fa9c087fe743861"
+    },
+    {
+      "path": "data/course_20261027/raw/images/163eec0127e435cd2f26.jpg",
+      "bytes": 88245,
+      "sha256": "4e757232f0a5798f0ddddb06041cf3d0b3e47072fe7707ad6f87cbd307372c9f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/17a6ca833a9e64bd1dea.jpg",
+      "bytes": 566864,
+      "sha256": "728f6c070b0761e814b1ad05f1e74f7c18b0a229dd7f92f1d68611860404695f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/17c473b0393febdb13d4.jpg",
+      "bytes": 170040,
+      "sha256": "6d37296f089b1292105f04afe80c0a356fa2609fe4e3f2bb440abbc8bdc24dff"
+    },
+    {
+      "path": "data/course_20261027/raw/images/17f4a39f3d5280d18bae.jpg",
+      "bytes": 43629,
+      "sha256": "469a626403d6dda8462fb1415fba6d1da1e10b8bae6ee80639e0e9c65bd1b8d9"
+    },
+    {
+      "path": "data/course_20261027/raw/images/1a2963df14952a08f03d.jpg",
+      "bytes": 212345,
+      "sha256": "e79f79a21a446bca55da7a87a8c767e12e1e743f8acfcc652d8303900fab970e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/1a4484c65cd4acc94f37.jpg",
+      "bytes": 331059,
+      "sha256": "6b8a0f0cefe0b73bbadfeb6fc47a5a391b7a560639f19236b329727b4e6c6def"
+    },
+    {
+      "path": "data/course_20261027/raw/images/1bd73081ec0117da00ce.jpg",
+      "bytes": 2304059,
+      "sha256": "0276a841a57fe3166bbb60e2d60e5d7d250aa45d1c05a4db41cce7576e6e0e66"
+    },
+    {
+      "path": "data/course_20261027/raw/images/1bfb0a6507556596ccbe.jpg",
+      "bytes": 115448,
+      "sha256": "b52869347e3a9ebebb5f881a5480a112d0fea5a5b01ad815109d5d1a145d4c79"
+    },
+    {
+      "path": "data/course_20261027/raw/images/1cc895ca999f90b9450c.jpg",
+      "bytes": 173351,
+      "sha256": "cd5c1f9813c48af5cb8d6ef736995cc6e88dbf3664b89fe675712b6351d427d5"
+    },
+    {
+      "path": "data/course_20261027/raw/images/1d214897dfb28820b687.jpg",
+      "bytes": 348945,
+      "sha256": "4ccab800163333e4b34a207e4b978ed04e352947a37b47c915d4d156c833e8bd"
+    },
+    {
+      "path": "data/course_20261027/raw/images/20c7dcfe3d2c46711182.jpg",
+      "bytes": 2484755,
+      "sha256": "4f3abf00194f1b821d4e479cbdbeca8352935e798dcc9780e446665cf6e55be4"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2118241503260c7fca94.jpg",
+      "bytes": 330423,
+      "sha256": "b5e3979cdfdfa3b4e1c5a52ebc8f20318c5742db4afd03bc63dbbba36d95e051"
+    },
+    {
+      "path": "data/course_20261027/raw/images/220f80ad29bcf46f69a2.jpg",
+      "bytes": 224041,
+      "sha256": "90ef2e0df0fbccd616da3eb3a274635c5072e0b2f47af23896312f4429914962"
+    },
+    {
+      "path": "data/course_20261027/raw/images/229c8c29625f2bb928eb.jpg",
+      "bytes": 552827,
+      "sha256": "fe05bd24dda7a26a4a3357e0d227b3827efb44a97c71563641a2b9e2c185bcac"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2358a9135e7372850db3.jpg",
+      "bytes": 211634,
+      "sha256": "c671437cfef5b1812846851c6dce250767157e35a763e58fe453d5137d0ae3e1"
+    },
+    {
+      "path": "data/course_20261027/raw/images/24d479257ac2db6f28f6.jpg",
+      "bytes": 450041,
+      "sha256": "4ecc876fedfe15feac7caee77332223fb3546ad88616c02606b98073c6f30aba"
+    },
+    {
+      "path": "data/course_20261027/raw/images/250300a16db2a5b84d9e.jpg",
+      "bytes": 376991,
+      "sha256": "c528bb885bf6f4d0d8ce51f3161d7df8751b3661ba01beadbe3a7277dc595156"
+    },
+    {
+      "path": "data/course_20261027/raw/images/25223ae216a4974ee0f5.jpg",
+      "bytes": 417861,
+      "sha256": "03ef13e4df785f202da6c1736c64474c3e3b60a7af4528ca0b53abadbced0979"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2530f039bc5e34d3eccf.jpg",
+      "bytes": 471646,
+      "sha256": "d2fb4419bbec6daaee79cd4fb70f3b5724c8ed13d4128f95b8ca7e02f1d9cab9"
+    },
+    {
+      "path": "data/course_20261027/raw/images/253532a5012a7869812c.jpg",
+      "bytes": 190619,
+      "sha256": "aa07c4c7706bff4c540f5768d05f30681778f513494f81832314064c725ddb0c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/266145aa09f300bd64a2.jpg",
+      "bytes": 45828,
+      "sha256": "1faefbfd86f46e6b540fde0ec2a10efa0a78fe0c75780c7be0252b7980eba9de"
+    },
+    {
+      "path": "data/course_20261027/raw/images/266a96793679440bea56.jpg",
+      "bytes": 476918,
+      "sha256": "06e37623e43e6ab7846ea5356631217b787b5258dddb6422344abaca245f5067"
+    },
+    {
+      "path": "data/course_20261027/raw/images/26c3e26035a3c0d4e364.jpg",
+      "bytes": 254463,
+      "sha256": "a9659fb98f06231791b9d61d9a90eb8a0e390f57785259b4060713161e9679af"
+    },
+    {
+      "path": "data/course_20261027/raw/images/288c1db3d6db816ad13a.jpg",
+      "bytes": 2203960,
+      "sha256": "f4d000d6b7f0d78d459836a7c02c70f2a15bc0e263e40afed0a6bae6f6b2e49d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/296a38d57acec7a364c2.jpg",
+      "bytes": 270748,
+      "sha256": "bbf14bd8b97d3ad6e202a7fd67f406116e21335c5020c33a317311244ebac4cb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/29d8467c1746cdec7063.jpg",
+      "bytes": 67283,
+      "sha256": "b2501666e87adae199c37712c46ef9cfdfa2d9ed0afaf23921eba39b39c9cf05"
+    },
+    {
+      "path": "data/course_20261027/raw/images/29e90285f5193148e3f4.jpg",
+      "bytes": 1813515,
+      "sha256": "0bebb15d25cdd2a5798e358671bc333f8a7194f6fddee36fef4b178a95b1a374"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2a3545898d41ee9fd499.jpg",
+      "bytes": 54677,
+      "sha256": "62be73ed13cdb75cbe1a93045c99bbb17b079cfbe96a48554de6c3331c18c383"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2b2a029293dd8404dd41.jpg",
+      "bytes": 198497,
+      "sha256": "9bb0718499f39fc1ed802f7a1f47915c345e01e87c3136729bc281b4ca433208"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2b89d862f427677cec27.jpg",
+      "bytes": 353953,
+      "sha256": "a4a12b0ced606ec4ced48ec5cc720cff1e082e8921fffbe4dd324312e489fd36"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2ba876688a3389c225d3.jpg",
+      "bytes": 184077,
+      "sha256": "2ad735374f1f38998a0561a1981329b6d4286c8b57a7da4d058b08348cbb2ab7"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2bac0f2d275a62a1926d.jpg",
+      "bytes": 129736,
+      "sha256": "44f0df1403ab6d11b9fd146df1483674df8687c9ef374f4941b5b22daaf096ee"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2bacb7ad8604f73573c6.jpg",
+      "bytes": 211236,
+      "sha256": "752da70b61a1ca0d1997ffd8317acdbad6556a5877ce3f07536d9958160a6444"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2bcb37bbe97ac0df8f86.jpg",
+      "bytes": 1578059,
+      "sha256": "20c9b59d54d19f2af4f81445256cb96045b6d46d2a49d11d1ea41e05bc108145"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2c9152be9b5471b18946.jpg",
+      "bytes": 245874,
+      "sha256": "80d7ce6ac12eb0b0f785a78f360faf224db329bb177101085450518a300ed0ab"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2cb6914534ed7b4cc8be.jpg",
+      "bytes": 2057506,
+      "sha256": "90465b4ebad09c18f8d55f1c424a76988bb6ac63dcf9c1256555315d559bb6bc"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2e1b532680629be7983d.jpg",
+      "bytes": 48155,
+      "sha256": "d1ff42113c4a2aa9a04f31240e42621eeab2b01b257fa977aacedcf35e22becc"
+    },
+    {
+      "path": "data/course_20261027/raw/images/2fea29bb6e31c9c82d93.jpg",
+      "bytes": 2845529,
+      "sha256": "f3a541221e80d17d351dc2fb413eac61f2de50479f028f57bd2af0a458fb1fdb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/30b53ee0b631dc51d180.jpg",
+      "bytes": 233070,
+      "sha256": "1e55978fd5a4dc360d93ff35d7178df292433294080e1083db151f0319f90a8b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/30e166b8031984ecd079.jpg",
+      "bytes": 328857,
+      "sha256": "dddd2d8a56f367182f6cd41a10e4617512b0298c8ac4ced4980c8128a8bcda36"
+    },
+    {
+      "path": "data/course_20261027/raw/images/31f214e95d0dc1901526.jpg",
+      "bytes": 166086,
+      "sha256": "3ada554e8efdb671d8825c40ecd8dd31214758923b4cdd0883030e2f02e279ea"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3255545e34ca6f2e947e.jpg",
+      "bytes": 79816,
+      "sha256": "5dfbdd3735553d17eb78a603a8d9006faf1359922e17bcb847e2414fb5f632da"
+    },
+    {
+      "path": "data/course_20261027/raw/images/32ac22ffeb66f820e026.jpg",
+      "bytes": 3860051,
+      "sha256": "c5b04641e0e7c6a02c3e074a9f237366952dc91ef4e8f19b3f79b9d112a6c51c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/32cbaeaecbe208600c54.jpg",
+      "bytes": 365881,
+      "sha256": "f5c211d3b07aa7c2a2afb34c13ca23350b49f386d08fffe29651de2f8d75b5b3"
+    },
+    {
+      "path": "data/course_20261027/raw/images/331d141fb18e5a78bb23.jpg",
+      "bytes": 77792,
+      "sha256": "2a39b56d72bba809840a2c72382b7b2a6d39537bef405a5690d8ef5b6fed591b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/341084b9005062a3a276.jpg",
+      "bytes": 177959,
+      "sha256": "24bcf2b9048476f3e9644bf7899b55d5fbedfd8d32e1038344f00d6f1a5c10e0"
+    },
+    {
+      "path": "data/course_20261027/raw/images/345b0ddaf0b7949f0e79.jpg",
+      "bytes": 165843,
+      "sha256": "cb65867387ecadea8c063a454a5cbbfd38b5e7fb2213a6fc3a0c96160cd9c071"
+    },
+    {
+      "path": "data/course_20261027/raw/images/358d9d485e7be3fa3d02.jpg",
+      "bytes": 92319,
+      "sha256": "5c241be07a9ea854ed5ee70d48eea93d3ef690d4acaf66ffa5a070e6018949f8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/35a3b7beca4b40277653.jpg",
+      "bytes": 48502,
+      "sha256": "ef705366493a7efe131c47609dbaa7f2d662b8ae1a06f564944d3fd5e25748fc"
+    },
+    {
+      "path": "data/course_20261027/raw/images/35b04aca3a7b6ccf86c5.jpg",
+      "bytes": 263057,
+      "sha256": "fc5fb97bcb1f5fa4202b8e073609ffd2aee7790c2e9d5568ea9591fa7b442ec6"
+    },
+    {
+      "path": "data/course_20261027/raw/images/366360bb17545bbdda03.jpg",
+      "bytes": 181407,
+      "sha256": "2cfbafacff9725379aa7286be5963304e834ccca0a8b3d0de476bd579d3e150f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/36f9809c333b5edd5b9e.jpg",
+      "bytes": 159664,
+      "sha256": "64312213054db17d433105e5ef7e9eed66f2fad84a01f12bbb93916cb7a45910"
+    },
+    {
+      "path": "data/course_20261027/raw/images/377c39981f96e5b35417.jpg",
+      "bytes": 112541,
+      "sha256": "ee596b3bbefff5edf1dcba6694dea7bc1edec677813e1dd2d3f7d85aefeed7c3"
+    },
+    {
+      "path": "data/course_20261027/raw/images/377c4353b7e304496ada.jpg",
+      "bytes": 224215,
+      "sha256": "dc223cfb9528a4b06f720712f912aeebdefa603b90ed5315d0b66318e1808e41"
+    },
+    {
+      "path": "data/course_20261027/raw/images/383df6e58d77aa568855.jpg",
+      "bytes": 2533238,
+      "sha256": "77f0b3784383f39e925f357d40596cb6c90fc57c7bb319aab1d5495aa3698710"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3848535ebe4b8a8a15f8.jpg",
+      "bytes": 243784,
+      "sha256": "c39b5bcce5b898c5af4e6205afb06558b65aaa516ad4baef09c40c5002e6b6be"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3878eccea207b1a37182.jpg",
+      "bytes": 156276,
+      "sha256": "163c0b3d60e22d7dc1d3da6db24cda3ef265b2596d4d9719c6c24d8522c13aeb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/38f169fcf2663d4d0932.jpg",
+      "bytes": 272225,
+      "sha256": "65d32e5f9ebc094490b7a6a79c22ce26d45529629cd379c9c193fc0530846f2b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/390c5882944d1964023b.jpg",
+      "bytes": 133865,
+      "sha256": "f76cd938630974abb2f17cd2fd59019a774583a56662051c12445a3990b1304a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/394aaeb49b911a880f09.jpg",
+      "bytes": 98145,
+      "sha256": "f989fcfe6b25d9b690941d2e3177b4898a237b0739c28003a1ae85a8de1b8eda"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3a9d2484883591e9bb8e.jpg",
+      "bytes": 531777,
+      "sha256": "52d8d1689e506752f3105204cb9f21ee5a13c90d80247b59b74602e05eecca5e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3af6d7fa434750bd3504.jpg",
+      "bytes": 2182864,
+      "sha256": "c3b6a2c086da16103899004a66fe0fd9dbde268af3b7646f2afb0fa9899f48aa"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3b0920c1294061505966.jpg",
+      "bytes": 1388845,
+      "sha256": "4668cfcfd579c5a7ce470c7b0da742850f08da3c1a0eddfeea3549847f959b6d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3bb0f53993b6d0fcdbef.jpg",
+      "bytes": 99497,
+      "sha256": "76a860151b820d25b281ca57d4b9bb4278e9b6ca4d8557c1737338e741234b52"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3c10a2c1f23c004cb7f3.jpg",
+      "bytes": 475058,
+      "sha256": "4dd9e0770738bf045bbbdf21356fdbe3e8997c51e75b5a24a82e66013bb84e6f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3cb272d79496ee6969a7.jpg",
+      "bytes": 429601,
+      "sha256": "31bfad0a48f65c309fcb9228ed3caa778e90eb3dfb339cbcead41843103c9029"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3d6811411cbde91fdadd.jpg",
+      "bytes": 142675,
+      "sha256": "ebab33574b6df21d36bdcba9805c6bce7accd5bc964a831c5a5d4ee3d7910f43"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3ddf04ea8574674e4dc9.jpg",
+      "bytes": 356715,
+      "sha256": "f05f1d5377162c5a6820ecbc085860edfece2761814439b6de8280c432710f1e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3de15c21deb18bb24e28.jpg",
+      "bytes": 176384,
+      "sha256": "b683add91a2350fff36dcd35e482faa7b848e0e090ffd73c3d43d7e709ebb38a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3e2d9dc864e90f75fcfa.jpg",
+      "bytes": 371873,
+      "sha256": "b2c8582cf8bea971ab372f06aa8d881bd705d31ec2d613f77f8de9c8f9d7e00d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/3ffb038ad9ed0f580742.jpg",
+      "bytes": 317049,
+      "sha256": "724b3fdd154b2d42401a01bb0cdb1928012e5ca34dbeeb05b6a44a690acb226d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4044cc6a7c3cbef9aa56.jpg",
+      "bytes": 1608286,
+      "sha256": "63f279cc6648c589a04f1beb68e0595203f6dd7493f008b4fe6417d755fbf370"
+    },
+    {
+      "path": "data/course_20261027/raw/images/417dd1fc4c01264a1dfd.jpg",
+      "bytes": 111684,
+      "sha256": "28202133538f43ec1f7732826d6795ea1a5461e750f949fd022505f2be8356e7"
+    },
+    {
+      "path": "data/course_20261027/raw/images/41f6a2c4dc10b2a5d1fe.jpg",
+      "bytes": 432203,
+      "sha256": "c9a1de8af551cea0e93d88481b0136eb5f0052868cf20d0adfad3ecb06be2321"
+    },
+    {
+      "path": "data/course_20261027/raw/images/42ea517f63082b97b5f0.jpg",
+      "bytes": 58276,
+      "sha256": "1a33888bf307d0e6ccb42581f406041c83dbe74adeafcb460c5568e6c9749a4f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4515b3d145c92d744c67.jpg",
+      "bytes": 1525799,
+      "sha256": "854ebad77f030b25ea09c93577d4f09764ad099363a2f80734378abf20d14883"
+    },
+    {
+      "path": "data/course_20261027/raw/images/454ccf8a3e9ea19d7dff.jpg",
+      "bytes": 195849,
+      "sha256": "12ef837a9450c5db690828562f1bfd35e014d37a5406b0df9b4a1c3266bf475d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4624b988abb45cddd0a5.jpg",
+      "bytes": 308629,
+      "sha256": "ba983e3cc47996f111e34dce34d4c28a06fa271f0e7004425c318968331aa944"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4694bd3a23d3a94c2ce7.jpg",
+      "bytes": 34263,
+      "sha256": "093bb29714dc4a9c1f8e893738991dd2ac45d9e22272d8e3ffaa6a3a208ce96b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/480174b7738f81551fc3.jpg",
+      "bytes": 129477,
+      "sha256": "6bf52bafce04bc3dac19a6666aeb11bf2f86b4fdd5fd1d0a253678d3b9323b77"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4864bd034aba476131e0.jpg",
+      "bytes": 678687,
+      "sha256": "51d2a0df69e6e5e9ed815e58264d124ada06ce6ac17f5683353ae89f2e65d143"
+    },
+    {
+      "path": "data/course_20261027/raw/images/48abe1aa68bf887e637d.jpg",
+      "bytes": 2420944,
+      "sha256": "8a5f0a3ec7dc3a06b45d2e27d5e3bfa50030542c3b3170516ce472663b402943"
+    },
+    {
+      "path": "data/course_20261027/raw/images/49951221df07f5469793.jpg",
+      "bytes": 74796,
+      "sha256": "b075580f19893597f9b479b977aac3c492c751498ee990b74caab50e479ff1c8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/49afae56f36b56a1d534.jpg",
+      "bytes": 521344,
+      "sha256": "a1bbce910adbdab405d75abfebfc61098ae8a8975072ff852275594c17d143ac"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4b0c08aaefaa93a3ce73.jpg",
+      "bytes": 635041,
+      "sha256": "9bd503b2462459fa80fb5211317642213cec068c79741ac3b5c7a96b8c265003"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4b3271e5adeb03c2cb05.jpg",
+      "bytes": 272909,
+      "sha256": "4a9d352755729c364295f9d45d9a46780ca6975353b236a2292792b206eaeca3"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4b4f326332b8f8bf4665.jpg",
+      "bytes": 199245,
+      "sha256": "0241a4794c352d3d6d63b4ef7ad551546924ab38935597fea5e7547a2990d242"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4bbd11b881ba01974123.jpg",
+      "bytes": 85445,
+      "sha256": "edc6613754f279cc64d39ade89aac3b1916bfaf6a447e185c4b00c80aaa7f2f9"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4c8243f12d5e210638ae.jpg",
+      "bytes": 3674995,
+      "sha256": "1a8b326658a49cac7448566736cc835fb68402b2c5512478c1460e5bde82e9d7"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4cb74bda0daa38913ddf.jpg",
+      "bytes": 3614803,
+      "sha256": "483f7e417dd243447cdd48df1a2c5a64c57071753c1a96a06c9ef7ff5a091baa"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4cfa97fab411134bf523.jpg",
+      "bytes": 3121712,
+      "sha256": "56772e130c25aaa44556d93471b2c18e305f04e81d55796118788867b7a43bf0"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4da7c7aea8a47cc20c1d.jpg",
+      "bytes": 1622548,
+      "sha256": "0a4dce730e4900f5768317f69835a3bc774e77f818e6433c2dffb8bef8ede2bb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4e048fad42308fd9b689.jpg",
+      "bytes": 411677,
+      "sha256": "15eba497dc2c6ec8920544d606e16d44a2d8269e23d75c918f0674e9c5207ae9"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4e0561de14a21cdd5a79.jpg",
+      "bytes": 1707932,
+      "sha256": "c005f342835101138c340b8f56ab2099ebde270a00da4abf8897d5eb09733874"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4ee6a69ebb9363ab611f.jpg",
+      "bytes": 53193,
+      "sha256": "11744f77dccb9917392c1e5cc1503de092443b2b33a20aa082e5d59eafd0a146"
+    },
+    {
+      "path": "data/course_20261027/raw/images/4ef13d9b938f212044b6.jpg",
+      "bytes": 94225,
+      "sha256": "517af7d849d01300188122599e57f358efa8daa8af9c95fc89da36c493c850bc"
+    },
+    {
+      "path": "data/course_20261027/raw/images/51c736a42c79e7d84981.jpg",
+      "bytes": 206463,
+      "sha256": "6fc1957e019321580663985ba003163350f092c6fc734de4001cdc8e78d902f8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/51c7643ed9f4024ad659.jpg",
+      "bytes": 223128,
+      "sha256": "a59b4c3b14a6174eaa1339c95ec6f645251bd8c38367b50c4314a47b6ec286cf"
+    },
+    {
+      "path": "data/course_20261027/raw/images/51cc8285766e46f06156.jpg",
+      "bytes": 3824412,
+      "sha256": "1b7d08474c310a66d82803e2cfcab34070ce38d97d4cc263eb555cfe35ebb7ca"
+    },
+    {
+      "path": "data/course_20261027/raw/images/521aaf24d2a9005749df.jpg",
+      "bytes": 68486,
+      "sha256": "73b815c7b810a1b3deba4016c9f2e14e6c952ac270a3a8175b6314c58aac3994"
+    },
+    {
+      "path": "data/course_20261027/raw/images/523c3018a4e8df32c25a.jpg",
+      "bytes": 2282250,
+      "sha256": "5182ba0174750d36125f1e49da2da1447586bf284dc4176487cf888f97a84c85"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5240609a3b3d56e1c635.jpg",
+      "bytes": 257682,
+      "sha256": "759fa4497b3bbd8e47c7ad2d4fbb82fddba1eb5411b79c0f8fe6b9800219ca7a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5247026969ee7d322b93.jpg",
+      "bytes": 547992,
+      "sha256": "72f62b0911f9e0e444a15a546f6c448335d3832ffb6edbddfade9a911be64f9a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/52a9370372ef834d1583.jpg",
+      "bytes": 143544,
+      "sha256": "ec2726dc0a05009ba854bfe257851a471c8887c909c1a8282fee4594035c7f88"
+    },
+    {
+      "path": "data/course_20261027/raw/images/53217f51afdb791829e5.jpg",
+      "bytes": 922162,
+      "sha256": "d75fd5a6e770e74e9b5042e911c17b83dd6612240a59c83d3f126b4472ffe3e3"
+    },
+    {
+      "path": "data/course_20261027/raw/images/53570a0dd4389935fff3.jpg",
+      "bytes": 424400,
+      "sha256": "a772cf1656e2db3030b7f3f7dac28cd2e852f5bdb14196370b11b27a6e4ff3de"
+    },
+    {
+      "path": "data/course_20261027/raw/images/556fa2628e96ccb33159.jpg",
+      "bytes": 58777,
+      "sha256": "8109a4243e77c4f7654bb7379960b78ba86b67d7713eed871e96b92952075895"
+    },
+    {
+      "path": "data/course_20261027/raw/images/55a94ba972938947747d.jpg",
+      "bytes": 228733,
+      "sha256": "d800052dd7f8fba853e4029c74fe91f7a4797494b96a4f60419f7731975161ca"
+    },
+    {
+      "path": "data/course_20261027/raw/images/55f61e4045eb511daf52.jpg",
+      "bytes": 157219,
+      "sha256": "b8645fd9efc8ba38bb827b8e29e18b4725e65323f53416d39526bcea28bcfb07"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5707e58ba7b0397b4b56.jpg",
+      "bytes": 394264,
+      "sha256": "cb3e1b4f093eaebdfb3ab5cb363aadeffd0f05eab345362c6d8170972acc49da"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5711e7330dd4454420a3.jpg",
+      "bytes": 973489,
+      "sha256": "4f1a1b3b5be3e6c6a2ac7adf7c6164a9a9bdc4bbdf239fb82bc363b92125843e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5723cd8289464bd5d856.jpg",
+      "bytes": 344766,
+      "sha256": "fa835bf8fa719c024292a7116258d053106d0e9e2bdb915fbd42a9e6b14baadf"
+    },
+    {
+      "path": "data/course_20261027/raw/images/57b91452ab335c17f5bc.jpg",
+      "bytes": 343027,
+      "sha256": "d749b280d8a367eebc851b62dec2c3c027ed237c0594664b19f799a6b86c4a2a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/584d566a77a6887bddff.jpg",
+      "bytes": 70195,
+      "sha256": "63b9c2851502e9c43b4b3972894817edefc854f02922d73b8d5a2b301614d49d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5a098c0e766922d38ac8.jpg",
+      "bytes": 2346083,
+      "sha256": "818add907a94dffdef905f329a364e255f27a92afd6ffb1527c44362e1c26830"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5a11992423ec0e027737.jpg",
+      "bytes": 293488,
+      "sha256": "59a62b7d86c42973e101a9cd06fbdb12077d6dc08ac8094c21c6c0d5c040976c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5a142591ecdf23cbcdd9.jpg",
+      "bytes": 2684564,
+      "sha256": "871b07ede44261aba6413d34acc1a251c885f21108db547d0d204a3536ab86cf"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5a1e8a3c97f82b967634.jpg",
+      "bytes": 32010,
+      "sha256": "cb6f55cdcb7ecb55fbe60d46a208e1d42eefb4d471a44d335e906e0a6ce22129"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5a28c6428c43f8981f22.jpg",
+      "bytes": 915666,
+      "sha256": "6f687bc9fd569346e181c3c1ccb5afa6e7b23ea0f11ca1a89b034cd03b6486e3"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5ae4c6a87a06f876eee2.jpg",
+      "bytes": 126581,
+      "sha256": "50c72d9c1abfd3182d824ebab1a3cd916836a500e2920365c06bbbf63e405221"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5cc019f4eea360ada273.jpg",
+      "bytes": 267952,
+      "sha256": "ff7a855af30c353089b12595ed28c92287c1f3d3b4013706661648f74ea6eb3f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5d30a3d02bc13cd053a7.jpg",
+      "bytes": 66065,
+      "sha256": "afc9bb436771babd51dfd39a1c9be5d8fa9f86909c1e537930a7a1ac36be69ff"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5d477b1334998628dc2d.jpg",
+      "bytes": 2102539,
+      "sha256": "438cb03c94047ff9c67cd5146f9776d31a708462da30df74c4492840f7b072ca"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5e07b3ff4ffc58f9ed5f.jpg",
+      "bytes": 135781,
+      "sha256": "143e7ac1a94fcd8f00aef4a3a14c087f2a409e345fd5f2022c29b16b42e27b08"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5e36a18b666a50adac27.jpg",
+      "bytes": 89810,
+      "sha256": "5ce456467a68ae26f46d9306a892005f874f1b666b2864012a7d0594ec12b746"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5e91c9435c660e4b161d.jpg",
+      "bytes": 327034,
+      "sha256": "27f055217a37e2f86ace3e293f73d945ef9784b0f8c96942e6c5864ac96d0716"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5fa233893f5c49ad181b.jpg",
+      "bytes": 57257,
+      "sha256": "a83e3adc5c4442d71602f707273e67e4044010e422ee6b0d0e63a3cab1ad526b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5fae87b365eb4ce48996.jpg",
+      "bytes": 121226,
+      "sha256": "2b83b77e3ca77767d79c83cb1a23169a589aeaa3c4d2240aacdae246a8dc47a0"
+    },
+    {
+      "path": "data/course_20261027/raw/images/5ff31e4e5743610d4fac.jpg",
+      "bytes": 226939,
+      "sha256": "a459fa49faa6fa463debda86ef69358b303a54616d35dc16f14ca2b6f6778812"
+    },
+    {
+      "path": "data/course_20261027/raw/images/6049489efa8b80bb965f.jpg",
+      "bytes": 165833,
+      "sha256": "dc8d5ba92b1037f11d7b646b4bd11102661b07874fdeab1978ee0c13c965ef8c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/60704ce351ff48a8b1b9.jpg",
+      "bytes": 38464,
+      "sha256": "8ec76d97156caf5d27ece55dff5fb84f25808f8349487d98b36b458838d7d27f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/612ae0060df99b5ee2c1.jpg",
+      "bytes": 1774262,
+      "sha256": "a8d208ac3e7e0425c49e7d136501bdebea803fc8bc7923637efc8c9b21025bbc"
+    },
+    {
+      "path": "data/course_20261027/raw/images/61b130027dc8ebfa0e9b.jpg",
+      "bytes": 314174,
+      "sha256": "8df6725947a3e5cbaae9c6d1afa8c75aee7524edafb925b1c264381242f60cb8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/631b5b08b2767a106410.jpg",
+      "bytes": 88525,
+      "sha256": "611d7542b7cfacd1e45e6627edcc41b06ad527d21062599f1551bd8d25dd8092"
+    },
+    {
+      "path": "data/course_20261027/raw/images/63297bc736dc9e71b57e.jpg",
+      "bytes": 105503,
+      "sha256": "c79535f371abc36c4d86028ef7522fb46cfea75a3b2007b7e8e4d4bdf3e14f66"
+    },
+    {
+      "path": "data/course_20261027/raw/images/64bee780e98e9a9cf1f8.jpg",
+      "bytes": 267323,
+      "sha256": "67b2d47e09205740285911f350cbcbf516d4ad852e20840cae404055b3c6e572"
+    },
+    {
+      "path": "data/course_20261027/raw/images/651afb16f97b98112f1f.jpg",
+      "bytes": 151905,
+      "sha256": "34a4f7053601c4ac62860df771bc044e5b0ff3acbd95000c798833030c218d83"
+    },
+    {
+      "path": "data/course_20261027/raw/images/655ae18eeed78801737e.jpg",
+      "bytes": 141815,
+      "sha256": "713f3c942f7b64d376eca54938841c403aadfe2861c8b7c8c11b274ee4a96fd7"
+    },
+    {
+      "path": "data/course_20261027/raw/images/67bea8a12d2c74e8267d.jpg",
+      "bytes": 256137,
+      "sha256": "5401d4a2541d9b23ed5e3127a84096f0a5bfdee89ce1bed301a501e0faee6ba7"
+    },
+    {
+      "path": "data/course_20261027/raw/images/67dc42e8beb5c0be0d00.jpg",
+      "bytes": 2306387,
+      "sha256": "7e649d5361803fefe6aa12d69151a1a734284197c51172c228cc9d2e1e9a47a8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/683f8400449474531a5a.jpg",
+      "bytes": 109361,
+      "sha256": "8c294f3e5a26814f8279f7f2942fdbbeeb8eb421500dd9aa9c07140df9fe018c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/68617de4e20dfa401848.jpg",
+      "bytes": 151242,
+      "sha256": "b457ec87f90c706672cd633778e03ee89b559b420f0b6f44c33272ca1522a0b7"
+    },
+    {
+      "path": "data/course_20261027/raw/images/6986ce9e92224d9f0ce5.jpg",
+      "bytes": 250795,
+      "sha256": "ffb8b45a34d6ec0d2b5a0b51a292ad3b029e92b9afc5c71b14e2ce0bef5c9ae6"
+    },
+    {
+      "path": "data/course_20261027/raw/images/69ba0b84239face0dff5.jpg",
+      "bytes": 72054,
+      "sha256": "5a392f4fcecf65b59ad16094e182cbdbcc28f9c98efc18da722968147c798021"
+    },
+    {
+      "path": "data/course_20261027/raw/images/69ec7045683fd60d80ad.jpg",
+      "bytes": 1715459,
+      "sha256": "4ddd5c52b08d12c19c20247324516120425de644f1de6d9b7071f47fd599fbdc"
+    },
+    {
+      "path": "data/course_20261027/raw/images/6a6dd4d76b9ffaef9ebc.jpg",
+      "bytes": 858627,
+      "sha256": "35662278c926d4168191a16598203dd3bf731015cf825b42cd91e683aae67f54"
+    },
+    {
+      "path": "data/course_20261027/raw/images/6a92f0249e89a6cc888e.jpg",
+      "bytes": 168509,
+      "sha256": "525b129fbc7f1df60823b8ed956460954d80f41d5152282ac3fb13ca21af8e27"
+    },
+    {
+      "path": "data/course_20261027/raw/images/6b6c84eeb95a585775ed.jpg",
+      "bytes": 349595,
+      "sha256": "cac62adb8827042ccb1d5b20a3d5214c59e5958179ea46915f4c1a87428244a1"
+    },
+    {
+      "path": "data/course_20261027/raw/images/6c85a373029e81e1c689.jpg",
+      "bytes": 116697,
+      "sha256": "4f5bb1a3fa5d66bf6611cf0950450ac782b46fd334b032024ed0574625455b25"
+    },
+    {
+      "path": "data/course_20261027/raw/images/6d1798374d7c0cade3ba.jpg",
+      "bytes": 38058,
+      "sha256": "bdbe1e3e95f10fe0ca57fb9cc7e7cf504262f22a7dec388c62b3f8906ac1f804"
+    },
+    {
+      "path": "data/course_20261027/raw/images/6d3ce9dc0cd759479f54.jpg",
+      "bytes": 14570,
+      "sha256": "1a331c95a593af433a21867f3ae38087dce19aeb33505c141e8fb5f5bbbf2dd4"
+    },
+    {
+      "path": "data/course_20261027/raw/images/6e5c1ac865af767d3950.jpg",
+      "bytes": 217747,
+      "sha256": "7586cc7f5400de73595a8b4d252d0836e9312e196898db295fde393cd0028426"
+    },
+    {
+      "path": "data/course_20261027/raw/images/6ef266cfcfcbbc7c2529.jpg",
+      "bytes": 160259,
+      "sha256": "4c955c6693985f0ace5f2ca7e94c1b8eaff5ebb14d996c0717a7045aea3dbb0b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/6f84a0c3e98b3614884e.jpg",
+      "bytes": 42818,
+      "sha256": "ebda52d582b41845b107554d9588b4c23cfc23262bdaf3d456b64ff18cc52ec6"
+    },
+    {
+      "path": "data/course_20261027/raw/images/70552f2d8142d6465f70.jpg",
+      "bytes": 4629372,
+      "sha256": "8b1710bf400668bba348c7c69dfc28d02a92ccbf837d406b935d68ecbb50cfad"
+    },
+    {
+      "path": "data/course_20261027/raw/images/70c27e1eefeb7155a78b.jpg",
+      "bytes": 64600,
+      "sha256": "91520208c4b5509b750f0cf8e59a99e34553bf26c36a09a9240965957bfc8b20"
+    },
+    {
+      "path": "data/course_20261027/raw/images/71ea64f79b750ace7169.jpg",
+      "bytes": 209533,
+      "sha256": "4ee60bb9665fdbce36c19e20f8111d7f8c2c705db32898c86fa1b1602f7233ec"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7344fe24b15e93854aa6.jpg",
+      "bytes": 321457,
+      "sha256": "35180486f9933fce209018cf10a9f5aafc2a5e18257b8508926f59a0e9c81b21"
+    },
+    {
+      "path": "data/course_20261027/raw/images/73cb6cbecbb5f382e9b9.jpg",
+      "bytes": 188128,
+      "sha256": "726d947982e6abbea7d0fe2d6f843845a530d04ba1d800790a7504d91901459f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/73e7d38b9303461713b0.jpg",
+      "bytes": 93758,
+      "sha256": "3b3b088bb1a1d1b3465cedf77268d596630b57d34c79d471bd91b9fb83593429"
+    },
+    {
+      "path": "data/course_20261027/raw/images/73f78807b757693709ec.jpg",
+      "bytes": 163191,
+      "sha256": "8e226e8d4d4d65a33039ebd4ea400ee320dcf9af7dea52e802458ee0cf1a26bd"
+    },
+    {
+      "path": "data/course_20261027/raw/images/745ea8f83cbc3dd4ed06.jpg",
+      "bytes": 91494,
+      "sha256": "51470e540cf6ecc367cf0c9c7d7274a6c89d540d3fc53628faeac8cc5e807b35"
+    },
+    {
+      "path": "data/course_20261027/raw/images/74dcc6efe6613f3cd98c.jpg",
+      "bytes": 227327,
+      "sha256": "14f15446afdafafc2bf18513cbe8aabf34bb945f3dc47c32978dfddbab6c4605"
+    },
+    {
+      "path": "data/course_20261027/raw/images/755a4a8d629514934c4c.jpg",
+      "bytes": 300179,
+      "sha256": "4820d32676bd8302ddea421af4c1a68866a222702db027c233b4e7c471c688cb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7708450add244f3b0841.jpg",
+      "bytes": 242389,
+      "sha256": "c449750b5a34fd1bb13d7b09115dfce262464fad4d935da164404015ee15c9b8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/78b11fd60ef5f64f0394.jpg",
+      "bytes": 159426,
+      "sha256": "ed0532b2164b7cccc91b23364c2b1614ae19a851ab48a5f8d1458a6cab64ce2f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/797178158f7bf7327824.jpg",
+      "bytes": 58022,
+      "sha256": "9e30196a5e6e1232357bf5808da21467f50054a414f930aaf4dc3d2d3b765c33"
+    },
+    {
+      "path": "data/course_20261027/raw/images/79be560e4955e497b2bf.jpg",
+      "bytes": 45306,
+      "sha256": "90921d5583000a28ce68cbafc7c6bbba3e79b16ae8ece8e01ff8ab120f826bcd"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7a7db55f243389ad2a22.jpg",
+      "bytes": 1177302,
+      "sha256": "c0530d351cfe276c3e4397fdde32c5ff057e98363d4f8f24a19f90371b730550"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7b5363ba55b1a1e745c2.jpg",
+      "bytes": 1616610,
+      "sha256": "da7ba5d027a8b4fece7c05d702dcb5911b6527e6f65ef5a396fa68b6d08e8cfb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7cf95c81b23a3bbed632.jpg",
+      "bytes": 302818,
+      "sha256": "30341aa5bad48c184cf7ab8cf4a231f04bc123bfbf2a38f75b9e6c8f8239cbf0"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7d040781a4dc16e1d95c.jpg",
+      "bytes": 302679,
+      "sha256": "de1b984ecbbc0f61428e1bb56fea95148c53b19ce04bd6daf4b3ab664ab48acb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7d2dea3d92ef1e899778.jpg",
+      "bytes": 115912,
+      "sha256": "267136c209835904766c68f6ea25a651cd7730863d296406dd58e35ec1967190"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7d82b692582589b655dd.jpg",
+      "bytes": 199382,
+      "sha256": "4bc9f312667d52a6c4f9b0e3cdf2e69744161a36982a5857763eefe704e5ed4a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7d8a41467656f3161c7c.jpg",
+      "bytes": 104889,
+      "sha256": "9e85704d351490c340d98271793d3d1aa6934047f2c132b73d4edaab7cd14c6f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7e653c296cf436fe6960.jpg",
+      "bytes": 72751,
+      "sha256": "1bf9c9f271836f420cee372067b7897794d4477a92fd67352658728809832288"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7f871d1d3981d1c9fa62.jpg",
+      "bytes": 1163637,
+      "sha256": "f8cfed850c7c4ef404280b080efb972a42efb85d6da1292b5a9b71dea25930d0"
+    },
+    {
+      "path": "data/course_20261027/raw/images/7fd4dd75a7303c2a0855.jpg",
+      "bytes": 162156,
+      "sha256": "d6043058edbe732e7bdd6cf41bd4e2a11f9809d3890b87680fecb1f2332ccfbf"
+    },
+    {
+      "path": "data/course_20261027/raw/images/80e08b72f25021991af1.jpg",
+      "bytes": 28643,
+      "sha256": "ba46b43f34cab6967c59448491fd8cb5985e76ec35ea02a2c2f18c495ee49cda"
+    },
+    {
+      "path": "data/course_20261027/raw/images/81f3556f74e55f2c06dd.jpg",
+      "bytes": 263734,
+      "sha256": "c71bd586d1d2f2189ad19ddbb101abc91dba506238652bfc953a581f5adea76a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/824e1fbd83c3f7a7277f.jpg",
+      "bytes": 383320,
+      "sha256": "e8209bea55dde609e5eab36f6ad92d8809988bfb9250c7a138a95334de309434"
+    },
+    {
+      "path": "data/course_20261027/raw/images/824f4a7fb31497cb28cb.jpg",
+      "bytes": 107204,
+      "sha256": "df051015952b3dc2de1edaff491cddd82ae7c3badf7b9ac15863aac4e7dafe07"
+    },
+    {
+      "path": "data/course_20261027/raw/images/84833fd4862833395f41.jpg",
+      "bytes": 182058,
+      "sha256": "a43590d22c62cb3331679497408e1f84242f4038211a284a0aeb10fbdeec71d2"
+    },
+    {
+      "path": "data/course_20261027/raw/images/84a471e753e29527635c.jpg",
+      "bytes": 337791,
+      "sha256": "8ea031ea5f3aef9f95b39f47da8de048a8d573d8a19613a57cefc1d19500fb91"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8541d7612dd49f52b469.jpg",
+      "bytes": 1819711,
+      "sha256": "7830b70a3bc518e90cb6420eb807f0b321dcaee64fc1b194cdcbd0fe22a89b10"
+    },
+    {
+      "path": "data/course_20261027/raw/images/85a321743659128f7540.jpg",
+      "bytes": 308359,
+      "sha256": "5d08dd0074682938eaa5c9b5c9164dd8534d4104cba2eda296321a2cf273743d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/85f59c7dda94226b38b4.jpg",
+      "bytes": 363669,
+      "sha256": "40120a12e4ed01c657c807f09c5602834e64e836645cc693dde5f0d5c612baf8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/87dc689fd226da26a736.jpg",
+      "bytes": 204828,
+      "sha256": "5601e9aa65df1c10887082aeb0d1eb34d82cb97062ebc8b8e52fa1cf561532c3"
+    },
+    {
+      "path": "data/course_20261027/raw/images/88f899b8e9b94ec16a77.jpg",
+      "bytes": 231987,
+      "sha256": "120a63f60a356c804512db214cd41147ad24806f93d907128614737ca9887f6c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/895bc4d719d11f3a6ee3.jpg",
+      "bytes": 80019,
+      "sha256": "9584064750e5a1d484abe22af2d862de6ad7f26bda474867d1e981901dd90367"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8980f27fd28a27723be5.jpg",
+      "bytes": 2123745,
+      "sha256": "5b91fcb43c936b711ac8e86eaf104bc58e850cb1d0777d2f582cb3cdba7e3414"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8a27373215ceea627bc2.jpg",
+      "bytes": 355308,
+      "sha256": "5f0c7ae123025d63928d8d6d747631d9b801764ca6f2c1403112f5a1d2778a7b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8b2a0d1054cd196ac97f.jpg",
+      "bytes": 2195015,
+      "sha256": "8831450a72745c1a2ec8ce982765948f337d0a93bf98f382e9f5e2beea91b6d2"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8b3771e504b1374d62cc.jpg",
+      "bytes": 306227,
+      "sha256": "1827dfaafa529c4edec9f6becb49970aa29ce3f13fa0af38cd94b3383e448c8e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8bcf34147266e59bdfbe.jpg",
+      "bytes": 1660274,
+      "sha256": "6b590ca94d1eaf9cf1b791f76bb4166fd57cc47c5dbae42a740b28a5cf98a6ec"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8c8dc7c20053133b558a.jpg",
+      "bytes": 894743,
+      "sha256": "f6d5f9484ce9496403c0461ca7dfc3a4050726c37807573e1981e2fe43c5294c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8c9f87e725f982031467.jpg",
+      "bytes": 243442,
+      "sha256": "abc66d5c9a9e8f23520f6974ebfb3bc8a61ffb639184765a70c645d40a0454bb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8cfdd5922bff70500fa4.jpg",
+      "bytes": 915714,
+      "sha256": "f67dbce63eae003b4d41f912e9959706c6580538039762b7def0f4e7d1857fe1"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8d4f76847dd1308b4f49.jpg",
+      "bytes": 1562360,
+      "sha256": "70710a300a04d793f27549ad83f154428b77010a04c99747d07d91ed00054f70"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8d65e0e25d1ec06fe145.jpg",
+      "bytes": 450737,
+      "sha256": "439c98c1fef8294ca2f85ef773ed0494b7041be7a237cee912b6dcf371f27555"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8e00547ca260f59bd8b2.jpg",
+      "bytes": 225848,
+      "sha256": "d5f84bd486a0b59e6ef2858329af69ad86a14afd8b1d7b7844c05920bea00b86"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8e0e0d50fb6e3b3e4e8e.jpg",
+      "bytes": 554063,
+      "sha256": "559d1cd6d7f231d6952cbc4dce5ab2cf01ea460e779fd63d588482b3d674829f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/8ea9822e585eb48b593a.jpg",
+      "bytes": 141939,
+      "sha256": "ebee865f166e245e5f81f0677a5f5e2047e2ee33db9f91056d20d858fc470302"
+    },
+    {
+      "path": "data/course_20261027/raw/images/901f0a6efc38d29abfdb.jpg",
+      "bytes": 227612,
+      "sha256": "b8de65d9ae1433161c9ce9e89b357e672c8a83602e183379ef485139c7bd6e9c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9034183fc39d1389a3ba.jpg",
+      "bytes": 257467,
+      "sha256": "f0851725a12914ce500ead61e32a3e441654ecdf0ac4bd545cca51082ca9b01e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/921a41b24cd04019bbcf.jpg",
+      "bytes": 219516,
+      "sha256": "129859dc1075c8971e680858b23f050a273892be12a82788cb1c98d2fab3eb3a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9258010274b5b35c605a.jpg",
+      "bytes": 210638,
+      "sha256": "b0d2fc20d4ac9a91bb772bd8adfb81afc42e97471379d34d8d3744c915e6acc5"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9320a404c042f06112c9.jpg",
+      "bytes": 80316,
+      "sha256": "1e7992c3b241102257c40faa75452d134b63ca2bb9514face1900de926c0fb47"
+    },
+    {
+      "path": "data/course_20261027/raw/images/93db91e7c3f181691749.jpg",
+      "bytes": 221690,
+      "sha256": "a013c22a0ba6ba46579a093ce4f706c5d9eaf34021c5acb9f75b43338335838e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/93f36e3a0844f381d91d.jpg",
+      "bytes": 344801,
+      "sha256": "0f37390bd4a099389853850e16e5341be0529a02bd2ad124a7c55ddf28a928bf"
+    },
+    {
+      "path": "data/course_20261027/raw/images/959375740b178e66fdc1.jpg",
+      "bytes": 566938,
+      "sha256": "d18c9ad4f3ef46416c5f99b692c029641bda4357774e976b67715fe548e7c9fb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/96a53ae54bd45a726088.jpg",
+      "bytes": 1165434,
+      "sha256": "8d9afd551823eb1b26d54069f45323c15eb27b42788d2f2234a3f96221982518"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9705549dda8a275a0c71.jpg",
+      "bytes": 108900,
+      "sha256": "f107193bb2fdbbf0d181e96dff9bfcee12da87210b1e876f67af035df5ff70d6"
+    },
+    {
+      "path": "data/course_20261027/raw/images/977c1b7ce1b61e25803c.jpg",
+      "bytes": 170345,
+      "sha256": "0ddaadec691a3d98712d5efb865ccb29efd5c1b7c6b0fd24a2e44dd6396dd606"
+    },
+    {
+      "path": "data/course_20261027/raw/images/98244b57c7e8744acc7c.jpg",
+      "bytes": 174379,
+      "sha256": "859e06d32bfa9618014c8c0dd4f766d0c2540e1853c2c1fe6c2acd887214109e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9922c0202960f28dec6e.jpg",
+      "bytes": 403739,
+      "sha256": "5b5e4df458160504d12525e82b00e8b90712f6cc96ccd0826de480a1d398286b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9996fcdee829e0ab8432.jpg",
+      "bytes": 100671,
+      "sha256": "933cec40d4b0fb3c1fbd82dd65fa9ada422d3a359fbbc0b9f3b408e2164c8155"
+    },
+    {
+      "path": "data/course_20261027/raw/images/99c3976e5e7c5645c72f.jpg",
+      "bytes": 103989,
+      "sha256": "6c4650e6f6ea39997b6546bde64a010e5c8e2ced91be0360a755f15117f2a7d1"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9a56ea4218579a985bd6.jpg",
+      "bytes": 284070,
+      "sha256": "3dcfc93a7dd70f521dbc65b4c9b7114adb459b1a50c490f9170b13a520518117"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9bc7588d982f20bc030b.jpg",
+      "bytes": 71994,
+      "sha256": "2b460068134b37b4ba574f3e0724407f7519c74cac8bb78cc39bab1037714a83"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9c6f318f29f4a9315352.jpg",
+      "bytes": 347779,
+      "sha256": "68a9505b967e4a87e8dfa848dc7943f739cd31b5bccf966052aa999f95b29789"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9d837ec91f326d2afeaa.jpg",
+      "bytes": 257752,
+      "sha256": "f3978039d4dad18b1f4767714a0a73cd25235938a36f2abf1729fb6e086e8ff9"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9eab5ba52c415cfbc4d0.jpg",
+      "bytes": 169079,
+      "sha256": "2f727f84ce0c7bf4e35b0cbd40c1410ccd26ad7d9c409e3ee5c09eb6350f221f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9ee6e283d3c12778cc09.jpg",
+      "bytes": 31594,
+      "sha256": "acbededca20d4337fe9af9186f3f7da0c9093dbe5e2434be904c0777ee8d9d69"
+    },
+    {
+      "path": "data/course_20261027/raw/images/9f413e657209f6ebb8a1.jpg",
+      "bytes": 1552464,
+      "sha256": "dd22daf946accc692d6c46527a64bac5960d63b885275addb01ecca763302711"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a1224f3eadc28109624a.jpg",
+      "bytes": 450383,
+      "sha256": "6d2f7f0b48e101b85e4fac907201ddcd44a5d1fc35182ed5f38e6d6eb6876c14"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a165d1567b3f80446b50.jpg",
+      "bytes": 172737,
+      "sha256": "f848a4c478d7b3768a894f590ecc29c1fe7f242629eabbe41018233773be545c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a173f9ee74eee03d5a9e.jpg",
+      "bytes": 1191510,
+      "sha256": "3b1c6a94b53ec8cbf391bceeb97fba5b87f332c0a1e16541152b377a9c9be593"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a2346d7afa77672549ba.jpg",
+      "bytes": 95430,
+      "sha256": "37c477cab96e8dda96a18aceabf4d191ef5cce6b7bdbb07f06ae7930cc008b83"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a26b5573cf7e8d73d1db.jpg",
+      "bytes": 258946,
+      "sha256": "2a9dd66476da848b3005fdf984a9568804488e280ecac7ecfaef7aba89c3ed92"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a361b838f2bd7ef66a17.jpg",
+      "bytes": 222673,
+      "sha256": "35a5452696354fd4a90700521aa60ee09d0e2d8d3fbc0981b93eba803c8f7460"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a42e4bd92d3299f84371.jpg",
+      "bytes": 106706,
+      "sha256": "ebbf04bff4a08d6ab6f63b0bf07a13ea65b882fcb7741466d52341ce10d547ad"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a4bf5f7abe7f5152908c.jpg",
+      "bytes": 3877011,
+      "sha256": "08601f9cf8581fd871ebc65dcd8fcd281d44004eb6cc1573758249234ec15012"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a4ced9e9ac8b0f523bfd.jpg",
+      "bytes": 339235,
+      "sha256": "1e77a8ea6a9eac50d7ea417abb1180bbfc760418162dffb16fe7e8b7f4e544e8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a4e4a225a43f5c1ffd8a.jpg",
+      "bytes": 1205568,
+      "sha256": "34b7cba8d1a5aeba02b978791463497bdd69faf9b606b5387c8cd1c7e958beb2"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a533c2c9754ff699c398.jpg",
+      "bytes": 150958,
+      "sha256": "e648f1d0dae007a36e9e9fe6b233773585c8e9ce30704fc85ee2e6c380b52655"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a59d43ea1166cb1200cc.jpg",
+      "bytes": 77620,
+      "sha256": "f3f5322b82ec879e97c1cb604298a34850ecaafe4758a4dfb4b95342a6277a3f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a5df35b3429d61d2ccda.jpg",
+      "bytes": 186494,
+      "sha256": "0f9c29e6fc8620e15c30a298fbec5ab509966a1d712c87a830478fbc3c6c0a1e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a6e2429bfd1eb8b16fa6.jpg",
+      "bytes": 270781,
+      "sha256": "22b3095d3daa3862489cde34e9d6ecf98cf151cd3e0ed7bf536f0b2d6e7e004c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a6fa269f98c2e0c67411.jpg",
+      "bytes": 93768,
+      "sha256": "eef590608374a348b5f92ca9c42394d061e6ecd1938f3544e48537e7d1024d86"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a702bc6818c9f1ecd6bd.jpg",
+      "bytes": 159267,
+      "sha256": "510d1846c919ab7d0c6cba14cd1d6f9cd4c7fca0e0b63fbadf8d0a35537cfc95"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a7403e261c0669f1c072.jpg",
+      "bytes": 115737,
+      "sha256": "4fd69d4cb059ee1db921b9137c996ddf9081b03a2d25e4e51d036ca8f24ea713"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a749e22f4d8533ba267d.jpg",
+      "bytes": 193165,
+      "sha256": "118239f1e506c75030b126680551664999cd42a0aa28c72d8e677739da6f0468"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a83909603dde57660712.jpg",
+      "bytes": 2163360,
+      "sha256": "133c8a133ddd202e980799050a7a4dbc3b88518a2c3fb6620decfbd662015bb1"
+    },
+    {
+      "path": "data/course_20261027/raw/images/a92428e34e40e371126e.jpg",
+      "bytes": 123625,
+      "sha256": "af937878fce6a152b47f0b4e8cbaa123bd3da5993805797081291666f08082a4"
+    },
+    {
+      "path": "data/course_20261027/raw/images/aa880dd2b39de5ce10ed.jpg",
+      "bytes": 879806,
+      "sha256": "98c86465d223757d6a3ee87aaed7a4d4ec680096d83efb3662902b20c1f60451"
+    },
+    {
+      "path": "data/course_20261027/raw/images/aa97067bce12c8d6cb50.jpg",
+      "bytes": 237738,
+      "sha256": "547433b025a44fdbec3d8b7f3728279e12a5a1d728121938e7188ce1c32e9412"
+    },
+    {
+      "path": "data/course_20261027/raw/images/aadbd702a712c7cf68b1.jpg",
+      "bytes": 28648,
+      "sha256": "89aa757b84799fca9b264c2bcb398cd7fd85ddb380eb618c121275acb5192c7d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ab92a9d0419380fb8f09.jpg",
+      "bytes": 174170,
+      "sha256": "9954d29631f1c0eea86b37ac8a24d9d3602b9f8f56d4753641a59d85e5586694"
+    },
+    {
+      "path": "data/course_20261027/raw/images/acb8500c8c287f3d4d3f.jpg",
+      "bytes": 145907,
+      "sha256": "a399d0f4d8ee1cef3e3e881a5ef3538ce97034ac511f2504344869c083c8db37"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ad20bd3a541daf7a77ba.jpg",
+      "bytes": 1459203,
+      "sha256": "13fa3104ca65946e0f5813b69d508578d6704c65327722d5c9a411668cd62f23"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ad33e6a0a392435d1637.jpg",
+      "bytes": 1611291,
+      "sha256": "603079c8078c8dadcc4f860153fd6c77d38366f3eb4242d6570a33bac5f2bf20"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ad7259fd780e2d9ea203.jpg",
+      "bytes": 54768,
+      "sha256": "d62e0e64fa8eda0f24aa734e2c0673a8b0712056b3eb40a83ac729a59c158d09"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ae981d1285cf4122399a.jpg",
+      "bytes": 713336,
+      "sha256": "10ef276fbb9e42a48b5d28061a1395d8cd5472299b37ae0e4aa91ccf508c0d20"
+    },
+    {
+      "path": "data/course_20261027/raw/images/aed4c2bc7332ed97efb3.jpg",
+      "bytes": 1454783,
+      "sha256": "2ff51d9771557f428737453057916f85085a2f56e58e583a39ee329f2dc289a6"
+    },
+    {
+      "path": "data/course_20261027/raw/images/b060e6c690993da682e2.jpg",
+      "bytes": 965482,
+      "sha256": "d462b47fd12ebf173b958a26778e6f2c5e4ccbc893b8cc755dbd7fbcb29b3038"
+    },
+    {
+      "path": "data/course_20261027/raw/images/b0a273bd00c187c0b14f.jpg",
+      "bytes": 399827,
+      "sha256": "f3c8ffaf4a4041f143b2b5099e930325cd1212e7c9998866f04f51b543e9a305"
+    },
+    {
+      "path": "data/course_20261027/raw/images/b1852256143464d5de8b.jpg",
+      "bytes": 289600,
+      "sha256": "c4095ac8b1e24427c532695d999f358dd852c0da6baeb5ac6e764fcfb6608945"
+    },
+    {
+      "path": "data/course_20261027/raw/images/b35786b59c73fd339248.jpg",
+      "bytes": 2530487,
+      "sha256": "dd634f28e81ba71e5483bd93b9ffb6b8ee9eee8a5476c2a9f117775cf3000256"
+    },
+    {
+      "path": "data/course_20261027/raw/images/b400a68f9f27f714f487.jpg",
+      "bytes": 107308,
+      "sha256": "266a263918b8852c4d4ca35493029f4032d243a954e9e378cb241894040f5dd5"
+    },
+    {
+      "path": "data/course_20261027/raw/images/b404e2f61b7a0167d54d.jpg",
+      "bytes": 456002,
+      "sha256": "f49b82fabca6b054bf60e54d4af74cb84ed56a7a77146669cf36231388f95b25"
+    },
+    {
+      "path": "data/course_20261027/raw/images/b47c1aae5a00b5b9c440.jpg",
+      "bytes": 68687,
+      "sha256": "91db68c2385236b210414d0fcafc349565cd13a37d206b53d93031cfd5ac0657"
+    },
+    {
+      "path": "data/course_20261027/raw/images/b55dd897474ba9fc68ce.jpg",
+      "bytes": 174423,
+      "sha256": "d3aa7ee665ed44796f729b0c1342402024558d44d00cef879215b0105c02c723"
+    },
+    {
+      "path": "data/course_20261027/raw/images/b939c6e5472d6dbb8e2d.jpg",
+      "bytes": 1811483,
+      "sha256": "b4230a53f8dbf1f6eddc6b2aef2f2123e9764cfc8d5061a2217c0d47a3163fe3"
+    },
+    {
+      "path": "data/course_20261027/raw/images/b98500293d399d4164c0.jpg",
+      "bytes": 225062,
+      "sha256": "f2e35445bdcd9aeb35d49d2adb4ae801d449e519f47af8f30bbca497ac948591"
+    },
+    {
+      "path": "data/course_20261027/raw/images/b9f8847fd0e40fdad263.jpg",
+      "bytes": 641446,
+      "sha256": "a1bd3bebbd5915a7f16e74b204ed0c32b096ac01c73c0da6fcf3501e699bdbdf"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ba500b286b2ac2d2a233.jpg",
+      "bytes": 79224,
+      "sha256": "c9056bda60cbc955ab42e8da9b6a77de0157facb20bcba2a15d8e691c4626a59"
+    },
+    {
+      "path": "data/course_20261027/raw/images/bad51f9ea005f6f30868.jpg",
+      "bytes": 160621,
+      "sha256": "261decb0bc7f90eafe741b3a4ec54f1bb5b16868ab6f48000bc6ac82c788fb9a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/bb76007a0015c712566c.jpg",
+      "bytes": 405691,
+      "sha256": "cf41e1357b6c0649c297d31d15f62fe5d85a23ec695f3a00c1523bfd578cd59c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/bd3255e00f1d6817b10b.jpg",
+      "bytes": 25041,
+      "sha256": "d0ab03ce19dcad942988a06f77f3d061bf1aa58b7ac0a35f3aa6171974ee7999"
+    },
+    {
+      "path": "data/course_20261027/raw/images/bf27e9792841bf4cf506.jpg",
+      "bytes": 863102,
+      "sha256": "42682de21d861a1d527a439f1c8426a11d965acc0dd4ac7d7f9d4b7b504343d6"
+    },
+    {
+      "path": "data/course_20261027/raw/images/bf78bba8fdc2f3689cd2.jpg",
+      "bytes": 3571,
+      "sha256": "3b6ce6d784a4914bb971831f53a03cd474fc0637dbc838969d6bec07273ee6c4"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c09e29547807c40adecf.jpg",
+      "bytes": 809361,
+      "sha256": "f10f41ef4f0536167f006067c79db4f26666db156e66d98f9ed724fd229031d6"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c0a976013b4eaf0351b6.jpg",
+      "bytes": 327508,
+      "sha256": "36a0fa9fab352cc957af5c4c86ce70868ca57562677d9fb8b4d0185fbfbdbbd8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c0c8c684408ee5ad4a06.jpg",
+      "bytes": 158002,
+      "sha256": "4b01c6405eec305b2e1a82f851849640e82bb52b837ddd0b087cbfda57cbd195"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c12b05c6bc2cb928baa7.jpg",
+      "bytes": 159370,
+      "sha256": "496ea295f2ee6d7b28c49d6847462e3205d977164b3137332e77643dab1d9f97"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c17c960279827bc68acc.jpg",
+      "bytes": 52681,
+      "sha256": "6f5a46a4dbf469a0e6f6f52ff9ad9c28d90f3a0e0f00849ba4dcae132b66a580"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c1deefc15ff6e5037f94.jpg",
+      "bytes": 3313945,
+      "sha256": "c4d9e2049bfc2e215eac41b512143b7e40bec6e237be9e3be258d86022a96c9c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c244489c17e063cbad3c.jpg",
+      "bytes": 122549,
+      "sha256": "dac5aea52b02216f728a148b3c65ceae22b8acba85285b9fe86aa11cde88586c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c27c7c6b774822c87622.jpg",
+      "bytes": 434134,
+      "sha256": "310a40ae77ad40f02e7128d3ea7f8fdd4f72c9987fa02b3b5af188b92e374506"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c29a14094fecfe5601b6.jpg",
+      "bytes": 189575,
+      "sha256": "c11cd34cfeeedd68e3c3b19295093177653698aaf0578811487f0aa6b6474341"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c3022da66cff90ba183a.jpg",
+      "bytes": 200817,
+      "sha256": "687f9efd28780290f0c6c4290d55b0c4587a0ad105e297983603b4706cae489f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c38e83a59e53cab0b263.jpg",
+      "bytes": 127645,
+      "sha256": "388f71a949dd33addcd0e2f6ac0aecad0437df8d722609c79727e3fd86fc17c7"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c4753fcb7448b23e2787.jpg",
+      "bytes": 147736,
+      "sha256": "7094df462104e8d441d775aeb45df789e49f58c497e067f27203c89e11ac06e5"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c6b19b5f0b8acd532bf9.jpg",
+      "bytes": 252718,
+      "sha256": "391ac32d5ec07e78452621fe519a452de90b92605da3108326819732916a5139"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c741fd8913d42fd14c3a.jpg",
+      "bytes": 82565,
+      "sha256": "1f54d7ea9fe647a87bb3c2b6235b313aecb3f93bca899fdbb24cc727c649019d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c7b5bdc4b6f0d522b523.jpg",
+      "bytes": 2215409,
+      "sha256": "d61e6879710c8384a88b9b5c2ba85a5bc288c076d2035f925316d505fddfa25e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c82a6c267299d60cdb17.jpg",
+      "bytes": 148079,
+      "sha256": "106039b2ff94dbcab0493fd184859f441914ae8173e42128ba576ff777090ab8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c8d7eaa7f24a7c2baae4.jpg",
+      "bytes": 148444,
+      "sha256": "91aa63daa2a47133fd60a0b656063a2ad34ef062ab8ff633a808a6f216ed4c21"
+    },
+    {
+      "path": "data/course_20261027/raw/images/c96019cb810c90122299.jpg",
+      "bytes": 240047,
+      "sha256": "fd3688162aadde0a6110e275f409ac881b40a65a578968043f2451ea6467b117"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ca0f7fb9c72d9e0d9d06.jpg",
+      "bytes": 1361205,
+      "sha256": "6d639057190bbff6da8e586238ceb19254b7d8a90fa71075597f3e9efd218a49"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ca3f3a2a65ae73cca1c0.jpg",
+      "bytes": 201928,
+      "sha256": "b9c9797d2e25410ae9d586e1feaf517fb5864111ed493bec0ba1f761e98392ee"
+    },
+    {
+      "path": "data/course_20261027/raw/images/cac7ce9a4c77255da816.jpg",
+      "bytes": 72084,
+      "sha256": "4e59af59517f6b9f032ba49e52915125e19402fca7901ed0c64eb570584942d7"
+    },
+    {
+      "path": "data/course_20261027/raw/images/cc5babe4fa71a67bd6ff.jpg",
+      "bytes": 79495,
+      "sha256": "1e6bdf421af1e483657d542c247dd37ac93b6f4edfb19747cfa81404398316ad"
+    },
+    {
+      "path": "data/course_20261027/raw/images/cd2172204fe46561a842.jpg",
+      "bytes": 146085,
+      "sha256": "7d2be083f4dee1c80a6d7a63466b6993dfd315e270e6446b1e3eeb48e0cd49ff"
+    },
+    {
+      "path": "data/course_20261027/raw/images/cdb219d1d71831974f3f.jpg",
+      "bytes": 406887,
+      "sha256": "ea1bf9e75fde643277cbaa6413b1ebc7cca971ccd5437e379f2eeb0cc38767b6"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ce018b97d01ecfea7b90.jpg",
+      "bytes": 37455,
+      "sha256": "9428e06fb3826400f2cb23c186441f2cfe4a8c10f25fc2be763547b7a6170085"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ce91102826e9d10ed48c.jpg",
+      "bytes": 137440,
+      "sha256": "7582375de0d0148985494940bd8630b900a5985ec8e4ac1c3cf5c1ef5ca1ac5f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ce9960bcdb9c2ca20deb.jpg",
+      "bytes": 144356,
+      "sha256": "d48b0a203d855f297e17003023d488c7e0aadba149f2895f42fc2ec0f68a995b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ceb079457fea4d47eb44.jpg",
+      "bytes": 1877263,
+      "sha256": "669c73659f6c6c5c9df5d919cd62cb23a6c3095a5a8c1a843cb00c21608c8b28"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ced616918dea0db21f1a.jpg",
+      "bytes": 2060262,
+      "sha256": "ae4e08d94381c93e54bbe77161ba75d798e3212af2d45c905e7ffd77e353a142"
+    },
+    {
+      "path": "data/course_20261027/raw/images/cf3fe4abe992449f4ee5.jpg",
+      "bytes": 90978,
+      "sha256": "a30e1fc3314d0b1785a8f387facb1e0ea37882c5d1cb0374108857bef9e8742f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d1e3737a844daaa0a8f2.jpg",
+      "bytes": 144379,
+      "sha256": "63c02d37ae807c5de79cf7bf8751496fce80d9b7c92e7a628ad8004ecc02b6ff"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d2610a82aed36b304364.jpg",
+      "bytes": 261260,
+      "sha256": "8c03be306cb5d78ea80a12e42c63fa21a26f1739a0c3671f6a6647e210caaf4b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d33f144cb5bb2c03d22b.jpg",
+      "bytes": 527056,
+      "sha256": "dddea9a1288c0334e41410458d87adef0f022c8bd923f1ae8395ea9493ce66b1"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d4b424809b2b4359cf7a.jpg",
+      "bytes": 409317,
+      "sha256": "aa6050a91491966a67df778d922da5f35679d705402cbb090b6839fc65799244"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d4f1790bf2b6d55c1641.jpg",
+      "bytes": 60133,
+      "sha256": "533cccadfffbd5006e940ad1cc92456382f6dcf4108b558a2d2ee34ba6cbb447"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d501ce6fac7560e2f79a.jpg",
+      "bytes": 51517,
+      "sha256": "36be5a5f488b7ae220ac3cb878f179a1750f9531de067a3ca90e6176be0b16df"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d52b1b69d43b297c81a3.jpg",
+      "bytes": 84395,
+      "sha256": "273c8cf96f7d9fc14b796156f827dfa00df872585d51c310682672e8f80fd4e2"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d5d6d68699da13ad6cd4.jpg",
+      "bytes": 254421,
+      "sha256": "cb4576f43f3bc086b83fe359e4cd4b9313aa4805ba2c827db0564e0d1e95580c"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d5ee6a75e669df2ccea0.jpg",
+      "bytes": 179812,
+      "sha256": "b196bc9e2c66c62435180f41bf024e6fbfc399c98812b6708b5a6b1b8522d567"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d5fad8dd0793d00be127.jpg",
+      "bytes": 328137,
+      "sha256": "c84b6c3b9d7ebae3048f502c7ec1a7e1439e2520ad92e9ea0a2d6e0f1596578f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d70ff3720043ab00c2c4.jpg",
+      "bytes": 232566,
+      "sha256": "a10acc824cf6a9241fa8e84e5dfc9cec4da3ebf7f3fd4d7bed0d33d5fadbf050"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d7a1ec06213fc246b31e.jpg",
+      "bytes": 352687,
+      "sha256": "c6235651f46067eb0b243a81016db1c3e1425271bd4169a609cb1ba79532aa90"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d81576ce50eb34810dfe.jpg",
+      "bytes": 336880,
+      "sha256": "38c24484feef927ffa7067e95b4ed7ce9b3500fcb697b8bd0f9337a6122fb220"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d83263b89458c019067a.jpg",
+      "bytes": 135710,
+      "sha256": "1cc2b95658561dde8c44589a713edddd85e38f9a699195c653b10f932267689b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d8b39a8bab43a12d8b3f.jpg",
+      "bytes": 59639,
+      "sha256": "1eb4eeacdf23f993d0ac6f4b3e672abd53731878aa8c6245ad433e62274e5471"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d8c31062085d6c380d8c.jpg",
+      "bytes": 115297,
+      "sha256": "99fccfe49f2d7c9d36930333e090c914d0336841e54feec66199efb24e0b07c5"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d97e595473e3a0347296.jpg",
+      "bytes": 205192,
+      "sha256": "53111a0caa54b109ef04a29fbb2c33f8ae03cdf81581dfbf9cb3060cfbcbe30e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/d9d8ad430274abd19069.jpg",
+      "bytes": 126148,
+      "sha256": "bbfad6ec9b38c0bab8dc2cae3468c6905da5550e5826fc1b39193ef4f309c90d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/da3c3b34e51ed74592d0.jpg",
+      "bytes": 576179,
+      "sha256": "1f0dc8bddf0048fbd586a0ffae9db01804c8cb620b57782ec32c08c2ee47826e"
+    },
+    {
+      "path": "data/course_20261027/raw/images/daadb67ccb8a836679e3.jpg",
+      "bytes": 313665,
+      "sha256": "2edb792bfca3e4febacb194849eb4092d7f8fda1aa6cfd5d8f2f845c7f009ab5"
+    },
+    {
+      "path": "data/course_20261027/raw/images/dab10dea779684436e57.jpg",
+      "bytes": 122848,
+      "sha256": "e67451def308e5b59fa5d7034928e330301341a2182b4eebe743597c8a8edfc3"
+    },
+    {
+      "path": "data/course_20261027/raw/images/db52fd0a062a90cb0422.jpg",
+      "bytes": 100094,
+      "sha256": "3410173d6c9c7608b8b0ca4b201122544e89110d240f2fb9bcf0214a9d2e20cf"
+    },
+    {
+      "path": "data/course_20261027/raw/images/db7d79938a094ae4ef40.jpg",
+      "bytes": 244824,
+      "sha256": "3b71ad39dbfe09da67e206e03ef8e62e675aa853b5b350b6af23c969195644ba"
+    },
+    {
+      "path": "data/course_20261027/raw/images/db8410e94e280e04adbe.jpg",
+      "bytes": 304946,
+      "sha256": "6ea5c4f5ce2d62dce2b87b612969f595b02dc848c07fae74201d7d92981e59ec"
+    },
+    {
+      "path": "data/course_20261027/raw/images/dc813f9886e18d547918.jpg",
+      "bytes": 594518,
+      "sha256": "19bf5eee436799ff47df7ed1f24821f0248ef96b3256f51d5ca6bc4d8da5987a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/dd4d45803488a870641b.jpg",
+      "bytes": 252104,
+      "sha256": "313f6548b6970310fb342cc1823c30ffe69f13352a6497bc9300247879921fd1"
+    },
+    {
+      "path": "data/course_20261027/raw/images/dd576ae422787b9b0f41.jpg",
+      "bytes": 303965,
+      "sha256": "2abd36568a738ad787612b9f663045ffe5312f6183ed1956642190ea74adb2b1"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ddef95125ebf92212f3d.jpg",
+      "bytes": 200598,
+      "sha256": "63306788507684ddb406661cb2c412e328135ccb1a7de9aa7b8b314cdbb6ff26"
+    },
+    {
+      "path": "data/course_20261027/raw/images/de99580c84c4389f7d7f.jpg",
+      "bytes": 757471,
+      "sha256": "384b7737b57eca4c2afa89a6bc4e66c34404d1393ffb291deb744c26e21ff047"
+    },
+    {
+      "path": "data/course_20261027/raw/images/defe65043246d2601dcb.jpg",
+      "bytes": 173039,
+      "sha256": "edfd845e55f03c2a7ca5a16def54953ca6c6306ac3be392d433d948c5500073b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/df372a681e54f0e539d9.jpg",
+      "bytes": 274721,
+      "sha256": "e351a96f499fa9918bdaf3858abcdce1c285543cf3770a1709a1b79c25f9f30d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/df6b0d34493294f67e00.jpg",
+      "bytes": 458948,
+      "sha256": "5710f1d1a937f25769e78c32a676e5a6451dd9fb9cda47dfe20fba82f87cf6cf"
+    },
+    {
+      "path": "data/course_20261027/raw/images/dfbd62b9accbe86b222c.jpg",
+      "bytes": 288517,
+      "sha256": "894c9c829abfeeac68c5ee56413d9687d20e153c3f178957f6ab2b06fc1ffe4f"
+    },
+    {
+      "path": "data/course_20261027/raw/images/dfca54e3cb35123266fe.jpg",
+      "bytes": 254088,
+      "sha256": "de9d89da48e162a15d9a12ddc53896be800b52f401f0a1a1c225772d864813ec"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e065bc5d862c1159f3e5.jpg",
+      "bytes": 177602,
+      "sha256": "0e96447c5660c87b56cbe92d1b33152c01e377d622452df601501b28f80574b5"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e0d0c4d440e1523f67da.jpg",
+      "bytes": 237944,
+      "sha256": "2c30a90a4134673f29f114f357ed738d6d72fccb6a0b417319cff431107614b0"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e16e09642b5c50276587.jpg",
+      "bytes": 198768,
+      "sha256": "a3dae26f9b8ca979004020ffaf5a0f3a280ac529007e10b744b1d4d5ad56017b"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e1a8ea6447dc123edd59.jpg",
+      "bytes": 1555362,
+      "sha256": "5190fa59e6df9b3f64b667d52043ba1e34e0f5e64bb6b9f64b0f0f5b0a9c65ae"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e1aca7352f5b55bde3c5.jpg",
+      "bytes": 218855,
+      "sha256": "b2861ebdd162c1ba80f1edc95c20f74a2e0437cdede346784649e10a6232c698"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e22ffc17d3e14872d504.jpg",
+      "bytes": 147132,
+      "sha256": "1b015582578ff82a9cbe145c2b604a4bcf9151e3dc1abfdc8d5ba8eec763a422"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e2d6d1c640d6896c7c80.jpg",
+      "bytes": 195156,
+      "sha256": "0d47271fbf3247ec3bdfcfd94d56624f4d9dcb6569e7ab0bcc8e3b11bbb65656"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e34c64790033274a7ecc.jpg",
+      "bytes": 63479,
+      "sha256": "db9e1ad5a21bbb556d797474a689167dd8cdb6266604a3c8bc247728d90e2fa6"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e3af2089a6e9e19270b1.jpg",
+      "bytes": 112915,
+      "sha256": "b68c9849bd073546354903a1b61d388f253487d0c18027ee3f732c638afa1ecd"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e3c416f15b7d72f1d953.jpg",
+      "bytes": 52888,
+      "sha256": "1ec9fda7d2a265dc536603ab6662198ada8d8a86f44297d59d3e50239d2d2b45"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e594517bcfcde46b1b44.jpg",
+      "bytes": 282250,
+      "sha256": "33e6b09eacd1564ba36145417424c1c743dabad990ccebf806e919b85d975f59"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e6f89249c24864701866.jpg",
+      "bytes": 1245906,
+      "sha256": "70d39bdcb6ed3b0c7e7b0e53c59c2a46bed6a609d04f6e6688aae10303700569"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e79afbd5bec76f296a3f.jpg",
+      "bytes": 147948,
+      "sha256": "4e6f9a02e927a09a1f3934f9dc5d05e992a4c569c76f6472677cd941d0f14cb5"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e7ca5900c41f05103599.jpg",
+      "bytes": 767305,
+      "sha256": "a839968d60794ebd333b20a8504d05d70a188df1b196e15da26f8348286cff26"
+    },
+    {
+      "path": "data/course_20261027/raw/images/e9cc4493569b75261087.jpg",
+      "bytes": 85740,
+      "sha256": "559ed35cdca674e26743da47e4fb2c02cf741c426fe1c898b269a8d47d1cfffc"
+    },
+    {
+      "path": "data/course_20261027/raw/images/eae85423315d4135ca71.jpg",
+      "bytes": 199502,
+      "sha256": "8ccbb93e11408d6eb66121134110a634268df037c09c03ee41454ba87a2adeaf"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ebd9e420d7f62940e3f6.jpg",
+      "bytes": 68725,
+      "sha256": "098437e53651b3e769ac68af78df101e5e3e3caecae60d330ef5a19b3c317794"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ec1314d756dd284079e4.jpg",
+      "bytes": 302345,
+      "sha256": "24fe686fcc59a2796599c86a658e42f55f8294866d9fa3ce86ee4767801a4ce6"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ecbaeaf0295dfaee3748.jpg",
+      "bytes": 415783,
+      "sha256": "430e5a4c16f0f7a3ed60883219b131e898c0d6cf84bde7e36a87d53a4305d975"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ee06d7aeed7def6ef1ef.jpg",
+      "bytes": 55900,
+      "sha256": "401416d965628b7f1e0afd5b9680294c1d88569272aea25e0d9c050fbdcaa014"
+    },
+    {
+      "path": "data/course_20261027/raw/images/eeeedd57c9d731b5fcdb.jpg",
+      "bytes": 42013,
+      "sha256": "3c970c14fd11a649dc8ab82b5418971ce2bbbecf4e26d73c7de9179c88097eca"
+    },
+    {
+      "path": "data/course_20261027/raw/images/eef58f4df87fcabd8cb3.jpg",
+      "bytes": 369068,
+      "sha256": "66298041ddfae59e84aa494530e72104521ad4f7aa41e6dabe1d266923e7448a"
+    },
+    {
+      "path": "data/course_20261027/raw/images/efefe9860c38a9116758.jpg",
+      "bytes": 188969,
+      "sha256": "7319053a2dc9d61a212577442f77a2ea2a0a06d7482a192d2b1e19060e8739a2"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f11b8343737ef4aa102d.jpg",
+      "bytes": 50616,
+      "sha256": "51eea541d260ef2f0c4092c3e0baa527bdd1e07fb1602b0e5453815a6257b0cb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f1e4debfbd3fdfe80215.jpg",
+      "bytes": 300804,
+      "sha256": "72bd5ab2ed7fd510554aa4555d48f8970038aa881e128ba4d8f051deb91a499d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f1e559dcf9230367d879.jpg",
+      "bytes": 127996,
+      "sha256": "c0bc8295c87677c9dddfb7e10b90ec97ad23ae681579875bccc5df6e08179fb4"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f2f588837275ddc77c6e.jpg",
+      "bytes": 182469,
+      "sha256": "b8ddf0901d9e20aaadf7349dc4becff6a046753f23a556d001abd36f1c47fcde"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f3a2a014a9cba76e850f.jpg",
+      "bytes": 152773,
+      "sha256": "ea1b3fa590755cdc6a11f30bb72ace2923dab4d19236b8a4aca506723ea676e5"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f3cd113f98d608f703e2.jpg",
+      "bytes": 70944,
+      "sha256": "a87a325ec7d5ba1c73f9ad4e5f4773699bc73d34c9d60e0071489bac29bc7b48"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f4944e097fd93806c947.jpg",
+      "bytes": 617141,
+      "sha256": "8ff9ac9499d2e9de449f42836d19d78bbfc5f5b53f517cb15b81c43ef414a9fb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f508f691d7f268cb38ca.jpg",
+      "bytes": 79279,
+      "sha256": "7dd279a61abc833b6e330b6b84f3f59f606a6c5a547a391d8ae08109f529caa1"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f56696da25a91c7f458f.jpg",
+      "bytes": 651092,
+      "sha256": "9b5e2fb34339830abf3edfc3648ac1a04bdf9a933c757c6d0d098d72e4418bf8"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f6ffe36323ce4313a82d.jpg",
+      "bytes": 299276,
+      "sha256": "9232327abed5c11d28394c29d28b2efbe80587bacb602bd76eea445430362a29"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f70a2dfe423fc8076326.jpg",
+      "bytes": 961772,
+      "sha256": "de58af030241e6a089e4af2f57d4f450a445e6bb78a2b4997cc915eb9f57ac55"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f70cb46238ff98b9bcca.jpg",
+      "bytes": 304508,
+      "sha256": "8ec8f444ed374e9bdfb638ac21a51ba33bb42d8d007c749ffebc4b52c0b26482"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f76a9b692a55015f3644.jpg",
+      "bytes": 69683,
+      "sha256": "afdd4d3785d060d2651f179ffdc7bf79f1bd9d5621bad393b2fa66e41802a8fb"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f86d556e6e88d0fb02f8.jpg",
+      "bytes": 737511,
+      "sha256": "a20dbb6350d6151feee561f319d618ea4f73d99881ff81c1f260dd717d6c9ec4"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f95f107b49cadaf7a808.jpg",
+      "bytes": 300037,
+      "sha256": "4fef93cc4d92e86d95d6dfab8f063ae57aa226d89b67563ae4cfc30ec6812428"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f97d2984996ff406e0b0.jpg",
+      "bytes": 554146,
+      "sha256": "b664841bb979439e63c2695b32e8878bd77213632c47f1f43b936ee4d1127008"
+    },
+    {
+      "path": "data/course_20261027/raw/images/f98fb4cea3eed9552610.jpg",
+      "bytes": 377862,
+      "sha256": "45716f1b07ebeb8657067ab26e39d2ade6d7d8a0a984af3918771a3ab1b5dc61"
+    },
+    {
+      "path": "data/course_20261027/raw/images/fa4a6ac214e5c55fac41.jpg",
+      "bytes": 2340609,
+      "sha256": "05f975f741460821071b56e02651193cd15a74442a7db9f6f64b10e61a4c73f7"
+    },
+    {
+      "path": "data/course_20261027/raw/images/fa69d39483e944dfd8bf.jpg",
+      "bytes": 55047,
+      "sha256": "29065c91ff75530a7a7f863c7ee41fe290fe114689bc8274e62343e5af310fce"
+    },
+    {
+      "path": "data/course_20261027/raw/images/fad96f95846fe04f3f2b.jpg",
+      "bytes": 110374,
+      "sha256": "a6324e1931009cba85de21fb758a497de9b5be3c2b12023ed8fcb42b0ae7d3d3"
+    },
+    {
+      "path": "data/course_20261027/raw/images/fb675b08643af6b7313a.jpg",
+      "bytes": 289584,
+      "sha256": "b5ae9e91127efed83dd7945d703ad01b4e8653cbb8e77ec622e457c8485bf69d"
+    },
+    {
+      "path": "data/course_20261027/raw/images/fd42eeb41105282e562a.jpg",
+      "bytes": 414987,
+      "sha256": "206405518d96203fbad763487d9728dacfa83853e073c4b2f724666fd60069cf"
+    },
+    {
+      "path": "data/course_20261027/raw/images/fdf6c1480129bab729f8.jpg",
+      "bytes": 79929,
+      "sha256": "2833eb299af6be0f36102ee55c5de56032b0a7480acc4551acab1460c9515b11"
+    },
+    {
+      "path": "data/course_20261027/raw/images/fe0a56f930de72ef037a.jpg",
+      "bytes": 167680,
+      "sha256": "0a49c1e324e4615672a6b78688d688fdfb444a0e2686777b44d4691c4f64f449"
+    },
+    {
+      "path": "data/course_20261027/raw/images/fe45326b68e5e8e67be1.jpg",
+      "bytes": 544562,
+      "sha256": "a5fe91c683a8a94266f88882ddbe66ffc3adc4e7771383318ffda958c0d34b11"
+    },
+    {
+      "path": "data/course_20261027/raw/images/feb0085ab5058cfba993.jpg",
+      "bytes": 63968,
+      "sha256": "bb99ddd9f514ed2c4653422afe39a66be734fba97c4ec7a4d83c721072047ed2"
+    },
+    {
+      "path": "data/course_20261027/raw/images/ffd1363521963e70a88e.jpg",
+      "bytes": 184957,
+      "sha256": "65d761d9a9e46852e74c96f09d87304ab2b0c8bb8bda06d3689a5be2890352fd"
+    },
+    {
+      "path": "data/course_20261027/text.json",
+      "bytes": 938788,
+      "sha256": "1b082df2c5c55f7c646bbcf3553e55b7b027e7aafe84364669453e4541546c75"
+    },
+    {
+      "path": "models/course_20261027/config.json",
+      "bytes": 891,
+      "sha256": "43aa64cec2c407fd155be0c686f65f95833a23ef377c2ca6cbecde89f563fecd"
+    },
+    {
+      "path": "models/course_20261027/image_optimized.pt",
+      "bytes": 62982,
+      "sha256": "7efef75a38df0bb9ce9c7d821177c70006983a5e88e7245c8f5cedf429914118"
+    },
+    {
+      "path": "models/course_20261027/image_optimized.ts",
+      "bytes": 85938,
+      "sha256": "912c96420b8ee25f7aca5c78b3afc6965fcc61f2129f66e68efa80180d80a4b7"
+    },
+    {
+      "path": "models/course_20261027/image_trained.pt",
+      "bytes": 104780,
+      "sha256": "f9f479e93e24ed93cc3bcc8a5f2132573196bd3fadee3a864232d4e752cec423"
+    },
+    {
+      "path": "models/course_20261027/README.md",
+      "bytes": 915,
+      "sha256": "ce322d00128cb3c7930e624ac08551a29105d0efa931c8494234599905b94ce8"
+    },
+    {
+      "path": "models/course_20261027/text_compact.joblib",
+      "bytes": 41160,
+      "sha256": "5d67683597a6b8b3143840383902af1eab8a5f574c03ae3446c6a9df2d59e9c7"
+    },
+    {
+      "path": "models/course_20261027/text_full.joblib",
+      "bytes": 219464,
+      "sha256": "7d24899e9abee2cdec061960ded5fe525400006aad9583b4fe5965e84a503931"
+    },
+    {
+      "path": "models/agent_router/adapter_config.json",
+      "bytes": 1177,
+      "sha256": "0ae707271033918cc52f5121c67221bb10cf8ba28f6c685e25dac658956a0fca"
+    },
+    {
+      "path": "models/agent_router/adapter_model.safetensors",
+      "bytes": 642112,
+      "sha256": "372a5b49d5c45a112156ffc78bd8d064f3a9ed2a845ca12e7caa419c91b0f527"
+    },
+    {
+      "path": "models/agent_router/README.md",
+      "bytes": 1156,
+      "sha256": "0ccf51553bf83c485eed51f4edd5722567183965dcea139d246932f216be0f74"
+    }
+  ],
+  "agent_model_revision": "2fc06364715b967f1860aea9cf38778875588b17",
+  "deployed_stages": [
+    {
+      "stage": "trained",
+      "image": "models/course_20261027/image_trained.pt",
+      "text": "models/course_20261027/text_full.joblib"
+    },
+    {
+      "stage": "optimized",
+      "image": "models/course_20261027/image_optimized.ts",
+      "text": "models/course_20261027/text_compact.joblib"
+    }
+  ],
+  "api": {
+    "image": "/api/course/image/detect?stage=...",
+    "text": "/api/course/text/detect",
+    "agent": "/api/agent/run"
+  }
+}

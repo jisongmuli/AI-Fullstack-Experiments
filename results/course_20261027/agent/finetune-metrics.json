@@ -1,0 +1,405 @@
+{
+  "model": "Qwen/Qwen3.5-0.8B",
+  "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+  "seed": 20261027,
+  "method": "LoRA causal-LM next-token cross-entropy over ten tool-plan letter tokens",
+  "rank": 4,
+  "steps": 64,
+  "training_cases": 80,
+  "validation_cases": 20,
+  "test_cases": 30,
+  "checkpoint_selection": "validation only, earliest highest accuracy",
+  "checkpoints": [
+    {
+      "step": 16,
+      "validation_accuracy": 0.85
+    },
+    {
+      "step": 32,
+      "validation_accuracy": 0.75
+    },
+    {
+      "step": 48,
+      "validation_accuracy": 0.7
+    },
+    {
+      "step": 64,
+      "validation_accuracy": 0.95
+    }
+  ],
+  "before": {
+    "accuracy": 0.36666666666666664,
+    "samples": 30,
+    "predictions": [
+      {
+        "id": "A10",
+        "expected": "A",
+        "predicted": "J",
+        "correct": false
+      },
+      {
+        "id": "A11",
+        "expected": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      {
+        "id": "A12",
+        "expected": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      {
+        "id": "B10",
+        "expected": "B",
+        "predicted": "J",
+        "correct": false
+      },
+      {
+        "id": "B11",
+        "expected": "B",
+        "predicted": "J",
+        "correct": false
+      },
+      {
+        "id": "B12",
+        "expected": "B",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "C10",
+        "expected": "C",
+        "predicted": "C",
+        "correct": true
+      },
+      {
+        "id": "C11",
+        "expected": "C",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "C12",
+        "expected": "C",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "D10",
+        "expected": "D",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "D11",
+        "expected": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      {
+        "id": "D12",
+        "expected": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      {
+        "id": "E10",
+        "expected": "E",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "E11",
+        "expected": "E",
+        "predicted": "E",
+        "correct": true
+      },
+      {
+        "id": "E12",
+        "expected": "E",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "F10",
+        "expected": "F",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "F11",
+        "expected": "F",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "F12",
+        "expected": "F",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "G10",
+        "expected": "G",
+        "predicted": "G",
+        "correct": true
+      },
+      {
+        "id": "G11",
+        "expected": "G",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "G12",
+        "expected": "G",
+        "predicted": "G",
+        "correct": true
+      },
+      {
+        "id": "H10",
+        "expected": "H",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "H11",
+        "expected": "H",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "H12",
+        "expected": "H",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "I10",
+        "expected": "I",
+        "predicted": "C",
+        "correct": false
+      },
+      {
+        "id": "I11",
+        "expected": "I",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "I12",
+        "expected": "I",
+        "predicted": "A",
+        "correct": false
+      },
+      {
+        "id": "J10",
+        "expected": "J",
+        "predicted": "J",
+        "correct": true
+      },
+      {
+        "id": "J11",
+        "expected": "J",
+        "predicted": "J",
+        "correct": true
+      },
+      {
+        "id": "J12",
+        "expected": "J",
+        "predicted": "J",
+        "correct": true
+      }
+    ]
+  },
+  "after": {
+    "accuracy": 0.9666666666666667,
+    "samples": 30,
+    "predictions": [
+      {
+        "id": "A10",
+        "expected": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      {
+        "id": "A11",
+        "expected": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      {
+        "id": "A12",
+        "expected": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      {
+        "id": "B10",
+        "expected": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      {
+        "id": "B11",
+        "expected": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      {
+        "id": "B12",
+        "expected": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      {
+        "id": "C10",
+        "expected": "C",
+        "predicted": "C",
+        "correct": true
+      },
+      {
+        "id": "C11",
+        "expected": "C",
+        "predicted": "C",
+        "correct": true
+      },
+      {
+        "id": "C12",
+        "expected": "C",
+        "predicted": "C",
+        "correct": true
+      },
+      {
+        "id": "D10",
+        "expected": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      {
+        "id": "D11",
+        "expected": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      {
+        "id": "D12",
+        "expected": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      {
+        "id": "E10",
+        "expected": "E",
+        "predicted": "E",
+        "correct": true
+      },
+      {
+        "id": "E11",
+        "expected": "E",
+        "predicted": "E",
+        "correct": true
+      },
+      {
+        "id": "E12",
+        "expected": "E",
+        "predicted": "E",
+        "correct": true
+      },
+      {
+        "id": "F10",
+        "expected": "F",
+        "predicted": "F",
+        "correct": true
+      },
+      {
+        "id": "F11",
+        "expected": "F",
+        "predicted": "F",
+        "correct": true
+      },
+      {
+        "id": "F12",
+        "expected": "F",
+        "predicted": "F",
+        "correct": true
+      },
+      {
+        "id": "G10",
+        "expected": "G",
+        "predicted": "G",
+        "correct": true
+      },
+      {
+        "id": "G11",
+        "expected": "G",
+        "predicted": "G",
+        "correct": true
+      },
+      {
+        "id": "G12",
+        "expected": "G",
+        "predicted": "G",
+        "correct": true
+      },
+      {
+        "id": "H10",
+        "expected": "H",
+        "predicted": "H",
+        "correct": true
+      },
+      {
+        "id": "H11",
+        "expected": "H",
+        "predicted": "H",
+        "correct": true
+      },
+      {
+        "id": "H12",
+        "expected": "H",
+        "predicted": "H",
+        "correct": true
+      },
+      {
+        "id": "I10",
+        "expected": "I",
+        "predicted": "C",
+        "correct": false
+      },
+      {
+        "id": "I11",
+        "expected": "I",
+        "predicted": "I",
+        "correct": true
+      },
+      {
+        "id": "I12",
+        "expected": "I",
+        "predicted": "I",
+        "correct": true
+      },
+      {
+        "id": "J10",
+        "expected": "J",
+        "predicted": "J",
+        "correct": true
+      },
+      {
+        "id": "J11",
+        "expected": "J",
+        "predicted": "J",
+        "correct": true
+      },
+      {
+        "id": "J12",
+        "expected": "J",
+        "predicted": "J",
+        "correct": true
+      }
+    ]
+  },
+  "trainable_parameters": 159744,
+  "elapsed_seconds": 111.46,
+  "scope": "Small authored bilingual routing set; actual API execution is tested separately"
+}

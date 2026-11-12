@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-31T05:21:28.988274+00:00",
+  "url": "http://127.0.0.1:8006",
+  "unit_suites": [
+    {
+      "name": "server-tests",
+      "run": 116,
+      "passed": 115,
+      "skipped": 1
+    },
+    {
+      "name": "model-tests",
+      "run": 48,
+      "passed": 48,
+      "skipped": 0
+    },
+    {
+      "name": "segments",
+      "run": 12,
+      "passed": 12,
+      "skipped": 0
+    },
+    {
+      "name": "chinese",
+      "run": 3,
+      "passed": 3,
+      "skipped": 0
+    }
+  ],
+  "tests_run": 179,
+  "tests_passed": 178,
+  "tests_skipped": 1,
+  "browser": {
+    "path": "output/playwright/stability-20261031-ui.json",
+    "checks_passed": 20,
+    "actual_local_llm_retry": true
+  },
+  "http": {
+    "path": "results/stability_20261031/http-verification.json",
+    "checks_passed": 13,
+    "replayed": {
+      "images": 80,
+      "texts": 600
+    }
+  },
+  "source_fingerprints": [
+    {
+      "path": "code/models/course_models.py",
+      "sha256": "9c2b64625d46b91ae4640e5ad145ef1168d914798f91e485fe6730fd877c1095"
+    },
+    {
+      "path": "code/models/course_preprocessing.py",
+      "sha256": "b815f1769a84f612f2664ab982729e6930fe34a4ea13a1b8bf421793ef427745"
+    },
+    {
+      "path": "scripts/prepare_course_2026.py",
+      "sha256": "a95e03ee1f200c510e18bc788a14340b3c36103e6bb07e4dd54071488e97c877"
+    },
+    {
+      "path": "code/server/app.py",
+      "sha256": "9637a767af7803455dba14fa2146d638cdd9e1f2b61c5558bc94610486bf6aa6"
+    },
+    {
+      "path": "code/server/course_agent.py",
+      "sha256": "d34fac73b7a86f1a09ae5b1c40dd8a26fa9537972e8548697437688e7de3071e"
+    },
+    {
+      "path": "web/course.js",
+      "sha256": "500705653642f48e2e7d372327b1287ef0887784999ab7823d9bbec405c9998c"
+    },
+    {
+      "path": "web/index.html",
+      "sha256": "559f26986ad9d6fdac31f14430c4295ca4a8824af9533f4b424b3e9edbe88dc4"
+    }
+  ]
+}

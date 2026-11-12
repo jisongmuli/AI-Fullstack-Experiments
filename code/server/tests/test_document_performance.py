@@ -34,7 +34,7 @@ class DocumentPerformanceTests(unittest.TestCase):
                         "segments": [{"start": 0, "end": len(text), "text": text,
                                       "risk_score": .5, "decision": "uncertain", "evidence": []}]}
 
-            source = extract_pasted_text("\n\n".join(["Measured document content. " * 12] * 40))
+            source = extract_pasted_text("\n\n".join(f"Record {index}. " + "Measured document content. " * 12 for index in range(40)))
             with patch.object(service, "_compute_fingerprints", wraps=service._compute_fingerprints) as compute:
                 # The method must stream bytes; whole-file reads are forbidden here.
                 with patch.object(Path, "read_bytes", side_effect=AssertionError("Whole-file hash read")):
@@ -54,6 +54,23 @@ class DocumentPerformanceTests(unittest.TestCase):
                 self.assertEqual(compute.call_count, 1)
                 self.assertEqual(ModelService(root).artifact_fingerprints()["text"],
                                  hashlib.sha256(updated).hexdigest()[:16])
+
+    def test_repeated_paragraph_inference_is_reused_only_within_one_document(self):
+        paragraph = "Repeated measured document content and source validation. " * 4
+        source = extract_pasted_text("\n\n".join([paragraph] * 60))
+        calls, progress = [], []
+
+        def detector(text):
+            calls.append(text)
+            return {"risk_score": .2, "decision": "likely_human", "evidence": []}
+
+        first = analyze_document(source, detector, progress=lambda done, total: progress.append((done, total)))
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(progress[-1], (60, 60))
+        for segment in first["detection"]["segments"]:
+            self.assertEqual(source["text"][segment["start"]:segment["end"]], segment["text"])
+        analyze_document(source, detector)
+        self.assertEqual(len(calls), 2)
 
     def test_reports_expire_without_a_new_store_request(self):
         store = ReportStore(ttl_seconds=.05)

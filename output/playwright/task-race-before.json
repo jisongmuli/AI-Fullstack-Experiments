@@ -1,0 +1,8 @@
+{
+  "before_fix": true,
+  "background_reenabled_by_stale_poll": true,
+  "cancel_reenabled_by_stale_poll": true,
+  "expired_agent_export_status": 404,
+  "inline_agent_download_error": false,
+  "native_download_attempts": 0
+}

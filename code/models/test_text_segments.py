@@ -16,6 +16,7 @@ class TextSegmentTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.service = DetectorService(ROOT)
+        cls.service.algorithm_policy = {}  # Legacy scope/offset checks; modern models have separate HTTP audits.
 
     def test_offsets_preserve_original_text(self) -> None:
         text = "  第一段讨论数据来源与审核误报。" * 7 + "\n\n" + "第二段说明模型的局限和人工复核。" * 8

@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:8003",
+  "actual_models": true,
+  "checks": [
+    {
+      "name": "English",
+      "passed": true,
+      "risk_score": 0.0869,
+      "applicability": "english_no_valid_external_benchmark"
+    },
+    {
+      "name": "Chinese",
+      "passed": true,
+      "risk_score": 0.0171,
+      "applicability": "unverified_platform"
+    },
+    {
+      "name": "Unseen Latin features",
+      "passed": true,
+      "risk_score": null,
+      "applicability": "insufficient_model_features"
+    },
+    {
+      "name": "Unseen Han features",
+      "passed": true,
+      "risk_score": null,
+      "applicability": "insufficient_model_features"
+    },
+    {
+      "name": "Long-document task and JSON export",
+      "passed": true,
+      "characters": 18198,
+      "segments": 200
+    },
+    {
+      "name": "Agent preserves zero-feature abstention",
+      "passed": true
+    }
+  ],
+  "accuracy_evaluated": false
+}

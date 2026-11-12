@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "concurrent_real_image_tasks": 2,
+  "excess_request_status": 503,
+  "retry_after_seconds": 2,
+  "health_latency_ms": [
+    3.38,
+    4.13,
+    5.7,
+    7.16,
+    3.43,
+    4.08
+  ],
+  "max_health_latency_ms": 7.16,
+  "elapsed_seconds": 13.65,
+  "processing_after": {
+    "active": 0,
+    "limit": 2,
+    "completed": 24,
+    "rejected": 1
+  },
+  "accuracy_evaluated": false
+}

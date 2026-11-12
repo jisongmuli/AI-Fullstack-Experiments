@@ -1,0 +1,94 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Navigation contains exactly four direct workflows",
+      "passed": true
+    },
+    {
+      "name": "Agent page and controls are removed",
+      "passed": true
+    },
+    {
+      "name": "Agent stylesheet is removed",
+      "passed": true
+    },
+    {
+      "name": "Image page describes arbitrary positive resolutions",
+      "passed": true
+    },
+    {
+      "name": "2026 examples retain source and validation-set provenance",
+      "passed": true
+    },
+    {
+      "name": "2026 example selection loads the current image",
+      "passed": true
+    },
+    {
+      "name": "Example can be submitted for image analysis",
+      "passed": true
+    },
+    {
+      "name": "text page remains accessible",
+      "passed": true
+    },
+    {
+      "name": "document page remains accessible",
+      "passed": true
+    },
+    {
+      "name": "edit page remains accessible",
+      "passed": true
+    },
+    {
+      "name": "Rule editor remains usable after Agent removal",
+      "passed": true
+    },
+    {
+      "name": "Local editing-preview control remains available",
+      "passed": true
+    },
+    {
+      "name": "/api/agent/run is no longer exposed",
+      "passed": true
+    },
+    {
+      "name": "/api/agent/upload is no longer exposed",
+      "passed": true
+    },
+    {
+      "name": "API documentation no longer advertises Agent endpoints",
+      "passed": true
+    },
+    {
+      "name": "Old Agent bookmarks redirect to the document workflow",
+      "passed": true
+    },
+    {
+      "name": "image page fits a 390px screen",
+      "passed": true
+    },
+    {
+      "name": "text page fits a 390px screen",
+      "passed": true
+    },
+    {
+      "name": "document page fits a 390px screen",
+      "passed": true
+    },
+    {
+      "name": "edit page fits a 390px screen",
+      "passed": true
+    },
+    {
+      "name": "The four workflows make no Agent API requests",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

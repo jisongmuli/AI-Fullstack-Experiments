@@ -15,7 +15,10 @@ REPLACEMENTS = (
 VAGUE = re.compile(r"\b(very important|many things|a lot of things|good results|bad results)\b", re.I)
 LOGIC = re.compile(r"\b(therefore|thus|consequently|clearly)\b", re.I)
 TOKEN = re.compile(r"[A-Za-z]+|\d+(?:\.\d+)?|[\u4e00-\u9fff]")
-NUMBER = re.compile(r"\b\d+(?:\.\d+)?%?\b")
+NUMBER = re.compile(
+    r"(?<![A-Za-z0-9_])[-+−]?(?:\d+(?:[,.]\d+)*|\.\d+)"
+    r"(?:[eE][+-]?\d+)?(?:[ \t]*[%％‰])?(?![A-Za-z0-9_])"
+)
 NEGATION = re.compile(r"\b(?:no|not|never|without|cannot|can't|won't|doesn't|don't|isn't|aren't)\b|[不无未非没]", re.I)
 QUOTED = re.compile(r"[\"“]([^\"”]+)[\"”]")
 ACRONYM = re.compile(r"\b[A-Z]{2,}\b")
@@ -25,6 +28,13 @@ def _tokens(text: str) -> Counter[str]:
     return Counter(token.lower() for token in TOKEN.findall(text))
 
 
+def _numbers(text: str) -> Counter[str]:
+    # Whitespace before a unit and equivalent Unicode signs are formatting.
+    # Keep signs, decimal points, exponents and units in the compared value.
+    return Counter(re.sub(r"[ \t]", "", value).replace("−", "-").replace("％", "%")
+                   for value in NUMBER.findall(text))
+
+
 def meaning_check(original: str, edited: str) -> dict:
     """Guard obvious drift; passing this check never proves semantic equivalence."""
     before, after = _tokens(original), _tokens(edited)
@@ -32,7 +42,7 @@ def meaning_check(original: str, edited: str) -> dict:
     total = sum((before | after).values())
     overlap = shared / total if total else 1.0
     checks = {
-        "numbers_preserved": Counter(NUMBER.findall(original)) == Counter(NUMBER.findall(edited)),
+        "numbers_preserved": _numbers(original) == _numbers(edited),
         "negations_preserved": Counter(x.lower() for x in NEGATION.findall(original)) == Counter(
             x.lower() for x in NEGATION.findall(edited)
         ),

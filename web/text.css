@@ -1,0 +1,18 @@
+.model-score-list{display:grid;gap:5px;margin-bottom:8px}
+.model-score-list>div{display:flex;justify-content:space-between;gap:10px;color:#536b5b;font-size:11px}
+.model-score-list strong{color:#283f34}
+.text-segments{margin-top:10px;padding-top:8px;border-top:1px solid #dce7df}
+.text-segments h4{font-size:11px;margin:0 0 8px;color:#315549}
+.segment-coverage{display:flex;align-items:baseline;gap:8px;margin:0 0 4px;color:#5e7065}
+.segment-coverage strong{font-size:17px;color:#8d5c2d}
+.segment-coverage span{font-size:11px}
+.text-segments>.finding-note{font-size:10px;line-height:1.5;color:#7b8078;margin:0 0 8px}
+.text-segment{padding:9px 0;border-top:1px solid #e4ebe6}
+.text-segment:first-of-type{border-top:0}
+.text-segment strong{font-size:10px}
+.text-segment p{font-size:11px;line-height:1.65;margin:5px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.text-segment small{display:block;margin-top:6px;font-size:10px;line-height:1.5;color:#657a6e;overflow-wrap:anywhere}
+.text-segment.flagged p{background:#fff0d7;box-shadow:4px 0 #fff0d7,-4px 0 #fff0d7}
+.text-segment .segment-score{display:inline;font-size:10px;color:#735b37;margin-left:8px}
+
+.evaluation-summary{margin:10px 0;padding:10px;background:#f1f6f2;border-radius:6px}.model-manifest{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px}

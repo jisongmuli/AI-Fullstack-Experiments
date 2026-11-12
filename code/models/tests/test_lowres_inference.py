@@ -37,11 +37,11 @@ class LowResolutionPolicyTests(unittest.TestCase):
         self.assertTrue(self.service.highres_image_model.local_evidence_requested)
         self.assertIn("不是 AI 创作比例", result["limitations"])
 
-    def test_below_200_short_side_abstains(self):
+    def test_below_200_short_side_receives_a_score(self):
         result = self.service.predict_image(Image.new("RGB", (400, 199)))
-        self.assertTrue(result["out_of_scope"])
-        self.assertNotIn("risk_score", result)
-        self.assertEqual(result["applicability"], "insufficient_resolution")
+        self.assertFalse(result["out_of_scope"])
+        self.assertEqual(result["risk_score"], .75)
+        self.assertEqual(result["applicability"], "low_resolution_experimental")
 
     def test_normal_resolution_keeps_experimental_scope(self):
         result = self.service.predict_image(Image.new("RGB", (512, 512)))

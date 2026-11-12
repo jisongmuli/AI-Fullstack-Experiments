@@ -1,0 +1,43 @@
+{
+  "version": "2026-10-27",
+  "image": {
+    "mean": [
+      0.5048174091411864,
+      0.4719816519541657,
+      0.42981902078822715
+    ],
+    "std": [
+      0.29265671728228293,
+      0.2832261561896049,
+      0.29465203030464815
+    ],
+    "trained_channels": [
+      16,
+      32,
+      64
+    ],
+    "optimized_channels": [
+      12,
+      24,
+      48
+    ],
+    "trained_calibration": {
+      "coefficient": 0.8204456556563836,
+      "intercept": 0.1960313231101644
+    },
+    "optimized_calibration": {
+      "coefficient": 0.7316963209699081,
+      "intercept": -0.0856442209869525
+    }
+  },
+  "text": {
+    "trained_calibration": {
+      "coefficient": 2.8758115974533,
+      "intercept": 0.3047039876306865
+    },
+    "optimized_calibration": {
+      "coefficient": 2.550656913566886,
+      "intercept": -0.10143350410702903
+    }
+  }
+}

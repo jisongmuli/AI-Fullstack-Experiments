@@ -1,4 +1,4 @@
-"""Restore only the three pinned public runtime weights in the lightweight ZIP."""
+"""Restore the pinned public runtime and historical baseline weights."""
 from pathlib import Path
 import argparse,hashlib,json,urllib.request
 root=Path(__file__).resolve().parent
@@ -11,7 +11,7 @@ for row in manifest['downloads']:
             h=hashlib.file_digest(existing,'sha256').hexdigest()
         if h==row['sha256']:print('Already verified:',row['path']);continue
         raise SystemExit('Existing file failed hash: '+row['path']+'; preserve it and resolve manually.')
-    url=a.mirror.rstrip('/')+'/'+row['repo']+'/resolve/'+row['revision']+'/model.safetensors'
+    url=a.mirror.rstrip('/')+'/'+row['repo']+'/resolve/'+row['revision']+'/'+row.get('filename','model.safetensors')
     tmp=target.with_suffix('.download');h=hashlib.sha256();n=0
     print('Downloading',row['path'])
     try:

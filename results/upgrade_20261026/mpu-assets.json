@@ -1,0 +1,94 @@
+[
+  {
+    "repo": "yuchuantian/AIGC_detector_zhv3short",
+    "revision": "7bf6e1d6496353a88365f1dcdb3a6ace35f46b39",
+    "last_modified": "2025-06-24T23:49:46.000Z",
+    "files": [
+      {
+        "path": "models/mpu_zh_v3/README.md",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_zhv3short/resolve/7bf6e1d6496353a88365f1dcdb3a6ace35f46b39/README.md",
+        "bytes": 31,
+        "sha256": "4bcf87ecfbbb8e07a01b21415a970c8b53a5283bf6872b657040d3f45c9241f7"
+      },
+      {
+        "path": "models/mpu_zh_v3/config.json",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_zhv3short/resolve/7bf6e1d6496353a88365f1dcdb3a6ace35f46b39/config.json",
+        "bytes": 980,
+        "sha256": "74dfcf54a25f4847f97e285f60c03d3ceaccba87484c41ab4144e6acc4d7ecf4"
+      },
+      {
+        "path": "models/mpu_zh_v3/pytorch_model.bin",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_zhv3short/resolve/7bf6e1d6496353a88365f1dcdb3a6ace35f46b39/pytorch_model.bin",
+        "bytes": 409147757,
+        "sha256": "f64faae413291a78be2cb36dd9889a916a6202a03b6f6f904d5579089b31f2a8"
+      },
+      {
+        "path": "models/mpu_zh_v3/special_tokens_map.json",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_zhv3short/resolve/7bf6e1d6496353a88365f1dcdb3a6ace35f46b39/special_tokens_map.json",
+        "bytes": 125,
+        "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+      },
+      {
+        "path": "models/mpu_zh_v3/tokenizer_config.json",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_zhv3short/resolve/7bf6e1d6496353a88365f1dcdb3a6ace35f46b39/tokenizer_config.json",
+        "bytes": 455,
+        "sha256": "988cf0a4f56217ba915002e24de6d4621188f16942e5768d4eaf6564b166e1f0"
+      },
+      {
+        "path": "models/mpu_zh_v3/vocab.txt",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_zhv3short/resolve/7bf6e1d6496353a88365f1dcdb3a6ace35f46b39/vocab.txt",
+        "bytes": 109540,
+        "sha256": "45bbac6b341c319adc98a532532882e91a9cefc0329aa57bac9ae761c27b291c"
+      }
+    ]
+  },
+  {
+    "repo": "yuchuantian/AIGC_detector_env3short",
+    "revision": "32a89cd8ace09f3eccdf930bd0a3f80f77b55d27",
+    "last_modified": "2025-06-24T23:27:16.000Z",
+    "files": [
+      {
+        "path": "models/mpu_en_v3/README.md",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_env3short/resolve/32a89cd8ace09f3eccdf930bd0a3f80f77b55d27/README.md",
+        "bytes": 31,
+        "sha256": "4bcf87ecfbbb8e07a01b21415a970c8b53a5283bf6872b657040d3f45c9241f7"
+      },
+      {
+        "path": "models/mpu_en_v3/config.json",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_env3short/resolve/32a89cd8ace09f3eccdf930bd0a3f80f77b55d27/config.json",
+        "bytes": 762,
+        "sha256": "e502438de8508fd33a80095c8e1376868f742f1bdf805b11f3af06aede9ca76e"
+      },
+      {
+        "path": "models/mpu_en_v3/merges.txt",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_env3short/resolve/32a89cd8ace09f3eccdf930bd0a3f80f77b55d27/merges.txt",
+        "bytes": 456318,
+        "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5"
+      },
+      {
+        "path": "models/mpu_en_v3/pytorch_model.bin",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_env3short/resolve/32a89cd8ace09f3eccdf930bd0a3f80f77b55d27/pytorch_model.bin",
+        "bytes": 498660333,
+        "sha256": "f2d08394f64b0481565ad77c1ead347b62f546cb360751ca82f93a026d32cd4f"
+      },
+      {
+        "path": "models/mpu_en_v3/special_tokens_map.json",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_env3short/resolve/32a89cd8ace09f3eccdf930bd0a3f80f77b55d27/special_tokens_map.json",
+        "bytes": 957,
+        "sha256": "8293ae960b0a0852d4d3813118030a1149a3ed9fe37bc2e1e7b3c2e62eb2d4b7"
+      },
+      {
+        "path": "models/mpu_en_v3/tokenizer_config.json",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_env3short/resolve/32a89cd8ace09f3eccdf930bd0a3f80f77b55d27/tokenizer_config.json",
+        "bytes": 1336,
+        "sha256": "9b90983e8c77bc7147ba305c3d362fb905b5bc70669910969143a6cc28431fe5"
+      },
+      {
+        "path": "models/mpu_en_v3/vocab.json",
+        "url": "https://huggingface.co/yuchuantian/AIGC_detector_env3short/resolve/32a89cd8ace09f3eccdf930bd0a3f80f77b55d27/vocab.json",
+        "bytes": 999355,
+        "sha256": "32b29acf82d3333462eb4b13416760f2aef956052e8fea1749fe5b20f866a4bf"
+      }
+    ]
+  }
+]

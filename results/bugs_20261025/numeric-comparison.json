@@ -1,0 +1,30 @@
+[
+  {
+    "original": "The measured rate was 20% in both groups.",
+    "candidate": "The measured rate was 20 in both groups.",
+    "before_numbers_preserved": true,
+    "after_numbers_preserved": false,
+    "preview_after": "rejected"
+  },
+  {
+    "original": "The recorded temperature was -5 degrees during the experiment.",
+    "candidate": "The recorded temperature was 5 degrees during the experiment.",
+    "before_numbers_preserved": true,
+    "after_numbers_preserved": false,
+    "preview_after": "rejected"
+  },
+  {
+    "original": "The observed value was .5 in both groups.",
+    "candidate": "The observed value was 5 in both groups.",
+    "before_numbers_preserved": true,
+    "after_numbers_preserved": false,
+    "preview_after": "rejected"
+  },
+  {
+    "original": "The measured value was 1e-3 in both groups.",
+    "candidate": "The measured value was 1e+3 in both groups.",
+    "before_numbers_preserved": true,
+    "after_numbers_preserved": false,
+    "preview_after": "rejected"
+  }
+]

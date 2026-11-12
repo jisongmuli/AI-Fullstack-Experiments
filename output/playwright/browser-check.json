@@ -1,0 +1,61 @@
+{
+  "checks": [
+    {
+      "name": "Typing during analysis keeps the submit button disabled",
+      "passed": true
+    },
+    {
+      "name": "Duplicate text submissions are suppressed",
+      "passed": true
+    },
+    {
+      "name": "Old text results are discarded and submission recovers",
+      "passed": true
+    },
+    {
+      "name": "A fresh text analysis renders actual model output",
+      "passed": true
+    },
+    {
+      "name": "Both editor actions stay disabled while editing",
+      "passed": true
+    },
+    {
+      "name": "Rule and LLM editing cannot race",
+      "passed": true
+    },
+    {
+      "name": "Editor validates current input when the old request finishes",
+      "passed": true
+    },
+    {
+      "name": "Valid editor input re-enables both actions",
+      "passed": true
+    },
+    {
+      "name": "Actual rule editing renders successfully",
+      "passed": true
+    },
+    {
+      "name": "Changing image cannot re-enable a pending submission",
+      "passed": true
+    },
+    {
+      "name": "Duplicate image submissions are suppressed",
+      "passed": true
+    },
+    {
+      "name": "Old image output does not replace the new image",
+      "passed": true
+    },
+    {
+      "name": "Actual image model renders for the new image",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

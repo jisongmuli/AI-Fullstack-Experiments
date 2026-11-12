@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "test_suites": [
+    {
+      "suite": "server",
+      "run": 107,
+      "passed": 106,
+      "skipped": 1
+    },
+    {
+      "suite": "model_units",
+      "run": 23,
+      "passed": 23,
+      "skipped": 0
+    },
+    {
+      "suite": "actual_segments",
+      "run": 12,
+      "passed": 12,
+      "skipped": 0
+    },
+    {
+      "suite": "actual_chinese",
+      "run": 3,
+      "passed": 3,
+      "skipped": 0
+    }
+  ],
+  "total_run": 145,
+  "total_passed": 144,
+  "total_skipped": 1,
+  "normal_document_comparisons": 21,
+  "normal_batch_comparisons": 128,
+  "real_http_checks": 6,
+  "runtime_url": "http://127.0.0.1:8003",
+  "full_model_workflow": "passed",
+  "document_jobs": "passed",
+  "model_weights": "unchanged",
+  "accuracy_evaluated": false
+}

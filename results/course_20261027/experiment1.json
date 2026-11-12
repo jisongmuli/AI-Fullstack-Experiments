@@ -1,0 +1,40 @@
+{
+  "status": "completed",
+  "text": {
+    "dataset": "NLPCC 2026 Task 6 official train",
+    "source": "data/benchmarks_2026/nlpcc/data/train_data.json",
+    "source_sha256": "d07059d8af0c7ba86629a8ceba3f09669d79f13356f09d0853861b53a8d5c01f",
+    "seed": 20261027,
+    "grouping": "HWT/LGT paired by original ID; same subject stays in one split; normalized text hashes globally unique",
+    "counts": {
+      "train": 2800,
+      "validation": 600,
+      "test": 600
+    }
+  },
+  "images": {
+    "dataset": "NTIRE 2026 official public training shard",
+    "revision": "b85af61d93cd4fd5e558b3ee69f6d93639fce83f",
+    "source": "https://huggingface.co/datasets/deepfakesMSU/NTIRE-RobustAIGenDetection-train/resolve/b85af61d93cd4fd5e558b3ee69f6d93639fce83f/shard_5.zip",
+    "seed": 20261027,
+    "excluded_prior_audit_ids": 264,
+    "mean": [
+      0.5048174091411864,
+      0.4719816519541657,
+      0.42981902078822715
+    ],
+    "std": [
+      0.29265671728228293,
+      0.2832261561896049,
+      0.29465203030464815
+    ],
+    "split_counts": {
+      "train": 240,
+      "validation": 80,
+      "test": 80
+    },
+    "processing": "CRC/SHA validation, exact 64x64 pixel deduplication, RGB/Lanczos 64x64, train-only channel mean/std; train-only random horizontal flips",
+    "downloaded_bytes": 209702016,
+    "duplicate_candidates_removed": 0
+  }
+}

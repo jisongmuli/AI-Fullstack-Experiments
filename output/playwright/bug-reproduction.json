@@ -1,0 +1,12 @@
+{
+  "before_fix": true,
+  "observed": {
+    "completed_text_result_stays_after_input_change": true,
+    "completed_edit_stays_after_input_change": true,
+    "clipboard_denial_is_unhandled": true,
+    "invalid_agent_document_keeps_previous_upload": true,
+    "valid_6000_codepoints_are_rejected_on_import": true,
+    "delayed_sample_replaces_later_manual_selection": true,
+    "missing_sample_is_marked_ready": true
+  }
+}

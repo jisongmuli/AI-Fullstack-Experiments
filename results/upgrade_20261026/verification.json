@@ -1,0 +1,104 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-26T02:25:20.282056+00:00",
+  "python": "3.12.2",
+  "device": "CPU",
+  "url": "http://127.0.0.1:8005/",
+  "unit_suites": [
+    {
+      "suite": "server-tests",
+      "run": 101,
+      "passed": 100,
+      "skipped": 1
+    },
+    {
+      "suite": "model-tests",
+      "run": 35,
+      "passed": 35,
+      "skipped": 0
+    },
+    {
+      "suite": "text-segments",
+      "run": 12,
+      "passed": 12,
+      "skipped": 0
+    },
+    {
+      "suite": "chinese-text",
+      "run": 3,
+      "passed": 3,
+      "skipped": 0
+    }
+  ],
+  "tests_run": 151,
+  "tests_passed": 150,
+  "tests_skipped": 1,
+  "skip_reason": "Optional signed C2PA fixture is absent; unsigned image inspection was exercised.",
+  "workflow_checks": [
+    {
+      "record": "output/playwright/no-agent-check.json",
+      "checks": 22,
+      "status": "passed"
+    },
+    {
+      "record": "output/playwright/modern-workflow-check.json",
+      "checks": 21,
+      "status": "passed"
+    },
+    {
+      "record": "results/upgrade_20261026/portable-smoke.json",
+      "checks": 17,
+      "status": "passed"
+    },
+    {
+      "record": "results/upgrade_20261026/jobs-smoke.json",
+      "checks": 4,
+      "status": "passed"
+    },
+    {
+      "record": "results/upgrade_20261026/http-text-smoke.json",
+      "checks": 5,
+      "status": "passed"
+    },
+    {
+      "record": "results/upgrade_20261026/resolutions.json",
+      "checks": 13,
+      "status": "passed"
+    }
+  ],
+  "assets": {
+    "status": "passed",
+    "files_verified": 296,
+    "bytes_verified": 2154203342
+  },
+  "concurrency": {
+    "status": "passed",
+    "concurrent_real_image_tasks": 2,
+    "excess_request_status": 503,
+    "retry_after_seconds": 2,
+    "health_latency_ms": [
+      4.85,
+      18.74,
+      8.11,
+      7.03,
+      9.65,
+      4.67
+    ],
+    "max_health_latency_ms": 18.74,
+    "elapsed_seconds": 10.86,
+    "processing_after": {
+      "active": 0,
+      "limit": 2,
+      "completed": 36,
+      "rejected": 1
+    },
+    "accuracy_evaluated": false
+  },
+  "accuracy_record": "results/upgrade_20261026/final-evaluation.json",
+  "accuracy_threshold": 0.5,
+  "runtime_review_band": [
+    0.2,
+    0.8
+  ],
+  "sample_roles": "NLPCC Phase 2 binary subset; September 2026 generated English with traceable human controls; NTIRE public training-shard samples with separate validation/test roles. Native and resized image cohorts share source images."
+}

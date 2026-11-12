@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "tests_run": 83,
+  "passed": 82,
+  "skipped": 1,
+  "skip_reason": "Official C2PA fixtures were not downloaded",
+  "browser_checks": 33,
+  "download_contents_verified": [
+    "docx",
+    "html",
+    "json"
+  ],
+  "powershell7_start_stop": "passed",
+  "windows_powershell51_identity_comparison": "passed",
+  "windows_powershell51_start_stop": "not run: automatic approval policy blocked this action"
+}

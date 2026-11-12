@@ -1,0 +1,110 @@
+{
+  "assets": [
+    {
+      "path": "models/dear_c/model.pth",
+      "url": "https://huggingface.co/k-aisi-anti-deepfake/dear-checkpoints/resolve/5b57350b0ee75553109b3844f3c8a9341fc7e707/dear_c/model_best.pth",
+      "bytes": 94372114,
+      "sha256": "c8fa321d0cac86d36def6508f787f65bf22420d4648722956ad00375a347c7bc"
+    },
+    {
+      "path": "models/dear_r/model.pth",
+      "url": "https://huggingface.co/k-aisi-anti-deepfake/dear-checkpoints/resolve/5b57350b0ee75553109b3844f3c8a9341fc7e707/dear_r/model_best.pth",
+      "bytes": 94372114,
+      "sha256": "430fde11debe1850ab24af43945b4d68f2bb3ee52a837d84cf525eb603ccde97"
+    },
+    {
+      "path": "licenses/dear/LICENSE",
+      "url": "https://huggingface.co/k-aisi-anti-deepfake/dear-checkpoints/resolve/5b57350b0ee75553109b3844f3c8a9341fc7e707/LICENSE",
+      "bytes": 1388,
+      "sha256": "87fc3de9022859e06308558200b0006e2e2a440d8791e1fa9b55a3d8fd5e3ca3"
+    },
+    {
+      "path": "licenses/dear/NOTICE",
+      "url": "https://huggingface.co/k-aisi-anti-deepfake/dear-checkpoints/resolve/5b57350b0ee75553109b3844f3c8a9341fc7e707/NOTICE",
+      "bytes": 2049,
+      "sha256": "01fe0e7c91f87a9178e5082f8255a798559caa94e6b1f1b0b45f393f7b6b875a"
+    },
+    {
+      "path": "licenses/dear/README.md",
+      "url": "https://huggingface.co/k-aisi-anti-deepfake/dear-checkpoints/resolve/5b57350b0ee75553109b3844f3c8a9341fc7e707/README.md",
+      "bytes": 3342,
+      "sha256": "9620d4b3c102c1dd895d7eca19740813972cc17b6e941c314434f8c448e095a8"
+    },
+    {
+      "path": "data/benchmarks_2026/textsight/README.md",
+      "url": "https://huggingface.co/datasets/textsightai/ai-text-detection-benchmark-2026/resolve/423b1768f0827675295fd6dc3cd255ad2f411183/README.md",
+      "bytes": 7039,
+      "sha256": "31fd6010989b7befddf11e95dbd9fc5334a71be0f28e9fb9679c742ead57a537"
+    },
+    {
+      "path": "data/benchmarks_2026/textsight/data/ai_generated_2026-09-29.jsonl",
+      "url": "https://huggingface.co/datasets/textsightai/ai-text-detection-benchmark-2026/resolve/423b1768f0827675295fd6dc3cd255ad2f411183/data/ai_generated_2026-09-29.jsonl",
+      "bytes": 123790,
+      "sha256": "173df332cdc095f4f193e0d429efd9b9ff33a0e7c55f6281570fcee1fa91a93e"
+    },
+    {
+      "path": "data/benchmarks_2026/textsight/data/human_pmc_ccby_nonanglophone.jsonl",
+      "url": "https://huggingface.co/datasets/textsightai/ai-text-detection-benchmark-2026/resolve/423b1768f0827675295fd6dc3cd255ad2f411183/data/human_pmc_ccby_nonanglophone.jsonl",
+      "bytes": 263316,
+      "sha256": "9a813ee0b1abc1c451eb27c7a42a27f77df587f7a4299df439f1ec39d3a3e395"
+    },
+    {
+      "path": "data/benchmarks_2026/textsight/data/human_wikipedia_pre2022.jsonl",
+      "url": "https://huggingface.co/datasets/textsightai/ai-text-detection-benchmark-2026/resolve/423b1768f0827675295fd6dc3cd255ad2f411183/data/human_wikipedia_pre2022.jsonl",
+      "bytes": 190942,
+      "sha256": "bb9e9f918a4edf44a491400850f6e3027916943b26c153df2a56ae75b6853889"
+    },
+    {
+      "path": "data/benchmarks_2026/nlpcc/README.md",
+      "url": "https://raw.githubusercontent.com/NLP2CT/NLPCC-2026-Task6-Detection/961a485fa72f9821d6315836d46c9d94818b18b1/README.md",
+      "bytes": 24764,
+      "sha256": "a4ba507bfeec8c60ac2852a0c78e2672cd1ed6929fb75287ac3415caa56b9c16"
+    },
+    {
+      "path": "data/benchmarks_2026/nlpcc/data/README.md",
+      "url": "https://raw.githubusercontent.com/NLP2CT/NLPCC-2026-Task6-Detection/961a485fa72f9821d6315836d46c9d94818b18b1/data/README.md",
+      "bytes": 991,
+      "sha256": "e4ad66c26d30e12734779cd5cb829e95458c8f0047879dcbdd23f5570defe8b8"
+    },
+    {
+      "path": "data/benchmarks_2026/nlpcc/data/testp2_testing_label.json",
+      "url": "https://raw.githubusercontent.com/NLP2CT/NLPCC-2026-Task6-Detection/961a485fa72f9821d6315836d46c9d94818b18b1/data/testp2_testing_label.json",
+      "bytes": 3298859,
+      "sha256": "c8738cd9cf826a4bec59d9151ee91bc8c6748e82afdabf55f1e97d48fc6c3f40"
+    },
+    {
+      "path": "data/benchmarks_2026/nlpcc/data/train_data.json",
+      "url": "https://media.githubusercontent.com/media/NLP2CT/NLPCC-2026-Task6-Detection/961a485fa72f9821d6315836d46c9d94818b18b1/data/train_data.json",
+      "bytes": 212700850,
+      "sha256": "d07059d8af0c7ba86629a8ceba3f09669d79f13356f09d0853861b53a8d5c01f"
+    },
+    {
+      "path": "models/taste/config.json",
+      "bytes": 625,
+      "sha256": "4d10c2021c6b5fbe8b70698abc6ccc6691dc28d1bae9732f7fa1087782feba7e",
+      "url": "https://drive.usercontent.google.com/download?id=1w1hbdiZMS_JzPntVMWM3qrTQ4KxJf-t6&export=download&confirm=t",
+      "archive_member": "TASTE/detector/config.json"
+    },
+    {
+      "path": "models/taste/tokenizer.json",
+      "bytes": 1961828,
+      "sha256": "f4a4d5bf7301717e261fafbe26e1eb967f6ba4cb3ae0ab7a29f4642ec229f386",
+      "url": "https://drive.usercontent.google.com/download?id=1w1hbdiZMS_JzPntVMWM3qrTQ4KxJf-t6&export=download&confirm=t",
+      "archive_member": "TASTE/detector/tokenizer.json"
+    },
+    {
+      "path": "models/taste/tokenizer_config.json",
+      "bytes": 49,
+      "sha256": "0f6d13e6f4da6f9e24f22ada6bc3be571123d858d7c0c05a8a7cd55a9c23c2e8",
+      "url": "https://drive.usercontent.google.com/download?id=1w1hbdiZMS_JzPntVMWM3qrTQ4KxJf-t6&export=download&confirm=t",
+      "archive_member": "TASTE/detector/tokenizer_config.json"
+    },
+    {
+      "path": "models/taste/detector_ep3.pt",
+      "bytes": 711502561,
+      "sha256": "f79328c19ec0f1044dd24dd6eb9c5d5c96aa01b7036765251be9a426b9a46cbf",
+      "url": "https://drive.usercontent.google.com/download?id=1w1hbdiZMS_JzPntVMWM3qrTQ4KxJf-t6&export=download&confirm=t",
+      "archive_member": "TASTE/detector/detector_ep3.pt"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-27T12:10:03.045438+00:00",
+  "url": "http://127.0.0.1:8006/#course",
+  "unit_suites": [
+    {
+      "name": "server-tests",
+      "run": 112,
+      "passed": 111,
+      "skipped": 1
+    },
+    {
+      "name": "model-tests",
+      "run": 46,
+      "passed": 46,
+      "skipped": 0
+    },
+    {
+      "name": "segments",
+      "run": 12,
+      "passed": 12,
+      "skipped": 0
+    },
+    {
+      "name": "chinese",
+      "run": 3,
+      "passed": 3,
+      "skipped": 0
+    }
+  ],
+  "tests_run": 173,
+  "tests_passed": 172,
+  "tests_skipped": 1,
+  "skip_reason": "Optional official C2PA signed test asset is absent",
+  "browser": [
+    {
+      "path": "output/playwright/course-ui.json",
+      "passed": 18
+    },
+    {
+      "path": "output/playwright/course-document-ui.json",
+      "passed": 9
+    }
+  ],
+  "browser_checks_passed": 27,
+  "course_api_prediction_replay": {
+    "images": 80,
+    "texts": 600,
+    "absolute_score_tolerance": 0.0001,
+    "binary_predictions_match": true
+  },
+  "actual_agent_tool_types": [
+    "clarity_edit",
+    "course_overview",
+    "document_detection",
+    "image_detection",
+    "model_info",
+    "text_detection"
+  ],
+  "actual_agent_requests": 6,
+  "asset_files_verified": 855,
+  "official_agent_assets_verified": 12,
+  "pipeline": {
+    "experiment1": "scripts/prepare_course_2026.py",
+    "experiment2_3": "scripts/train_course_2026.py",
+    "experiment4": "code/models/course_models.py",
+    "experiment5": "scripts/train_agent_router.py"
+  },
+  "assessment": "The five functional stages and reproducible evidence are implemented; course and advanced model cohorts are reported separately."
+}

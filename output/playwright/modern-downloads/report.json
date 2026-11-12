@@ -1,0 +1,89 @@
+{
+  "schema_version": "document-screening-v1",
+  "created_at": "2026-10-26T02:23:33+00:00",
+  "filename": "粘贴文本.txt",
+  "format": "text",
+  "source_sha256": "abe304c9c85bd95965a065f3396e7f84bf321942f9f46b3dd995ee8d6f056f76",
+  "source_sha256_kind": "normalized_pasted_text_utf8",
+  "extracted_text": "研究团队核对每个样本的来源、标签和处理过程，并将验证步骤保存为可复查的记录。研究团队核对每个样本的来源、标签和处理过程，并将验证步骤保存为可复查的记录。研究团队核对每个样本的来源、标签和处理过程，并将验证步骤保存为可复查的记录。研究团队核对每个样本的来源、标签和处理过程，并将验证步骤保存为可复查的记录。\n\nThe team compared the input files and recorded every result before the final review. 😀",
+  "sections": [
+    {
+      "label": "原文",
+      "start": 0,
+      "end": 240
+    }
+  ],
+  "warnings": [],
+  "detection": {
+    "risk_score": null,
+    "decision": "uncertain",
+    "evidence": [
+      "各段模型信号明显冲突；整篇不提供单一风险分数，请查看逐段结果。"
+    ],
+    "model_version": "MPU-v3-short-zh",
+    "applicability": "mixed_segment_signals",
+    "modality": "text",
+    "threshold": null,
+    "limitations": "中英文分别评估；混合信号与短段请结合逐段结果复核。 段落高亮阈值仅用于人工复核；混合作者文本和真实平台段落未经过独立标注验证。",
+    "evidence_note": "弃判不代表内容由人或 AI 创作。",
+    "disclaimer": "该结果不能证明内容来源或作者身份。",
+    "segments": [
+      {
+        "start": 0,
+        "end": 152,
+        "text": "研究团队核对每个样本的来源、标签和处理过程，并将验证步骤保存为可复查的记录。研究团队核对每个样本的来源、标签和处理过程，并将验证步骤保存为可复查的记录。研究团队核对每个样本的来源、标签和处理过程，并将验证步骤保存为可复查的记录。研究团队核对每个样本的来源、标签和处理过程，并将验证步骤保存为可复查的记录。",
+        "risk_score": 0.004359,
+        "decision": "likely_human",
+        "highlighted": false,
+        "evidence": [
+          "采用 ICLR MPU 项目作者发布的中英文专项 v3 Short 权重。",
+          "长文本按 512 token 滑窗覆盖，窗口按新增 token 数加权。"
+        ],
+        "applicability": "research_2026_chinese"
+      },
+      {
+        "start": 154,
+        "end": 240,
+        "text": "The team compared the input files and recorded every result before the final review. 😀",
+        "risk_score": 0.966658,
+        "decision": "likely_ai",
+        "highlighted": false,
+        "evidence": [
+          "采用 ICLR MPU 项目作者发布的中英文专项 v3 Short 权重。",
+          "长文本按 512 token 滑窗覆盖，窗口按新增 token 数加权。"
+        ],
+        "applicability": "research_2026_english"
+      }
+    ],
+    "segment_summary": {
+      "highlighted_character_percent": 0.0,
+      "scored_character_percent": 100.0,
+      "highlight_threshold": 0.99,
+      "mixed_signals": true,
+      "meaning": "AI 特征占比按整段标注：所在段落模型风险分数达到 0.99 的非空白字符占比；不是 AI 实际撰写比例，也不是逐字来源定位。模型均分不是整篇来源概率。"
+    }
+  },
+  "document_summary": {
+    "total_characters": 240,
+    "visible_characters": 224,
+    "scored_character_percent": 100.0,
+    "highlighted_character_percent": 0.0,
+    "highlighted_total_percent": 0.0,
+    "mean_segment_score": 0.313669,
+    "high_risk_segments": 0,
+    "unscored_segments": 0,
+    "scored_segments": 2,
+    "total_segments": 2,
+    "mixed_signals": true,
+    "metric_note": "AI 特征占比按整段标注：所在段落模型风险分数达到 0.99 的非空白字符占比；不是 AI 实际撰写比例，也不是逐字来源定位。模型均分不是整篇来源概率。"
+  },
+  "report_id": "dQilnBz_VwRfhdMNNw95WV9SoLFp7BcR",
+  "expires_at": "2026-10-26T02:53:33.398170+00:00",
+  "retention_note": "报告仅在本地服务内存中保存最多 30 分钟、20 份；达到内存上限会提前移除旧报告。重启后失效。",
+  "report_export": {
+    "schema_version": 1,
+    "metric_note": "AI 特征覆盖率表示模型评分达到高风险阈值的非空白字符占比，不是实际 AI 撰写比例，也不是作者身份或内容来源的证明。",
+    "annotation_note": "下划线按模型评分片段标注提取后的原文；它不表示逐字定位准确率，也不修改原文件或保留其原始分页、图片、公式和复杂排版。",
+    "offset_unit": "Unicode codepoints; start inclusive, end exclusive"
+  }
+}

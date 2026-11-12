@@ -21,3 +21,4 @@
 .risk-label{margin-top:22px;color:#526b5f;font-size:12px;font-weight:700}
 .risk-label+.risk-number{margin-top:6px}
 @media(max-width:700px){.local-evidence-card{padding:12px}}
+[hidden]{display:none!important}

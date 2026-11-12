@@ -1,0 +1,307 @@
+{
+  "status": "passed",
+  "verified_on": "2026-11-12",
+  "output": "reports/项目答辩/内容可信工作台项目详解与答辩手册_李阳.docx",
+  "sha256": "242c546e52728a3ef4a4e94a6bc4845b3da7cca9d66f0ae33fdcf52cca225108",
+  "pages": 44,
+  "tables": 25,
+  "figures": 6,
+  "editable_equations": 6,
+  "source_code_commit": "57d2f8f1bbbd482030aa35b7d629eb79d20a2757",
+  "member": "李阳",
+  "roles_verified": [
+    {
+      "source": "reports/实验1/实验1报告_数据采集与预处理_补全证据版.docx",
+      "recorded_role": "文本获取、字段与标签核查"
+    },
+    {
+      "source": "reports/实验3/实验3报告_算法优化实验.docx",
+      "recorded_role": "文本基线核查与质量指标整理"
+    }
+  ],
+  "personal_contribution_pages": [
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "visual_review": {
+    "pages_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
+    ],
+    "last_changed_pages_reviewed": [
+      16,
+      26,
+      36
+    ],
+    "unchanged_pages_verified_by_png_hash": 41,
+    "result": "No clipped figures, overlapping text, broken tables or missing glyphs observed"
+  },
+  "page_index": [
+    {
+      "page": 1,
+      "title": "内容可信工作台项目详解与答辩手册",
+      "characters": 576
+    },
+    {
+      "page": 2,
+      "title": "阅读路线与内容导航",
+      "characters": 702
+    },
+    {
+      "page": 3,
+      "title": "系统解决什么问题",
+      "characters": 535
+    },
+    {
+      "page": 4,
+      "title": "总体架构与模型职责",
+      "characters": 341
+    },
+    {
+      "page": 5,
+      "title": "读懂项目需要哪些编程基础",
+      "characters": 791
+    },
+    {
+      "page": 6,
+      "title": "浏览器页面如何工作",
+      "characters": 852
+    },
+    {
+      "page": 7,
+      "title": "请求如何到达 Python 后端",
+      "characters": 697
+    },
+    {
+      "page": 8,
+      "title": "机器学习如何从数据得到模型",
+      "characters": 675
+    },
+    {
+      "page": 9,
+      "title": "数据集如何划分与管理",
+      "characters": 437
+    },
+    {
+      "page": 10,
+      "title": "数据预处理怎样影响检测",
+      "characters": 641
+    },
+    {
+      "page": 11,
+      "title": "中文基线如何把文字变成分数",
+      "characters": 617
+    },
+    {
+      "page": 12,
+      "title": "图像 CNN 如何理解图片",
+      "characters": 428
+    },
+    {
+      "page": 13,
+      "title": "实际训练与压缩怎样完成",
+      "characters": 655
+    },
+    {
+      "page": 14,
+      "title": "增强图像检测如何支持大图",
+      "characters": 479
+    },
+    {
+      "page": 15,
+      "title": "增强文本模型如何处理长文章",
+      "characters": 592
+    },
+    {
+      "page": 16,
+      "title": "模型分数 阈值与校准",
+      "characters": 529
+    },
+    {
+      "page": 17,
+      "title": "怎样读懂准确率和误报漏报",
+      "characters": 595
+    },
+    {
+      "page": 18,
+      "title": "当前项目有哪些实测结果",
+      "characters": 684
+    },
+    {
+      "page": 19,
+      "title": "文档怎样被提取和标注",
+      "characters": 649
+    },
+    {
+      "page": 20,
+      "title": "长任务和报告怎样管理",
+      "characters": 573
+    },
+    {
+      "page": 21,
+      "title": "英文编辑与两类大模型怎样区分",
+      "characters": 657
+    },
+    {
+      "page": 22,
+      "title": "大语言模型需要掌握的基础",
+      "characters": 670
+    },
+    {
+      "page": 23,
+      "title": "LoRA 微调在项目里怎样完成",
+      "characters": 575
+    },
+    {
+      "page": 24,
+      "title": "Agent 如何选择允许的工具",
+      "characters": 460
+    },
+    {
+      "page": 25,
+      "title": "一次图文助手请求的完整过程",
+      "characters": 477
+    },
+    {
+      "page": 26,
+      "title": "稳定性设计与已修复的问题",
+      "characters": 622
+    },
+    {
+      "page": 27,
+      "title": "关键 API 如何与页面对应",
+      "characters": 725
+    },
+    {
+      "page": 28,
+      "title": "项目目录和技术栈怎样对应",
+      "characters": 772
+    },
+    {
+      "page": 29,
+      "title": "如何启动系统并排查常见问题",
+      "characters": 671
+    },
+    {
+      "page": 30,
+      "title": "现场演示建议与操作顺序",
+      "characters": 573
+    },
+    {
+      "page": 31,
+      "title": "项目整体介绍参考讲稿",
+      "characters": 730
+    },
+    {
+      "page": 32,
+      "title": "模型与实验常见追问",
+      "characters": 604
+    },
+    {
+      "page": 33,
+      "title": "工程与系统常见追问",
+      "characters": 642
+    },
+    {
+      "page": 34,
+      "title": "李阳的分工与贡献主线",
+      "characters": 639
+    },
+    {
+      "page": 35,
+      "title": "李阳需要掌握的文本质量核查",
+      "characters": 694
+    },
+    {
+      "page": 36,
+      "title": "李阳怎样解释文本优化结果",
+      "characters": 613
+    },
+    {
+      "page": 37,
+      "title": "李阳如何现场解释相关代码",
+      "characters": 906
+    },
+    {
+      "page": 38,
+      "title": "李阳个人贡献参考讲稿",
+      "characters": 735
+    },
+    {
+      "page": 39,
+      "title": "李阳个人答辩可能遇到的追问",
+      "characters": 684
+    },
+    {
+      "page": 40,
+      "title": "接下来一周的准备安排",
+      "characters": 643
+    },
+    {
+      "page": 41,
+      "title": "答辩前十分钟快速复习",
+      "characters": 601
+    },
+    {
+      "page": 42,
+      "title": "常用术语速查",
+      "characters": 510
+    },
+    {
+      "page": 43,
+      "title": "官方技术资料与继续学习入口",
+      "characters": 536
+    },
+    {
+      "page": 44,
+      "title": "本地证据与个人练习索引",
+      "characters": 1206
+    }
+  ]
+}

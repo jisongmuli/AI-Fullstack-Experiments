@@ -1,7 +1,6 @@
 """Focused integration tests with deterministic stand-in model outputs."""
 from __future__ import annotations
 
-import base64
 import io
 import sys
 import unittest
@@ -179,12 +178,12 @@ class ApiTests(unittest.TestCase):
         response = self.client.post("/api/image/detect", files={"file": ("bad.png", b"not an image", "image/png")})
         self.assertEqual(response.status_code, 400)
 
-    def test_non_rgb_image_abstains_without_model_call(self):
+    def test_non_rgb_image_is_supported(self):
         response = self.client.post("/api/image/detect", files={"file": ("gray.png", png(mode="L"), "image/png")})
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["decision"], "uncertain")
-        self.assertIsNone(response.json()["risk_score"])
-        self.assertEqual(self.bundle.image_calls, 0)
+        self.assertIsNotNone(response.json()["risk_score"])
+        self.assertEqual(self.bundle.image_calls, 1)
+
 
     def test_request_size_limit_before_endpoint_parsing(self):
         payload = b"x" * (MAX_REQUEST_BYTES + 1)
@@ -235,7 +234,7 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(result["threshold"], 0.8)
         self.assertIn("Same-source", result["limitations"])
 
-    def test_long_text_segment_details_survive_api_and_agent(self):
+    def test_long_text_segment_details_survive_api(self):
         bundle = SegmentedBundle()
         client = TestClient(create_app(bundle), base_url="http://localhost")
         long_text = "研究团队核对了真实平台内容的来源、标签和误报。" * 180
@@ -245,8 +244,7 @@ class ApiTests(unittest.TestCase):
         self.assertIsNone(result["risk_score"])
         self.assertEqual(result["segments"][0]["end"], len(long_text))
         self.assertTrue(result["segments"][0]["highlighted"])
-        agent = client.post("/api/agent/run", json={"text": long_text, "edit": False}).json()
-        self.assertEqual(agent["findings"]["text"]["segment_summary"]["highlighted_character_percent"], 100.0)
+
 
     def test_editing_retains_numbers_negation_and_flags_vagueness(self):
         response = self.client.post("/api/text/edit", json={
@@ -268,75 +266,13 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(result["meaning_check"]["status"], "blocked")
         self.assertEqual(len(result["rejected_edits"]), 1)
 
-    def test_agent_calls_real_tools_without_fusing_scores(self):
-        encoded = base64.b64encode(png()).decode("ascii")
-        response = self.client.post("/api/agent/run", json={"text": TEXT, "image_base64": encoded, "edit": True})
-        self.assertEqual(response.status_code, 200)
-        result = response.json()
-        self.assertEqual([call["tool"] for call in result["tool_calls"]],
-                         ["image_detection", "text_detection", "clarity_edit"])
-        self.assertEqual(result["decision"], "mixed_signals")
-        self.assertEqual(set(result["findings"]), {"image", "text"})
-        self.assertEqual(result["findings"]["image"]["provenance"]["status"], "credential_absent")
-        self.assertNotIn(TEXT, str(result["tool_calls"]))
 
-    def test_agent_invalid_base64(self):
-        response = self.client.post("/api/agent/run", json={"image_base64": "***"})
-        self.assertEqual(response.status_code, 400)
-
-    def test_agent_multipart_accepts_text_and_image(self):
-        response = self.client.post(
-            "/api/agent/upload", data={"text": TEXT, "edit": "false"},
-            files={"file": ("sample.png", png(), "image/png")},
-        )
-        self.assertEqual(response.status_code, 200)
-        result = response.json()
-        self.assertEqual(set(result["findings"]), {"image", "text"})
-        self.assertEqual([call["tool"] for call in result["tool_calls"]],
-                         ["image_detection", "text_detection"])
-        self.assertEqual(self.bundle.image_calls, 1)
-        self.assertEqual(self.bundle.text_calls, 1)
-
-    def test_agent_multipart_preserves_segment_annotations(self):
-        client = TestClient(create_app(SegmentedBundle()), base_url="http://localhost")
-        long_text = "研究团队核对了真实平台内容的来源、标签和误报。" * 180
-        response = client.post(
-            "/api/agent/upload", data={"text": long_text, "edit": "false"},
-            files={"file": ("sample.png", png(800, 600), "image/png")},
-        )
-        self.assertEqual(response.status_code, 200)
-        findings = response.json()["findings"]
-        self.assertEqual(set(findings), {"image", "text"})
-        self.assertTrue(findings["text"]["segments"][0]["highlighted"])
-        self.assertEqual(findings["text"]["segment_summary"]["highlighted_character_percent"], 100.0)
-
-    def test_agent_multipart_rejects_bad_file(self):
-        response = self.client.post(
-            "/api/agent/upload", files={"file": ("sample.txt", b"not an image", "text/plain")},
-        )
-        self.assertEqual(response.status_code, 415)
-
-    def test_agent_multipart_accepts_image_only(self):
-        response = self.client.post(
-            "/api/agent/upload", files={"file": ("sample.png", png(), "image/png")},
-        )
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(set(response.json()["findings"]), {"image"})
-
-    def test_agent_rejects_blank_text_without_image(self):
-        response = self.client.post("/api/agent/run", json={"text": "  \n  "})
-        self.assertEqual(response.status_code, 400)
-
-    def test_llm_preview_is_opt_in_and_logged(self):
+    def test_llm_preview_is_opt_in(self):
         client = TestClient(create_app(FakeBundle(), FakeLLM()), base_url="http://localhost")
         preview = client.post("/api/text/edit/llm-preview", json={"text": TEXT})
         self.assertEqual(preview.status_code, 200)
         self.assertTrue(preview.json()["human_review_required"])
-        agent = client.post("/api/agent/run", json={"text": TEXT, "edit": True, "llm_preview": True})
-        self.assertEqual(agent.status_code, 200)
-        self.assertEqual(agent.json()["tool_calls"][-1]["tool"], "llm_edit_preview")
-        self.assertEqual(agent.json()["llm_preview"]["status"], "review_candidate")
-        self.assertEqual(agent.json()["decision"], "review_recommended")
+
 
     def test_llm_preview_blocks_identifier_loss_and_explanation(self):
         original = "The DOTA2 team reviewed 20 samples and found no error."
@@ -353,14 +289,10 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 503)
         self.assertNotIn(TEXT, response.text)
 
-    def test_missing_model_is_explicit_and_agent_abstains(self):
+    def test_missing_model_is_explicit(self):
         client = TestClient(create_app(MissingBundle()), base_url="http://localhost")
         response = client.post("/api/text/detect", json={"text": TEXT})
         self.assertEqual(response.status_code, 503)
-        agent = client.post("/api/agent/run", json={"text": TEXT, "edit": False})
-        self.assertEqual(agent.status_code, 200)
-        self.assertEqual(agent.json()["decision"], "insufficient_evidence")
-        self.assertEqual(agent.json()["tool_calls"][0]["status"], "unavailable")
 
 
 if __name__ == "__main__":

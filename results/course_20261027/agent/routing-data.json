@@ -1,0 +1,1968 @@
+{
+  "source": "Author-written bilingual tool-intent teaching cases, created 2026-10-27",
+  "records": [
+    {
+      "id": "A0",
+      "message": "介绍检测模型",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "train",
+      "sha256": "4f5f3c806abc70ca5ebed68a162f44d46ce54d93a60163f88fc575c6222a716e"
+    },
+    {
+      "id": "A1",
+      "message": "系统支持什么模型",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "train",
+      "sha256": "2f0e780a3ba0797f9869a9235a926db74c4ffb4aabd79babf91bde226c520105"
+    },
+    {
+      "id": "A2",
+      "message": "查看模型版本",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "train",
+      "sha256": "1565bd840652fac0ddee9b2da14b932d635b769d00dd3843cd0b3cfd06bd56d1"
+    },
+    {
+      "id": "A3",
+      "message": "告诉我检测能力",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "train",
+      "sha256": "1bcf98a9da6991abc31ba89537695d2ddf76abeeb45587f51db9d10a12c54bba"
+    },
+    {
+      "id": "A4",
+      "message": "Explain model capabilities",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "train",
+      "sha256": "e87e6c1613a4c7dcd89551a6717907e4a361f84d7b39bd843e4f4a847b22c731"
+    },
+    {
+      "id": "A5",
+      "message": "List detector versions",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "train",
+      "sha256": "75d503b57810929c9db07459b45d94dc7cf6e1e50c2b92850a0147c649f10450"
+    },
+    {
+      "id": "A6",
+      "message": "查看支持范围",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "train",
+      "sha256": "5e1a11f7f6cef297cc012bccece32312cfd319d3e3ec4a0a8080a0c8451f851a"
+    },
+    {
+      "id": "A7",
+      "message": "What models are installed",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "train",
+      "sha256": "7190842d44fe4300c3a1db3878ea8fcd3251347801f84f290e29e785f41f0c4c"
+    },
+    {
+      "id": "A8",
+      "message": "模型有哪些限制",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "validation",
+      "sha256": "4aadcc7aaf980140c1ebffed0a4c2c0684977de1378e90a1549cc2577ae487c2"
+    },
+    {
+      "id": "A9",
+      "message": "Show model information",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "validation",
+      "sha256": "bf49c5171b3ef90ecdd90ff58566cbbf3232c3adda8aedd29e79504d55dedd15"
+    },
+    {
+      "id": "A10",
+      "message": "我想知道当前采用哪些检测算法",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "test",
+      "sha256": "d0dcdbf382c7494f5cb9557a2458e3ef05a7c65566513516ff06d5a11ba1d00c"
+    },
+    {
+      "id": "A11",
+      "message": "Tell me the available detector capabilities",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "test",
+      "sha256": "4e0044beafef6583ef6efda61bb138f617779a2c5f590d6b783bbc95d2c1f49a"
+    },
+    {
+      "id": "A12",
+      "message": "介绍一下模型与适用范围",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "A",
+      "tools": [
+        "model_info"
+      ],
+      "split": "test",
+      "sha256": "033c338c8d3a008566d2f24d1491ff7227878728e80dce7df01d53a1b87554d4"
+    },
+    {
+      "id": "B0",
+      "message": "查看五次实验",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "train",
+      "sha256": "44268dec02e6047e319dda0467c7b17dcd7288561c6941968b30d2595c25f2f0"
+    },
+    {
+      "id": "B1",
+      "message": "介绍课程实验",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "train",
+      "sha256": "b42bf9ce24914f427b0362a6f6f04da4020eddec2ad3ae4797b3f09cdf040f3d"
+    },
+    {
+      "id": "B2",
+      "message": "实验一到五的结果",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "train",
+      "sha256": "9d27eb1266710575ab33a31cb7b6cb28ff7c734fea36ce7ce15a0e5ec95219b1"
+    },
+    {
+      "id": "B3",
+      "message": "展示课程成果",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "train",
+      "sha256": "0dadb52560c574f79bed9d18d4d23f7e6a13b8f75ec601518f6c416f425b50de"
+    },
+    {
+      "id": "B4",
+      "message": "Show the course experiments",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "train",
+      "sha256": "291ed07949871b5f04e708926ccc91baf6abee7310e4052de39b62cfaa789b7c"
+    },
+    {
+      "id": "B5",
+      "message": "List the five experiment stages",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "train",
+      "sha256": "b4d6f0167638bbbb9938fd1d1bb5d8124709c057389bca8fb74f6516a39382ca"
+    },
+    {
+      "id": "B6",
+      "message": "查看训练与压缩记录",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "train",
+      "sha256": "36a0ed932c00567f1f873ed326a584c23082dab72f159a04452030c02cb17e6c"
+    },
+    {
+      "id": "B7",
+      "message": "课程实验总览",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "train",
+      "sha256": "ef88beeaa10787c4eb45e7a418439072957777c49b6afa12928d7ac621ab8158"
+    },
+    {
+      "id": "B8",
+      "message": "实验链路是什么",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "validation",
+      "sha256": "eeb58712ee3887449593b7cfd40e5321754be9b01cd939cb5ae1004d14ed9e9a"
+    },
+    {
+      "id": "B9",
+      "message": "Explain the course pipeline",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "validation",
+      "sha256": "0a35a55e50c73ffa98e82feb5aa1a066355edacd20382aa70c1a7f07d3cfe943"
+    },
+    {
+      "id": "B10",
+      "message": "我要看从数据到部署的五阶段成果",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "test",
+      "sha256": "6f13486f9eb31a46a2f8b4847f3dd7e95f5d61e1d907104529ace8e246d624aa"
+    },
+    {
+      "id": "B11",
+      "message": "Where are the course training and optimization records",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "test",
+      "sha256": "1bd6cc41cdacf1ec828f55f1eb6d3cb967cd17012f32d3473aca19b81f4ab22c"
+    },
+    {
+      "id": "B12",
+      "message": "展示课程各阶段的可复查材料",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "B",
+      "tools": [
+        "course_overview"
+      ],
+      "split": "test",
+      "sha256": "f844da52cf7416b4104f47e6a7321f951852b266188fceaf0cbb232fd422029e"
+    },
+    {
+      "id": "C0",
+      "message": "检测这段文本",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "b580109f9f9e79c09d159ce0f70acd15645275d30d36074b4a0c96bf800d4f1e"
+    },
+    {
+      "id": "C1",
+      "message": "只检查文字",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "a62b8ffba5b6acbd8b2d2f8ed557a873fd486902ff5348368a2cc91fccb78148"
+    },
+    {
+      "id": "C2",
+      "message": "判断粘贴文本",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "0c97d09402ab9da24a17cc4cd80747ecc97e343e61db289b944698a3f471e13b"
+    },
+    {
+      "id": "C3",
+      "message": "分析文本的生成特征",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "3646e7ffdfa437838ee1f438598da89cc9302d83dbca1924e5b57a2c91585a69"
+    },
+    {
+      "id": "C4",
+      "message": "Detect the pasted text",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "0a8df5003902f86714a83c5bd0423720fe24d172e3b1e768870ccb7f3244d94a"
+    },
+    {
+      "id": "C5",
+      "message": "Analyze text only",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "5f9bf551a9be1ab8e7e37acb0deaa49276fbc484e334aa530ce8333cb6cdf314"
+    },
+    {
+      "id": "C6",
+      "message": "请检测正文",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "ece03cb1875b1b114766ef11486b3cee46a094839e0b34bf2ba4231670e4804d"
+    },
+    {
+      "id": "C7",
+      "message": "不要看图片，只看文字",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "1ff43b625e395316385f0d0a97644aaeb55f82c882876ec68c3203c29adaad2a"
+    },
+    {
+      "id": "C8",
+      "message": "评估这段文字",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "validation",
+      "sha256": "d26aa80a922c365ce31908f9c157f68b593c268989f1e54167b580714270a27d"
+    },
+    {
+      "id": "C9",
+      "message": "Check this passage",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "validation",
+      "sha256": "f587e1cf33d5d714587bcd41a31606259eff1e720fc9410bfc69ffd755eb47fc"
+    },
+    {
+      "id": "C10",
+      "message": "请只分析我粘贴的文章，图片不用管",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "test",
+      "sha256": "899c43ddbbc58758ce6dd8adb3b8bcef37cf229bb1c56dfc4d641796dab33079"
+    },
+    {
+      "id": "C11",
+      "message": "Screen the supplied passage and skip the image",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "test",
+      "sha256": "067f5d68bc3510fad590ee381021725e8920dfb0c5029663b0fa8e1912734970"
+    },
+    {
+      "id": "C12",
+      "message": "看看这篇正文的生成信号",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "C",
+      "tools": [
+        "text_detection"
+      ],
+      "split": "test",
+      "sha256": "72fbb83a15f727fd419f85060b96ad272c3c5ae2888241dd7a756f5a47286ba2"
+    },
+    {
+      "id": "D0",
+      "message": "检测这张图片",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "train",
+      "sha256": "26641f3eb98bd8f1ec2bf25f5597bc4075d006daf590d43ecf4003bc76616801"
+    },
+    {
+      "id": "D1",
+      "message": "只分析图片",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "train",
+      "sha256": "22ecdf516b927232290b66d2d11239ab52cab9cbef8de4657f8ffdf8581a07ee"
+    },
+    {
+      "id": "D2",
+      "message": "判断上传照片",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "train",
+      "sha256": "813764d94affefdfe8f4b8e4bb47c7390e0f49f8bacf18dc1302da169a810073"
+    },
+    {
+      "id": "D3",
+      "message": "查看图像生成特征",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "train",
+      "sha256": "a939145e0490c6d47ddada846b24cab39a9134b43fc467ab1911cb59997728af"
+    },
+    {
+      "id": "D4",
+      "message": "Detect the image",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "train",
+      "sha256": "0782840062a6e5eef4728ca73c0c7fe82cf379563dce2077ff85d059d6ab22b3"
+    },
+    {
+      "id": "D5",
+      "message": "Analyze image only",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "train",
+      "sha256": "20d3eabe95e515f8c659fc7345aa11645f95032f41af4fcb8e7b0b674f48bb4f"
+    },
+    {
+      "id": "D6",
+      "message": "请检查照片",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "train",
+      "sha256": "fd020b9aae17ce6e4079924f7a515eb88f9aa808ac97ebd07a477932566c9c25"
+    },
+    {
+      "id": "D7",
+      "message": "不检测文字，只看图",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "train",
+      "sha256": "e1e913b3955e1bb6089c90734de0750570f0928cb0a49dc7acfc5bfea4ad5996"
+    },
+    {
+      "id": "D8",
+      "message": "评估图片",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "validation",
+      "sha256": "fdd8c56049c950e04eb04fb29cfa25b937ba6868e45f57ea4e9f409d4b23444e"
+    },
+    {
+      "id": "D9",
+      "message": "Check this picture",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "validation",
+      "sha256": "5f0bae95912619d5561d7c1766fc92d94ab93368448ecb2a27fe0896db2b8ca1"
+    },
+    {
+      "id": "D10",
+      "message": "请只检查附件中的照片，正文不需要分析",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "test",
+      "sha256": "700cf275c844f244c41612c4c7870be5aefd606e8fbf4b77f73c67492d86ce78"
+    },
+    {
+      "id": "D11",
+      "message": "Inspect the attached photograph and ignore the text",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "test",
+      "sha256": "b47508b5438828dd60ca767f621cc270a71375b62cb8c6e93f4fa5fca9d46786"
+    },
+    {
+      "id": "D12",
+      "message": "看看上传的图像有什么生成特征",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": false
+      },
+      "letter": "D",
+      "tools": [
+        "image_detection"
+      ],
+      "split": "test",
+      "sha256": "3f6f46e6ce03a3663cd5e52089feedc0a294665675150cf5e0519cedac8b255a"
+    },
+    {
+      "id": "E0",
+      "message": "检测这份文档",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "69f4f9fa4ca97b6edc968fd1fc20440aaf452434784b4089cd95fe095dba5067"
+    },
+    {
+      "id": "E1",
+      "message": "分析附件文档",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "6e7a6782dcbf388824a99ae7886bdd15782689671cf9728f3698a58a15e3394e"
+    },
+    {
+      "id": "E2",
+      "message": "给文档生成报告",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "fe8973f71e3d8e104e2e9da8249d80d2908375492b177f3fa0b15ac7ab756fb8"
+    },
+    {
+      "id": "E3",
+      "message": "查看Word检测结果",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "85b0e80f8e6acf84fd734ab33ce16d4ce1775b9b92b275f989d945f36e4621df"
+    },
+    {
+      "id": "E4",
+      "message": "Analyze the document",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "da5517f5134860d3646da5ae41bfe1f0735925152ea360ffc12464b38cd4bb00"
+    },
+    {
+      "id": "E5",
+      "message": "Screen the uploaded document",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "561892021480c9c4ac41f2cc8b2afd56f1fd23d09bf1e38a511d3a2e756a65c0"
+    },
+    {
+      "id": "E6",
+      "message": "请检查PDF",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "d30915cd8dd69b051dba9b325841691d48cf39c288c86bf5a84e7f6e374231e5"
+    },
+    {
+      "id": "E7",
+      "message": "全文文档检测",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "f07bb5968c7ffac476b21f69ed8d5745c48e38bf148170286f44939002484651"
+    },
+    {
+      "id": "E8",
+      "message": "评估文档段落",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "validation",
+      "sha256": "6491868b7a8ec1ef853effafaa02835f01498ac9bfa037918b962bd9fb617d73"
+    },
+    {
+      "id": "E9",
+      "message": "Check the uploaded file",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "validation",
+      "sha256": "2bbeb00a1d2b52df0f463a17c8bd52661c03c8d97a28b8a0c3bfc731ba8913ca"
+    },
+    {
+      "id": "E10",
+      "message": "请提取附件文章并给出分段检测报告",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "test",
+      "sha256": "3c3276acc2e5b87d0dba22a7444efae82a0663960a3e5c9bbd34ce699d564bc2"
+    },
+    {
+      "id": "E11",
+      "message": "Create a paragraph screening report for the uploaded document",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "test",
+      "sha256": "009f2d1e025ba5d5ed685fcfd3fc0db809052c407cb1b4fa9abad272cab57957"
+    },
+    {
+      "id": "E12",
+      "message": "检查这份材料并保留原文标注",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": true
+      },
+      "letter": "E",
+      "tools": [
+        "document_detection"
+      ],
+      "split": "test",
+      "sha256": "22a066848920f708195c0a6a9aa2bb831487e1bcb8f59a86037feb27bbfcbbac"
+    },
+    {
+      "id": "F0",
+      "message": "改进英文表达",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "be6e90be839f6827ab43e7b4cca31c3c33d2a48e3eb7ab63a2abed118f2c3362"
+    },
+    {
+      "id": "F1",
+      "message": "只修改语法",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "4de4f3a9ee27b57bd591d1997c8d3cca1cf6be5b601914bee1785b265fd44a8b"
+    },
+    {
+      "id": "F2",
+      "message": "润色这段英文",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "1b590c2177eefa38846643f161dc26210b2bd8a1b617495370a22055fd3f9932"
+    },
+    {
+      "id": "F3",
+      "message": "给我英文编辑建议",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "ce6c85f3f527f03436e2dc88ba9914627da72d2e9d915f6dd4279f5e2b1a04ee"
+    },
+    {
+      "id": "F4",
+      "message": "Edit the English passage",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "ac97dc3e064f80801bcb0a3b5eb628f23b58e46ed446cdfe206fd93c39e11ee0"
+    },
+    {
+      "id": "F5",
+      "message": "Improve grammar only",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "56226200bb7c32f82595c5601f96ac9222c80d03c0992a6c71f8eed2fbb5f4f2"
+    },
+    {
+      "id": "F6",
+      "message": "优化英文清晰度",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "3435b16de70c6c44cc4ecb91be9cad85a8aef24945f7adbaa1e8b67184cbce94"
+    },
+    {
+      "id": "F7",
+      "message": "不要检测，只做编辑",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "5103edf753d20bc4f6d45336399b31eaf1b47cc79556b7efed09bd1459b0cefd"
+    },
+    {
+      "id": "F8",
+      "message": "修正英文语法",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "validation",
+      "sha256": "dce1cf81a694d2fcf36de5bdd1c4f5560b11f5082e69fea57f34bfa6548cd356"
+    },
+    {
+      "id": "F9",
+      "message": "Correct the wording",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "validation",
+      "sha256": "163a512afba75984b47cb6f6aa138251f4a72f2afe10695604ab15887c8eed38"
+    },
+    {
+      "id": "F10",
+      "message": "请只改进所给英文的语法和清晰度",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "test",
+      "sha256": "3e4352b5a4606f4dc3a7cc71285ed5562da5c220ba432b127a16dbcf616d8f16"
+    },
+    {
+      "id": "F11",
+      "message": "Suggest a clearer English revision without detection",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "test",
+      "sha256": "1cf12f4715dedd56991bd94e7c457b04ef8fc3064f5405a10c550dd135bff62c"
+    },
+    {
+      "id": "F12",
+      "message": "保留原意，给英文句子提修改建议",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "F",
+      "tools": [
+        "clarity_edit"
+      ],
+      "split": "test",
+      "sha256": "7d074fcea6fbd41167368c1b056a47a4b0d0660649e9dd4c9573fe53d5c95ba2"
+    },
+    {
+      "id": "G0",
+      "message": "图片和文字都检测",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "4cca8d05c473172061825b6821ab0adcf228c57e688f84e77bb3e3399332608b"
+    },
+    {
+      "id": "G1",
+      "message": "同时检查图文",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "da7c4d2b3134bcf74fa1f615675c7bbba9ccdecb166ae6c5d0f64ce17fbbb910"
+    },
+    {
+      "id": "G2",
+      "message": "分别分析图片和正文",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "895d3937df4cd483d5dba643313d64704230a78fdc4432f2ad603456487660f2"
+    },
+    {
+      "id": "G3",
+      "message": "检测两种内容",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "5c96d857765e7e3d9f3c7ae0a52d37fc208cc930c0f21f8cb6c4da80650fbeae"
+    },
+    {
+      "id": "G4",
+      "message": "Detect image and text",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "40a5aa1d9240ff966dbbc826350d053893d3eef2c8abe073f8de8911fde822c2"
+    },
+    {
+      "id": "G5",
+      "message": "Check both picture and passage",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "b5148bffb5acf70c23f6f59378aedd7123050063532e6a2528c4824e293f1b62"
+    },
+    {
+      "id": "G6",
+      "message": "图文分别给结果",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "02c1ec83f04203dc0dc64be4d7dfa2460023ba1eca2feaa2397c1a4b86cfb3c6"
+    },
+    {
+      "id": "G7",
+      "message": "同时筛查照片与文字",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "train",
+      "sha256": "e19fa4a9a260b993fd96e1a8b485370575ca9a9122f51bfe2515abf815791001"
+    },
+    {
+      "id": "G8",
+      "message": "图像文字都看",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "validation",
+      "sha256": "d74df9be07c814290787ab837e9f8a7858c12a4e79f8ab64769d3bfc728a4ab5"
+    },
+    {
+      "id": "G9",
+      "message": "Analyze image plus pasted text",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "validation",
+      "sha256": "015e695da6f2c7a27122b8e600606696bb3ad72c037f3e92710e7c0d9748a884"
+    },
+    {
+      "id": "G10",
+      "message": "请把图片与粘贴正文分别检测并汇总",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "test",
+      "sha256": "b318d8e39451b900a79a1a3cde34a9bb6e7df98cd380dfdb3555fceec6f2894c"
+    },
+    {
+      "id": "G11",
+      "message": "Screen both the photograph and pasted article separately",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "test",
+      "sha256": "26f864e370d966148055afe937c1084acac2887f783f53998e1d66e44dd22071"
+    },
+    {
+      "id": "G12",
+      "message": "文字和照片都需要检测结果",
+      "available": {
+        "text": true,
+        "image": true,
+        "document": false
+      },
+      "letter": "G",
+      "tools": [
+        "image_detection",
+        "text_detection"
+      ],
+      "split": "test",
+      "sha256": "7dd5d71667840d063cf1927a00396aaced3222948747d9ae89dad2b0188a91e2"
+    },
+    {
+      "id": "H0",
+      "message": "图片和文档都检测",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "8fb3f97fb6580e66424944f07728207d9100e9e6325ed4498f3d9aee7f667ab1"
+    },
+    {
+      "id": "H1",
+      "message": "同时检查照片与PDF",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "909faf404d3bbc369ffcc6db7c0983118afd9b64809db2f60d30e966484170ed"
+    },
+    {
+      "id": "H2",
+      "message": "分别分析图像和文件",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "141da699066262ae0c2743d5601914700eb35211477a21f6457de73c95a1d1c3"
+    },
+    {
+      "id": "H3",
+      "message": "检测文档与图片",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "a9b6ebcc5557c0e006e809a3bd95992b9f5a9faa5612fd98eef58c2631e1c0bd"
+    },
+    {
+      "id": "H4",
+      "message": "Detect image and document",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "b9561ac945e7706cd64aba002074bd2c1b71829417e8f0ad1900c67db17967f7"
+    },
+    {
+      "id": "H5",
+      "message": "Check picture and uploaded document",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "7025ff31d91dc99600ac3f86e1b0c5e2b846b2ac0c6d0b6fe3be456511920f76"
+    },
+    {
+      "id": "H6",
+      "message": "文档图像分别给结果",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "c697c957194995d10b1a8d2c4d363e422986e2500b1dea017c3fcccd71a30c04"
+    },
+    {
+      "id": "H7",
+      "message": "同时筛查照片和Word",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "train",
+      "sha256": "868dce687541a23ef9a4dd2322de26be052d4f832b28646ee17f35f59e0e2540"
+    },
+    {
+      "id": "H8",
+      "message": "图片文件一起分析",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "validation",
+      "sha256": "136b3d86b066ba335d071ba305681339b4f82124603b297afab2e86405c79fc1"
+    },
+    {
+      "id": "H9",
+      "message": "Analyze image plus document",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "validation",
+      "sha256": "b092ae9130d2a01650d5552562cddd6772000e05d7f38e8d8a30fca756785ceb"
+    },
+    {
+      "id": "H10",
+      "message": "请对照片和附件文章分别生成检测结果",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "test",
+      "sha256": "e9802e9ffae29bd01caeccbf158818736f85150fc87ddc039af33c0be07d7d0c"
+    },
+    {
+      "id": "H11",
+      "message": "Screen both the image and the attached document",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "test",
+      "sha256": "fc7781d2d97888c3a595d3c01d089dd8eef12df30da409a01809dc5232a60448"
+    },
+    {
+      "id": "H12",
+      "message": "检查图像并给文档出一份报告",
+      "available": {
+        "text": false,
+        "image": true,
+        "document": true
+      },
+      "letter": "H",
+      "tools": [
+        "image_detection",
+        "document_detection"
+      ],
+      "split": "test",
+      "sha256": "c812fa0f5bef81dfa8dfc1ce97d560a818c8578a6341c7ef0d6e37ef8ada83b6"
+    },
+    {
+      "id": "I0",
+      "message": "检测文本后改进英文",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "aca42fb997a244f221e5fe43634a8f798e70bc588407a98190f7cc279e63a7ea"
+    },
+    {
+      "id": "I1",
+      "message": "检查文字并给编辑建议",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "b53e7aaa7453b61e217198b2098be7323678b669cc909339d2526d0846bfa7be"
+    },
+    {
+      "id": "I2",
+      "message": "检测并修改语法",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "0fc8372ee98ffeeb9020c9b42054b62eb998e65b0fe09c754e70f05bae157260"
+    },
+    {
+      "id": "I3",
+      "message": "分析文本再润色",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "94159e6617aef812086f662fa175a17bead1645499b77f564528de25121aff90"
+    },
+    {
+      "id": "I4",
+      "message": "Detect text then edit it",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "2016a892df6cb59a3659fe434f6b97d35d3b7a78f02a463940deea3bc615945a"
+    },
+    {
+      "id": "I5",
+      "message": "Screen and improve the English passage",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "a8186c97f185e50d7b0467e35e9cb9de4e8f5bf493e69ce8d8e8daf55966877b"
+    },
+    {
+      "id": "I6",
+      "message": "文本检测与编辑都要",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "1afebfe1e11ef6f02687527db8142521a4f7a324bf3a53f7c0fae025815451d6"
+    },
+    {
+      "id": "I7",
+      "message": "先检测再优化表达",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "train",
+      "sha256": "2365e2cbcd9042b56f2202ddf2258e40563e5ea0256f9eb3ac64690b27bc2275"
+    },
+    {
+      "id": "I8",
+      "message": "检查英文并提改法",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "validation",
+      "sha256": "a6a29f52913a4abafe44fa8b5eace0162627ccd21b20e438ff93b422c665439f"
+    },
+    {
+      "id": "I9",
+      "message": "Analyze and edit this text",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "validation",
+      "sha256": "604fd10db3f47e7ce907edeedcab40507a84ad585f62e66cc15e566a0ceab5dd"
+    },
+    {
+      "id": "I10",
+      "message": "请检测粘贴内容，同时建议更清晰的英文表达",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "test",
+      "sha256": "c59547aaf59e27b5887be52e98fbc3acbdf8f70c35027c19fa6f2a776a8f85bb"
+    },
+    {
+      "id": "I11",
+      "message": "Run text screening and also suggest grammar improvements",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "test",
+      "sha256": "78b180fd76754d4dc9e1b246dd14b8fcc9ef3714935085f6f07a876bc0e84042"
+    },
+    {
+      "id": "I12",
+      "message": "给这段英文做检测及清晰度修改",
+      "available": {
+        "text": true,
+        "image": false,
+        "document": false
+      },
+      "letter": "I",
+      "tools": [
+        "text_detection",
+        "clarity_edit"
+      ],
+      "split": "test",
+      "sha256": "fbee23759190e1c96a0023a771f67d9eb11182572d369075c77bfe06c11c26b1"
+    },
+    {
+      "id": "J0",
+      "message": "请检测图片但我没上传",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "train",
+      "sha256": "af86e61fa425628b53a47c6e8785a79a5a30beca6303bd79f87288390e93a615"
+    },
+    {
+      "id": "J1",
+      "message": "检测文字但未提供内容",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "train",
+      "sha256": "521f47bb79a8d661a8b7ce48ca5338df283c67679bee174fd4a0770803ce15c7"
+    },
+    {
+      "id": "J2",
+      "message": "检查PDF但没有附件",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "train",
+      "sha256": "964a90e8f141c9f49f4243d598c5ed3ef4dfb0b07f86b66ca403e84eb019a8e3"
+    },
+    {
+      "id": "J3",
+      "message": "请润色但没有正文",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "train",
+      "sha256": "e72342116172d0811b9f6941a548994edeecb851da03ad46e202654bd181b24f"
+    },
+    {
+      "id": "J4",
+      "message": "Detect my image but no image is attached",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "train",
+      "sha256": "8bf0f66b1db3df07e2f5b90ceaa4b63891a1dd50d3a6b7080d2dd889010a2ce5"
+    },
+    {
+      "id": "J5",
+      "message": "Check a document without an upload",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "train",
+      "sha256": "462b19c1128a3183069069ab8c50f0166e8829f3829f45825f71958071cb45be"
+    },
+    {
+      "id": "J6",
+      "message": "我还没有提交要检测的内容",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "train",
+      "sha256": "e894f05615a960260a2ccd944d7fa3faf32aac17c29583a5ab4d4bc71b257f4c"
+    },
+    {
+      "id": "J7",
+      "message": "检测不存在的文件",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "train",
+      "sha256": "3cbe63863899bc28298479ab6509eab8cc24b0f52011b13c4f6f8e6dd4903987"
+    },
+    {
+      "id": "J8",
+      "message": "我没贴正文但想检测",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "validation",
+      "sha256": "066da23e4b4b19398e158f66af8e278b25bb537121dd3ce9b1b391acd177559b"
+    },
+    {
+      "id": "J9",
+      "message": "Edit without any supplied text",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "validation",
+      "sha256": "6eff0f604acbda63f247153ebb32b2cb61aef5d5b3bf6786a1348816074ea00f"
+    },
+    {
+      "id": "J10",
+      "message": "还未上传任何材料，请先检查照片",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "test",
+      "sha256": "db0d9da20755afdcb4141575930fcb21c40cfa5a4713837dad15fa4b09d41651"
+    },
+    {
+      "id": "J11",
+      "message": "Please analyze the missing attachment",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "test",
+      "sha256": "d5e8e7f1e674f864d48d72f8c1f30a315ef35543922297ebb066074207c5c097"
+    },
+    {
+      "id": "J12",
+      "message": "正文尚未提供，先帮我检测文章",
+      "available": {
+        "text": false,
+        "image": false,
+        "document": false
+      },
+      "letter": "J",
+      "tools": [],
+      "split": "test",
+      "sha256": "f6d334a0ab07941cc8ae7efaaeeee596c97019b0f135e0860377c0376f7a6bdf"
+    }
+  ]
+}

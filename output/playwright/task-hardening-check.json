@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "An active task has no history-removal action",
+      "passed": true
+    },
+    {
+      "name": "An older progress response cannot move the progress bar backwards",
+      "passed": true
+    },
+    {
+      "name": "A stale progress response cannot re-enable cancellation",
+      "passed": true
+    },
+    {
+      "name": "A stale progress response cannot re-enable background processing",
+      "passed": true
+    },
+    {
+      "name": "A stale collection refresh preserves the cancellation intent",
+      "passed": true
+    },
+    {
+      "name": "A terminal response exits cancellation mode",
+      "passed": true
+    },
+    {
+      "name": "History removal deletes only task metadata",
+      "passed": true
+    },
+    {
+      "name": "The generated report survives task-history removal",
+      "passed": true
+    },
+    {
+      "name": "History removal preserves the report currently being read",
+      "passed": true
+    },
+    {
+      "name": "Agent export failures show inline feedback without an error download",
+      "passed": true
+    },
+    {
+      "name": "A failed Agent download can be retried with the Chinese filename",
+      "passed": true
+    },
+    {
+      "name": "Same-report downloads share one HTTP transfer across Agent cards",
+      "passed": true
+    },
+    {
+      "name": "A shared download starts only one native file download",
+      "passed": true
+    },
+    {
+      "name": "An expired Agent report produces a readable error and no JSON download",
+      "passed": true
+    },
+    {
+      "name": "Agent download feedback fits a 390px screen",
+      "passed": true
+    },
+    {
+      "name": "Agent report actions do not cause horizontal chat scrolling",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "downloads": [
+    "文档检测报告_记录移除验证.docx",
+    "文档检测报告_记录移除验证.html"
+  ]
+}

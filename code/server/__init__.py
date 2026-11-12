@@ -1,1 +1,1 @@
-"""Local API and deterministic Agent for experiments four and five."""
+"""Local detection API, course model deployment and fine-tuned LLM Agent."""

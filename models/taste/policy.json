@@ -1,0 +1,46 @@
+{
+  "method": "TASTE-ICLR2026",
+  "chinese_head": "adapted",
+  "chinese_calibration": {
+    "coefficient": 1.0436818938522707,
+    "intercept": 0.21079828002922682
+  },
+  "english_head": "original",
+  "english_calibration": {
+    "coefficient": 1.0,
+    "intercept": 0.0
+  },
+  "validation_original": {
+    "samples": 128,
+    "human": 64,
+    "ai": 64,
+    "accuracy": 0.78125,
+    "balanced_accuracy": 0.78125,
+    "auroc": 0.9482421875,
+    "false_positive_rate": 0.40625,
+    "false_negative_rate": 0.03125,
+    "tn": 38,
+    "fp": 26,
+    "fn": 2,
+    "tp": 62
+  },
+  "validation_adapted": {
+    "samples": 128,
+    "human": 64,
+    "ai": 64,
+    "accuracy": 0.9453125,
+    "balanced_accuracy": 0.9453125,
+    "auroc": 0.992919921875,
+    "false_positive_rate": 0.046875,
+    "false_negative_rate": 0.0625,
+    "tn": 61,
+    "fp": 3,
+    "fn": 4,
+    "tp": 60
+  },
+  "training_groups": 128,
+  "validation_groups": 64,
+  "max_tokens": 512,
+  "overflow_stride": 64,
+  "long_text_aggregation": "unique-token-weighted mean logit"
+}

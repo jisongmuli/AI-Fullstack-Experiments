@@ -1,0 +1,94 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Changing completed text invalidates its previous result",
+      "passed": true
+    },
+    {
+      "name": "Updated text shows a request to analyze again",
+      "passed": true
+    },
+    {
+      "name": "Reanalysis renders the current text",
+      "passed": true
+    },
+    {
+      "name": "Clipboard denial is handled without removing the suggestion",
+      "passed": true
+    },
+    {
+      "name": "Clipboard denial produces no uncaught browser exception",
+      "passed": true
+    },
+    {
+      "name": "Changed editor input removes the old copy and apply actions",
+      "passed": true
+    },
+    {
+      "name": "Applying an edit updates the input and invalidates the old comparison",
+      "passed": true
+    },
+    {
+      "name": "Changing input also invalidates a completed LLM preview",
+      "passed": true
+    },
+    {
+      "name": "A valid document enables Agent submission",
+      "passed": true
+    },
+    {
+      "name": "An unsupported replacement clears the previous document",
+      "passed": true
+    },
+    {
+      "name": "The rejected file input is reset",
+      "passed": true
+    },
+    {
+      "name": "An empty replacement cannot submit the old document",
+      "passed": true
+    },
+    {
+      "name": "A valid 6000-codepoint import is accepted",
+      "passed": true
+    },
+    {
+      "name": "The exact 10000-codepoint import boundary is accepted",
+      "passed": true
+    },
+    {
+      "name": "Over-limit imports are rejected while preserving visible input",
+      "passed": true
+    },
+    {
+      "name": "Agent message previews do not split an emoji",
+      "passed": true
+    },
+    {
+      "name": "A delayed sample cannot replace a newer manual image",
+      "passed": true
+    },
+    {
+      "name": "Clearing the image cancels an earlier sample selection",
+      "passed": true
+    },
+    {
+      "name": "A failed sample download is reported instead of marked ready",
+      "passed": true
+    },
+    {
+      "name": "The latest sample selection wins when downloads finish out of order",
+      "passed": true
+    },
+    {
+      "name": "The real image model still analyzes the selected file",
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors in the repaired flows",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

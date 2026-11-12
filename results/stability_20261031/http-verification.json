@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-31T05:19:15.578287+00:00",
+  "url": "http://127.0.0.1:8006",
+  "checks": [
+    {
+      "name": "Agent ingestion: old.doc",
+      "passed": true
+    },
+    {
+      "name": "Agent ingestion: broken.docx",
+      "passed": true
+    },
+    {
+      "name": "Agent ingestion: empty.txt",
+      "passed": true
+    },
+    {
+      "name": "Agent ingestion: blank.txt",
+      "passed": true
+    },
+    {
+      "name": "Malformed conversation role: list",
+      "passed": true
+    },
+    {
+      "name": "Malformed conversation role: dict",
+      "passed": true
+    },
+    {
+      "name": "All 80 optimized image predictions match saved measurements",
+      "passed": true
+    },
+    {
+      "name": "All 600 optimized text predictions match saved measurements",
+      "passed": true
+    },
+    {
+      "name": "Equivalent Unicode and whitespace: trained",
+      "passed": true
+    },
+    {
+      "name": "Equivalent Unicode and whitespace: optimized",
+      "passed": true
+    },
+    {
+      "name": "Whitespace does not turn short text into a scorable sample",
+      "passed": true
+    },
+    {
+      "name": "Health remains available after invalid inputs and full replay",
+      "passed": true
+    },
+    {
+      "name": "All processing and Agent slots are released",
+      "passed": true
+    }
+  ],
+  "actual_models": true,
+  "replayed": {
+    "images": 80,
+    "texts": 600
+  },
+  "score_tolerance": 0.0001,
+  "runtime_after": {
+    "status": "ok",
+    "processing": {
+      "active": 0,
+      "limit": 2,
+      "completed": 685,
+      "rejected": 0
+    },
+    "reports": {
+      "count": 0,
+      "limit": 20,
+      "bytes": 0,
+      "max_bytes": 33554432,
+      "ttl_seconds": 1800
+    },
+    "agent": {
+      "active": false
+    }
+  }
+}

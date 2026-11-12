@@ -1,0 +1,105 @@
+{
+  "purpose": "portable package workflow smoke test, not detection accuracy",
+  "accuracy_evaluated": false,
+  "checks": [
+    {
+      "name": "health",
+      "http_status": 200,
+      "latency_ms": 8.5
+    },
+    {
+      "name": "homepage",
+      "http_status": 200,
+      "latency_ms": 4.2
+    },
+    {
+      "name": "Chinese text",
+      "http_status": 200,
+      "latency_ms": 5.2
+    },
+    {
+      "name": "English text",
+      "http_status": 200,
+      "latency_ms": 14.7
+    },
+    {
+      "name": "CIFAKE image",
+      "http_status": 200,
+      "latency_ms": 87.1
+    },
+    {
+      "name": "ordinary image dual models",
+      "http_status": 200,
+      "latency_ms": 7781.7,
+      "scores_are_not_ground_truth": true
+    },
+    {
+      "name": "fixture.docx detection",
+      "http_status": 200,
+      "latency_ms": 26.4
+    },
+    {
+      "name": "fixture.pdf detection",
+      "http_status": 200,
+      "latency_ms": 45.9
+    },
+    {
+      "name": "fixture.txt detection",
+      "http_status": 200,
+      "latency_ms": 44.1
+    },
+    {
+      "name": "docx export",
+      "http_status": 200,
+      "latency_ms": 43.5
+    },
+    {
+      "name": "html export",
+      "http_status": 200,
+      "latency_ms": 5.3
+    },
+    {
+      "name": "json export",
+      "http_status": 200,
+      "latency_ms": 5.9
+    },
+    {
+      "name": "Agent document plus image",
+      "http_status": 200,
+      "latency_ms": 53.8
+    },
+    {
+      "name": "available report list",
+      "http_status": 200,
+      "latency_ms": 32.1
+    },
+    {
+      "name": "local LoRA editing preview",
+      "http_status": 200,
+      "latency_ms": 1612.0,
+      "screened_status": "rejected"
+    },
+    {
+      "name": "delete temporary report",
+      "http_status": 200,
+      "latency_ms": 5.6
+    },
+    {
+      "name": "delete temporary report",
+      "http_status": 200,
+      "latency_ms": 4.8
+    },
+    {
+      "name": "delete temporary report",
+      "http_status": 200,
+      "latency_ms": 4.0
+    },
+    {
+      "name": "delete temporary report",
+      "http_status": 200,
+      "latency_ms": 3.7
+    }
+  ],
+  "python": "3.12.2",
+  "status": "passed"
+}

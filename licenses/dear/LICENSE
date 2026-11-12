@@ -1,0 +1,32 @@
+DEAR Checkpoints
+Copyright (c) 2026 DEAR authors (Korea AI Safety Institute, ETRI)
+
+These model weights are licensed under the Creative Commons
+Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
+
+You are free to share and adapt these weights for non-commercial purposes,
+under the following terms.
+
+  Attribution. You must give appropriate credit, provide a link to the
+  license, and indicate if changes were made.
+
+  NonCommercial. You may not use the material for commercial purposes.
+
+  No additional restrictions beyond those stated below.
+
+Full license text (legal code):
+https://creativecommons.org/licenses/by-nc/4.0/legalcode
+Human-readable summary:
+https://creativecommons.org/licenses/by-nc/4.0/
+
+Additional use restrictions (inherited from Stable Diffusion 1.5).
+The DEAR models (dear_c, dear_r) were refined using diagnostic images generated
+with Stable Diffusion 1.5, which is distributed under the CreativeML OpenRAIL-M
+license. By using these weights you also agree not to use them for any purpose
+prohibited by that license, as listed in Attachment A of the CreativeML
+OpenRAIL-M license.
+https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5
+
+Portions of the training pipeline and data derive from AlignedForensics and from
+a GRIP-UNINA ResNet-50 backbone (Apache-2.0). See the NOTICE file for the full
+attribution and per-component terms.
